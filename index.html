@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&amp;family=Instrument+Serif:ital@0;1&amp;family=Hanken+Grotesk:wght@400;500;600&amp;family=DM+Serif+Display:ital@0;1&amp;family=Space+Grotesk:wght@400;500;700&amp;family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500;1,600&amp;family=Space+Mono:wght@400;700&amp;family=Anton&amp;family=Fredoka:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#E9EEF8; --panel:#DBE3F3; --ink:#14203A; --ink2:#5C6885; --line:#C7D2E8;
+    --accent:#1E50E0; --accent-deep:#163CAB;
+    --display:'Syne',sans-serif; --serif:'Instrument Serif',serif; --body:'Hanken Grotesk',sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:400;-webkit-font-smoothing:antialiased;text-wrap:pretty}
+  html{scroll-behavior:smooth}
+  ::selection{background:var(--accent);color:var(--bg)}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%;height:auto}
+  iframe,video{max-width:100%}
+  @media(max-width:820px){
+    .hero-grid{grid-template-columns:1fr !important}
+    .about-grid{grid-template-columns:1fr !important}
+    .split{grid-template-columns:1fr !important}
+    .proj{grid-template-columns:1fr !important}
+    .proj-flip .proj-media{order:-1 !important}
+  }
+</style>
+<style>
+  .omeni-wrap{position:relative;height:500vh}
+  .omeni-pin{position:sticky;top:0;height:100vh;overflow:hidden}
+  .omeni-track{display:flex;height:100%;width:500vw;will-change:transform}
+  .omeni-panel{width:100vw;height:100vh;flex:0 0 auto;display:flex;justify-content:center;gap:clamp(12px,2vw,32px);align-items:center;padding:clamp(104px,14vh,150px) clamp(20px,6vw,100px) clamp(72px,10vh,110px)}
+  .omeni-photo{flex:0 0 auto;aspect-ratio:4/5;height:min(64vh,540px);width:auto}
+  .omeni-prog{position:absolute;left:clamp(20px,6vw,100px);right:clamp(20px,6vw,100px);bottom:clamp(20px,4vw,44px);display:flex;align-items:center;gap:16px;z-index:2}
+  @media(max-width:900px){
+    .omeni-wrap{height:auto}
+    .omeni-pin{position:static;height:auto;overflow:visible}
+    .omeni-track{flex-direction:column;width:auto;height:auto;transform:none !important}
+    .omeni-panel{width:auto;height:auto;flex-direction:column !important;padding:clamp(30px,8vw,60px) clamp(20px,6vw,40px)}
+    .omeni-photo{width:100%;max-width:360px;height:auto}
+    .omeni-topbar{position:static !important;left:auto !important;right:auto !important;padding:0 clamp(20px,6vw,40px) 8px !important}
+    .omeni-prog{display:none}
+  }
+  @media(prefers-reduced-motion: reduce){
+    .omeni-wrap{height:auto}
+    .omeni-pin{position:static;height:auto;overflow:visible}
+    .omeni-track{flex-direction:column;width:auto;height:auto;transform:none !important}
+    .omeni-panel{width:auto;height:auto;flex-direction:column !important;padding:clamp(30px,8vw,60px) clamp(20px,6vw,40px)}
+    .omeni-photo{width:100%;max-width:360px;height:auto}
+    .omeni-topbar{position:static !important;left:auto !important;right:auto !important;padding:0 clamp(20px,6vw,40px) 8px !important}
+    .omeni-prog{display:none}
+  }
+</style>
+<script>
+(function(){
+  if(window.__omeni)return; window.__omeni=true;
+  function still(){return window.matchMedia('(max-width:900px)').matches||window.matchMedia('(prefers-reduced-motion: reduce)').matches;}
+  function frame(){
+    var wrap=document.getElementById('o-meni'), track=document.getElementById('omeni-track');
+    if(wrap&&track){
+      if(still()){ track.style.transform=''; }
+      else{
+        var pin=wrap.querySelector('.omeni-pin'); var r=wrap.getBoundingClientRect();
+        var range=wrap.offsetHeight-window.innerHeight;
+        var p=range>0?Math.min(Math.max(-r.top/range,0),1):0;
+        var travel=track.scrollWidth-(pin?pin.clientWidth:window.innerWidth);
+        track.style.transform='translateX('+(-p*travel)+'px)';
+        var idx=document.getElementById('omeni-idx'); if(idx){var n=Math.min(5,Math.max(1,Math.floor(p*5)+1));idx.textContent='0'+n+' / 05';}
+        var bar=document.getElementById('omeni-bar'); if(bar){bar.style.width=(p*100)+'%';}
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+<style>
+  img{height:auto}
+  iframe,video{max-width:100%;height:auto}
+  .site-header{position:relative}
+  .nav-toggle{display:none}
+  .nav-burger{display:none}
+  .site-nav{display:flex;align-items:center}
+  .site-nav a{display:inline-flex;align-items:center;min-height:32px}
+  @media(max-width:768px){
+    .nav-burger{display:flex;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;cursor:pointer}
+    .nav-burger span{display:block;height:2px;width:24px;background:var(--ink)}
+    .site-nav{position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line);padding:6px 0;display:none;z-index:30}
+    .nav-toggle:checked ~ .site-nav{display:flex}
+    .site-nav a{width:100%;min-height:48px;padding:12px clamp(20px,5vw,72px);border-bottom:none !important}
+  }
+  @media(max-width:480px){
+    .site-header{padding:16px 0}
+  }
+</style>
+<script src="image-slot.js"></script>
+</helmet>
+
+<div style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,5vw,72px)">
+
+  <header class="site-header" style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px 0;border-bottom:1px solid var(--line)">
+    <a href="#" style="font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:-0.02em">Justin&nbsp;Strelarac<span style="color:var(--accent)">.</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Meni">
+    <label for="nav-toggle" class="nav-burger" aria-label="Otvori meni"><span></span><span></span><span></span></label>
+    <nav class="site-nav" style="gap:clamp(18px,3vw,40px);font-size:13px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500">
+      <a href="#radovi" style="padding-bottom:2px;border-bottom:1px solid transparent" style-hover="border-bottom:1px solid var(--accent);color:var(--accent)">Radovi</a>
+      <a href="#o-meni" style="padding-bottom:2px;border-bottom:1px solid transparent" style-hover="border-bottom:1px solid var(--accent);color:var(--accent)">O meni</a>
+      <a href="#kontakt" style="padding-bottom:2px;border-bottom:1px solid transparent" style-hover="border-bottom:1px solid var(--accent);color:var(--accent)">Kontakt</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero-grid" style="display:flex;flex-direction:column;gap:clamp(30px,4vw,48px);padding:clamp(40px,6vw,88px) 0 clamp(36px,5vw,72px)">
+    <div>
+      <h1 style="font-family:var(--display);font-weight:700;font-size:clamp(38px,6.6vw,96px);line-height:1.0;letter-spacing:-0.035em;margin:0;max-width:18ch;text-wrap:balance">
+        <span style="display:block">Sajtovi koji donose posao.</span>
+        <span style="display:block;margin-top:0.16em">Automatizacije koje rade <span style="font-family:var(--serif);font-weight:400;font-style:italic;letter-spacing:0;color:var(--accent)">dok vi spavate.</span></span>
+      </h1>
+    </div>
+    <figure style="margin:0;order:-1;display:flex;flex-direction:column;align-items:center;gap:16px">
+      <img src="assets/portret-krug.jpeg" alt="Justin Strelarac" style="width:100%;max-width:300px;aspect-ratio:1;object-fit:cover;border-radius:50%">
+      <figcaption style="font-family:var(--serif);font-style:italic;font-size:16px;color:var(--ink2)">Justin Strelarac</figcaption>
+    </figure>
+  </section>
+
+  <!-- RADOVI -->
+  <section id="radovi" style="padding:clamp(56px,8vw,112px) 0 clamp(48px,7vw,88px)">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:clamp(36px,5vw,64px);border-bottom:1px solid var(--line);padding-bottom:22px">
+      <h2 style="font-family:var(--display);font-weight:700;font-size:clamp(32px,4.4vw,62px);letter-spacing:-0.03em;margin:0;line-height:1">Radovi</h2>
+      <span style="font-family:var(--serif);font-style:italic;font-size:19px;color:var(--ink2)"><span style="color:var(--accent)">01</span> Izbor stranica</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:clamp(20px,3vw,40px)">
+
+      <article>
+        <div style="aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:#0A0A0A">
+          <img src="assets/rad-01-konoba-lav.png" alt="Konoba Lav" style="width:100%;height:100%;object-fit:cover">
+        </div>
+        <div style="margin-top:16px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:14px">
+            <h3 style="font-family:var(--display);font-weight:700;font-size:clamp(20px,2.2vw,26px);letter-spacing:-0.02em;margin:0">Konoba Lav</h3>
+            <span style="font-family:var(--serif);font-style:italic;font-size:16px;color:var(--accent);flex:0 0 auto">Koncept</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:12px;padding-top:12px">
+            <span style="font-size:14px;color:var(--ink2)"></span>
+            <span style="display:flex;gap:6px;flex-wrap:wrap"><span style="font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;border:1px solid var(--line);padding:4px 9px;color:var(--ink2)">Veb dizajn</span><span style="font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;border:1px solid var(--line);padding:4px 9px;color:var(--ink2)">Izrada</span></span>
+          </div>
+        </div>
+      </article>
+
+      <article>
+        <div style="aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:#0A0A0A">
+          <img src="assets/rad-02-dental-bela.png" alt="Dental Studio Bela" style="width:100%;height:100%;object-fit:cover">
+        </div>
+        <div style="margin-top:16px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:14px">
+            <h3 style="font-family:var(--display);font-weight:700;font-size:clamp(20px,2.2vw,26px);letter-spacing:-0.02em;margin:0">Dental Studio Bela</h3>
+            <span style="font-family:var(--serif);font-style:italic;font-size:16px;color:var(--accent);flex:0 0 auto">Koncept</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:12px;padding-top:12px">
+            <span style="font-size:14px;color:var(--ink2)"></span>
+            <span style="display:flex;gap:6px;flex-wrap:wrap"><span style="font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;border:1px solid var(--line);padding:4px 9px;color:var(--ink2)">Veb dizajn</span><span style="font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;border:1px solid var(--line);padding:4px 9px;color:var(--ink2)">Automatizacija</span></span>
+          </div>
+        </div>
+      </article>
+
+      <article>
+        <div style="aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:#0A0A0A">
+          <img src="assets/rad-03-iron-34.png" alt="IRON 34" style="width:100%;height:100%;object-fit:cover">
+        </div>
+        <div style="margin-top:16px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:14px">
+            <h3 style="font-family:var(--display);font-weight:700;font-size:clamp(20px,2.2vw,26px);letter-spacing:-0.02em;margin:0">IRON 34</h3>
+            <span style="font-family:var(--serif);font-style:italic;font-size:16px;color:var(--accent);flex:0 0 auto">Koncept</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:12px;padding-top:12px">
+            <span style="font-size:14px;color:var(--ink2)"></span>
+            <span style="display:flex;gap:6px;flex-wrap:wrap"><span style="font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;border:1px solid var(--line);padding:4px 9px;color:var(--ink2)">Veb dizajn</span><span style="font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;border:1px solid var(--line);padding:4px 9px;color:var(--ink2)">Izrada</span></span>
+          </div>
+        </div>
+      </article>
+
+      <article>
+        <div style="aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:#0A0A0A">
+          <img src="assets/rad-04-kvadrat.png" alt="Kvadrat Nekretnine" style="width:100%;height:100%;object-fit:cover">
+        </div>
+        <div style="margin-top:16px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:14px">
+            <h3 style="font-family:var(--display);font-weight:700;font-size:clamp(20px,2.2vw,26px);letter-spacing:-0.02em;margin:0">Kvadrat Nekretnine</h3>
+            <span style="font-family:var(--serif);font-style:italic;font-size:16px;color:var(--accent);flex:0 0 auto">Koncept</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:12px;padding-top:12px">
+            <span style="font-size:14px;color:var(--ink2)"></span>
+            <span style="display:flex;gap:6px;flex-wrap:wrap"><span style="font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;border:1px solid var(--line);padding:4px 9px;color:var(--ink2)">Veb dizajn</span><span style="font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;border:1px solid var(--line);padding:4px 9px;color:var(--ink2)">Izrada</span></span>
+          </div>
+        </div>
+      </article>
+
+      <article>
+        <div style="aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:#0A0A0A">
+          <img src="assets/rad-05-mlin-co.png" alt="Mlin &amp; Co" style="width:100%;height:100%;object-fit:cover">
+        </div>
+        <div style="margin-top:16px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:14px">
+            <h3 style="font-family:var(--display);font-weight:700;font-size:clamp(20px,2.2vw,26px);letter-spacing:-0.02em;margin:0">Mlin &amp; Co</h3>
+            <span style="font-family:var(--serif);font-style:italic;font-size:16px;color:var(--accent);flex:0 0 auto">Koncept</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:12px;padding-top:12px">
+            <span style="font-size:14px;color:var(--ink2)"></span>
+            <span style="display:flex;gap:6px;flex-wrap:wrap"><span style="font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;border:1px solid var(--line);padding:4px 9px;color:var(--ink2)">Veb dizajn</span><span style="font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;border:1px solid var(--line);padding:4px 9px;color:var(--ink2)">Izrada</span><span style="font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;border:1px solid var(--line);padding:4px 9px;color:var(--ink2)">Automatizacija</span></span>
+          </div>
+        </div>
+      </article>
+
+      <article>
+        <div style="aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:#0A0A0A">
+          <img src="assets/rad-06-monolit.png" alt="MONOLIT" style="width:100%;height:100%;object-fit:cover">
+        </div>
+        <div style="margin-top:16px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:14px">
+            <h3 style="font-family:var(--display);font-weight:700;font-size:clamp(20px,2.2vw,26px);letter-spacing:-0.02em;margin:0">MONOLIT</h3>
+            <span style="font-family:var(--serif);font-style:italic;font-size:16px;color:var(--accent);flex:0 0 auto">Koncept</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:12px;padding-top:12px">
+            <span style="font-size:14px;color:var(--ink2)">Festival elektronske muzike · Beograd</span>
+            <span style="display:flex;gap:6px;flex-wrap:wrap"><span style="font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;border:1px solid var(--line);padding:4px 9px;color:var(--ink2)">Veb dizajn</span><span style="font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;border:1px solid var(--line);padding:4px 9px;color:var(--ink2)">Brending</span></span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+</div>
+
+<!-- O MENI -->
+<section id="o-meni" class="omeni-wrap" style="border-top:1px solid var(--line);background:var(--bg)">
+  <div class="omeni-pin">
+    <div class="omeni-topbar" style="position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:baseline;z-index:3;background:var(--bg);padding:clamp(16px,2.4vw,26px) clamp(20px,6vw,100px);border-bottom:1px solid var(--line)">
+      <span style="font-family:var(--display);font-weight:700;font-size:clamp(20px,2.4vw,30px);letter-spacing:-0.02em">O meni</span>
+      <span style="font-family:var(--serif);font-style:italic;font-size:18px;color:var(--ink2)"><span style="color:var(--accent)">02</span> Ko sam</span>
+    </div>
+    <div id="omeni-track" class="omeni-track">
+
+      <div class="omeni-panel" style="flex-direction:row-reverse;align-items:flex-start">
+        <figure class="omeni-photo" style="margin:0;height:auto;width:min(52vw,620px);aspect-ratio:16/10;flex:0 0 auto"><img src="assets/macevanje-akcija.jpeg" alt="Mačevanje" style="width: 533px; height: 327px; object-fit: contain; background: var(--panel)"></figure>
+        <div style="flex:0 1 46ch">
+          <div style="font-family:var(--display);font-weight:700;font-size:clamp(30px,4vw,56px);letter-spacing:-0.03em;line-height:0.9;color:var(--accent)">01</div>
+          <h3 style="font-family:var(--display);font-weight:700;font-size:clamp(22px,2.6vw,34px);letter-spacing:-0.01em;margin:16px 0 18px;text-transform:uppercase">Mačevanje</h3>
+          <p style="font-size:clamp(16px,1.4vw,18px);line-height:1.65;margin:0 0 14px;color:var(--ink2)">Treniram mačevanje i bio sam prvi na rang listi Srbije u svojoj kategoriji. Nije stvar u talentu, nego u mirnoj glavi i gomili ponavljanja.</p>
+          <figure style="margin:14px 0 0"><img src="assets/rang-lista.jpeg" alt="Rang lista Srbije" style="width:100%;max-width:260px;border:1px solid var(--line)"><figcaption style="font-family:var(--serif);font-style:italic;font-size:14px;color:var(--ink2);margin-top:8px">Rang lista Srbije · 1. mesto</figcaption></figure>
+        </div>
+      </div>
+
+      <div class="omeni-panel" style="flex-direction:row-reverse;align-items:flex-start">
+        <figure class="omeni-photo" style="margin:0"><img src="assets/golf-3.jpeg" alt="Golf na Adi" style="width:100%;height:100%;object-fit:contain;background:var(--panel)"></figure>
+        <div style="flex:0 1 46ch">
+          <div style="font-family:var(--display);font-weight:700;font-size:clamp(42px,6vw,90px);letter-spacing:-0.03em;line-height:0.9;color:var(--accent)">02</div>
+          <h3 style="font-family:var(--display);font-weight:700;font-size:clamp(22px,2.6vw,34px);letter-spacing:-0.01em;margin:16px 0 18px;text-transform:uppercase">Golf</h3>
+          <p style="font-size:clamp(16px,1.4vw,18px);line-height:1.65;margin:0 0 14px;color:var(--ink2)">Golf mi je hobi i omiljeni način da ispraznim glavu. Najčešće me nađeš na Adi u Beogradu, ako me nema nigde, tu sam, garant.</p>
+          <figure style="margin:20px 0 0"><img src="assets/golf.jpeg" alt="Golf na Adi, zalazak" style="width: 269px; max-width: 340px; border: 1px solid var(--line); height: 321px"></figure>
+          
+        </div>
+      </div>
+
+      <div class="omeni-panel" style="align-items:center">
+        <figure class="omeni-photo" style="margin:0"><img src="assets/violoncelo.jpeg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center 30%"></figure>
+        <div style="flex:0 1 46ch">
+          <div style="font-family:var(--display);font-weight:700;font-size:clamp(42px,6vw,90px);letter-spacing:-0.03em;line-height:0.9;color:var(--accent)">03</div>
+          <h3 style="font-family:var(--display);font-weight:700;font-size:clamp(22px,2.6vw,34px);letter-spacing:-0.01em;margin:16px 0 18px;text-transform:uppercase">Muzika</h3>
+          <p style="font-size:clamp(16px,1.4vw,18px);line-height:1.65;margin:0 0 14px;color:var(--ink2)">Završio sam osnovnu muzičku školu i svirao violončelo. Muziku mnogo volim i i dalje se bavim njom.</p>
+          
+        </div>
+      </div>
+
+      <div class="omeni-panel" style="flex-direction:row-reverse;align-items:center">
+        <figure class="omeni-photo" style="margin:0"><image-slot id="masinski" style="display:none"></image-slot><img src="assets/masinski.jpeg" alt="Mašinski fakultet" style="width:100%;height:100%;object-fit:cover;object-position:center"></figure>
+        <div style="flex:0 1 46ch">
+          <div style="font-family:var(--display);font-weight:700;font-size:clamp(42px,6vw,90px);letter-spacing:-0.03em;line-height:0.9;color:var(--accent)">04</div>
+          <h3 style="font-family:var(--display);font-weight:700;font-size:clamp(22px,2.6vw,34px);letter-spacing:-0.01em;margin:16px 0 18px;text-transform:uppercase">Mašinski fakultet</h3>
+          <p style="font-size:clamp(16px,1.4vw,18px);line-height:1.65;margin:0 0 14px;color:var(--ink2)">Onda sam upisao Mašinski fakultet i sad ga studiram. Volim što tu sve mora da radi precizno kao mašina, isti taj red unosim u svaku automatizaciju.</p>
+          
+        </div>
+      </div>
+
+      <div class="omeni-panel" style="align-items:flex-start">
+        <figure class="omeni-photo" style="margin:0"><img src="assets/portret-hero.jpeg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center 15%"></figure>
+        <div style="flex:0 1 46ch">
+          <div style="font-family:var(--display);font-weight:700;font-size:clamp(42px,6vw,90px);letter-spacing:-0.03em;line-height:0.9;color:var(--accent)">05</div>
+          <h3 style="font-family:var(--display);font-weight:700;font-size:clamp(22px,2.6vw,34px);letter-spacing:-0.01em;margin:16px 0 18px;text-transform:uppercase">Dizajn i automatizacija</h3>
+          <p style="font-size:clamp(16px,1.4vw,18px);line-height:1.65;margin:0 0 14px;color:var(--ink2)">Ovde se sve spaja, dizajniram sajtove i pravim AI automatizacije za firme. Ako ti treba neko ko radi mirno i sa osećajem za detalj, javi se.</p>
+          <a href="#kontakt" style="display:inline-block;margin-top:8px;font-family:var(--display);font-weight:600;font-size:15px;border-bottom:2px solid var(--accent);color:var(--accent);padding-bottom:3px" style-hover="color:var(--ink)">Hajde da se čujemo →</a>
+        </div>
+      </div>
+    </div>
+    <div class="omeni-prog">
+      <span id="omeni-idx" style="font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:0.1em;color:var(--ink2);flex:0 0 auto">01 / 05</span>
+      <span style="flex:1;height:2px;background:var(--line);position:relative"><span id="omeni-bar" style="position:absolute;left:0;top:0;height:100%;width:20%;background:var(--accent)"></span></span>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section id="kontakt" style="background:var(--accent);color:var(--bg)">
+  <div style="max-width:1280px;margin:0 auto;padding:clamp(56px,8vw,104px) clamp(20px,5vw,72px)">
+    <span style="font-family:var(--serif);font-style:italic;font-size:20px;opacity:0.85">03 Kontakt</span>
+    <h2 style="font-family:var(--display);font-weight:700;font-size:clamp(38px,6vw,88px);line-height:0.98;letter-spacing:-0.035em;margin:18px 0 0">Imate ideju?</h2>
+    <p style="font-size:clamp(16px,1.5vw,19px);line-height:1.6;max-width:52ch;margin:24px 0 40px;opacity:0.9">Javite se za kratak, besplatan razgovor. Odgovaram isti dan.</p>
+    <div style="display:flex;gap:clamp(28px,5vw,80px);flex-wrap:wrap;border-top:1px solid rgba(241,236,226,0.35);padding-top:32px">
+      <div>
+        <div style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;opacity:0.8;margin-bottom:8px">Telefon</div>
+        <a href="tel:+381649426501" style="font-family:var(--display);font-weight:700;font-size:clamp(24px,3vw,38px);letter-spacing:-0.02em" style-hover="opacity:0.8">064 9426501</a>
+      </div>
+      <div>
+        <div style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;opacity:0.8;margin-bottom:8px">Instagram</div>
+        <a href="https://instagram.com/justinstrelarac" target="_blank" rel="noopener" style="font-family:var(--display);font-weight:700;font-size:clamp(24px,3vw,38px);letter-spacing:-0.02em" style-hover="opacity:0.8">@justinstrelarac</a>
+      </div>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:40px">
+      <a href="tel:+381649426501" style="display:inline-block;background:var(--ink);color:var(--bg);font-family:var(--body);font-weight:600;font-size:15px;letter-spacing:0.01em;padding:16px 30px" style-hover="background:#000">Pozovi odmah</a>
+      <a href="https://wa.me/381649426501" target="_blank" rel="noopener" style="display:inline-block;border:1px solid var(--bg);color:var(--bg);font-family:var(--body);font-weight:600;font-size:15px;letter-spacing:0.01em;padding:16px 30px" style-hover="background:var(--bg);color:var(--accent)">WhatsApp</a>
+      <a href="viber://chat?number=%2B381649426501" style="display:inline-block;border:1px solid var(--bg);color:var(--bg);font-family:var(--body);font-weight:600;font-size:15px;letter-spacing:0.01em;padding:16px 30px" style-hover="background:var(--bg);color:var(--accent)">Viber</a>
+    </div>
+  </div>
+</section>
+
+<footer style="max-width:1280px;margin:0 auto;padding:30px clamp(20px,5vw,72px) 52px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+  <span style="font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:-0.01em">Justin Strelarac<span style="color:var(--accent)">.</span></span>
+  <span style="font-size:13px;color:var(--ink2)">© 2026 · <a href="https://instagram.com/justinstrelarac" target="_blank" rel="noopener" style="color:var(--ink2)" style-hover="color:var(--accent)">@justinstrelarac</a> · Srbija</span>
+</footer>
+
+</x-dc>
+<template id="__bundler_thumbnail" data-bg-color="#E9EEF8">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#E9EEF8"/>
+    <rect x="470" y="300" width="260" height="200" rx="12" fill="#1E50E0"/>
+    <text x="600" y="440" font-family="Verdana,sans-serif" font-size="120" font-weight="bold" fill="#E9EEF8" text-anchor="middle">JS</text>
+  </svg>
+</template>
+</body>
+</html>
