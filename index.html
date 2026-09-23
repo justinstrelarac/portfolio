@@ -48,6 +48,22 @@
     .omeni-topbar{position:static !important;left:auto !important;right:auto !important;padding:0 clamp(20px,6vw,40px) 8px !important}
     .omeni-prog{display:none}
   }
+
+  @media(max-width:900px){
+    .omeni-panel{align-items:stretch !important;justify-content:flex-start !important;gap:18px !important;padding:36px clamp(20px,6vw,40px) 44px !important;border-bottom:1px solid var(--line)}
+    .omeni-panel:last-child{border-bottom:none}
+    .omeni-photo{width:100% !important;max-width:none !important;height:auto !important;aspect-ratio:auto !important;flex:none !important}
+    .omeni-photo img{width:100% !important;height:auto !important;max-height:72vh;object-fit:cover !important;background:none !important;border-radius:0}
+    .omeni-photo image-slot{display:block;width:100%;aspect-ratio:4/3;height:auto !important}
+    .omeni-panel > div{flex:none !important;max-width:none !important;width:100%}
+    .omeni-panel > div img{width:100%;height:auto}
+  }
+  @media(min-width:600px) and (max-width:900px){
+    .omeni-panel{flex-direction:row !important;align-items:center !important;gap:28px !important}
+    .omeni-panel:nth-child(even){flex-direction:row-reverse !important}
+    .omeni-photo{width:46% !important}
+    .omeni-panel > div{flex:1 !important;width:auto}
+  }
   @media(prefers-reduced-motion: reduce){
     .omeni-wrap{height:auto}
     .omeni-pin{position:static;height:auto;overflow:visible}
