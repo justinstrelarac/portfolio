@@ -35,7 +35,7 @@
 <style>
   .omeni-wrap{position:relative;height:500vh}
   .omeni-pin{position:sticky;top:0;height:100vh;overflow:hidden}
-  .omeni-track{display:flex;height:100%;width:500vw;will-change:transform}
+  .omeni-track{display:flex;height:100%;width:500vw;will-change:transform;backface-visibility:hidden}
   .omeni-panel{width:100vw;height:100vh;flex:0 0 auto;display:flex;justify-content:center;gap:clamp(12px,2vw,32px);align-items:center;padding:clamp(104px,14vh,150px) clamp(20px,6vw,100px) clamp(72px,10vh,110px)}
   .omeni-photo{flex:0 0 auto;aspect-ratio:4/5;height:min(64vh,540px);width:auto}
   .omeni-prog{position:absolute;left:clamp(20px,6vw,100px);right:clamp(20px,6vw,100px);bottom:clamp(20px,4vw,44px);display:flex;align-items:center;gap:16px;z-index:2}
@@ -61,19 +61,29 @@
 <script>
 (function(){
   if(window.__omeni)return; window.__omeni=true;
+  var cur=0, target=0, lastidx=-1;
   function still(){return window.matchMedia('(max-width:900px)').matches||window.matchMedia('(prefers-reduced-motion: reduce)').matches;}
-  function frame(){
+  function measure(){
     var wrap=document.getElementById('o-meni'), track=document.getElementById('omeni-track');
-    if(wrap&&track){
-      if(still()){ track.style.transform=''; }
+    if(!wrap||!track) return null;
+    var pin=wrap.querySelector('.omeni-pin'), r=wrap.getBoundingClientRect();
+    var range=wrap.offsetHeight-window.innerHeight;
+    var p=range>0?Math.min(Math.max(-r.top/range,0),1):0;
+    var travel=track.scrollWidth-(pin?pin.clientWidth:window.innerWidth);
+    return {track:track,p:p,travel:travel};
+  }
+  function frame(){
+    var m=measure();
+    if(m){
+      if(still()){ m.track.style.transform=''; cur=target=0; }
       else{
-        var pin=wrap.querySelector('.omeni-pin'); var r=wrap.getBoundingClientRect();
-        var range=wrap.offsetHeight-window.innerHeight;
-        var p=range>0?Math.min(Math.max(-r.top/range,0),1):0;
-        var travel=track.scrollWidth-(pin?pin.clientWidth:window.innerWidth);
-        track.style.transform='translateX('+(-p*travel)+'px)';
-        var idx=document.getElementById('omeni-idx'); if(idx){var n=Math.min(5,Math.max(1,Math.floor(p*5)+1));idx.textContent='0'+n+' / 05';}
-        var bar=document.getElementById('omeni-bar'); if(bar){bar.style.width=(p*100)+'%';}
+        target=m.p*m.travel;
+        cur+= (target-cur)*0.14;
+        if(Math.abs(target-cur)<0.3) cur=target;
+        m.track.style.transform='translate3d('+(-cur).toFixed(1)+'px,0,0)';
+        var n=Math.min(5,Math.max(1,Math.floor(m.p*5)+1));
+        if(n!==lastidx){ var idx=document.getElementById('omeni-idx'); if(idx) idx.textContent='0'+n+' / 05'; lastidx=n; }
+        var bar=document.getElementById('omeni-bar'); if(bar) bar.style.transform='scaleX('+m.p.toFixed(4)+')';
       }
     }
     requestAnimationFrame(frame);
@@ -300,7 +310,7 @@
     </div>
     <div class="omeni-prog">
       <span id="omeni-idx" style="font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:0.1em;color:var(--ink2);flex:0 0 auto">01 / 05</span>
-      <span style="flex:1;height:2px;background:var(--line);position:relative"><span id="omeni-bar" style="position:absolute;left:0;top:0;height:100%;width:20%;background:var(--accent)"></span></span>
+      <span style="flex:1;height:2px;background:var(--line);position:relative"><span id="omeni-bar" style="position:absolute;left:0;top:0;height:100%;width:100%;transform-origin:left center;transform:scaleX(0);background:var(--accent)"></span></span>
     </div>
   </div>
 </section>
@@ -318,7 +328,7 @@
       </div>
       <div>
         <div style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;opacity:0.8;margin-bottom:8px">Instagram</div>
-        <a href="https://instagram.com/justinstrelarac" target="_blank" rel="noopener" style="font-family:var(--display);font-weight:700;font-size:clamp(24px,3vw,38px);letter-spacing:-0.02em" style-hover="opacity:0.8">@justinstrelarac</a>
+        <a href="https://instagram.com/strelaracjustin" target="_blank" rel="noopener" style="font-family:var(--display);font-weight:700;font-size:clamp(24px,3vw,38px);letter-spacing:-0.02em" style-hover="opacity:0.8">@strelaracjustin</a>
       </div>
     </div>
     <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:40px">
@@ -331,7 +341,7 @@
 
 <footer style="max-width:1280px;margin:0 auto;padding:30px clamp(20px,5vw,72px) 52px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
   <span style="font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:-0.01em">Justin Strelarac<span style="color:var(--accent)">.</span></span>
-  <span style="font-size:13px;color:var(--ink2)">© 2026 · <a href="https://instagram.com/justinstrelarac" target="_blank" rel="noopener" style="color:var(--ink2)" style-hover="color:var(--accent)">@justinstrelarac</a> · Srbija</span>
+  <span style="font-size:13px;color:var(--ink2)">© 2026 · <a href="https://instagram.com/strelaracjustin" target="_blank" rel="noopener" style="color:var(--ink2)" style-hover="color:var(--accent)">@strelaracjustin</a> · Srbija</span>
 </footer>
 
 </x-dc>
