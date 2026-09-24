@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+  :root{--led:#EAF1FB;--led2:#DCE7F7;--ink:#0F1B3D;--ink2:#4A5878;--plava:#2563EB;--plava2:#1D4FC4;--bela:#FFFFFF;--line:rgba(15,27,61,0.12);--sans:'Manrope',sans-serif;--mono:'JetBrains Mono',monospace;--m:clamp(20px,5.5vw,96px)}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--led);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;text-wrap:pretty}
+  a{color:inherit;text-decoration:none}
+  a:hover{color:var(--plava)}
+  img{display:block;max-width:100%;height:auto}
+  ::selection{background:var(--plava);color:#fff}
+  a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--plava);outline-offset:3px}
+  .g12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;padding:0 var(--m)}
+  .mn{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase}
+  .mm{background-color:var(--led);background-image:linear-gradient(rgba(15,27,61,0.055) 1px,transparent 1px),linear-gradient(90deg,rgba(15,27,61,0.055) 1px,transparent 1px);background-size:72px 72px}
+  .sf{border-radius:50%;background:radial-gradient(circle at 34% 28%,#FFFFFF 0%,#E4ECFB 20%,#9BB8EE 58%,#3E6BD6 100%);box-shadow:0 40px 80px -30px rgba(37,99,235,0.45)}
+  .ol{color:transparent;-webkit-text-stroke:1.5px rgba(15,27,61,0.16)}
+  .hv{transition:background-color .2s ease,color .2s ease,border-color .2s ease}
+  html.bj .rv{opacity:0;transition:opacity .9s ease}
+  html.bj .rv.in{opacity:1}
+  .b-t{position:absolute;opacity:0;pointer-events:none}
+  .b-menu{display:none}
+  .b-t:checked ~ .b-menu{display:flex}
+  @media(max-width:1000px){.b-links{display:none !important}.b-burger{display:flex !important}}
+  @media(max-width:760px){.g12 > *{grid-column:1 / -1 !important}.hm{display:none !important}.stk{grid-template-columns:1fr !important}}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}html.bj .rv{opacity:1;transition:none}.hv{transition:none}}
+
+  html{-webkit-text-size-adjust:100%}
+  html,body{overflow-x:clip}
+  h1,h2,h3{overflow-wrap:break-word}
+  @media(max-width:760px){h1,h2{hyphens:auto;-webkit-hyphens:auto}}
+  @media(min-width:1600px){.g12{max-width:1760px;margin-left:auto;margin-right:auto}}
+  input,select,textarea{font-size:max(16px,1em)}
+  @media(max-width:760px){header > div{min-height:60px !important}}
+  html:has(.b-t:checked){overflow:hidden}
+  @media(min-width:761px) and (max-width:1024px){.tim-row > :nth-child(1){grid-column:1 / span 5 !important}.tim-row > :nth-child(2){grid-column:7 / span 6 !important}.tim-row > :nth-child(3){grid-column:1 / -1 !important;display:grid;grid-template-columns:1fr 1fr;column-gap:24px}}
+  @media(hover:none){.hv:hover{filter:none}}
+
+  @media(max-width:760px){form button[type="submit"]{width:100%;justify-content:center}}
+  @supports(padding:env(safe-area-inset-bottom)){footer{padding-bottom:env(safe-area-inset-bottom)}}
+</style>
+<script>
+(function(){
+  if(window.__belaj)return; window.__belaj=true;
+  var d=document.documentElement; d.lang='sr';d.classList.add('bj');
+  var io='IntersectionObserver' in window?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -6% 0px'}):null;
+  function scan(){document.querySelectorAll('.rv:not([data-r])').forEach(function(el){el.setAttribute('data-r','1');io?io.observe(el):el.classList.add('in');});}
+  new MutationObserver(scan).observe(d,{childList:true,subtree:true}); scan();
+  setTimeout(function(){document.querySelectorAll('.rv').forEach(function(el){if(el.getBoundingClientRect().top<innerHeight)el.classList.add('in');});},900);
+})();
+</script>
+</helmet>
+<div aria-hidden="true" style="height:40px"></div>
+<div role="note" style="position:fixed;top:0;left:0;right:0;z-index:70;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:40px;padding:0 var(--m);background:#14203A;color:#E9EEF8;font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase">
+  <a href="../../index.html#radovi" style="display:inline-flex;align-items:center;min-height:40px;color:#E9EEF8" style-hover="color:#9DB6FF">← Nazad na portfolio</a>
+  <span class="hm" style="opacity:0.7">Koncept · Justin Strelarac</span>
+</div>
+<header style="position:relative;z-index:50;background:rgba(234,241,251,0.92);border-bottom:1px solid var(--line)">
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:84px;padding:0 var(--m)">
+    <a href="index.html" aria-label="Dental Studio Bela, početna" style="font-weight:800;font-size:clamp(17px,1.4vw,20px);letter-spacing:-0.02em;white-space:nowrap">Dental Studio Bela</a>
+    <nav class="b-links" aria-label="Glavna navigacija" style="display:flex;align-items:center;gap:clamp(18px,2.4vw,36px)">
+      <a class="mn hv" href="usluge.html" aria-current="{{ c.usluge }}" style="color:{{ col.usluge }}">Usluge</a>
+      <a class="mn hv" href="tim.html" aria-current="{{ c.tim }}" style="color:{{ col.tim }}">Tim</a>
+      <a class="mn hv" href="cene.html" aria-current="{{ c.cene }}" style="color:{{ col.cene }}">Cene</a>
+      <a class="mn hv" href="prva-poseta.html" aria-current="{{ c.prva }}" style="color:{{ col.prva }}">Prva poseta</a>
+      <a class="mn hv" href="kontakt.html" aria-current="{{ c.kontakt }}" style="color:{{ col.kontakt }}">Kontakt</a>
+      <a class="hv" href="zakazivanje.html" style="display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 20px;border-radius:999px;background:var(--ink);color:#fff;font-weight:700;font-size:14px" style-hover="background:var(--plava);color:#fff">Zakaži pregled →</a>
+    </nav>
+    <input type="checkbox" id="b-t" class="b-t" aria-label="Otvori meni">
+    <label for="b-t" class="b-burger mn" style="display:none;align-items:center;gap:10px;min-height:48px;padding:0 16px;border:1px solid var(--line);border-radius:999px;cursor:pointer;background:#fff">Meni</label>
+    <div class="b-menu mm" role="dialog" aria-label="Meni" style="position:fixed;inset:0;z-index:80;flex-direction:column;padding:24px var(--m) 28px;overflow:auto">
+      <div style="display:flex;justify-content:space-between;align-items:center;min-height:48px"><span style="font-weight:800;font-size:17px">Dental Studio Bela</span><label for="b-t" class="mn" style="display:flex;align-items:center;min-height:48px;padding:0 16px;border-radius:999px;background:var(--ink);color:#fff;cursor:pointer">Zatvori</label></div>
+      <nav aria-label="Meni za telefon" style="margin-top:auto;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <sc-for list="{{ links }}" as="l" hint-placeholder-count="8">
+          <a href="{{ l.h }}" style="display:flex;flex-direction:column;justify-content:space-between;gap:28px;min-height:112px;padding:16px;border-radius:18px;background:#fff;border:1px solid var(--line)"><span class="mn" style="color:var(--plava)">{{ l.n }}</span><span style="font-weight:800;font-size:22px;letter-spacing:-0.02em">{{ l.t }}</span></a>
+        </sc-for>
+      </nav>
+      <a href="zakazivanje.html" style="display:flex;justify-content:center;align-items:center;min-height:60px;margin-top:10px;border-radius:999px;background:var(--plava);color:#fff;font-weight:800;font-size:17px">Zakaži pregled →</a>
+    </div>
+  </div>
+</header>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:130},&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;&quot;,&quot;usluge&quot;,&quot;tim&quot;,&quot;cene&quot;,&quot;prva&quot;,&quot;kontakt&quot;],&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const a = this.props.active || '';
+    const k = ['usluge','tim','cene','prva','kontakt'];
+    const c = {}, col = {};
+    k.forEach(x => { c[x] = x === a ? 'page' : undefined; col[x] = x === a ? 'var(--plava)' : 'var(--ink)'; });
+    return { c, col, links: [
+      {n:'01',t:'Usluge',h:'usluge.html'},{n:'02',t:'Implantati',h:'implantati.html'},{n:'03',t:'Estetika',h:'estetika.html'},{n:'04',t:'Ortodoncija',h:'ortodoncija.html'},
+      {n:'05',t:'Tim',h:'tim.html'},{n:'06',t:'Cene',h:'cene.html'},{n:'07',t:'Prva poseta',h:'prva-poseta.html'},{n:'08',t:'Kontakt',h:'kontakt.html'}] };
+  }
+}
+</script>
+</body>
+</html>

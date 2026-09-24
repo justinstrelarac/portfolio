@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="IronHeader" active="izazov" hint-size="100%,112px"></dc-import>
+<main>
+  <section style="position:relative;overflow:hidden;background:var(--neon);color:var(--crna)">
+    <div class="g12" style="padding-top:clamp(56px,10svh,110px);padding-bottom:clamp(56px,10svh,110px);row-gap:24px;align-items:end">
+      <div style="grid-column:1 / span 8"><span class="mo">14-dnevni izazov · 1.990 RSD · trener uključen</span><h1 class="d" style="font-size:clamp(140px,22vw,400px);margin:10px 0 0;line-height:0.8">14 dana</h1><p class="d" style="font-size:clamp(40px,4.6vw,80px);margin:8px 0 0">do navike.</p></div>
+      <div style="grid-column:9 / span 4;display:flex;flex-direction:column;gap:12px"><p style="font-size:17px;line-height:1.6;font-weight:600;margin:0">Jedan zadatak dnevno. Trener prati tvoj napredak, a poruke te podsećaju kad preskočiš.</p><a class="d hv" href="upis.html?paket=14" style="display:flex;justify-content:center;align-items:center;min-height:72px;background:var(--crna);color:var(--neon);font-size:30px" style-hover="background:var(--bela);color:var(--crna)">Kreni danas →</a></div>
+    </div>
+  </section>
+
+  <section class="stk2" style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border-bottom:1px solid var(--line)">
+    <sc-for list="{{ dani }}" as="d" hint-placeholder-count="14">
+      <article class="rv" style="display:flex;flex-direction:column;justify-content:space-between;gap:24px;min-height:clamp(240px,32svh,340px);padding:16px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:{{ d.bg }}">
+        <div style="display:flex;justify-content:space-between"><span class="d" style="font-size:clamp(40px,4vw,68px);color:{{ d.nc }}">{{ d.n }}</span><span class="mo" style="color:var(--siva)">{{ d.m }}</span></div>
+        <div><div class="d" style="font-size:clamp(22px,1.9vw,30px)">{{ d.t }}</div><p style="font-size:13px;line-height:1.5;color:var(--siva);margin:8px 0 0">{{ d.d }}</p></div>
+      </article>
+    </sc-for>
+  </section>
+
+  <section style="border-bottom:1px solid var(--line)">
+    <div class="g12" style="padding-top:clamp(64px,12svh,130px);padding-bottom:clamp(64px,12svh,130px);row-gap:32px;align-items:center">
+      <div class="rv" style="grid-column:1 / span 6"><span class="mo" style="color:var(--neon)">Poruke koje stižu same</span><h2 class="d" style="font-size:clamp(56px,6.4vw,112px);margin:14px 0 0">Ako preskočiš,<br>primetićemo.</h2>
+        <ol style="list-style:none;margin:28px 0 0;padding:0;border-top:1px solid var(--line)"><sc-for list="{{ poruke }}" as="p" hint-placeholder-count="4"><li style="display:grid;grid-template-columns:88px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)"><span class="mo" style="color:var(--neon)">{{ p.w }}</span><span style="font-size:15px;line-height:1.5">{{ p.t }}</span></li></sc-for></ol>
+      </div>
+      <div class="rv" style="grid-column:8 / span 4;justify-self:center;width:min(340px,100%);background:var(--ugalj);border:1px solid var(--line);border-radius:36px;padding:18px 16px 22px">
+        <div class="mo" style="text-align:center;color:var(--siva);font-size:10px">IRON 34 · danas 18:02</div>
+        <div style="margin-top:14px;background:var(--ugalj2);border-radius:16px;padding:12px 14px"><div class="mo" style="color:var(--neon);font-size:10px">Automatski</div><p style="font-size:14px;line-height:1.45;margin:6px 0 0">Marko, nismo te videli dva dana. Trener Nikola ti je sačuvao termin sutra u 18h.</p></div>
+        <div style="margin:10px 0 0 auto;width:fit-content;background:var(--neon);color:var(--crna);border-radius:16px;padding:10px 14px;font-size:14px;font-weight:600">Dolazim sutra!</div>
+        <div style="margin-top:10px;background:var(--ugalj2);border-radius:16px;padding:12px 14px;font-size:14px;line-height:1.45">Odlično. Sutra je dan 10, ostalo još četiri.</div>
+        <div style="margin-top:16px;background:var(--neon);color:var(--crna);border-radius:16px;padding:14px"><div class="mo" style="font-size:10px">Tvoj napredak</div><div class="d" style="font-size:40px;margin-top:6px">Dan 10 / 14</div><div style="height:6px;background:rgba(10,10,10,0.2);margin-top:10px"><div style="width:71%;height:100%;background:var(--crna)"></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section><div class="g12" style="padding-top:clamp(64px,12svh,130px);padding-bottom:clamp(64px,12svh,130px);row-gap:24px;align-items:end"><p class="rv d" style="grid-column:1 / span 8;font-size:clamp(56px,7vw,128px);margin:0">Dan 14: <span style="color:var(--neon)">prvi mesec −30%.</span></p><div class="rv" style="grid-column:10 / span 3"><a class="d hv" href="upis.html?paket=14" style="display:flex;justify-content:center;align-items:center;min-height:72px;border:2px solid var(--neon);color:var(--neon);font-size:28px" style-hover="background:var(--neon);color:var(--crna)">Prijavi se →</a></div></div></section>
+</main>
+<dc-import name="IronFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const D = [['Upoznavanje','30 MIN','Trener, cilj, obilazak sale.'],['Merenje','INBODY','Kilaža, mišići, masti. Polazna tačka.'],['Snaga · A','45 MIN','Čučanj, potisak, veslanje.'],['Odmor','8.000 KORAKA','Šetnja, bez teretane.'],['Kardio','25 MIN','Bicikl ili veslo, puls 130.'],['Snaga · B','45 MIN','Mrtvo, rameni potisak, zgibovi.'],['Grupni HIIT','18:00','Prvi grupni trening. Uz Jelenu.'],['Mobilnost','30 MIN','Kukovi, ramena, leđa.'],['Snaga · A','+5% TEG','Isti trening, teži teg.'],['Odmor','SAN 8H','Oporavak je deo plana.'],['Kardio','30 MIN','Pet minuta duže.'],['Snaga · B','+5% TEG','Isti trening, teži teg.'],['Grupni HIIT','18:00','Drugi put je lakše.'],['Ponovno merenje','NAVIKA','Uporedi sa danom 02.']];
+    return {
+      dani: D.map((d, i) => ({ n: String(i+1).padStart(2,'0'), t:d[0], m:d[1], d:d[2], bg: i === 13 ? 'var(--ugalj2)' : 'var(--crna)', nc: i === 13 ? 'var(--neon)' : 'var(--bela)' })),
+      poruke: [{w:'DAN 01',t:'Dobrodošlica i plan za 14 dana.'},{w:'SVAKI DAN',t:'Zadatak dana u 07:00.'},{w:'2 DANA',t:'Nema te? Trener ti čuva termin.'},{w:'DAN 14',t:'Rezultat merenja i ponuda za prvi mesec.'}]
+    };
+  }
+}
+</script>
+</body>
+</html>

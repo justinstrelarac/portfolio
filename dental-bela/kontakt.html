@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="BelaHeader" active="kontakt" hint-size="100%,124px"></dc-import>
+<main>
+  <section style="position:relative;height:clamp(460px,76svh,820px);background:var(--led2);overflow:hidden">
+    <iframe title="Mapa: Njegoševa 42, Beograd" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=20.4700%2C44.7990%2C20.4830%2C44.8040&amp;layer=mapnik&amp;marker=44.8013%2C20.4765" style="position:absolute;inset:0;width:100%;height:100%;border:0;filter:grayscale(1) contrast(0.9) brightness(1.08) hue-rotate(190deg) saturate(0.6)"></iframe>
+    <div aria-hidden="true" class="mm" style="position:absolute;inset:0;opacity:0.55;pointer-events:none;background-color:transparent"></div>
+    <div style="position:absolute;left:var(--m);bottom:clamp(24px,5svh,56px);right:var(--m);display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;pointer-events:none">
+      <div style="background:#fff;border-radius:24px;padding:clamp(20px,2.4vw,32px);max-width:560px;pointer-events:auto;box-shadow:0 40px 80px -40px rgba(15,27,61,0.5)">
+        <span class="mn" style="color:var(--plava)">Kontakt · 44.8013° N, 20.4765° E</span>
+        <h1 style="font-weight:800;font-size:clamp(56px,7vw,120px);line-height:0.88;letter-spacing:-0.055em;margin:14px 0 0">Njegoševa<br><span style="color:var(--plava)">42.</span></h1>
+        <p class="mn" style="color:var(--ink2);margin:14px 0 0">Vračar · prizemlje · ulaz iz dvorišta</p>
+      </div>
+      <a href="https://www.openstreetmap.org/?mlat=44.8013&amp;mlon=20.4765#map=17/44.8013/20.4765" target="_blank" rel="noopener" class="mn hv" style="pointer-events:auto;display:inline-flex;align-items:center;min-height:48px;padding:0 18px;border-radius:999px;background:var(--ink);color:#fff" style-hover="background:var(--plava);color:#fff">Otvori mapu ↗</a>
+    </div>
+  </section>
+
+  <section style="padding:clamp(80px,14svh,160px) 0">
+    <div class="g12" style="row-gap:16px">
+      <a class="rv hv" href="tel:+381110000000" style="grid-column:span 4;display:flex;flex-direction:column;justify-content:space-between;gap:40px;min-height:220px;padding:24px;border-radius:24px;background:#fff;border:1px solid var(--line)" style-hover="border-color:var(--plava)"><span class="mn" style="color:var(--ink2)">01 · Telefon</span><span><span style="display:block;font-weight:800;font-size:clamp(28px,2.6vw,40px);letter-spacing:-0.035em">011 000 000</span><span style="display:block;font-size:14px;color:var(--ink2);margin-top:6px">PON—PET 08—20h</span></span></a>
+      <a class="rv hv" href="mailto:termin@dentalbela.rs" style="grid-column:span 4;display:flex;flex-direction:column;justify-content:space-between;gap:40px;min-height:220px;padding:24px;border-radius:24px;background:#fff;border:1px solid var(--line)" style-hover="border-color:var(--plava)"><span class="mn" style="color:var(--ink2)">02 · Email</span><span><span style="display:block;font-weight:800;font-size:clamp(22px,2vw,30px);letter-spacing:-0.03em">termin@dentalbela.rs</span><span style="display:block;font-size:14px;color:var(--ink2);margin-top:6px">Odgovor za 2 sata</span></span></a>
+      <a class="rv hv" href="tel:+381640000000" style="grid-column:span 4;display:flex;flex-direction:column;justify-content:space-between;gap:40px;min-height:220px;padding:24px;border-radius:24px;background:var(--plava);color:#fff" style-hover="background:var(--plava2);color:#fff"><span class="mn" style="opacity:0.8">03 · Hitno, 24h</span><span><span style="display:block;font-weight:800;font-size:clamp(28px,2.6vw,40px);letter-spacing:-0.035em">064 000 0000</span><span style="display:block;font-size:14px;opacity:0.85;margin-top:6px">Jak bol, otok, povreda zuba</span></span></a>
+    </div>
+    <div class="g12" style="margin-top:clamp(56px,10svh,110px);row-gap:24px">
+      <div class="rv" style="grid-column:1 / span 5"><span class="mn" style="color:var(--plava)">Radno vreme</span>
+        <div style="margin-top:14px;border-top:1px solid var(--ink)"><sc-for list="{{ hours }}" as="h" hint-placeholder-count="7"><div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:14px;color:{{ h.c }}"><span>{{ h.d }}</span><span>{{ h.t }}</span></div></sc-for></div>
+      </div>
+      <div class="rv" style="grid-column:7 / span 6"><span class="mn" style="color:var(--plava)">Kako do nas</span>
+        <div style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:12px" class="stk"><sc-for list="{{ put }}" as="p" hint-placeholder-count="4"><div style="padding:18px;border-radius:18px;background:#fff;border:1px solid var(--line)"><span class="mn" style="color:var(--ink2)">{{ p.k }}</span><p style="font-size:15px;line-height:1.55;margin:8px 0 0">{{ p.v }}</p></div></sc-for></div>
+      </div>
+    </div>
+  </section>
+</main>
+<dc-import name="BelaFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const D = [['PON','08:00—20:00'],['UTO','08:00—20:00'],['SRE','08:00—20:00'],['ČET','08:00—20:00'],['PET','08:00—20:00'],['SUB','09:00—15:00'],['NED','zatvoreno']];
+    const t = (new Date().getDay() + 6) % 7;
+    return { hours: D.map((d, i) => ({ d: d[0] + (i === t ? ' · DANAS' : ''), t: d[1], c: i === t ? 'var(--plava)' : 'var(--ink)' })),
+      put: [{k:'Parking',v:'Zona 2 u ulici, garaža Vukov spomenik 6 min.'},{k:'Autobus',v:'Linije 24, 37 i 44, stanica Njegoševa.'},{k:'Pristup',v:'Prizemlje, bez stepenika, rampa kod ulaza.'},{k:'Deca',v:'Kutak za igru i dečja stolica u ordinaciji 2.'}] };
+  }
+}
+</script>
+</body>
+</html>

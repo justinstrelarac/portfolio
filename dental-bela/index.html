@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="BelaHeader" active="" hint-size="100%,124px"></dc-import>
+<main>
+  <section class="mm" style="position:relative;overflow:hidden;padding:clamp(40px,8svh,96px) 0 clamp(56px,10svh,120px)">
+    <div aria-hidden="true" class="ol" style="position:absolute;left:-1vw;top:-4svh;font-weight:800;font-size:clamp(200px,36vw,620px);line-height:0.8;letter-spacing:-0.06em;pointer-events:none">BELA</div>
+    <div aria-hidden="true" class="sf hm" style="position:absolute;right:-6vw;top:-10svh;width:clamp(240px,28vw,460px);aspect-ratio:1"></div>
+    <div aria-hidden="true" class="sf hm" style="position:absolute;left:3vw;bottom:6svh;width:clamp(60px,6vw,110px);aspect-ratio:1"></div>
+    <div class="g12" style="position:relative;row-gap:40px;align-items:center">
+      <div style="grid-column:1 / span 7">
+        <span class="mn" style="color:var(--plava)">Stomatologija · Vračar · od 2014.</span>
+        <h1 style="font-weight:800;font-size:clamp(88px,13vw,240px);line-height:0.88;letter-spacing:-0.055em;margin:20px 0 0">Osmeh<br>bez<br><span style="color:var(--plava)">čekanja.</span></h1>
+      </div>
+      <div style="grid-column:9 / span 4;position:relative">
+        <div style="aspect-ratio:4/5;border-radius:28px;background:linear-gradient(170deg,#DCE8FB 0%,#A9C3F0 100%);position:relative;overflow:hidden;box-shadow:0 40px 90px -40px rgba(15,27,61,0.45)">
+          <div class="sf" style="position:absolute;left:50%;top:38%;width:56%;aspect-ratio:1;transform:translate(-50%,-50%)"></div>
+          <a href="zakazivanje.html" class="hv" style="position:absolute;left:18px;right:18px;bottom:18px;display:flex;justify-content:space-between;align-items:end;padding:18px 20px;border-radius:18px;background:#fff" style-hover="background:var(--ink);color:#fff">
+            <span><span class="mn" style="display:block;color:var(--plava)">Slobodnih termina danas</span><span style="display:block;font-weight:800;font-size:44px;letter-spacing:-0.04em;line-height:1;margin-top:6px">{{ slobodno }}</span></span><span style="font-size:22px">→</span>
+          </a>
+        </div>
+        <div class="hm" style="position:absolute;left:-48%;top:-14%;width:250px;padding:16px 18px;border-radius:18px;background:#fff;box-shadow:0 30px 60px -30px rgba(15,27,61,0.4);transform:rotate(-3deg)">
+          <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-weight:800">Oktobar</span><span class="mn" style="color:var(--plava)">Nedelja 42</span></div>
+          <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin-top:12px">
+            <sc-for list="{{ kal }}" as="k" hint-placeholder-count="15"><span style="font-family:var(--mono);font-size:10px;text-align:center;padding:6px 0;border-radius:6px;background:{{ k.bg }};color:{{ k.c }}">{{ k.t }}</span></sc-for>
+          </div>
+        </div>
+      </div>
+      <div style="grid-column:1 / span 6;display:flex;gap:10px;flex-wrap:wrap">
+        <sc-for list="{{ chips }}" as="t" hint-placeholder-count="4">
+          <a href="zakazivanje.html" class="hv" style="display:inline-flex;align-items:center;min-height:52px;padding:0 20px;border-radius:14px;font-family:var(--mono);font-size:16px;background:{{ t.bg }};color:{{ t.c }};border:1px solid var(--line)" style-hover="border-color:var(--plava)">{{ t.v }}</a>
+        </sc-for>
+      </div>
+      <p style="grid-column:8 / span 5;font-size:17px;line-height:1.6;color:var(--ink2);margin:0">Zakaži termin za 30 sekundi. Podsetnik stiže sam, a ti samo dođeš.</p>
+    </div>
+  </section>
+
+  <section style="padding:clamp(96px,18svh,200px) 0">
+    <div class="g12" style="row-gap:24px">
+      <div class="rv" style="grid-column:1 / span 5"><span class="mn" style="color:var(--plava)">01 — Usluge</span><h2 style="font-weight:800;font-size:clamp(48px,5.6vw,96px);line-height:0.92;letter-spacing:-0.045em;margin:16px 0 0">Šest stvari koje radimo <span style="color:var(--plava)">precizno.</span></h2></div>
+      <p class="rv" style="grid-column:8 / span 4;align-self:end;font-size:16px;line-height:1.7;color:var(--ink2);margin:0">Cene su početne i pišu pre prvog pregleda. Tačan plan dobijaš na papiru, pre nego što bilo šta platiš.</p>
+    </div>
+    <div class="g12" style="margin-top:clamp(36px,6svh,64px);row-gap:16px;grid-auto-rows:minmax(180px,auto)">
+      <sc-for list="{{ usluge }}" as="u" hint-placeholder-count="6">
+        <a class="rv hv" href="{{ u.h }}" style="grid-column:span {{ u.span }};grid-row:span {{ u.rows }};display:flex;flex-direction:column;justify-content:space-between;gap:28px;padding:clamp(22px,2.4vw,32px);border-radius:24px;background:{{ u.bg }};color:{{ u.c }};border:1px solid var(--line);position:relative;overflow:hidden" style-hover="border-color:var(--plava)">
+          <div style="display:flex;justify-content:space-between;gap:12px"><span class="mn" style="opacity:0.7">{{ u.n }}</span><span class="mn">{{ u.p }}</span></div>
+          <div><div style="font-weight:800;font-size:clamp(28px,2.8vw,44px);line-height:1;letter-spacing:-0.035em">{{ u.t }}</div><div style="font-size:15px;line-height:1.55;opacity:0.75;margin-top:10px;max-width:34ch">{{ u.d }}</div></div>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <section class="mm" style="padding:clamp(80px,16svh,180px) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+    <div class="g12" style="row-gap:24px;align-items:end">
+      <div class="rv" style="grid-column:1 / span 6;font-weight:800;font-size:clamp(220px,38vw,640px);line-height:0.74;letter-spacing:-0.07em;color:var(--plava)">0</div>
+      <div class="rv" style="grid-column:8 / span 5;padding-bottom:4svh">
+        <span class="mn" style="color:var(--plava)">02 — Praznih termina ove nedelje</span>
+        <p style="font-weight:800;font-size:clamp(30px,3vw,48px);line-height:1.05;letter-spacing:-0.035em;margin:16px 0 0">Kad neko otkaže, termin odmah dobija sledeći sa liste čekanja.</p>
+        <ol style="list-style:none;margin:24px 0 0;padding:0;border-top:1px solid var(--line)">
+          <sc-for list="{{ tok }}" as="t" hint-placeholder-count="4"><li style="display:grid;grid-template-columns:72px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px"><span style="font-family:var(--mono);color:var(--plava)">{{ t.w }}</span><span>{{ t.d }}</span></li></sc-for>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:clamp(96px,18svh,200px) 0">
+    <div class="g12" style="row-gap:24px">
+      <div class="rv" style="grid-column:1 / span 6"><span class="mn" style="color:var(--plava)">03 — Prva poseta · 45 min</span><h2 style="font-weight:800;font-size:clamp(48px,5.6vw,96px);line-height:0.92;letter-spacing:-0.045em;margin:16px 0 0">Tačno znaš šta sledi.</h2></div>
+      <a class="rv mn hv" href="prva-poseta.html" style="grid-column:10 / span 3;align-self:end;justify-self:end;display:inline-flex;align-items:center;min-height:48px;padding:0 18px;border-radius:999px;border:1px solid var(--ink)" style-hover="background:var(--ink);color:#fff">Ceo protokol →</a>
+      <div class="rv" style="grid-column:1 / -1;margin-top:28px;position:relative">
+        <div aria-hidden="true" class="hm" style="height:1px;background:var(--ink);position:relative;margin-bottom:0"></div>
+        <div class="stk" style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px">
+          <sc-for list="{{ poseta }}" as="p" hint-placeholder-count="5">
+            <div style="border-left:1px solid var(--line);padding:18px 0 0 16px;position:relative">
+              <span aria-hidden="true" style="position:absolute;left:-5px;top:-5px;width:9px;height:9px;border-radius:50%;background:var(--plava)"></span>
+              <span style="font-family:var(--mono);font-size:clamp(22px,2vw,30px);color:var(--plava)">{{ p.t }}</span>
+              <div style="font-weight:800;font-size:19px;letter-spacing:-0.02em;margin-top:14px">{{ p.n }}</div>
+              <div style="font-size:14px;line-height:1.55;color:var(--ink2);margin-top:6px">{{ p.d }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:0 0 clamp(96px,18svh,200px)">
+    <div class="g12" style="row-gap:20px">
+      <div class="rv" style="grid-column:1 / span 4"><span class="mn" style="color:var(--plava)">04 — Tim</span><p style="font-weight:800;font-size:clamp(30px,3vw,48px);line-height:1.05;letter-spacing:-0.035em;margin:16px 0 0">Četiri doktora. Svako radi samo svoju specijalnost.</p><a class="mn hv" href="tim.html" style="display:inline-flex;align-items:center;min-height:48px;margin-top:18px;border-bottom:1px solid var(--ink)">Upoznaj tim →</a></div>
+      <div style="grid-column:6 / -1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px" class="stk">
+        <sc-for list="{{ tim }}" as="d" hint-placeholder-count="4">
+          <a class="rv hv" href="tim.html" style="display:flex;flex-direction:column;border-radius:20px;background:#fff;border:1px solid var(--line);overflow:hidden" style-hover="border-color:var(--plava)">
+            <div style="padding:16px;min-height:120px;display:flex;flex-direction:column;justify-content:space-between"><span class="mn" style="color:var(--ink2)">{{ d.id }}</span><div style="font-weight:800;font-size:18px">{{ d.n }}</div><div class="mn" style="color:var(--plava);margin-top:6px">{{ d.s }}</div></div>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--ink);color:#fff;padding:clamp(80px,16svh,180px) 0">
+    <div class="g12" style="row-gap:32px;align-items:center">
+      <div class="rv" style="grid-column:1 / span 6"><span class="mn" style="color:#8FB0EC">05 — Zakazivanje</span><p style="font-weight:800;font-size:clamp(56px,7vw,128px);line-height:0.9;letter-spacing:-0.05em;margin:18px 0 0">Izaberi<br><span style="color:#8FB0EC">termin.</span></p></div>
+      <div class="rv" style="grid-column:8 / span 5;background:#fff;color:var(--ink);border-radius:24px;padding:22px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-weight:800;font-size:18px">{{ danas }}</span><span class="mn" style="color:var(--plava)">dr Marić · kontrola</span></div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:16px">
+          <sc-for list="{{ slotovi }}" as="s" hint-placeholder-count="8"><a href="zakazivanje.html" class="hv" style="display:flex;justify-content:center;align-items:center;min-height:50px;border-radius:12px;font-family:var(--mono);font-size:14px;background:{{ s.bg }};color:{{ s.c }};border:1px solid var(--line)" style-hover="border-color:var(--plava)">{{ s.v }}</a></sc-for>
+        </div>
+        <a class="hv" href="zakazivanje.html" style="display:flex;justify-content:center;align-items:center;min-height:56px;margin-top:14px;border-radius:999px;background:var(--plava);color:#fff;font-weight:700" style-hover="background:var(--plava2);color:#fff">Zakaži pregled →</a>
+      </div>
+    </div>
+  </section>
+</main>
+<dc-import name="BelaFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const dk = {bg:'var(--ink)',c:'#fff'}, bl = {bg:'var(--plava)',c:'#fff'}, em = {bg:'#EEF3FB',c:'#9AA6BF'};
+    const K = [['PON',null],['UTO',null],['SRE',null],['ČET',null],['PET',null],['09:00',dk],['—',em],['09:00',dk],['—',em],['09:00',bl],['—',em],['11:30',dk],['11:30',bl],['11:30',dk],['—',em]];
+    const kal = K.map(([t,s]) => s ? Object.assign({t},s) : {t,bg:'transparent',c:'var(--ink2)'});
+    const d = new Date(); const dani = ['Nedelja','Ponedeljak','Utorak','Sreda','Četvrtak','Petak','Subota'];
+    return {
+      slobodno: String(Math.max(1, 6 - (d.getHours() % 5))).padStart(2,'0'),
+      danas: dani[d.getDay()] + ', ' + d.getDate() + '.' + (d.getMonth()+1) + '.',
+      kal,
+      chips: [{v:'09:00',bg:'#fff',c:'var(--ink)'},{v:'11:30',bg:'var(--plava)',c:'#fff'},{v:'13:00',bg:'#fff',c:'var(--ink)'},{v:'16:00',bg:'#fff',c:'var(--ink)'}],
+      usluge: [
+        {n:'01',t:'Implantati',d:'Titanijumski implant i krunica, od plana do poslednje kontrole.',p:'od 72.000',h:'implantati.html',span:7,rows:2,bg:'var(--ink)',c:'#fff'},
+        {n:'02',t:'Estetika',d:'Izbeljivanje, keramičke fasete, bonding.',p:'od 18.000',h:'estetika.html',span:5,rows:1,bg:'#fff',c:'var(--ink)'},
+        {n:'03',t:'Ortodoncija',d:'Providne folije i fiksne proteze.',p:'od 96.000',h:'ortodoncija.html',span:5,rows:1,bg:'var(--plava)',c:'#fff'},
+        {n:'04',t:'Pregled',d:'Pregled, snimak i plan terapije.',p:'2.500',h:'prva-poseta.html',span:4,rows:1,bg:'#fff',c:'var(--ink)'},
+        {n:'05',t:'Higijena',d:'Uklanjanje kamenca i poliranje.',p:'4.800',h:'usluge.html',span:4,rows:1,bg:'#fff',c:'var(--ink)'},
+        {n:'06',t:'Plombe',d:'Kompozitne ispune u boji zuba.',p:'od 5.500',h:'usluge.html',span:4,rows:1,bg:'#fff',c:'var(--ink)'}],
+      tok: [{w:'−24h',d:'Podsetnik porukom: „Dolazim” ili „Pomeri termin”.'},{w:'−2h',d:'Drugi podsetnik sa adresom i parkingom.'},{w:'OTKAZ',d:'Termin se odmah nudi prvom sa liste čekanja.'},{w:'+6 MES',d:'Poziv za kontrolu, sa predlogom termina.'}],
+      poseta: [{t:'00:00',n:'Dolazak',d:'Bez čekaonice. Prijava traje dva minuta.'},{t:'00:05',n:'Razgovor',d:'Šta te boli, šta želiš, čega se plašiš.'},{t:'00:15',n:'3D snimak',d:'Digitalni snimak, rezultat na ekranu odmah.'},{t:'00:25',n:'Pregled',d:'Pregled i fotografije zuba.'},{t:'00:40',n:'Plan i cena',d:'Plan terapije na papiru, sa tačnom cenom.'}],
+      tim: [{id:'DR-01',n:'dr Ana Marić',s:'Implantologija',g:'#C9DAF7',alt:'Portret, dr Ana Marić'},{id:'DR-02',n:'dr Lena Popović',s:'Estetika',g:'#D6E3F8',alt:'Portret, dr Lena Popović'},{id:'DR-03',n:'dr Mina Ilić',s:'Ortodoncija',g:'#BFD2F4',alt:'Portret, dr Mina Ilić'},{id:'DR-04',n:'dr Sara Jović',s:'Opšta stomatologija',g:'#D0DDF6',alt:'Portret, dr Sara Jović'}],
+      slotovi: [{v:'09:00',bg:'#fff',c:'var(--ink)'},{v:'09:30',bg:'#EEF3FB',c:'#9AA6BF'},{v:'10:30',bg:'#fff',c:'var(--ink)'},{v:'11:30',bg:'var(--plava)',c:'#fff'},{v:'13:00',bg:'#fff',c:'var(--ink)'},{v:'14:30',bg:'#EEF3FB',c:'#9AA6BF'},{v:'16:00',bg:'#fff',c:'var(--ink)'},{v:'18:30',bg:'#fff',c:'var(--ink)'}]
+    };
+  }
+}
+</script>
+</body>
+</html>

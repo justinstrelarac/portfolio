@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="IronHeader" active="programi" hint-size="100%,112px"></dc-import>
+<dc-import name="IronProgram" p="{{ p }}" hint-size="100%,100svh"></dc-import>
+<dc-import name="IronFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() { return { p: {"n":"03","t":"Početnici","lead":"Prvi put u teretani? Tehnika pre težine, u maloj grupi od šest ljudi koji su isto tu prvi put.","spec":[{"k":"Trajanje","v":"50 MIN","c":"var(--bela)"},{"k":"Intenzitet","v":"■■□□□","c":"var(--neon)"},{"k":"Grupa","v":"MAX 6","c":"var(--bela)"},{"k":"Program","v":"6 NED","c":"var(--bela)"}],"trNaslov":"Niko te ne gleda. Svi uče.","blokovi":[{"t":"00—10","n":"I","naziv":"Upoznavanje","d":"Kako radi sprava, koliko se diše, šta se ne radi."},{"t":"10—30","n":"II","naziv":"Tehnika","d":"Čučanj, potisak, veslanje sa lakim tegom."},{"t":"30—45","n":"III","naziv":"Kružni","d":"Pet vežbi, svako svojim tempom."},{"t":"45—50","n":"IV","naziv":"Plan","d":"Šta da radiš do sledećeg treninga."}],"ciljNaslov":"Posle šest nedelja znaš sve sam.","ciljevi":[{"n":"01","t":"Samostalan trening bez straha od sprava."},{"n":"02","t":"Pravilna tehnika u osam osnovnih vežbi."},{"n":"03","t":"Prelazak u program Snaga ili HIIT."}],"trener":"Marko · tehnika","termini":[{"d":"PON","v":"17:00","m":"Grupa A"},{"d":"SRE","v":"17:00","m":"Grupa A"},{"d":"UTO","v":"19:30","m":"Grupa B"},{"d":"ČET","v":"19:30","m":"Grupa B"}],"cta":"Svi su jednom bili početnici. Ovde je to normalno.","nextH":"personalni.html","nextT":"Personalni"} }; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="IronHeader" active="raspored" hint-size="100%,112px"></dc-import>
+<main>
+  <section style="border-bottom:1px solid var(--line)">
+    <div class="g12" style="padding-top:clamp(56px,10svh,110px);padding-bottom:clamp(32px,5svh,56px);row-gap:20px;align-items:end">
+      <h1 class="d" style="grid-column:1 / span 8;font-size:clamp(110px,16vw,300px);margin:0">Raspored</h1>
+      <div style="grid-column:9 / span 4;display:flex;flex-wrap:wrap;gap:8px" role="group" aria-label="Filter programa">
+        <sc-for list="{{ filt }}" as="f" hint-placeholder-count="5"><button type="button" aria-pressed="{{ f.on }}" onClick="{{ f.pick }}" class="mo hv" style="min-height:44px;padding:0 14px;cursor:pointer;background:{{ f.bg }};color:{{ f.c }};border:1px solid {{ f.bc }}">{{ f.t }}</button></sc-for>
+      </div>
+    </div>
+  </section>
+  <section style="overflow-x:auto;border-bottom:1px solid var(--line)">
+    <div style="min-width:900px;padding:0 var(--m)">
+      <div style="display:grid;grid-template-columns:72px repeat(7,minmax(0,1fr));border-bottom:1px solid var(--bela)">
+        <span></span><sc-for list="{{ dani }}" as="d" hint-placeholder-count="7"><span class="d" style="padding:16px 10px;font-size:28px;color:{{ d.c }};border-left:1px solid var(--line)">{{ d.t }}</span></sc-for>
+      </div>
+      <sc-for list="{{ redovi }}" as="r" hint-placeholder-count="8">
+        <div style="display:grid;grid-template-columns:72px repeat(7,minmax(0,1fr));border-bottom:1px solid var(--line)">
+          <span class="mo" style="padding:14px 0;color:var(--siva)">{{ r.h }}</span>
+          <sc-for list="{{ r.c }}" as="c" hint-placeholder-count="7">
+            <div style="min-height:76px;padding:6px;border-left:1px solid var(--line)"><sc-if value="{{ c.has }}" hint-placeholder-val="{{ false }}"><a href="{{ c.href }}" class="hv" style="display:flex;flex-direction:column;justify-content:space-between;height:100%;min-height:64px;padding:8px 10px;background:{{ c.bg }};color:{{ c.col }};opacity:{{ c.op }}" style-hover="outline:2px solid var(--neon)"><span class="d" style="font-size:20px">{{ c.t }}</span><span class="mo" style="font-size:10px">{{ c.m }}</span></a></sc-if></div>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+  <section><div class="g12" style="padding-top:clamp(56px,10svh,110px);padding-bottom:clamp(56px,10svh,110px);row-gap:20px;align-items:end"><p class="rv d" style="grid-column:1 / span 8;font-size:clamp(56px,7vw,128px);margin:0">Sala je otvorena <span style="color:var(--neon)">06—23.</span> Termini su bonus.</p><div class="rv" style="grid-column:10 / span 3"><a class="d hv" href="upis.html" style="display:flex;justify-content:center;align-items:center;min-height:72px;background:var(--neon);color:var(--crna);font-size:28px" style-hover="background:var(--bela);color:var(--crna)">Upiši se →</a></div></div></section>
+</main>
+<dc-import name="IronFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const C = {snaga:{t:'Snaga',h:'snaga.html',bg:'var(--bela)',col:'var(--crna)'},hiit:{t:'HIIT',h:'hiit.html',bg:'var(--neon)',col:'var(--crna)'},poc:{t:'Početnici',h:'pocetnici.html',bg:'var(--ugalj2)',col:'var(--bela)'},open:{t:'Otvoreni',h:'programi.html',bg:'transparent',col:'var(--bela)'}};
+const S = {'06:30':{1:['hiit','Jelena'],3:['hiit','Jelena']},'07:00':{0:['snaga','Nikola'],2:['snaga','Nikola'],4:['snaga','Nikola']},'10:00':{5:['snaga','Otvoreni'],6:['hiit','Otvoreni']},'17:00':{0:['poc','Marko · A'],2:['poc','Marko · A']},'18:00':{1:['hiit','Jelena'],3:['hiit','Jelena']},'18:30':{0:['snaga','Nikola'],2:['snaga','Nikola'],4:['snaga','Nikola']},'19:00':{4:['hiit','Petak finiš']},'19:30':{1:['poc','Marko · B'],3:['poc','Marko · B']}};
+class Component extends DCLogic {
+  state = { f:'sve' };
+  renderVals() {
+    const f = this.state.f, today = (new Date().getDay() + 6) % 7;
+    const FL = [['sve','Sve'],['snaga','Snaga'],['hiit','HIIT'],['poc','Početnici']];
+    return {
+      filt: FL.map(([id,t]) => ({ t, on: String(f === id), pick: () => this.setState({ f: id }), bg: f === id ? 'var(--neon)' : 'transparent', c: f === id ? 'var(--crna)' : 'var(--bela)', bc: f === id ? 'var(--neon)' : 'var(--line)' })),
+      dani: ['Pon','Uto','Sre','Čet','Pet','Sub','Ned'].map((t, i) => ({ t: i === today ? t + ' ·' : t, c: i === today ? 'var(--neon)' : 'var(--bela)' })),
+      redovi: Object.keys(S).map(h => ({ h, c: [0,1,2,3,4,5,6].map(i => { const e = S[h][i]; if (!e) return { has:false }; const k = C[e[0]]; return { has:true, t:k.t, m:h + ' · ' + e[1], href:k.h, bg:k.bg, col:k.col, op: (f === 'sve' || f === e[0]) ? 1 : 0.15 }; }) }))
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="BelaHeader" active="usluge" hint-size="100%,124px"></dc-import>
+<dc-import name="BelaUsluga" u="{{ u }}" hint-size="100%,100svh"></dc-import>
+<dc-import name="BelaFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() { return { u: {
+    n:'02', bg:'OSMEH', t1:'Beli, ali', t2:'tvoji.', lead:'Izbeljivanje, keramičke fasete i bonding. Pre bilo kakvog brušenja vidiš svoj novi osmeh na digitalnoj probi.',
+    spec:[{k:'Izbeljivanje',v:'1 poseta · 90 min'},{k:'Fasete',v:'3 posete'},{k:'Digitalna proba',v:'pre početka'},{k:'Garancija faseta',v:'5 godina'}],
+    zaKoga:'Kad zubi rade kako treba, ali ne izgledaju onako kako želiš.',
+    kriterijumi:[{n:'A',t:'Promena boje od kafe, čaja ili lekova.'},{n:'B',t:'Okrnjeni ili neravni prednji zubi.'},{n:'C',t:'Razmaci između zuba koje ne želiš da ispravljaš protezom.'}],
+    tokNaslov:'Prvo vidiš, pa odlučiš.',
+    tok:[{n:'Fotografije i skeniranje',w:'DAN 0 · 30 MIN',d:'Snimamo osmeh i pravimo digitalni model zuba.'},{n:'Digitalna proba',w:'DAN 3 · 30 MIN',d:'Probni osmeh od kompozita stavljamo direktno na tvoje zube. Vidiš ga u ogledalu.'},{n:'Priprema',w:'DAN 10 · 90 MIN',d:'Minimalno brušenje, samo koliko faseta zahteva.'},{n:'Postavljanje faseta',w:'DAN 24 · 90 MIN',d:'Keramičke fasete lepimo jednu po jednu i proveravamo zagriz.'}],
+    kadar:'Dve svetle sfere kao simbol izbeljenih zuba', kadarCap:'Faseta, 0,5 mm keramike',
+    faq:[{q:'Da li izbeljivanje oštećuje gleđ?',a:'Ne. Koristimo gel sa kontrolisanom koncentracijom i zaštitom desni.'},{q:'Koliko traje efekat?',a:'Izbeljivanje godinu do dve, zavisno od kafe i cigareta. Fasete deset i više godina.'},{q:'Hoće li se videti da su fasete?',a:'Boju i oblik biramo zajedno na probi. Cilj je da izgleda kao da si se tako rodio.'},{q:'Da li se fasete skidaju?',a:'Keramičke ne. Zato postoji digitalna proba pre prvog brušenja.'}],
+    cena:'18.000', cenaNote:'Izbeljivanje u ordinaciji. Keramička faseta od 42.000 RSD po zubu.',
+    nextH:'ortodoncija.html', nextT:'Ortodoncija'
+  } }; }
+}
+</script>
+</body>
+</html>

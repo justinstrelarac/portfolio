@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="IronHeader" active="treneri" hint-size="100%,112px"></dc-import>
+<main>
+  <section style="border-bottom:1px solid var(--line)">
+    <div class="g12" style="padding-top:clamp(56px,10svh,110px);padding-bottom:clamp(40px,7svh,72px);row-gap:20px;align-items:end">
+      <h1 class="d" style="grid-column:1 / span 9;font-size:clamp(120px,18vw,320px);margin:0">Treneri</h1>
+      <p style="grid-column:10 / span 3;font-size:15px;line-height:1.6;color:var(--siva);margin:0">Dvanaest trenera, četiri glavna. Svaki ima svoju karticu, kao igrač u ligi.</p>
+    </div>
+  </section>
+  <sc-for list="{{ t }}" as="x" hint-placeholder-count="4">
+    <article class="rv" style="border-bottom:1px solid var(--line)">
+      <div class="stk" style="display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr)">
+        <div style="padding:clamp(24px,3vw,48px);display:flex;flex-direction:column;justify-content:space-between;gap:32px;border-right:1px solid var(--line)">
+          <div><span class="d" style="display:block;font-size:clamp(72px,8vw,140px);line-height:0.8;color:var(--neon);margin-bottom:18px">{{ x.br }}</span><span class="mo" style="display:block;color:var(--neon)">{{ x.s }}</span><h2 class="d" style="font-size:clamp(80px,10vw,184px);line-height:1;margin:18px 0 0;padding-top:0.06em">{{ x.n }}</h2><p style="font-size:17px;line-height:1.6;color:var(--siva);margin:14px 0 0;max-width:44ch">{{ x.bio }}</p></div>
+          <p class="d" style="font-size:clamp(28px,2.6vw,44px);margin:0">„{{ x.q }}”</p>
+        </div>
+        <div style="display:flex;flex-direction:column">
+          <sc-for list="{{ x.st }}" as="s" hint-placeholder-count="4"><div style="flex:1;padding:18px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between;gap:12px"><span class="mo" style="color:var(--siva)">{{ s.k }}</span><span class="d" style="font-size:clamp(44px,4vw,68px)">{{ s.v }}</span></div></sc-for>
+          <a class="d hv" href="upis.html" style="display:flex;justify-content:center;align-items:center;min-height:68px;background:var(--ugalj2);font-size:24px" style-hover="background:var(--bela);color:var(--crna)">Trening sa {{ x.akuz }} →</a>
+        </div>
+      </div>
+    </article>
+  </sc-for>
+  <section style="background:var(--neon);color:var(--crna)"><div class="g12" style="padding-top:clamp(56px,10svh,110px);padding-bottom:clamp(56px,10svh,110px);row-gap:20px;align-items:end"><p class="rv d" style="grid-column:1 / span 8;font-size:clamp(56px,7vw,128px);margin:0">Prvi trening sa trenerom je besplatan.</p><div class="rv" style="grid-column:10 / span 3"><a class="d hv" href="upis.html" style="display:flex;justify-content:center;align-items:center;min-height:72px;background:var(--crna);color:var(--neon);font-size:28px" style-hover="background:var(--bela);color:var(--crna)">Zakaži →</a></div></div></section>
+</main>
+<dc-import name="IronFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() { return { t: [
+    {br:'01',n:'Nikola',akuz:'Nikolom',s:'Snaga · powerlifting',alt:'Crno-beli portret trenera Nikole',bio:'Državni prvak u powerliftingu 2019. Vodi program Snaga i ne pušta nikog pod šipku bez zagrevanja.',q:'Teg ne laže.',st:[{k:'Godina staža',v:'11'},{k:'Čučanj',v:'240 KG'},{k:'Klijenata',v:'38'},{k:'Radi',v:'PON SRE PET'}]},
+    {br:'02',n:'Jelena',akuz:'Jelenom',s:'HIIT · kondicija',alt:'Crno-beli portret trenerice Jelene',bio:'Bivša atletičarka na 800 m. Njeni HIIT treninzi počinju tačno u minut i ne završavaju se ranije.',q:'Još jedan krug.',st:[{k:'Godina staža',v:'8'},{k:'10 km',v:'42 MIN'},{k:'Grupa',v:'18'},{k:'Radi',v:'UTO ČET PET'}]},
+    {br:'03',n:'Marko',akuz:'Markom',s:'Početnici · tehnika',alt:'Crno-beli portret trenera Marka',bio:'Najstrpljiviji u sali. Kroz njegovu grupu za početnike prošlo je više od tri stotine ljudi.',q:'Tehnika pa težina.',st:[{k:'Godina staža',v:'6'},{k:'Početnika',v:'300+'},{k:'Grupa',v:'6'},{k:'Radi',v:'PON — ČET'}]},
+    {br:'04',n:'Ivana',akuz:'Ivanom',s:'Personalni · ishrana',alt:'Crno-beli portret trenerice Ivane',bio:'Licencirani nutricionista i personalni trener. Plan ishrane piše tako da može da se drži i na slavi.',q:'Plan koji možeš da držiš.',st:[{k:'Godina staža',v:'9'},{k:'Licence',v:'2'},{k:'Klijenata',v:'24'},{k:'Radi',v:'PO DOGOVORU'}]}
+  ] }; }
+}
+</script>
+</body>
+</html>

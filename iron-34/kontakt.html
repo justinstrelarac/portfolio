@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="IronHeader" active="kontakt" hint-size="100%,112px"></dc-import>
+<main>
+  <section style="border-bottom:1px solid var(--line)"><div class="g12" style="padding-top:clamp(56px,10svh,110px);padding-bottom:clamp(40px,6svh,64px);row-gap:16px;align-items:end"><h1 class="d" style="grid-column:1 / span 12;font-size:clamp(90px,14vw,260px);margin:0">Kralja Petra I <span style="color:var(--neon)">34</span></h1><p class="mo" style="grid-column:1 / span 6;color:var(--siva);margin:0">Kragujevac · 44.0128° N, 20.9114° E · ulaz iz dvorišta, 1. sprat</p></div></section>
+  <section class="stk" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-bottom:1px solid var(--line)">
+    <a class="rv hv" href="tel:+381340000000" style="padding:clamp(24px,3vw,40px);border-right:1px solid var(--line);min-height:240px;display:flex;flex-direction:column;justify-content:space-between" style-hover="background:var(--ugalj)"><span class="mo" style="color:var(--neon)">Pozovi</span><span class="d" style="font-size:clamp(48px,4.6vw,80px)">034 000 000</span></a>
+    <a class="rv hv" href="mailto:ekipa@iron34.rs" style="padding:clamp(24px,3vw,40px);border-right:1px solid var(--line);min-height:240px;display:flex;flex-direction:column;justify-content:space-between" style-hover="background:var(--ugalj)"><span class="mo" style="color:var(--neon)">Piši</span><span class="d" style="font-size:clamp(34px,3.2vw,56px)">ekipa@iron34.rs</span></a>
+    <a class="rv hv" href="https://instagram.com" target="_blank" rel="noopener" style="padding:clamp(24px,3vw,40px);min-height:240px;display:flex;flex-direction:column;justify-content:space-between" style-hover="background:var(--ugalj)"><span class="mo" style="color:var(--neon)">Prati</span><span class="d" style="font-size:clamp(48px,4.6vw,80px)">@iron34kg</span></a>
+  </section>
+  <section class="stk" style="display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);border-bottom:1px solid var(--line)">
+    <div style="position:relative;min-height:clamp(380px,60svh,640px);border-right:1px solid var(--line);background:var(--ugalj)">
+      <iframe title="Mapa: Kralja Petra I, Kragujevac" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=20.9040%2C44.0100%2C20.9190%2C44.0160&amp;layer=mapnik&amp;marker=44.0128%2C20.9114" style="position:absolute;inset:0;width:100%;height:100%;border:0;filter:grayscale(1) invert(0.92) contrast(1.1)"></iframe>
+      <span class="mo" style="position:absolute;left:14px;bottom:14px;background:var(--neon);color:var(--crna);padding:6px 10px">Sl. — Centar, Kragujevac</span>
+    </div>
+    <div style="display:flex;flex-direction:column">
+      <div style="padding:clamp(24px,3vw,40px);border-bottom:1px solid var(--line)"><span class="mo" style="color:var(--neon)">Radno vreme</span>
+        <sc-for list="{{ h }}" as="x" hint-placeholder-count="3"><div style="display:flex;justify-content:space-between;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--line)"><span class="d" style="font-size:28px;color:{{ x.c }}">{{ x.d }}</span><span class="d" style="font-size:40px;color:{{ x.c }}">{{ x.t }}</span></div></sc-for>
+      </div>
+      <div style="padding:clamp(24px,3vw,40px);flex:1"><span class="mo" style="color:var(--neon)">Dolazak</span>
+        <sc-for list="{{ put }}" as="p" hint-placeholder-count="3"><p style="font-size:15px;line-height:1.6;margin:14px 0 0"><strong>{{ p.k }}</strong> · {{ p.v }}</p></sc-for>
+      </div>
+    </div>
+  </section>
+  <section style="background:var(--neon);color:var(--crna)"><div class="g12" style="padding-top:clamp(48px,8svh,90px);padding-bottom:clamp(48px,8svh,90px);row-gap:16px;align-items:center"><p class="d" style="grid-column:1 / span 8;font-size:clamp(48px,6vw,104px);margin:0">Dođi na probni trening.</p><div style="grid-column:10 / span 3"><a class="d hv" href="upis.html?paket=14" style="display:flex;justify-content:center;align-items:center;min-height:72px;background:var(--crna);color:var(--neon);font-size:28px" style-hover="background:var(--bela);color:var(--crna)">Besplatno →</a></div></div></section>
+</main>
+<dc-import name="IronFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const d = new Date().getDay(), wk = d >= 1 && d <= 5;
+    return { h: [{d:'Pon—Pet',t:'06—23',c: wk ? 'var(--neon)' : 'var(--bela)'},{d:'Sub—Ned',t:'08—20',c: !wk ? 'var(--neon)' : 'var(--bela)'},{d:'Praznici',t:'10—18',c:'var(--bela)'}],
+      put: [{k:'Parking',v:'Besplatan, 40 mesta u dvorištu.'},{k:'Autobus',v:'Linije 2 i 7, stanica Đački trg.'},{k:'Bicikl',v:'Stalak za 12 bicikala kod ulaza.'}] };
+  }
+}
+</script>
+</body>
+</html>

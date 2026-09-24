@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<main>
+  <section style="position:relative;overflow:hidden;border-bottom:1px solid var(--line)">
+    <div aria-hidden="true" class="d olt" style="position:absolute;right:-2vw;bottom:-6svh;font-size:clamp(260px,40vw,720px);line-height:0.78;pointer-events:none">{{ p.n }}</div>
+    <div class="g12" style="position:relative;padding-top:clamp(56px,10svh,110px);padding-bottom:clamp(56px,10svh,110px);row-gap:28px;align-items:end">
+      <div style="grid-column:1 / span 8"><a class="mo" href="programi.html" style="color:var(--siva)">← Programi</a><span class="mo" style="color:var(--neon);margin-left:14px">Program {{ p.n }} / 04</span>
+        <h1 class="d" style="font-size:clamp(120px,18vw,320px);margin:16px 0 0">{{ p.t }}</h1>
+        <p style="font-size:clamp(17px,1.5vw,21px);line-height:1.6;color:var(--siva);max-width:44ch;margin:18px 0 0">{{ p.lead }}</p>
+      </div>
+      <div class="stk2" style="grid-column:9 / span 4;display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line)">
+        <sc-for list="{{ p.spec }}" as="s" hint-placeholder-count="4"><div style="padding:16px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="mo" style="color:var(--siva)">{{ s.k }}</div><div class="d" style="font-size:clamp(30px,2.8vw,44px);margin-top:10px;color:{{ s.c }}">{{ s.v }}</div></div></sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-bottom:1px solid var(--line)">
+    <div class="g12" style="padding-top:clamp(64px,12svh,130px);padding-bottom:clamp(32px,5svh,56px)"><div class="rv" style="grid-column:1 / span 8"><span class="mo" style="color:var(--neon)">01 — Jedan trening</span><h2 class="d" style="font-size:clamp(56px,7vw,120px);margin:14px 0 0">{{ p.trNaslov }}</h2></div></div>
+    <div class="stk" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line)">
+      <sc-for list="{{ p.blokovi }}" as="b" hint-placeholder-count="4">
+        <div class="rv" style="padding:clamp(20px,2.4vw,32px);border-right:1px solid var(--line);display:flex;flex-direction:column;gap:40px;min-height:clamp(260px,34svh,360px)">
+          <div style="display:flex;justify-content:space-between"><span class="mo" style="color:var(--neon)">{{ b.t }}</span><span class="mo" style="color:var(--siva)">{{ b.n }}</span></div>
+          <div><div class="d" style="font-size:clamp(34px,3.2vw,52px)">{{ b.naziv }}</div><p style="font-size:15px;line-height:1.55;color:var(--siva);margin:10px 0 0">{{ b.d }}</p></div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="background:var(--neon);color:var(--crna)">
+    <div class="g12" style="padding-top:clamp(64px,12svh,130px);padding-bottom:clamp(64px,12svh,130px);row-gap:24px;align-items:center">
+      <div class="rv" style="grid-column:1 / span 5"><span class="mo">02 — Posle 8 nedelja</span><h2 class="d" style="font-size:clamp(56px,6.4vw,112px);margin:14px 0 0">{{ p.ciljNaslov }}</h2></div>
+      <ol class="rv" style="grid-column:7 / -1;list-style:none;margin:0;padding:0;border-top:2px solid var(--crna)">
+        <sc-for list="{{ p.ciljevi }}" as="c" hint-placeholder-count="3"><li style="display:grid;grid-template-columns:64px 1fr;gap:16px;align-items:baseline;padding:18px 0;border-bottom:2px solid var(--crna)"><span class="d" style="font-size:40px">{{ c.n }}</span><span style="font-size:17px;font-weight:600;line-height:1.45">{{ c.t }}</span></li></sc-for>
+      </ol>
+    </div>
+  </section>
+
+  <section style="border-bottom:1px solid var(--line)">
+    <div class="g12" style="padding-top:clamp(64px,12svh,130px);padding-bottom:clamp(64px,12svh,130px);row-gap:28px">
+      <div class="rv" style="grid-column:1 / span 4"><span class="mo" style="color:var(--neon)">03 — Termini</span><h2 class="d" style="font-size:clamp(48px,5vw,88px);margin:14px 0 0">Kad se radi.</h2><p class="mo" style="color:var(--siva);margin:14px 0 0">Vodi: {{ p.trener }}</p></div>
+      <div style="grid-column:6 / -1;border-top:1px solid var(--bela)">
+        <sc-for list="{{ p.termini }}" as="t" hint-placeholder-count="4"><div class="rv" style="display:grid;grid-template-columns:minmax(0,2fr) minmax(0,2fr) minmax(0,3fr) auto;gap:16px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)"><span class="d" style="font-size:28px">{{ t.d }}</span><span class="mo" style="color:var(--neon)">{{ t.v }}</span><span class="mo hm" style="color:var(--siva)">{{ t.m }}</span><a class="mo hv" href="upis.html" style="display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:1px solid var(--bela)" style-hover="background:var(--neon);color:var(--crna);border-color:var(--neon)">Prijavi se</a></div></sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="g12" style="padding-top:clamp(64px,12svh,130px);padding-bottom:clamp(64px,12svh,130px);row-gap:24px;align-items:end">
+      <p class="rv d" style="grid-column:1 / span 8;font-size:clamp(56px,7.4vw,136px);margin:0">{{ p.cta }}</p>
+      <div class="rv" style="grid-column:10 / span 3;display:flex;flex-direction:column;gap:10px">
+        <a class="d hv" href="upis.html" style="display:flex;justify-content:center;align-items:center;min-height:72px;background:var(--neon);color:var(--crna);font-size:28px" style-hover="background:var(--bela);color:var(--crna)">Upiši se →</a>
+        <a class="mo hv" href="{{ p.nextH }}" style="display:flex;justify-content:center;align-items:center;min-height:52px;border:1px solid var(--bela)" style-hover="border-color:var(--neon);color:var(--neon)">Sledeće: {{ p.nextT }} →</a>
+      </div>
+    </div>
+  </section>
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900},&quot;p&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;object&quot;}}">
+class Component extends DCLogic {
+  renderVals() { return { p: Object.assign({ spec:[], blokovi:[], ciljevi:[], termini:[] }, this.props.p || {}) }; }
+}
+</script>
+</body>
+</html>

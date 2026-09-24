@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="LavHeader" active="" hint-size="100%,88px"></dc-import>
+<main>
+  <section style="position:relative;overflow:hidden;padding:clamp(40px,9svh,110px) 0 clamp(64px,14svh,160px)">
+    <div aria-hidden="true" style="position:absolute;left:50%;top:clamp(0px,2svh,30px);transform:translateX(-50%);font-family:var(--serif);font-style:italic;font-weight:600;font-size:clamp(160px,34vw,560px);line-height:0.8;letter-spacing:-0.05em;color:var(--papir2);white-space:nowrap;pointer-events:none">more</div>
+    <div class="g12" style="position:relative;align-items:end;row-gap:48px">
+      <div style="grid-column:1 / span 7">
+        <div class="lbl" style="display:flex;gap:18px;color:var(--muted);margin-bottom:clamp(20px,4svh,40px)"><span style="color:var(--bordo)">01 — Večeras</span><span>{{ status }}</span></div>
+        <h1 style="font-family:var(--serif);font-weight:400;font-size:clamp(88px,13vw,240px);line-height:0.86;letter-spacing:-0.035em;margin:0">More na<br><span style="font-style:italic;color:var(--bordo)">tanjiru.</span></h1>
+        <div style="max-width:520px;margin-top:clamp(28px,5svh,56px);border-top:1px solid var(--line)">
+          <sc-for list="{{ vecer }}" as="v" hint-placeholder-count="3">
+            <div style="display:flex;align-items:baseline;gap:10px;padding:13px 0;border-bottom:1px solid var(--line);font-size:17px"><span>{{ v.t }}</span><span class="dots"></span><span style="font-family:var(--mono);font-size:15px">{{ v.p }}</span></div>
+          </sc-for>
+        </div>
+        <a class="lbl hv" href="rezervacija.html" style="display:inline-flex;align-items:center;min-height:58px;margin-top:32px;padding:0 32px;background:var(--bordo);color:var(--papir);letter-spacing:0.22em" style-hover="background:var(--bordo2);color:var(--papir)">Rezerviši sto</a>
+      </div>
+      <div style="grid-column:8 / span 5;position:relative">
+        <div style="aspect-ratio:4/5;max-height:78svh;margin-left:auto">
+          <dc-import name="LavKadar" style="display:block;width:100%;height:100%" v="luk" alt="Zalazak sunca nad morem, uokviren kamenim lukom" cap="Sl. 01 — Zalazak, Stari Grad" meta="20:41" hint-size="100%,100%"></dc-import>
+        </div>
+        <div class="hm" style="position:absolute;left:-6%;bottom:10%;width:min(300px,60%);background:#F8EEDF;padding:26px 24px 20px;transform:rotate(-4deg);box-shadow:0 30px 60px -30px rgba(43,10,14,0.55)">
+          <span class="lbl" style="color:var(--muted)">Večerašnji meni</span>
+          <p style="font-family:var(--serif);font-style:italic;font-size:30px;line-height:1.05;color:var(--bordo);margin:10px 0 14px">Dalmacija,<br>u Novom Sadu.</p>
+          <sc-for list="{{ kartica }}" as="k" hint-placeholder-count="3">
+            <div style="display:flex;justify-content:space-between;padding:8px 0;border-top:1px solid var(--line);font-size:14px"><span>{{ k.t }}</span><span style="font-family:var(--mono)">{{ k.p }}</span></div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="ulov" style="background:#F8EEDF;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:clamp(40px,8svh,88px) 0">
+    <div class="g12" style="row-gap:28px">
+      <div class="rv" style="grid-column:1 / -1;display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;border-bottom:3px double var(--ink);padding-bottom:14px">
+        <span class="lbl">02 — Ulov dana</span><span class="lbl">{{ datum }}</span><span class="lbl">Br. 214 · Besplatno uz večeru</span>
+      </div>
+      <h2 id="ulov" class="rv" style="grid-column:1 / -1;font-family:var(--serif);font-weight:700;font-size:clamp(64px,11vw,200px);line-height:0.86;letter-spacing:-0.04em;margin:0;text-align:center">Ulov dana</h2>
+      <div class="rv" style="grid-column:1 / span 5;border-top:1px solid var(--ink);padding-top:18px">
+        <p style="font-family:var(--serif);font-weight:600;font-size:clamp(30px,3.2vw,48px);line-height:1.05;margin:0">Brancin iz Komiže, jedanaest komada.</p>
+        <p style="font-size:16px;line-height:1.7;color:var(--muted);margin:16px 0 0">Kamion je stigao u 6:40. Ante je izabrao jedanaest brancina, dve škarpine i kilogram škampa. Kad nestane, nestane.</p>
+      </div>
+      <div class="rv" style="grid-column:6 / span 4;border-top:1px solid var(--ink);padding-top:18px;aspect-ratio:1">
+        <dc-import name="LavKadar" style="display:block;width:100%;height:100%" v="riba" alt="Cela riba na kremastoj podlozi, pogled odozgo" cap="Sl. 02 — Brancin, 740 g" meta="06:40" hint-size="100%,100%"></dc-import>
+      </div>
+      <div class="rv" style="grid-column:10 / span 3;border-top:1px solid var(--ink);padding-top:18px;display:flex;flex-direction:column;gap:0">
+        <sc-for list="{{ ulov }}" as="u" hint-placeholder-count="4">
+          <div style="padding:12px 0;border-bottom:1px solid var(--line)"><div style="display:flex;justify-content:space-between;gap:10px;font-weight:600"><span>{{ u.t }}</span><span style="font-family:var(--mono);font-weight:400">{{ u.p }}</span></div><div class="lbl" style="color:var(--muted);margin-top:4px">{{ u.n }}</div></div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:clamp(96px,20svh,220px) 0">
+    <div class="g12" style="row-gap:36px">
+      <div class="rv" style="grid-column:1 / span 3"><span class="lbl" style="color:var(--bordo)">03 — Meni</span><p style="font-size:16px;line-height:1.65;color:var(--muted);margin:16px 0 0">Šest poglavlja. Numerisana kao u starim jelovnicima sa Hvara.</p></div>
+      <div style="grid-column:5 / -1;border-top:1px solid var(--ink)">
+        <sc-for list="{{ kat }}" as="k" hint-placeholder-count="6">
+          <a class="rv hv" href="meni.html#{{ k.id }}" style="display:flex;align-items:baseline;gap:clamp(14px,2vw,28px);padding:clamp(14px,2.4svh,22px) 0;border-bottom:1px solid var(--line)" style-hover="color:var(--bordo)">
+            <span class="lbl" style="color:var(--muted);width:32px">{{ k.n }}</span>
+            <span style="font-family:var(--serif);font-style:italic;font-size:clamp(40px,5.4vw,88px);line-height:1">{{ k.t }}</span>
+            <span class="dots"></span>
+            <span class="lbl">{{ k.c }}</span>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="position:relative;background:var(--bordo);color:var(--papir)">
+    <div style="height:clamp(360px,72svh,760px)">
+      <dc-import name="LavKadar" style="display:block;width:100%;height:100%" v="more" alt="Obala u sumrak, ribarski brod nad prugama mora" cap="" meta="" hint-size="100%,100%"></dc-import>
+    </div>
+    <div class="g12" style="position:relative;margin-top:clamp(-220px,-22svh,-120px);padding-bottom:clamp(72px,14svh,150px)">
+      <div class="rv" style="grid-column:2 / span 6;background:var(--papir);color:var(--ink);padding:clamp(28px,4vw,56px)">
+        <span class="lbl" style="color:var(--bordo)">04 — Priča · Sl. 03 — Komiža, 1994.</span>
+        <p class="dropcap" style="font-size:clamp(17px,1.4vw,19px);line-height:1.75;margin:20px 0 0">Ante je kuvao u očevoj konobi u Starom Gradu dvadeset godina. Kad se preselio u Novi Sad, poneo je tri stvari: peku, recept za pašticadu i broj telefona ribara iz Komiže koji mu i danas javlja šta je izvukao. Konoba Lav je ta tri predmeta, i dvadeset stolova oko njih.</p>
+        <a class="lbl hv" href="prica.html" style="display:inline-flex;align-items:center;min-height:48px;margin-top:18px;border-bottom:1px solid var(--ink)">Cela priča →</a>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:clamp(96px,18svh,200px) 0 clamp(64px,12svh,140px)">
+    <div class="g12" style="row-gap:32px">
+      <h2 class="rv" style="grid-column:1 / span 6;font-family:var(--serif);font-weight:400;font-size:clamp(56px,7vw,120px);line-height:0.9;letter-spacing:-0.03em;margin:0">Vina sa<br><span style="font-style:italic;color:var(--bordo)">ostrva.</span></h2>
+      <p class="rv" style="grid-column:8 / span 4;align-self:end;font-size:16px;line-height:1.7;color:var(--muted);margin:0">Četrdeset i dve etikete iz jedanaest vinarija. Nijedna nije iz supermarketa.</p>
+      <div style="grid-column:1 / -1;border-top:1px solid var(--ink);margin-top:20px">
+        <sc-for list="{{ regije }}" as="r" hint-placeholder-count="5">
+          <a class="rv hv stk" href="vina.html" style="display:grid;grid-template-columns:minmax(0,3fr) minmax(0,5fr) minmax(0,2fr) minmax(0,2fr);gap:24px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--line)" style-hover="color:var(--bordo)">
+            <span style="font-family:var(--serif);font-size:clamp(24px,2.4vw,34px)">{{ r.t }}</span>
+            <span class="hm" style="font-size:15px;color:var(--muted)">{{ r.d }}</span>
+            <span class="lbl hm">{{ r.c }}</span>
+            <span style="font-family:var(--mono);font-size:14px;text-align:right">{{ r.p }}</span>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:0 0 clamp(96px,18svh,200px)">
+    <div class="g12" style="row-gap:24px">
+      <a class="rv hv" href="dogadjaji.html" style="grid-column:1 / span 7;display:grid;grid-template-rows:1fr auto;min-height:clamp(420px,62svh,640px);background:var(--ink);color:var(--papir)" style-hover="color:var(--sunce)">
+        <div style="min-height:240px"><dc-import name="LavKadar" style="display:block;width:100%;height:100%" v="klapa" alt="Pet pevača klape u polukrugu, topla svetlost iznad" cap="" meta="" hint-size="100%,100%"></dc-import></div>
+        <div style="padding:28px 32px 32px;display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap">
+          <div><span class="lbl" style="opacity:0.7">05 — Događaji · Četvrtak 2. oktobar, 20h</span><div style="font-family:var(--serif);font-style:italic;font-size:clamp(34px,3.6vw,56px);line-height:1;margin-top:10px">Klapa Kamen uživo</div></div>
+          <span class="lbl">Program →</span>
+        </div>
+      </a>
+      <a class="rv hv" href="proslave.html" style="grid-column:8 / span 5;display:flex;flex-direction:column;justify-content:space-between;gap:40px;min-height:clamp(420px,62svh,640px);padding:32px;background:var(--sunce);color:var(--ink)" style-hover="background:#D56B40">
+        <span class="lbl">06 — Proslave</span>
+        <div><div style="font-family:var(--serif);font-size:clamp(88px,10vw,176px);line-height:0.8;letter-spacing:-0.04em">40</div><div style="font-family:var(--serif);font-style:italic;font-size:clamp(26px,2.4vw,36px);margin-top:10px">mesta u zadnjoj sali, samo za vas.</div></div>
+        <span class="lbl">Grupni meniji →</span>
+      </a>
+    </div>
+  </section>
+
+  <section style="border-top:1px solid var(--ink);padding:clamp(96px,20svh,220px) 0">
+    <div class="g12">
+      <div class="rv" style="grid-column:1 / span 10">
+        <span class="lbl" style="color:var(--bordo)">07 — Rezervacija</span>
+        <p style="font-family:var(--serif);font-weight:400;font-size:clamp(56px,8vw,140px);line-height:0.92;letter-spacing:-0.03em;margin:22px 0 0">Sto za dvoje, <span style="font-style:italic;color:var(--bordo)">večeras u 20:30?</span></p>
+        <div style="display:flex;gap:18px 28px;flex-wrap:wrap;align-items:center;margin-top:40px">
+          <a class="lbl hv" href="rezervacija.html" style="display:inline-flex;align-items:center;min-height:58px;padding:0 32px;background:var(--bordo);color:var(--papir);letter-spacing:0.22em" style-hover="background:var(--bordo2);color:var(--papir)">Rezerviši za minut</a>
+          <a class="lbl hv" href="tel:+38121000000" style="display:inline-flex;align-items:center;min-height:48px;border-bottom:1px solid var(--ink)">ili 021 000 000</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<dc-import name="LavFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const d = new Date(), h = d.getHours(), dow = d.getDay();
+    const close = dow === 0 ? 22 : (dow >= 5 ? 24 : 23);
+    const open = h >= 12 && h < close;
+    const dani = ['Nedelja','Ponedeljak','Utorak','Sreda','Četvrtak','Petak','Subota'];
+    const mes = ['januar','februar','mart','april','maj','jun','jul','avgust','septembar','oktobar','novembar','decembar'];
+    return {
+      status: open ? '● Otvoreno do ' + close + 'h' : '○ Otvaramo u 12h',
+      datum: dani[dow] + ', ' + d.getDate() + '. ' + mes[d.getMonth()] + ' ' + d.getFullYear(),
+      vecer: [{t:'Brudet od škarpine',p:'1.890'},{t:'Crni rižoto',p:'1.450'},{t:'Hobotnica ispod peke',p:'2.300'}],
+      kartica: [{t:'Riblja čorba',p:'690'},{t:'Blitva s krumpirom',p:'520'},{t:'Rožata',p:'480'}],
+      ulov: [{t:'Brancin',p:'5.900/kg',n:'Komiža · 11 kom'},{t:'Škarpina',p:'6.400/kg',n:'Vis · 2 kom'},{t:'Škampi',p:'8.200/kg',n:'Kvarner · 1 kg'},{t:'Sipa',p:'3.600/kg',n:'Hvar · za rižoto'}],
+      kat: [{id:'hladna',n:'I',t:'Hladna predjela',c:'6 jela'},{id:'topla',n:'II',t:'Topla predjela',c:'4 jela'},{id:'riba',n:'III',t:'Riba i školjke',c:'8 jela'},{id:'peka',n:'IV',t:'Ispod peke',c:'2 jela'},{id:'meso',n:'V',t:'Meso i testenina',c:'5 jela'},{id:'slatko',n:'VI',t:'Slatko',c:'4 jela'}],
+      regije: [{t:'Hvar',d:'Bogdanuša i plavac sa južnih padina',c:'9 etiketa',p:'od 560'},{t:'Pelješac',d:'Dingač i Postup, puni i topli',c:'8 etiketa',p:'od 690'},{t:'Korčula',d:'Pošip i grk, mineralna bela',c:'7 etiketa',p:'od 590'},{t:'Brač',d:'Plavac sa krša, male serije',c:'5 etiketa',p:'od 620'},{t:'Istra',d:'Malvazija i teran za one koji vole sever',c:'13 etiketa',p:'od 540'}]
+    };
+  }
+}
+</script>
+</body>
+</html>

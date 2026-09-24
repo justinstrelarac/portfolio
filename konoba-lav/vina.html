@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="LavHeader" active="vina" hint-size="100%,88px"></dc-import>
+<main>
+  <section style="background:var(--bordo);color:var(--papir);overflow:hidden">
+    <div class="g12" style="padding-top:clamp(64px,14svh,160px);padding-bottom:clamp(64px,14svh,160px);row-gap:40px;align-items:end">
+      <div style="grid-column:1 / span 7">
+        <span class="lbl" style="opacity:0.75">Vinska karta · 42 etikete · 11 vinarija</span>
+        <h1 style="font-family:var(--serif);font-weight:400;font-size:clamp(88px,13vw,240px);line-height:0.86;letter-spacing:-0.035em;margin:20px 0 0">Vina sa<br><span style="font-style:italic;color:var(--sunce)">ostrva.</span></h1>
+      </div>
+      <div style="grid-column:9 / span 4;height:clamp(320px,52svh,520px)">
+        <dc-import name="LavKadar" style="display:block;width:100%;height:100%" v="vino" alt="Čaša crnog vina u polumraku konobe" cap="Sl. 04 — Plavac, Pelješac 2021" meta="0,15 l" hint-size="100%,100%"></dc-import>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:clamp(80px,16svh,180px) 0 clamp(40px,8svh,80px)">
+    <div class="g12" style="row-gap:20px">
+      <p class="rv" style="grid-column:1 / span 7;font-family:var(--serif);font-size:clamp(28px,2.8vw,44px);line-height:1.25;margin:0">Vina biramo kao ribu: od ljudi koje znamo po imenu. Većina vinarija proizvodi manje od deset hiljada boca godišnje.</p>
+      <div class="rv" style="grid-column:9 / span 4;align-self:end;display:flex;flex-direction:column;gap:6px">
+        <span class="lbl" style="color:var(--muted)">Kako čitati kartu</span>
+        <span style="display:flex;gap:10px;font-size:15px"><span>Čaša 0,15 l</span><span class="dots"></span><span style="font-family:var(--mono)">prva cena</span></span>
+        <span style="display:flex;gap:10px;font-size:15px"><span>Boca 0,75 l</span><span class="dots"></span><span style="font-family:var(--mono)">druga cena</span></span>
+      </div>
+    </div>
+  </section>
+
+  <sc-for list="{{ regije }}" as="r" hint-placeholder-count="3">
+    <section style="padding:clamp(40px,8svh,80px) 0">
+      <div class="g12" style="row-gap:20px">
+        <div class="rv" style="grid-column:1 / span 4;border-top:3px solid var(--bordo);padding-top:16px">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px"><span class="lbl" style="color:var(--bordo)">{{ r.n }}</span><span class="lbl" style="color:var(--muted)">{{ r.geo }}</span></div>
+          <h2 style="font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(56px,6vw,104px);line-height:0.9;letter-spacing:-0.03em;margin:14px 0 0">{{ r.t }}</h2>
+          <p style="font-size:15px;line-height:1.65;color:var(--muted);margin:14px 0 0;max-width:32ch">{{ r.d }}</p>
+        </div>
+        <div style="grid-column:6 / -1;border-top:1px solid var(--ink)">
+          <div class="lbl hm" style="display:grid;grid-template-columns:minmax(0,5fr) minmax(0,3fr) minmax(0,2fr) minmax(0,2fr);gap:16px;padding:12px 0;color:var(--muted);border-bottom:1px solid var(--line)"><span>Vino</span><span>Vinarija · godina</span><span style="text-align:right">Čaša</span><span style="text-align:right">Boca</span></div>
+          <sc-for list="{{ r.v }}" as="w" hint-placeholder-count="3">
+            <div class="rv stk" style="display:grid;grid-template-columns:minmax(0,5fr) minmax(0,3fr) minmax(0,2fr) minmax(0,2fr);gap:16px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--line)">
+              <span><span style="display:block;font-family:var(--serif);font-size:clamp(21px,1.9vw,27px)">{{ w.t }}</span><span style="display:block;font-size:14px;color:var(--muted);margin-top:4px">{{ w.d }}</span></span>
+              <span class="lbl" style="color:var(--muted)">{{ w.v }}</span>
+              <span style="font-family:var(--mono);font-size:15px;text-align:right">{{ w.c }}</span>
+              <span style="font-family:var(--mono);font-size:15px;text-align:right">{{ w.b }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+  </sc-for>
+
+  <section style="padding:clamp(96px,18svh,200px) 0">
+    <div class="g12" style="row-gap:24px">
+      <div class="rv" style="grid-column:2 / span 10;border:1px solid var(--ink);padding:clamp(28px,5vw,72px);display:grid;grid-template-columns:repeat(10,minmax(0,1fr));column-gap:24px;row-gap:24px">
+        <div style="grid-column:1 / span 6"><span class="lbl" style="color:var(--bordo)">Degustacija · poslednji četvrtak u mesecu</span><p style="font-family:var(--serif);font-size:clamp(34px,3.6vw,58px);line-height:1;margin:14px 0 0">Pet vina, pet malih tanjira, <span style="font-style:italic;color:var(--bordo)">jedan vinar za stolom.</span></p></div>
+        <div style="grid-column:8 / span 3;align-self:end;display:flex;flex-direction:column;gap:12px"><span style="font-family:var(--mono);font-size:22px">4.900 / osoba</span><a class="lbl hv" href="dogadjaji.html" style="display:inline-flex;justify-content:center;align-items:center;min-height:54px;background:var(--bordo);color:var(--papir)" style-hover="background:var(--bordo2);color:var(--papir)">Termini degustacija</a></div>
+      </div>
+    </div>
+  </section>
+</main>
+<dc-import name="LavFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return { regije: [
+      {n:'01',t:'Hvar',geo:'43.17° N',d:'Južne padine iznad Svete Nedjelje. Sunce tri puta, jednom s neba i dva puta s mora.',v:[
+        {t:'Bogdanuša',d:'Belo, lagano, cvetno. Uz ribu sa žara.',v:'Vinarija Luka · 2024',c:'560',b:'3.400'},
+        {t:'Plavac mali',d:'Crveno, puno, zrela višnja.',v:'Podgora · 2021',c:'790',b:'4.900'},
+        {t:'Prošek',d:'Slatko desertno vino, uz rožatu.',v:'Kuća Mare · 2019',c:'520',b:'—'}]},
+      {n:'02',t:'Pelješac',geo:'42.98° N',d:'Dingač i Postup, najstrmiji vinogradi na Jadranu. Vina za peku i janjetinu.',v:[
+        {t:'Dingač',d:'Crveno, snažno, za meso ispod peke.',v:'Brdo Dingač · 2020',c:'990',b:'6.200'},
+        {t:'Postup',d:'Crveno, mekše, začinsko.',v:'Kapela · 2021',c:'690',b:'4.300'}]},
+      {n:'03',t:'Korčula',geo:'42.96° N',d:'Pošip i grk, bela vina sa soli u završnici.',v:[
+        {t:'Pošip',d:'Belo, suvo, mineralno. Naš prvi izbor uz brancin.',v:'Lumbarda · 2024',c:'590',b:'3.600'},
+        {t:'Grk',d:'Belo, retko, sa peska Lumbarde.',v:'Pijesak · 2023',c:'720',b:'4.400'}]},
+      {n:'04',t:'Istra',geo:'45.24° N',d:'Za one koji vole sever: malvazija i teran sa crvene zemlje.',v:[
+        {t:'Malvazija',d:'Belo, sveže, bademasto.',v:'Momjan · 2024',c:'540',b:'3.300'},
+        {t:'Teran',d:'Crveno, kiselkasto, uz pršut.',v:'Crvena zemlja · 2022',c:'620',b:'3.800'}]}
+    ]};
+  }
+}
+</script>
+</body>
+</html>

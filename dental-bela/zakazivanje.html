@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+  .bo{font:inherit;text-align:left;cursor:pointer;background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:18px;transition:border-color .2s ease,background-color .2s ease,color .2s ease}
+  .bo:hover:not(:disabled){border-color:var(--plava)}
+  .bo[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .bo:disabled{cursor:not-allowed;background:#F1F5FC;color:#A3AEC4}
+  .bin{width:100%;font:inherit;font-size:17px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;min-height:56px}
+  .bin:focus{outline:none;border-color:var(--plava);box-shadow:0 0 0 3px rgba(37,99,235,0.18)}
+  .bin[aria-invalid="true"]{border-color:#C62828;box-shadow:0 0 0 3px rgba(198,40,40,0.12)}
+  @media(prefers-reduced-motion:reduce){.bo{transition:none}}
+</style>
+</helmet>
+<dc-import name="BelaHeader" active="" hint-size="100%,124px"></dc-import>
+<main class="mm" style="padding:clamp(40px,8svh,96px) 0 clamp(96px,18svh,200px);min-height:90svh">
+  <div class="g12" style="row-gap:32px;align-items:start">
+    <div style="grid-column:1 / span 8">
+      <span class="mn" style="color:var(--plava)">Zakazivanje · korak {{ step }} od 4</span>
+      <h1 style="font-weight:800;font-size:clamp(64px,8vw,144px);line-height:0.9;letter-spacing:-0.055em;margin:16px 0 0">{{ q.t }}</h1>
+      <div aria-hidden="true" style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:28px 0 32px"><sc-for list="{{ bar }}" as="b" hint-placeholder-count="4"><span style="height:4px;border-radius:4px;background:{{ b }}"></span></sc-for></div>
+
+      <div aria-live="polite">
+        <sc-if value="{{ is1 }}" hint-placeholder-val="{{ true }}">
+          <div class="stk" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px">
+            <sc-for list="{{ usluge }}" as="u" hint-placeholder-count="6">
+              <button type="button" class="bo" aria-pressed="{{ u.on }}" onClick="{{ u.pick }}" style="display:flex;flex-direction:column;justify-content:space-between;gap:28px;min-height:150px;padding:18px"><span class="mn" style="opacity:0.7">{{ u.w }}</span><span><span style="display:block;font-weight:800;font-size:22px;letter-spacing:-0.02em">{{ u.t }}</span><span style="display:block;font-family:var(--mono);font-size:13px;margin-top:6px;opacity:0.75">{{ u.p }}</span></span></button>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ is2 }}" hint-placeholder-val="{{ false }}">
+          <div class="stk" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">
+            <sc-for list="{{ doktori }}" as="d" hint-placeholder-count="4">
+              <button type="button" class="bo" aria-pressed="{{ d.on }}" disabled="{{ d.off }}" onClick="{{ d.pick }}" style="display:flex;gap:16px;align-items:center;min-height:96px;padding:16px"><span class="sf" aria-hidden="true" style="width:56px;height:56px;flex:0 0 auto"></span><span><span style="display:block;font-weight:800;font-size:19px">{{ d.n }}</span><span class="mn" style="display:block;margin-top:6px;opacity:0.7">{{ d.s }}</span></span></button>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ is3 }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none">
+            <sc-for list="{{ dani }}" as="d" hint-placeholder-count="7">
+              <button type="button" class="bo" aria-pressed="{{ d.on }}" onClick="{{ d.pick }}" aria-label="{{ d.aria }}" style="flex:0 0 auto;width:84px;min-height:84px;padding:12px;display:flex;flex-direction:column;gap:6px"><span class="mn">{{ d.w }}</span><span style="font-weight:800;font-size:28px;letter-spacing:-0.03em">{{ d.d }}</span></button>
+            </sc-for>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:8px;margin-top:16px">
+            <sc-for list="{{ slotovi }}" as="s" hint-placeholder-count="10">
+              <button type="button" class="bo" aria-pressed="{{ s.on }}" disabled="{{ s.full }}" onClick="{{ s.pick }}" style="min-height:56px;border-radius:14px;font-family:var(--mono);font-size:16px;text-align:center">{{ s.v }}</button>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ is4 }}" hint-placeholder-val="{{ false }}">
+          <form novalidate="" onSubmit="{{ submit }}" aria-label="Podaci pacijenta" style="display:flex;flex-direction:column;gap:18px">
+            <div class="stk" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+              <label class="mn" style="display:flex;flex-direction:column;gap:8px">Ime i prezime<input class="bin" name="ime" autocomplete="name" value="{{ f.ime }}" onChange="{{ on.ime }}" aria-invalid="{{ inv.ime }}"><span style="font-family:var(--sans);text-transform:none;letter-spacing:0;font-size:13px;color:#C62828;min-height:16px">{{ err.ime }}</span></label>
+              <label class="mn" style="display:flex;flex-direction:column;gap:8px">Mobilni telefon<input class="bin" type="tel" name="tel" autocomplete="tel" inputmode="tel" placeholder="06x xxx xxxx" value="{{ f.tel }}" onChange="{{ on.tel }}" aria-invalid="{{ inv.tel }}"><span style="font-family:var(--sans);text-transform:none;letter-spacing:0;font-size:13px;color:#C62828;min-height:16px">{{ err.tel }}</span></label>
+            </div>
+            <label class="mn" style="display:flex;flex-direction:column;gap:8px">Šta te muči (opciono)<textarea class="bin" name="nap" rows="3" placeholder="Boli me donji levi zub kad pijem hladno…" value="{{ f.nap }}" onChange="{{ on.nap }}" style="resize:vertical"></textarea></label>
+            <label style="display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.5;cursor:pointer"><input type="checkbox" checked="{{ f.lista }}" onChange="{{ on.lista }}" style="width:22px;height:22px;accent-color:#2563EB;margin-top:1px"> Ubaci me na listu čekanja ako se oslobodi raniji termin.</label>
+            <button type="submit" class="hv" disabled="{{ loading }}" style="align-self:flex-start;min-height:60px;padding:0 32px;border:0;border-radius:999px;cursor:pointer;background:var(--plava);color:#fff;font:inherit;font-weight:800;font-size:16px" style-hover="background:var(--plava2)">{{ btn }}</button>
+          </form>
+        </sc-if>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:28px">
+        <button type="button" onClick="{{ back }}" disabled="{{ noBack }}" class="mn" style="min-height:48px;padding:0 18px;border-radius:999px;border:1px solid var(--line);background:#fff;cursor:pointer;color:var(--ink);font-family:var(--mono)">← Nazad</button>
+        <span class="mn" style="color:#C62828">{{ msg }}</span>
+      </div>
+    </div>
+
+    <aside style="grid-column:9 / span 4;position:sticky;top:60px;background:var(--ink);color:#fff;border-radius:24px;padding:22px">
+      <span class="mn" style="color:#8FB0EC">Tvoj termin</span>
+      <dl style="margin:14px 0 0">
+        <sc-for list="{{ sum }}" as="s" hint-placeholder-count="4"><div style="display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-top:1px solid rgba(255,255,255,0.14)"><dt class="mn" style="opacity:0.65">{{ s.k }}</dt><dd style="margin:0;font-family:var(--mono);font-size:14px;text-align:right">{{ s.v }}</dd></div></sc-for>
+      </dl>
+      <p style="font-size:13px;line-height:1.6;opacity:0.7;margin:14px 0 0">Podsetnik stiže 24h i 2h pre termina, sa dugmadima „Dolazim” i „Pomeri termin”.</p>
+    </aside>
+  </div>
+</main>
+<dc-import name="BelaFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const W = ['NED','PON','UTO','SRE','ČET','PET','SUB'], WL = ['nedelja','ponedeljak','utorak','sreda','četvrtak','petak','subota'];
+const US = [{id:'pregled',t:'Pregled',p:'2.500 RSD',w:'45 min'},{id:'higijena',t:'Higijena',p:'4.800 RSD',w:'40 min'},{id:'plomba',t:'Plomba',p:'od 5.500 RSD',w:'30—50 min'},{id:'implant',t:'Implant konsultacija',p:'2.500 RSD',w:'40 min'},{id:'estetika',t:'Estetika konsultacija',p:'2.500 RSD',w:'30 min'},{id:'orto',t:'Ortodont',p:'2.500 RSD',w:'40 min'}];
+const DR = [{id:'maric',n:'dr Ana Marić',s:'Implantologija',za:['implant','pregled']},{id:'popovic',n:'dr Lena Popović',s:'Estetika',za:['estetika','pregled','plomba']},{id:'ilic',n:'dr Mina Ilić',s:'Ortodoncija',za:['orto']},{id:'jovic',n:'dr Sara Jović',s:'Opšta i dečja',za:['pregled','higijena','plomba']}];
+class Component extends DCLogic {
+  state = { step:1, u:'', dr:'', dan:'', t:'', f:{ime:'',tel:'',nap:'',lista:true}, err:{}, loading:false, msg:'' };
+  renderVals() {
+    const s = this.state, set = o => this.setState(Object.assign({ msg:'' }, o));
+    const usl = US.find(x => x.id === s.u), dok = DR.find(x => x.id === s.dr);
+    const base = new Date(); base.setHours(12,0,0,0);
+    const dani = []; for (let i = 0, k = 0; dani.length < 10 && k < 20; k++) { const d = new Date(base); d.setDate(base.getDate() + k); if (d.getDay() === 0) continue; const v = d.toISOString().slice(0,10); dani.push({ w: k === 0 ? 'DANAS' : W[d.getDay()], d: String(d.getDate()), aria: WL[d.getDay()] + ' ' + d.getDate() + '.', on: String(s.dan === v), pick: () => set({ dan: v, t: '' }) }); }
+    const seed = (s.dan + s.dr).split('').reduce((a, c) => a + c.charCodeAt(0), 0);
+    const sat = ['08:30','09:00','10:00','11:30','13:00','14:30','16:00','17:30','18:30','19:00'];
+    const slotovi = sat.map((v, i) => ({ v, full: ((seed + i * 3) % 4 === 0) || undefined, on: String(s.t === v), pick: () => set({ t: v, step: 4 }) }));
+    const dObj = s.dan ? new Date(s.dan + 'T12:00') : null;
+    const on = {}; ['ime','tel','nap'].forEach(k => on[k] = ev => { const v = ev.target.value; this.setState(st => { const e = Object.assign({}, st.err); delete e[k]; return { f: Object.assign({}, st.f, {[k]: v}), err: e }; }); });
+    on.lista = ev => { const v = ev.target.checked; this.setState(st => ({ f: Object.assign({}, st.f, { lista: v }) })); };
+    const inv = {}; Object.keys(s.err).forEach(k => inv[k] = 'true');
+    const submit = ev => { ev.preventDefault(); const e = {};
+      if (s.f.ime.trim().length < 2) e.ime = 'Upiši ime i prezime.';
+      if (s.f.tel.replace(/\D/g,'').length < 9) e.tel = 'Proveri broj mobilnog.';
+      if (Object.keys(e).length) { this.setState({ err: e, msg: 'Proveri označena polja' }); return; }
+      this.setState({ loading: true });
+      const q = new URLSearchParams({ ime: s.f.ime.trim(), usluga: usl ? usl.t : '', dr: dok ? dok.n : '', dan: s.dan, vreme: s.t });
+      setTimeout(() => { window.location.href = 'hvala.html?' + q.toString(); }, 900); };
+    const T = {1:'Šta ti treba?',2:'Kod koga?',3:'Kada ti odgovara?',4:'Još samo kontakt.'};
+    return {
+      step: s.step, q: { t: T[s.step] }, is1: s.step === 1, is2: s.step === 2, is3: s.step === 3, is4: s.step === 4,
+      bar: [1,2,3,4].map(i => i < s.step ? 'var(--ink)' : (i === s.step ? 'var(--plava)' : 'var(--line)')),
+      usluge: US.map(u => Object.assign({}, u, { on: String(s.u === u.id), pick: () => set({ u: u.id, dr: '', step: 2 }) })),
+      doktori: DR.map(d => ({ n: d.n, s: d.s, on: String(s.dr === d.id), off: (s.u && !d.za.includes(s.u)) || undefined, pick: () => set({ dr: d.id, step: 3 }) })),
+      dani, slotovi,
+      sum: [{k:'Usluga',v: usl ? usl.t : '—'},{k:'Doktor',v: dok ? dok.n : '—'},{k:'Dan',v: dObj ? WL[dObj.getDay()] + ' ' + dObj.getDate() + '.' + (dObj.getMonth()+1) + '.' : '—'},{k:'Vreme',v: s.t || '—'}],
+      f: s.f, on, inv, err: Object.assign({ime:'',tel:''}, s.err), submit, msg: s.msg,
+      loading: s.loading || undefined, btn: s.loading ? 'Rezervišem termin…' : 'Potvrdi termin →',
+      back: () => set({ step: Math.max(1, s.step - 1) }), noBack: s.step === 1 || undefined
+    };
+  }
+}
+</script>
+</body>
+</html>

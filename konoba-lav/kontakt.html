@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="LavHeader" active="kontakt" hint-size="100%,88px"></dc-import>
+<main>
+  <section style="padding:clamp(56px,12svh,140px) 0 clamp(48px,9svh,100px)">
+    <div class="g12" style="row-gap:24px">
+      <div style="grid-column:1 / -1">
+        <span class="lbl" style="color:var(--bordo)">Kontakt · 45.2560° N, 19.8455° E</span>
+        <h1 style="font-family:var(--serif);font-weight:400;font-size:clamp(88px,13vw,240px);line-height:0.86;letter-spacing:-0.035em;margin:20px 0 0">Laze<br>Telečkog <span style="font-style:italic;color:var(--bordo)">14.</span></h1>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-top:1px solid var(--ink)">
+    <div class="g12" style="padding-top:0;padding-bottom:0">
+      <div class="rv" style="grid-column:1 / span 4;padding:clamp(32px,5svh,56px) 0;border-right:1px solid var(--line);padding-right:24px">
+        <span class="lbl" style="color:var(--muted)">A — Pozovite</span>
+        <a href="tel:+38121000000" class="hv" style="display:block;font-family:var(--serif);font-size:clamp(34px,3.4vw,56px);line-height:1;margin-top:16px">021 000 000</a>
+        <p style="font-size:15px;line-height:1.6;color:var(--muted);margin:12px 0 0">Javljamo se od 11h. U špicu je brže online.</p>
+      </div>
+      <div class="rv" style="grid-column:5 / span 4;padding:clamp(32px,5svh,56px) 24px;border-right:1px solid var(--line)">
+        <span class="lbl" style="color:var(--muted)">B — Pišite</span>
+        <a href="mailto:sto@konobalav.rs" class="hv" style="display:block;font-family:var(--serif);font-style:italic;font-size:clamp(28px,2.8vw,44px);line-height:1.05;margin-top:16px;color:var(--bordo)">sto@konobalav.rs</a>
+        <p style="font-size:15px;line-height:1.6;color:var(--muted);margin:12px 0 0">Za proslave, dobavljače i novinare.</p>
+      </div>
+      <div class="rv" style="grid-column:9 / span 4;padding:clamp(32px,5svh,56px) 0 clamp(32px,5svh,56px) 24px">
+        <span class="lbl" style="color:var(--muted)">C — Rezervišite</span>
+        <a class="lbl hv" href="rezervacija.html" style="display:inline-flex;align-items:center;min-height:58px;margin-top:16px;padding:0 30px;background:var(--bordo);color:var(--papir)" style-hover="background:var(--bordo2);color:var(--papir)">Online, za minut</a>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-top:1px solid var(--ink);padding:clamp(72px,14svh,150px) 0">
+    <div class="g12" style="row-gap:32px">
+      <div class="rv" style="grid-column:1 / span 7">
+        <div style="position:relative;aspect-ratio:16/11;border:1px solid var(--ink);overflow:hidden;background:var(--papir2)">
+          <iframe title="Mapa: Laze Telečkog 14, Novi Sad" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=19.8405%2C45.2535%2C19.8505%2C45.2585&amp;layer=mapnik&amp;marker=45.2560%2C19.8455" style="position:absolute;inset:0;width:100%;height:100%;border:0;filter:grayscale(1) sepia(0.35) contrast(1.05)"></iframe>
+        </div>
+        <div class="lbl" style="display:flex;justify-content:space-between;gap:12px;color:var(--muted);margin-top:12px"><span>Sl. 07 — Centar, Novi Sad</span><a href="https://www.openstreetmap.org/?mlat=45.2560&amp;mlon=19.8455#map=17/45.2560/19.8455" target="_blank" rel="noopener" style="color:var(--ink)">Otvori mapu ↗</a></div>
+      </div>
+      <div class="rv" style="grid-column:9 / span 4;display:flex;flex-direction:column;gap:36px">
+        <div>
+          <span class="lbl" style="color:var(--muted)">Radno vreme</span>
+          <div style="border-top:1px solid var(--ink);margin-top:12px">
+            <sc-for list="{{ hours }}" as="h" hint-placeholder-count="7">
+              <div style="display:flex;gap:10px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px;color:{{ h.c }};font-weight:{{ h.w }}"><span>{{ h.d }}</span><span class="dots"></span><span style="font-family:var(--mono)">{{ h.t }}</span></div>
+            </sc-for>
+          </div>
+        </div>
+        <div>
+          <span class="lbl" style="color:var(--muted)">Kako do nas</span>
+          <sc-for list="{{ put }}" as="p" hint-placeholder-count="3">
+            <p style="font-size:15px;line-height:1.6;margin:12px 0 0"><strong>{{ p.k }}</strong> · {{ p.v }}</p>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<dc-import name="LavFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const days = [['Ponedeljak','12—23'],['Utorak','12—23'],['Sreda','12—23'],['Četvrtak','12—23'],['Petak','12—24'],['Subota','12—24'],['Nedelja','12—22']];
+    const t = (new Date().getDay() + 6) % 7;
+    return {
+      hours: days.map((d, i) => ({ d: d[0] + (i === t ? ' · danas' : ''), t: d[1], c: i === t ? 'var(--bordo)' : 'var(--ink)', w: i === t ? 600 : 400 })),
+      put: [{k:'Peške', v:'dva minuta od Zmaj Jovine'},{k:'Parking', v:'Garaža Centar, pet minuta hoda'},{k:'Autobus', v:'linije 1, 4 i 11, stanica Pozorište'}]
+    };
+  }
+}
+</script>
+</body>
+</html>

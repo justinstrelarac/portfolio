@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="IronHeader" active="" hint-size="100%,112px"></dc-import>
+<main>
+  <section class="dots" style="position:relative;overflow:hidden;min-height:clamp(640px,92svh,1000px);border-bottom:1px solid var(--line)">
+    <div aria-hidden="true" class="d olt" style="position:absolute;right:-3vw;top:-4svh;font-size:clamp(300px,56vw,1000px);line-height:0.78;pointer-events:none">34</div>
+    <div aria-hidden="true" class="tape" style="top:clamp(24px,6svh,60px);transform:rotate(-4deg);font-size:clamp(28px,3.6vw,56px)">{{ tapeA }}</div>
+    <div class="g12" style="position:relative;padding-top:clamp(120px,20svh,210px);padding-bottom:clamp(140px,22svh,230px);row-gap:28px;align-items:end">
+      <div style="grid-column:1 / span 8">
+        <span class="mo" style="color:var(--neon)">Teretana · Kragujevac · 900 m²</span>
+        <h1 class="d" style="font-size:clamp(120px,19vw,340px);margin:14px 0 0"><span style="color:var(--neon)">Ne</span><br>odustaj</h1>
+      </div>
+      <div class="hm" role="img" aria-label="Teg sa šipkom, neon krug preko tamne ploče" style="grid-column:9 / span 4;position:relative;aspect-ratio:4/5;background:var(--ugalj);border:1px solid var(--line)">
+        <div style="position:absolute;left:14%;top:18%;width:72%;aspect-ratio:1;border-radius:50%;border:clamp(16px,2vw,30px) solid var(--neon)"></div>
+        <div style="position:absolute;left:-10%;right:-4%;top:44%;height:clamp(12px,1.4vw,20px);background:var(--neon);transform:rotate(-8deg)"></div>
+        <span class="mo" style="position:absolute;left:14px;bottom:14px;color:var(--neon)">Trening · 06:00</span>
+      </div>
+      <div style="grid-column:1 / span 6;display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:clamp(24px,4vw,56px)">
+        <sc-for list="{{ stat }}" as="s" hint-placeholder-count="3"><div><div class="d" style="font-size:clamp(44px,4.6vw,72px)">{{ s.v }}</div><div class="mo" style="color:var(--siva);margin-top:6px">{{ s.k }}</div></div></sc-for>
+      </div>
+      <div style="grid-column:9 / span 4;display:flex;justify-content:flex-end">
+        <a class="d hv" href="upis.html" style="display:inline-flex;align-items:center;min-height:72px;padding:0 32px;background:var(--neon);color:var(--crna);font-size:34px" style-hover="background:var(--bela);color:var(--crna)">Učlani se →</a>
+      </div>
+    </div>
+    <div aria-hidden="true" class="tape" style="bottom:clamp(30px,6svh,70px);transform:rotate(3deg);font-size:clamp(28px,3.6vw,56px)">{{ tapeB }}</div>
+    <a href="izazov.html" aria-label="14 dana do navike" class="d hv hm" style="position:absolute;right:calc(var(--m) + 2vw);top:clamp(150px,24svh,250px);z-index:2;width:clamp(120px,11vw,170px);aspect-ratio:1;border-radius:50%;background:var(--neon);color:var(--crna);display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(-12deg);font-size:clamp(18px,1.6vw,24px);text-align:center;line-height:0.9"><span style="font-size:2.6em">14</span>dana do navike</a>
+  </section>
+
+  <section style="border-bottom:1px solid var(--line)">
+    <div class="g12" style="padding-top:clamp(72px,14svh,150px);padding-bottom:clamp(40px,6svh,64px);row-gap:20px;align-items:end">
+      <div class="rv" style="grid-column:1 / span 7"><span class="mo" style="color:var(--neon)">01 — 14-dnevni izazov</span><h2 class="d" style="font-size:clamp(64px,8vw,144px);margin:14px 0 0">Plan na zidu.<br>Dan po dan.</h2></div>
+      <p class="rv" style="grid-column:9 / span 4;font-size:16px;line-height:1.65;color:var(--siva);margin:0">Svaki novi član dobija 14 dana sa trenerom. Svaki dan ima jedan zadatak. Posle 14 dana to više nije izazov, nego navika.</p>
+    </div>
+    <div class="stk2" style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border-top:1px solid var(--line)">
+      <sc-for list="{{ dani }}" as="d" hint-placeholder-count="14">
+        <a class="rv hv" href="izazov.html" style="display:flex;flex-direction:column;justify-content:space-between;gap:24px;min-height:clamp(150px,20svh,210px);padding:14px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:{{ d.bg }};color:{{ d.c }}" style-hover="background:var(--ugalj2)">
+          <span class="mo" style="opacity:0.7">Dan {{ d.n }}</span>
+          <span><span class="d" style="display:block;font-size:clamp(22px,2vw,32px)">{{ d.t }}</span><span class="mo" style="display:block;margin-top:6px;opacity:0.7">{{ d.m }}</span></span>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="border-bottom:1px solid var(--line)">
+    <div class="g12" style="padding-top:clamp(72px,14svh,150px);padding-bottom:clamp(32px,5svh,56px)">
+      <div class="rv" style="grid-column:1 / -1;display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap"><div><span class="mo" style="color:var(--neon)">02 — Programi</span><h2 class="d" style="font-size:clamp(64px,8vw,144px);margin:14px 0 0">Izaberi težinu.</h2></div><a class="mo hv" href="programi.html" style="display:inline-flex;align-items:center;min-height:48px;padding:0 18px;border:1px solid var(--bela)" style-hover="background:var(--neon);color:var(--crna);border-color:var(--neon)">Svi programi →</a></div>
+    </div>
+    <div style="border-top:1px solid var(--line)">
+      <sc-for list="{{ programi }}" as="p" hint-placeholder-count="4">
+        <a class="rv hv" href="{{ p.h }}" style="display:block;border-bottom:1px solid var(--line)" style-hover="background:var(--ugalj)">
+          <div class="g12" style="padding-top:clamp(18px,3svh,28px);padding-bottom:clamp(18px,3svh,28px);align-items:center;row-gap:8px">
+            <span class="mo" style="grid-column:1 / span 1;color:var(--siva)">{{ p.n }}</span>
+            <span class="d" style="grid-column:2 / span 5;font-size:clamp(48px,6vw,104px)">{{ p.t }}</span>
+            <span style="grid-column:7 / span 3;font-size:15px;line-height:1.55;color:var(--siva)">{{ p.d }}</span>
+            <span class="mo" style="grid-column:10 / span 2;color:var(--neon);letter-spacing:0.2em">{{ p.i }}</span>
+            <span class="mo" style="grid-column:12 / span 1;text-align:right">{{ p.w }}</span>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="border-bottom:1px solid var(--line)">
+    <div class="g12" style="padding-top:clamp(72px,14svh,150px);padding-bottom:clamp(32px,5svh,56px)"><div class="rv" style="grid-column:1 / span 8"><span class="mo" style="color:var(--neon)">03 — Treneri</span><h2 class="d" style="font-size:clamp(64px,8vw,144px);margin:14px 0 0">Oni ne odustaju od tebe.</h2></div></div>
+    <div class="stk2" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line)">
+      <sc-for list="{{ treneri }}" as="t" hint-placeholder-count="4">
+        <a class="rv hv" href="treneri.html" style="display:flex;flex-direction:column;border-right:1px solid var(--line)" style-hover="background:var(--ugalj)">
+          <div style="padding:16px"><div class="d" style="font-size:clamp(64px,6vw,104px);color:var(--neon);opacity:0.5">{{ t.br }}</div><div class="d" style="font-size:clamp(28px,2.6vw,40px)">{{ t.n }}</div><div class="mo" style="color:var(--neon);margin-top:6px">{{ t.s }}</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px"><sc-for list="{{ t.st }}" as="x" hint-placeholder-count="2"><div><div class="d" style="font-size:26px">{{ x.v }}</div><div class="mo" style="color:var(--siva);font-size:10px">{{ x.k }}</div></div></sc-for></div>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="background:var(--neon);color:var(--crna)">
+    <div class="g12" style="padding-top:clamp(64px,12svh,130px);padding-bottom:clamp(64px,12svh,130px);row-gap:24px">
+      <div class="rv" style="grid-column:1 / span 4"><span class="mo">04 — Cene</span><h2 class="d" style="font-size:clamp(64px,7vw,128px);margin:14px 0 0">Tabla<br>rezultata.</h2><a class="d hv" href="cene.html" style="display:inline-flex;align-items:center;min-height:60px;margin-top:22px;padding:0 24px;background:var(--crna);color:var(--neon);font-size:26px" style-hover="background:var(--bela);color:var(--crna)">Sve cene →</a></div>
+      <div class="rv stk" style="grid-column:6 / -1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:2px solid var(--crna)">
+        <sc-for list="{{ cene }}" as="c" hint-placeholder-count="3">
+          <div style="padding:20px;border-right:2px solid var(--crna);display:flex;flex-direction:column;gap:20px"><span class="mo">{{ c.k }}</span><span class="d" style="font-size:clamp(64px,6.4vw,112px);line-height:0.8">{{ c.v }}</span><span class="mo">{{ c.n }}</span></div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="g12" style="padding-top:clamp(80px,16svh,170px);padding-bottom:clamp(80px,16svh,170px);row-gap:28px;align-items:end">
+      <p class="rv d" style="grid-column:1 / span 9;font-size:clamp(64px,9vw,168px);margin:0">Tvoj izgovor je istekao <span style="color:var(--neon)">pre 3 dana.</span></p>
+      <div class="rv" style="grid-column:10 / span 3;display:flex;flex-direction:column;gap:10px">
+        <a class="d hv" href="upis.html" style="display:flex;justify-content:center;align-items:center;min-height:72px;background:var(--neon);color:var(--crna);font-size:30px" style-hover="background:var(--bela);color:var(--crna)">Upiši se →</a>
+        <a class="mo hv" href="raspored.html" style="display:flex;justify-content:center;align-items:center;min-height:52px;border:1px solid var(--bela)" style-hover="border-color:var(--neon);color:var(--neon)">Pogledaj raspored</a>
+      </div>
+    </div>
+  </section>
+</main>
+<dc-import name="IronFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const rep = (s, n) => Array(n).fill(s).join('');
+    const D = [['01','Upoznavanje','30 MIN · TRENER'],['02','Merenje','INBODY'],['03','Snaga · A','45 MIN'],['04','Odmor','ŠETNJA 8.000'],['05','Kardio','25 MIN'],['06','Snaga · B','45 MIN'],['07','Grupni HIIT','18:00'],['08','Mobilnost','30 MIN'],['09','Snaga · A','+5%'],['10','Odmor','SAN 8H'],['11','Kardio','30 MIN'],['12','Snaga · B','+5%'],['13','Grupni HIIT','18:00'],['14','Ponovno merenje','NAVIKA']];
+    return {
+      tapeA: rep('Ne odustaj ◆ ', 14), tapeB: rep('Dan 07 ◆ Dan 14 ◆ Bez izgovora ◆ Kragujevac ◆ ', 6),
+      stat: [{v:'06—23',k:'Radno vreme'},{v:'12',k:'Trenera'},{v:'14',k:'Dana do navike'}],
+      dani: D.map((d, i) => ({ n:d[0], t:d[1], m:d[2], bg: i === 13 ? 'var(--neon)' : (i === 6 ? 'var(--ugalj2)' : 'var(--crna)'), c: i === 13 ? 'var(--crna)' : 'var(--bela)' })),
+      programi: [{n:'01',t:'Snaga',d:'Šipka, tegovi, progresija svake nedelje.',i:'■■■■□',w:'60 MIN',h:'snaga.html'},{n:'02',t:'HIIT',d:'Grupni intervali, 18 ljudi, jedan tajmer.',i:'■■■■■',w:'40 MIN',h:'hiit.html'},{n:'03',t:'Početnici',d:'Tehnika pre težine. Mala grupa od 6.',i:'■■□□□',w:'50 MIN',h:'pocetnici.html'},{n:'04',t:'Personalni',d:'Ti i trener. Plan i ishrana po meri tvog cilja.',i:'■■■□□',w:'60 MIN',h:'personalni.html'}],
+      treneri: [{br:'01',n:'Nikola',s:'Snaga · powerlifting',alt:'Trener Nikola, crno-beli portret',st:[{v:'11',k:'God. staža'},{v:'240',k:'Čučanj kg'}]},{br:'02',n:'Jelena',s:'HIIT · kondicija',alt:'Trenerica Jelena, crno-beli portret',st:[{v:'8',k:'God. staža'},{v:'42',k:'Min. 10 km'}]},{br:'03',n:'Marko',s:'Početnici · tehnika',alt:'Trener Marko, crno-beli portret',st:[{v:'6',k:'God. staža'},{v:'300+',k:'Početnika'}]},{br:'04',n:'Ivana',s:'Personalni · ishrana',alt:'Trenerica Ivana, crno-beli portret',st:[{v:'9',k:'God. staža'},{v:'2',k:'Licence'}]}],
+      cene: [{k:'Mesečna',v:'3.900',n:'RSD · neograničeno'},{k:'14 dana',v:'1.990',n:'RSD · sa trenerom'},{k:'Godišnja',v:'36K',n:'RSD · 3.000/mes'}]
+    };
+  }
+}
+</script>
+</body>
+</html>

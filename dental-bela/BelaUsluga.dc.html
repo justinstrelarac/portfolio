@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<main>
+  <section class="mm" style="position:relative;overflow:hidden;padding:clamp(48px,10svh,120px) 0 clamp(56px,10svh,110px)">
+    <div aria-hidden="true" class="ol" style="position:absolute;right:-2vw;bottom:-6svh;font-weight:800;font-size:clamp(140px,24vw,420px);line-height:0.8;letter-spacing:-0.06em;pointer-events:none">{{ u.bg }}</div>
+    <div class="g12" style="position:relative;row-gap:32px;align-items:end">
+      <div style="grid-column:1 / span 8">
+        <a class="mn" href="usluge.html" style="color:var(--ink2)">← Usluge</a><span class="mn" style="color:var(--plava);margin-left:14px">{{ u.n }} / 03</span>
+        <h1 style="font-weight:800;font-size:clamp(88px,12vw,220px);line-height:0.88;letter-spacing:-0.055em;margin:20px 0 0">{{ u.t1 }}<br><span style="color:var(--plava)">{{ u.t2 }}</span></h1>
+        <p style="font-size:clamp(17px,1.5vw,21px);line-height:1.6;color:var(--ink2);max-width:44ch;margin:26px 0 0">{{ u.lead }}</p>
+      </div>
+      <div style="grid-column:9 / span 4;display:flex;flex-direction:column;gap:10px">
+        <sc-for list="{{ u.spec }}" as="s" hint-placeholder-count="4">
+          <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline;padding:14px 18px;border-radius:14px;background:#fff;border:1px solid var(--line)"><span class="mn" style="color:var(--ink2)">{{ s.k }}</span><span style="font-family:var(--mono);font-size:15px">{{ s.v }}</span></div>
+        </sc-for>
+        <a class="hv" href="zakazivanje.html" style="display:flex;justify-content:center;align-items:center;min-height:56px;border-radius:999px;background:var(--ink);color:#fff;font-weight:700" style-hover="background:var(--plava);color:#fff">Zakaži konsultaciju →</a>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:clamp(96px,18svh,200px) 0">
+    <div class="g12" style="row-gap:24px">
+      <div class="rv" style="grid-column:1 / span 4"><span class="mn" style="color:var(--plava)">01 — Za koga je</span><p style="font-weight:800;font-size:clamp(32px,3.2vw,52px);line-height:1.02;letter-spacing:-0.035em;margin:16px 0 0">{{ u.zaKoga }}</p></div>
+      <div style="grid-column:6 / -1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px" class="stk">
+        <sc-for list="{{ u.kriterijumi }}" as="k" hint-placeholder-count="3">
+          <div class="rv" style="padding:22px;border-radius:20px;background:#fff;border:1px solid var(--line);display:flex;flex-direction:column;gap:30px"><span style="font-family:var(--mono);font-size:30px;color:var(--plava)">{{ k.n }}</span><span style="font-size:16px;line-height:1.55">{{ k.t }}</span></div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--ink);color:#fff;padding:clamp(96px,18svh,200px) 0">
+    <div class="g12" style="row-gap:28px">
+      <div class="rv" style="grid-column:1 / span 5"><span class="mn" style="color:#8FB0EC">02 — Tok terapije</span><h2 style="font-weight:800;font-size:clamp(48px,5.4vw,92px);line-height:0.92;letter-spacing:-0.045em;margin:16px 0 0">{{ u.tokNaslov }}</h2></div>
+      <ol style="grid-column:7 / -1;list-style:none;margin:0;padding:0;position:relative;border-left:1px solid rgba(143,176,236,0.4)">
+        <sc-for list="{{ u.tok }}" as="t" hint-placeholder-count="5">
+          <li class="rv" style="position:relative;padding:0 0 clamp(26px,4svh,40px) 28px">
+            <span aria-hidden="true" style="position:absolute;left:-6px;top:6px;width:11px;height:11px;border-radius:50%;background:#8FB0EC"></span>
+            <div style="display:flex;justify-content:space-between;gap:16px;align-items:baseline"><span style="font-weight:800;font-size:clamp(22px,2vw,28px);letter-spacing:-0.02em">{{ t.n }}</span><span class="mn" style="color:#8FB0EC;text-align:right">{{ t.w }}</span></div>
+            <p style="font-size:15px;line-height:1.6;opacity:0.75;margin:8px 0 0;max-width:52ch">{{ t.d }}</p>
+          </li>
+        </sc-for>
+      </ol>
+    </div>
+  </section>
+
+  <section style="padding:clamp(96px,18svh,200px) 0">
+    <div class="g12" style="row-gap:24px">
+      <div class="rv" style="grid-column:1 / span 5;aspect-ratio:1;border-radius:32px;position:relative;overflow:hidden;background:linear-gradient(160deg,#DCE8FB,#9FBDEF)" role="img" aria-label="{{ u.kadar }}">
+        <div class="sf" style="position:absolute;left:30%;top:36%;width:46%;aspect-ratio:1;transform:translate(-50%,-50%)"></div>
+        <div style="position:absolute;right:10%;bottom:14%;width:46%;height:18%;border-radius:999px;background:linear-gradient(120deg,#FFFFFF,#AFC6F2);box-shadow:0 30px 60px -30px rgba(15,27,61,0.5);transform:rotate(-28deg)"></div>
+        <span class="mn" style="position:absolute;left:18px;bottom:16px;color:var(--ink2)">Sl. {{ u.n }} — {{ u.kadarCap }}</span>
+      </div>
+      <div style="grid-column:7 / -1">
+        <span class="rv mn" style="color:var(--plava)">03 — Pitanja pre početka</span>
+        <div style="margin-top:18px;border-top:1px solid var(--ink)">
+          <sc-for list="{{ u.faq }}" as="q" hint-placeholder-count="4">
+            <div class="rv" style="padding:20px 0;border-bottom:1px solid var(--line)"><div style="font-weight:800;font-size:clamp(19px,1.7vw,24px);letter-spacing:-0.02em">{{ q.q }}</div><p style="font-size:15px;line-height:1.65;color:var(--ink2);margin:8px 0 0">{{ q.a }}</p></div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mm" style="padding:clamp(80px,14svh,160px) 0;border-top:1px solid var(--line)">
+    <div class="g12" style="row-gap:24px;align-items:end">
+      <div class="rv" style="grid-column:1 / span 7"><span class="mn" style="color:var(--plava)">04 — Cena</span><div style="font-weight:800;font-size:clamp(72px,10vw,184px);line-height:0.86;letter-spacing:-0.06em;margin-top:16px">{{ u.cena }}<span style="font-size:0.28em;letter-spacing:-0.02em;color:var(--ink2)"> RSD</span></div><p style="font-size:15px;color:var(--ink2);margin:14px 0 0">{{ u.cenaNote }}</p></div>
+      <div class="rv" style="grid-column:9 / span 4;display:flex;flex-direction:column;gap:10px">
+        <a class="hv" href="zakazivanje.html" style="display:flex;justify-content:center;align-items:center;min-height:58px;border-radius:999px;background:var(--plava);color:#fff;font-weight:700" style-hover="background:var(--plava2);color:#fff">Zakaži konsultaciju →</a>
+        <a class="hv mn" href="{{ u.nextH }}" style="display:flex;justify-content:center;align-items:center;min-height:52px;border-radius:999px;border:1px solid var(--ink)" style-hover="background:var(--ink);color:#fff">Sledeće: {{ u.nextT }} →</a>
+      </div>
+    </div>
+  </section>
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900},&quot;u&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;object&quot;}}">
+class Component extends DCLogic {
+  renderVals() { return { u: Object.assign({ spec:[], kriterijumi:[], tok:[], faq:[] }, this.props.u || {}) }; }
+}
+</script>
+</body>
+</html>

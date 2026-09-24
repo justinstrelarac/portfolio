@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="LavHeader" active="meni" hint-size="100%,88px"></dc-import>
+<main>
+  <section style="padding:clamp(56px,12svh,140px) 0 clamp(48px,9svh,100px)">
+    <div class="g12" style="row-gap:28px;align-items:end">
+      <div style="grid-column:1 / span 8">
+        <span class="lbl" style="color:var(--bordo)">Meni · Jesen 2026 · Cene u dinarima</span>
+        <h1 style="font-family:var(--serif);font-weight:400;font-size:clamp(88px,13vw,240px);line-height:0.86;letter-spacing:-0.035em;margin:20px 0 0">Jelov<span style="font-style:italic;color:var(--bordo)">nik.</span></h1>
+      </div>
+      <div style="grid-column:9 / span 4;border-top:1px solid var(--ink);padding-top:16px">
+        <p style="font-size:16px;line-height:1.7;color:var(--muted);margin:0">Ribu po kilogramu donosimo za sto pre pripreme. Peku naručite dan ranije.</p>
+        <div class="lbl" style="display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:16px"><span>R riba</span><span>G gluten</span><span>L laktoza</span><span>V vegetarijansko</span></div>
+      </div>
+    </div>
+  </section>
+
+  <nav aria-label="Poglavlja menija" style="position:sticky;top:40px;z-index:30;background:var(--papir);border-top:1px solid var(--ink);border-bottom:1px solid var(--line)">
+    <div style="display:flex;gap:clamp(18px,3vw,44px);overflow-x:auto;scrollbar-width:none;padding:0 var(--m)">
+      <sc-for list="{{ kat }}" as="k" hint-placeholder-count="6">
+        <a class="lbl hv" href="#{{ k.id }}" style="flex:0 0 auto;display:flex;align-items:center;gap:8px;min-height:56px;white-space:nowrap" style-hover="color:var(--bordo)"><span style="color:var(--muted)">{{ k.n }}</span>{{ k.t }}</a>
+      </sc-for>
+    </div>
+  </nav>
+
+  <sc-for list="{{ kat }}" as="k" hint-placeholder-count="3">
+    <section id="{{ k.id }}" style="scroll-margin-top:60px;padding:clamp(72px,14svh,150px) 0 0">
+      <div class="g12" style="row-gap:24px">
+        <div class="rv" style="grid-column:1 / span 4">
+          <div style="font-family:var(--serif);font-style:italic;font-size:clamp(88px,10vw,180px);line-height:0.8;color:var(--sunce)">{{ k.n }}</div>
+          <h2 style="font-family:var(--serif);font-weight:500;font-size:clamp(34px,3.4vw,54px);line-height:1;letter-spacing:-0.02em;margin:18px 0 0">{{ k.t }}</h2>
+          <p style="font-size:15px;line-height:1.65;color:var(--muted);margin:14px 0 0;max-width:30ch">{{ k.note }}</p>
+        </div>
+        <ol style="grid-column:6 / -1;list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)">
+          <sc-for list="{{ k.items }}" as="i" hint-placeholder-count="4">
+            <li class="rv" style="padding:clamp(18px,2.6svh,26px) 0;border-bottom:1px solid var(--line)">
+              <div style="display:flex;align-items:baseline;gap:12px">
+                <span style="font-family:var(--serif);font-size:clamp(22px,2vw,30px);line-height:1.2">{{ i.t }}</span>
+                <span class="dots"></span>
+                <span style="font-family:var(--mono);font-size:16px;white-space:nowrap">{{ i.p }}</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;gap:16px;margin-top:6px">
+                <span style="font-size:15px;line-height:1.55;color:var(--muted)">{{ i.d }}</span>
+                <span class="lbl" style="color:var(--bordo);white-space:nowrap">{{ i.a }}</span>
+              </div>
+            </li>
+          </sc-for>
+        </ol>
+      </div>
+    </section>
+  </sc-for>
+
+  <section style="margin-top:clamp(96px,18svh,200px);background:var(--sunce)">
+    <div class="g12" style="padding-top:clamp(64px,12svh,130px);padding-bottom:clamp(64px,12svh,130px);row-gap:28px;align-items:end">
+      <p class="rv" style="grid-column:1 / span 8;font-family:var(--serif);font-weight:400;font-size:clamp(52px,7vw,120px);line-height:0.92;letter-spacing:-0.03em;margin:0">Već ste izabrali?<br><span style="font-style:italic">Sto je sledeći.</span></p>
+      <div class="rv" style="grid-column:10 / span 3;display:flex;flex-direction:column;gap:14px">
+        <a class="lbl hv" href="rezervacija.html" style="display:inline-flex;justify-content:center;align-items:center;min-height:58px;background:var(--ink);color:var(--papir)" style-hover="background:var(--bordo);color:var(--papir)">Rezerviši sto</a>
+        <a class="lbl hv" href="vina.html" style="display:inline-flex;justify-content:center;align-items:center;min-height:52px;border:1px solid var(--ink)">Vinska karta →</a>
+      </div>
+    </div>
+  </section>
+</main>
+<dc-import name="LavFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return { kat: [
+      {id:'hladna',n:'I',t:'Hladna predjela',note:'Za sredinu stola, uz čašu pošipa.',items:[
+        {t:'Paški sir i pršut',d:'Dvanaest meseci sušenja, masline iz Skradina.',p:'1.290',a:'L'},
+        {t:'Tartar od tune',d:'Kapar, limun, prepečen hleb iz peći.',p:'1.350',a:'R G'},
+        {t:'Salata od hobotnice',d:'Krompir, crveni luk, peršun, domaće ulje.',p:'1.180',a:'R'},
+        {t:'Marinirani inćuni',d:'Tri dana u limunu, sa blitvom.',p:'790',a:'R'},
+        {t:'Karpaćo od brancina',d:'Narandža, komorač, morska so sa Paga.',p:'1.240',a:'R'},
+        {t:'Masline i hleb iz peći',d:'Za čekanje dok se riba peče.',p:'420',a:'G V'}]},
+      {id:'topla',n:'II',t:'Topla predjela',note:'Kad je napolju hladno, a more daleko.',items:[
+        {t:'Riblja čorba',d:'Od jutrošnjeg ulova, sa malo riže.',p:'690',a:'R'},
+        {t:'Dagnje na buzaru',d:'Beli luk, vino, peršun, hleb za umakanje.',p:'1.290',a:'R G'},
+        {t:'Pršut na žaru',d:'Sa smokvama i kozjim sirom.',p:'980',a:'L'},
+        {t:'Blitva s krumpirom',d:'Kao prilog ili samostalno, sa belim lukom.',p:'520',a:'V'}]},
+      {id:'riba',n:'III',t:'Riba i školjke',note:'Ulov stiže utorkom i petkom. Pitajte šta je jutros stiglo.',items:[
+        {t:'Brancin na žaru',d:'Po kilogramu, sa blitvom.',p:'5.900/kg',a:'R'},
+        {t:'Škarpina',d:'Po kilogramu, na žaru ili u brudetu.',p:'6.400/kg',a:'R'},
+        {t:'Brudet od škarpine',d:'Sa palentom, kao u Komiži.',p:'1.890',a:'R'},
+        {t:'Crni rižoto',d:'Sipa i njeno mastilo, parmezan od dve godine.',p:'1.450',a:'R L'},
+        {t:'Škampi na buzaru',d:'Paradajz, vino, beli luk.',p:'2.450',a:'R G'},
+        {t:'Lignje sa žara',d:'Jadranske, sa krompir salatom.',p:'1.690',a:'R'},
+        {t:'Tuna steak',d:'Pečena na ružičasto, sa kaparima.',p:'2.100',a:'R'},
+        {t:'Plata za dvoje',d:'Riba dana, škampi, lignje, dagnje.',p:'5.200',a:'R G'}]},
+      {id:'peka',n:'IV',t:'Ispod peke',note:'Tri sata ispod žara. Naručuje se najkasnije dan ranije.',items:[
+        {t:'Hobotnica ispod peke',d:'Za dvoje, krompir i ruzmarin.',p:'4.600',a:'R'},
+        {t:'Teletina ispod peke',d:'Za dvoje ili četvoro, po osobi.',p:'2.100',a:''}]},
+      {id:'meso',n:'V',t:'Meso i testenina',note:'Za one koji ribu ostavljaju drugima.',items:[
+        {t:'Pašticada',d:'Govedina u vinu i suvim šljivama, domaći njoki.',p:'1.690',a:'G'},
+        {t:'Janjetina sa žara',d:'Sa pečenim povrćem.',p:'1.980',a:''},
+        {t:'Pljukanci sa tartufima',d:'Istarska testenina, pavlaka, crni tartuf.',p:'1.550',a:'G L V'},
+        {t:'Ramstek sa žara',d:'Sa blitvom i pečenim lukom.',p:'2.350',a:''},
+        {t:'Makaruni sa škampima',d:'Paradajz, čili, peršun.',p:'1.790',a:'R G'}]},
+      {id:'slatko',n:'VI',t:'Slatko',note:'Malo, ali ne propuštajte.',items:[
+        {t:'Rožata',d:'Dubrovački krem karamel.',p:'480',a:'L'},
+        {t:'Kroštule',d:'Uz med i koricu narandže.',p:'420',a:'G'},
+        {t:'Smokve u prošeku',d:'Sa sladoledom od vanile.',p:'550',a:'L'},
+        {t:'Torta od rogača',d:'Po receptu bake Mare sa Hvara.',p:'520',a:'G L'}]}
+    ]};
+  }
+}
+</script>
+</body>
+</html>

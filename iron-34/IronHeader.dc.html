@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Archivo:wght@400;500;600;700&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+  :root{--crna:#0A0A0A;--ugalj:#161616;--ugalj2:#222222;--bela:#F4F4F0;--siva:#9A9A94;--neon:#E4FF1A;--line:rgba(244,244,240,0.14);--disp:'Anton',sans-serif;--sans:'Archivo',sans-serif;--mono:'DM Mono',monospace;--m:clamp(16px,4vw,64px)}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--crna);color:var(--bela);font-family:var(--sans);-webkit-font-smoothing:antialiased;text-wrap:pretty}
+  a{color:inherit;text-decoration:none}
+  a:hover{color:var(--neon)}
+  ::selection{background:var(--neon);color:var(--crna)}
+  a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--neon);outline-offset:3px}
+  .g12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:16px;padding:0 var(--m)}
+  .mo{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase}
+  .d{font-family:var(--disp);font-weight:400;text-transform:uppercase;line-height:0.86;letter-spacing:-0.01em}
+  .tape{position:absolute;left:-10vw;right:-10vw;background:var(--neon);color:var(--crna);white-space:nowrap;overflow:hidden;font-family:var(--disp);text-transform:uppercase;line-height:1;padding:0.18em 0;pointer-events:none}
+  .olt{color:transparent;-webkit-text-stroke:2px var(--neon)}
+  .dots{background-image:radial-gradient(rgba(244,244,240,0.12) 1px,transparent 1px);background-size:18px 18px}
+  .hv{transition:background-color .15s ease,color .15s ease,border-color .15s ease}
+  html.ij .rv{opacity:0;transition:opacity .6s ease}
+  html.ij .rv.in{opacity:1}
+  .i-t{position:absolute;opacity:0;pointer-events:none}
+  .i-menu{display:none}
+  .i-t:checked ~ .i-menu{display:flex}
+  @media(max-width:1000px){.i-links{display:none !important}.i-burger{display:flex !important}}
+  @media(max-width:760px){.g12 > *{grid-column:1 / -1 !important}.hm{display:none !important}.stk{grid-template-columns:1fr !important}.stk2{grid-template-columns:repeat(2,minmax(0,1fr)) !important}}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}html.ij .rv{opacity:1;transition:none}.hv{transition:none}}
+
+  html{-webkit-text-size-adjust:100%}
+  html,body{overflow-x:clip}
+  h1,h2,h3{overflow-wrap:break-word}
+  @media(max-width:760px){h1,h2{hyphens:auto;-webkit-hyphens:auto}}
+  @media(min-width:1600px){.g12{max-width:1760px;margin-left:auto;margin-right:auto}}
+  input,select,textarea{font-size:max(16px,1em)}
+  @media(max-width:760px){header > div{min-height:60px !important}}
+  html:has(.i-t:checked){overflow:hidden}
+  @media(hover:none){.hv:hover{filter:none}}
+
+  @media(max-width:760px){form button[type="submit"]{width:100%;justify-content:center}}
+  @supports(padding:env(safe-area-inset-bottom)){footer{padding-bottom:env(safe-area-inset-bottom)}}
+</style>
+<script>
+(function(){
+  if(window.__ironj)return; window.__ironj=true;
+  var d=document.documentElement; d.lang='sr';d.classList.add('ij');
+  var io='IntersectionObserver' in window?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -6% 0px'}):null;
+  function scan(){document.querySelectorAll('.rv:not([data-r])').forEach(function(el){el.setAttribute('data-r','1');io?io.observe(el):el.classList.add('in');});}
+  new MutationObserver(scan).observe(d,{childList:true,subtree:true}); scan();
+  setTimeout(function(){document.querySelectorAll('.rv').forEach(function(el){if(el.getBoundingClientRect().top<innerHeight)el.classList.add('in');});},800);
+})();
+</script>
+</helmet>
+<div aria-hidden="true" style="height:40px"></div>
+<div role="note" style="position:fixed;top:0;left:0;right:0;z-index:70;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:40px;padding:0 var(--m);background:#14203A;color:#E9EEF8;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase">
+  <a href="../../index.html#radovi" style="display:inline-flex;align-items:center;min-height:40px;color:#E9EEF8" style-hover="color:#9DB6FF">← Nazad na portfolio</a>
+  <span class="hm" style="opacity:0.7">Koncept · Justin Strelarac</span>
+</div>
+<header style="position:relative;z-index:50;background:var(--crna);border-bottom:1px solid var(--line)">
+  <div style="display:grid;grid-template-columns:auto 1fr auto;align-items:stretch;min-height:72px;padding:0 var(--m)">
+    <a href="index.html" aria-label="IRON 34, početna" class="d" style="display:flex;align-items:center;white-space:nowrap;font-size:30px;color:var(--neon);padding-right:24px;border-right:1px solid var(--line)">IRON 34</a>
+    <nav class="i-links" aria-label="Glavna navigacija" style="display:grid;grid-template-columns:repeat(6,auto);justify-content:end">
+      <a class="mo hv" href="programi.html" aria-current="{{ c.programi }}" style="display:flex;align-items:center;padding:0 clamp(12px,1.6vw,24px);border-left:1px solid var(--line);color:{{ col.programi }}">Programi</a>
+      <a class="mo hv" href="izazov.html" aria-current="{{ c.izazov }}" style="display:flex;align-items:center;padding:0 clamp(12px,1.6vw,24px);border-left:1px solid var(--line);color:{{ col.izazov }}">14 dana</a>
+      <a class="mo hv" href="treneri.html" aria-current="{{ c.treneri }}" style="display:flex;align-items:center;padding:0 clamp(12px,1.6vw,24px);border-left:1px solid var(--line);color:{{ col.treneri }}">Treneri</a>
+      <a class="mo hv" href="raspored.html" aria-current="{{ c.raspored }}" style="display:flex;align-items:center;padding:0 clamp(12px,1.6vw,24px);border-left:1px solid var(--line);color:{{ col.raspored }}">Raspored</a>
+      <a class="mo hv" href="cene.html" aria-current="{{ c.cene }}" style="display:flex;align-items:center;padding:0 clamp(12px,1.6vw,24px);border-left:1px solid var(--line);color:{{ col.cene }}">Cene</a>
+      <a class="mo hv" href="kontakt.html" aria-current="{{ c.kontakt }}" style="display:flex;align-items:center;padding:0 clamp(12px,1.6vw,24px);border-left:1px solid var(--line);border-right:1px solid var(--line);color:{{ col.kontakt }}">Kontakt</a>
+    </nav>
+    <a class="i-links hv d" href="upis.html" style="display:flex;align-items:center;gap:10px;padding:0 24px;margin-left:16px;background:var(--neon);color:var(--crna);font-size:22px" style-hover="background:var(--bela);color:var(--crna)">Upis →</a>
+    <input type="checkbox" id="i-t" class="i-t" aria-label="Otvori meni">
+    <label for="i-t" class="i-burger d" style="display:none;grid-column:3;align-items:center;min-height:72px;padding:0 4px 0 16px;font-size:22px;cursor:pointer;color:var(--neon)">Meni ☰</label>
+    <div class="i-menu" role="dialog" aria-label="Meni" style="position:fixed;inset:0;z-index:80;background:var(--crna);flex-direction:column;overflow:auto">
+      <div style="display:flex;justify-content:space-between;align-items:center;min-height:72px;padding:0 var(--m);border-bottom:1px solid var(--line)"><span class="d" style="font-size:30px;color:var(--neon)">IRON 34</span><label for="i-t" class="d" style="display:flex;align-items:center;min-height:56px;font-size:22px;cursor:pointer">Zatvori ✕</label></div>
+      <nav aria-label="Meni za telefon" style="display:flex;flex-direction:column">
+        <sc-for list="{{ links }}" as="l" hint-placeholder-count="8">
+          <a href="{{ l.h }}" style="display:flex;justify-content:space-between;align-items:center;padding:6px var(--m);border-bottom:1px solid var(--line)"><span class="d" style="font-size:clamp(48px,14vw,84px)">{{ l.t }}</span><span class="mo" style="color:var(--neon)">{{ l.n }}</span></a>
+        </sc-for>
+      </nav>
+      <a href="upis.html" class="d" style="display:flex;justify-content:center;align-items:center;min-height:72px;margin:16px var(--m) 24px;background:var(--neon);color:var(--crna);font-size:32px">Upiši se →</a>
+    </div>
+  </div>
+</header>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:120},&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;&quot;,&quot;programi&quot;,&quot;izazov&quot;,&quot;treneri&quot;,&quot;raspored&quot;,&quot;cene&quot;,&quot;kontakt&quot;],&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const a = this.props.active || '';
+    const k = ['programi','izazov','treneri','raspored','cene','kontakt'];
+    const c = {}, col = {};
+    k.forEach(x => { c[x] = x === a ? 'page' : undefined; col[x] = x === a ? 'var(--neon)' : 'var(--bela)'; });
+    return { c, col, links: [{n:'01',t:'Programi',h:'programi.html'},{n:'02',t:'14 dana',h:'izazov.html'},{n:'03',t:'Treneri',h:'treneri.html'},{n:'04',t:'Raspored',h:'raspored.html'},{n:'05',t:'Cene',h:'cene.html'},{n:'06',t:'Kontakt',h:'kontakt.html'}] };
+  }
+}
+</script>
+</body>
+</html>

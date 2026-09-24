@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+  .iin{width:100%;font:inherit;font-size:18px;color:var(--bela);background:var(--ugalj);border:1px solid var(--line);border-radius:0;padding:14px 16px;min-height:60px}
+  .iin:focus{outline:none;border-color:var(--neon);box-shadow:inset 0 -3px 0 var(--neon)}
+  .iin[aria-invalid="true"]{border-color:#FF5A5A;box-shadow:inset 0 -3px 0 #FF5A5A}
+  .pk{font:inherit;text-align:left;cursor:pointer;background:var(--crna);color:var(--bela);border:1px solid var(--line);transition:background-color .15s ease,color .15s ease}
+  .pk:hover{background:var(--ugalj)}
+  .pk[aria-pressed="true"]{background:var(--neon);color:var(--crna);border-color:var(--neon)}
+  @media(prefers-reduced-motion:reduce){.pk{transition:none}}
+</style>
+</helmet>
+<dc-import name="IronHeader" active="" hint-size="100%,112px"></dc-import>
+<main>
+  <section style="border-bottom:1px solid var(--line)"><div class="g12" style="padding-top:clamp(56px,10svh,110px);padding-bottom:clamp(32px,5svh,56px);row-gap:16px;align-items:end"><h1 class="d" style="grid-column:1 / span 8;font-size:clamp(120px,18vw,320px);margin:0">Upis</h1><p class="mo" style="grid-column:9 / span 4;color:var(--siva);margin:0">Tri polja, jedan paket. Plaćaš na recepciji prvog dana.</p></div></section>
+  <form novalidate="" onSubmit="{{ submit }}" aria-label="Prijava za članstvo">
+    <fieldset style="border:0;margin:0;padding:0;border-bottom:1px solid var(--line)">
+      <legend class="mo" style="padding:18px var(--m) 0;color:var(--neon)">01 — Paket</legend>
+      <div class="stk" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:14px;border-top:1px solid var(--line)">
+        <sc-for list="{{ paketi }}" as="p" hint-placeholder-count="4">
+          <button type="button" class="pk" aria-pressed="{{ p.on }}" onClick="{{ p.pick }}" style="display:flex;flex-direction:column;justify-content:space-between;gap:32px;min-height:220px;padding:22px"><span class="mo">{{ p.w }}</span><span><span class="d" style="display:block;font-size:clamp(34px,3.2vw,52px)">{{ p.t }}</span><span class="d" style="display:block;font-size:clamp(48px,4.6vw,80px);margin-top:10px">{{ p.v }}</span></span></button>
+        </sc-for>
+      </div>
+    </fieldset>
+    <div class="g12" style="padding-top:clamp(40px,7svh,72px);padding-bottom:clamp(40px,7svh,72px);row-gap:22px">
+      <span class="mo" style="grid-column:1 / span 2;color:var(--neon)">02 — Ti</span>
+      <label class="mo" style="grid-column:3 / span 5;display:flex;flex-direction:column;gap:8px">Ime i prezime<input class="iin" name="ime" autocomplete="name" value="{{ f.ime }}" onChange="{{ on.ime }}" aria-invalid="{{ inv.ime }}"><span style="font-family:var(--sans);text-transform:none;letter-spacing:0;font-size:13px;color:#FF7A7A;min-height:16px">{{ err.ime }}</span></label>
+      <label class="mo" style="grid-column:8 / span 5;display:flex;flex-direction:column;gap:8px">Telefon<input class="iin" type="tel" name="tel" autocomplete="tel" inputmode="tel" placeholder="06x xxx xxxx" value="{{ f.tel }}" onChange="{{ on.tel }}" aria-invalid="{{ inv.tel }}"><span style="font-family:var(--sans);text-transform:none;letter-spacing:0;font-size:13px;color:#FF7A7A;min-height:16px">{{ err.tel }}</span></label>
+      <span class="mo" style="grid-column:1 / span 2;color:var(--neon)">03 — Start</span>
+      <label class="mo" style="grid-column:3 / span 5;display:flex;flex-direction:column;gap:8px">Prvi dolazak<input class="iin" type="date" name="start" min="{{ today }}" value="{{ f.start }}" onChange="{{ on.start }}" aria-invalid="{{ inv.start }}"><span style="font-family:var(--sans);text-transform:none;letter-spacing:0;font-size:13px;color:#FF7A7A;min-height:16px">{{ err.start }}</span></label>
+      <label class="mo" style="grid-column:8 / span 5;display:flex;flex-direction:column;gap:8px">Cilj (opciono)<select class="iin" name="cilj" value="{{ f.cilj }}" onChange="{{ on.cilj }}"><option value="">Izaberi</option><option>Snaga</option><option>Kondicija</option><option>Mršavljenje</option><option>Samo da krenem</option></select></label>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr auto;align-items:stretch;border-top:1px solid var(--line);border-bottom:1px solid var(--line)" class="stk">
+      <div style="padding:20px var(--m);display:flex;flex-direction:column;justify-content:center;gap:6px"><span class="mo" style="color:var(--siva)">Izabrano</span><span class="d" style="font-size:clamp(28px,2.6vw,44px)">{{ izabrano }}</span><span class="mo" style="color:#FF7A7A" role="status">{{ msg }}</span></div>
+      <button type="submit" class="d hv" disabled="{{ loading }}" style="min-height:110px;padding:0 clamp(28px,5vw,80px);border:0;cursor:pointer;background:var(--neon);color:var(--crna);font-size:clamp(34px,3.4vw,56px)" style-hover="background:var(--bela)">{{ btn }}</button>
+    </div>
+  </form>
+</main>
+<dc-import name="IronFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const PK = [{id:'14',t:'14 dana',v:'1.990',w:'Izazov + trener'},{id:'mesec',t:'Mesečna',v:'3.900',w:'30 dana'},{id:'kvartal',t:'Tromesečna',v:'10.500',w:'90 dana'},{id:'godina',t:'Godišnja',v:'36.000',w:'365 dana'}];
+class Component extends DCLogic {
+  constructor(p) { super(p); let pk = '14'; try { const q = new URLSearchParams(window.location.search).get('paket'); if (PK.some(x => x.id === q)) pk = q; } catch(e) {} this.state = { pk, f:{ime:'',tel:'',start:'',cilj:''}, err:{}, loading:false, msg:'' }; }
+  renderVals() {
+    const s = this.state, p = PK.find(x => x.id === s.pk);
+    const on = {}; Object.keys(s.f).forEach(k => on[k] = ev => { const v = ev.target.value; this.setState(st => { const e = Object.assign({}, st.err); delete e[k]; return { f: Object.assign({}, st.f, {[k]: v}), err: e, msg:'' }; }); });
+    const inv = {}; Object.keys(s.err).forEach(k => inv[k] = 'true');
+    const d = new Date(); const today = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+    const submit = ev => { ev.preventDefault(); const e = {};
+      if (s.f.ime.trim().length < 2) e.ime = 'Upiši ime.';
+      if (s.f.tel.replace(/\D/g,'').length < 9) e.tel = 'Proveri broj.';
+      if (!s.f.start) e.start = 'Izaberi dan.';
+      if (Object.keys(e).length) { this.setState({ err: e, msg: 'Popuni označena polja' }); return; }
+      this.setState({ loading: true });
+      const q = new URLSearchParams({ ime: s.f.ime.trim(), paket: p.t, start: s.f.start });
+      setTimeout(() => { window.location.href = 'hvala.html?' + q.toString(); }, 900); };
+    return { paketi: PK.map(x => Object.assign({}, x, { on: String(s.pk === x.id), pick: () => this.setState({ pk: x.id }) })),
+      f: s.f, on, inv, err: Object.assign({ime:'',tel:'',start:''}, s.err), today, submit, msg: s.msg,
+      izabrano: p.t + ' · ' + p.v + ' RSD', loading: s.loading || undefined, btn: s.loading ? 'Upisujem…' : 'Upiši me →' };
+  }
+}
+</script>
+</body>
+</html>

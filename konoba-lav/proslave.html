@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+  .pin{width:100%;font:inherit;font-size:17px;color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--ink);border-radius:0;padding:12px 0;min-height:52px;-webkit-appearance:none;appearance:none}
+  .pin:focus{outline:none;border-bottom:2px solid var(--bordo)}
+  .pin[aria-invalid="true"]{border-bottom:2px solid #B3261E}
+</style>
+</helmet>
+<dc-import name="LavHeader" active="proslave" hint-size="100%,88px"></dc-import>
+<main>
+  <section style="padding:clamp(56px,12svh,140px) 0 clamp(64px,12svh,140px)">
+    <div class="g12" style="row-gap:36px;align-items:end">
+      <div style="grid-column:1 / span 9">
+        <span class="lbl" style="color:var(--bordo)">Proslave · 10 do 40 gostiju · zadnja sala</span>
+        <h1 style="font-family:var(--serif);font-weight:400;font-size:clamp(88px,13vw,240px);line-height:0.86;letter-spacing:-0.035em;margin:20px 0 0">Dugačak<br><span style="font-style:italic;color:var(--bordo)">sto.</span></h1>
+      </div>
+      <div style="grid-column:10 / span 3;display:flex;flex-direction:column;gap:0;border-top:1px solid var(--ink)">
+        <sc-for list="{{ facts }}" as="f" hint-placeholder-count="3"><div style="display:flex;gap:10px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px"><span>{{ f.k }}</span><span class="dots"></span><span style="font-family:var(--mono)">{{ f.v }}</span></div></sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-top:1px solid var(--ink)">
+    <div class="g12" style="padding:0">
+      <sc-for list="{{ meniji }}" as="m" hint-placeholder-count="3">
+        <article class="rv" style="grid-column:span 4;padding:clamp(32px,4vw,56px) clamp(20px,3vw,44px);border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;flex-direction:column;min-height:clamp(560px,78svh,760px)">
+          <span class="lbl" style="color:var(--muted)">{{ m.n }} · {{ m.za }}</span>
+          <h2 style="font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(52px,5vw,88px);line-height:0.9;letter-spacing:-0.03em;margin:18px 0 0;color:var(--bordo)">{{ m.t }}</h2>
+          <div style="display:flex;align-items:baseline;gap:10px;margin:22px 0 28px"><span style="font-family:var(--mono);font-size:28px">{{ m.p }}</span><span class="lbl" style="color:var(--muted)">din / osoba</span></div>
+          <ol style="list-style:none;margin:0;padding:0;flex:1">
+            <sc-for list="{{ m.items }}" as="i" hint-placeholder-count="4"><li style="font-family:var(--serif);font-size:20px;line-height:1.3;padding:12px 0;border-top:1px solid var(--line)">{{ i }}</li></sc-for>
+          </ol>
+          <p class="lbl" style="color:var(--muted);margin:22px 0 0">{{ m.note }}</p>
+        </article>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="upit" style="padding:clamp(96px,18svh,200px) 0">
+    <div class="g12" style="row-gap:40px">
+      <div class="rv" style="grid-column:1 / span 5">
+        <span class="lbl" style="color:var(--bordo)">Upit za proslavu</span>
+        <p style="font-family:var(--serif);font-size:clamp(44px,5vw,84px);line-height:0.95;letter-spacing:-0.025em;margin:18px 0 0">Recite nam datum. <span style="font-style:italic;color:var(--bordo)">Ostalo je naše.</span></p>
+        <p style="font-size:16px;line-height:1.7;color:var(--muted);margin:22px 0 0;max-width:38ch">Marija, koja vodi proslave, javlja se istog dana sa predlogom menija i rasporedom stolova.</p>
+      </div>
+      <div style="grid-column:7 / -1">
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+          <div role="status" style="background:var(--bordo);color:var(--papir);padding:clamp(28px,4vw,56px)">
+            <span class="lbl" style="color:var(--sunce)">Upit je primljen</span>
+            <p style="font-family:var(--serif);font-style:italic;font-size:clamp(32px,3.4vw,52px);line-height:1.05;margin:14px 0 0">Hvala, {{ ime }}. Marija vas zove danas na {{ tel }}.</p>
+          </div>
+        </sc-if>
+        <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+          <form novalidate="" onSubmit="{{ submit }}" aria-label="Upit za proslavu" style="display:grid;grid-template-columns:1fr 1fr;gap:28px 24px" class="stk">
+            <label class="lbl" style="display:flex;flex-direction:column;gap:6px">Ime i prezime<input class="pin" name="ime" autocomplete="name" value="{{ f.ime }}" onChange="{{ on.ime }}" aria-invalid="{{ inv.ime }}"><span style="font-family:var(--sans);letter-spacing:0;text-transform:none;font-size:13px;color:#B3261E;min-height:16px">{{ err.ime }}</span></label>
+            <label class="lbl" style="display:flex;flex-direction:column;gap:6px">Telefon<input class="pin" type="tel" name="tel" autocomplete="tel" value="{{ f.tel }}" onChange="{{ on.tel }}" aria-invalid="{{ inv.tel }}"><span style="font-family:var(--sans);letter-spacing:0;text-transform:none;font-size:13px;color:#B3261E;min-height:16px">{{ err.tel }}</span></label>
+            <label class="lbl" style="display:flex;flex-direction:column;gap:6px">Datum<input class="pin" type="date" name="datum" value="{{ f.datum }}" onChange="{{ on.datum }}" aria-invalid="{{ inv.datum }}"><span style="font-family:var(--sans);letter-spacing:0;text-transform:none;font-size:13px;color:#B3261E;min-height:16px">{{ err.datum }}</span></label>
+            <label class="lbl" style="display:flex;flex-direction:column;gap:6px">Broj gostiju<input class="pin" type="number" min="10" max="40" name="gosti" placeholder="10—40" value="{{ f.gosti }}" onChange="{{ on.gosti }}" aria-invalid="{{ inv.gosti }}"><span style="font-family:var(--sans);letter-spacing:0;text-transform:none;font-size:13px;color:#B3261E;min-height:16px">{{ err.gosti }}</span></label>
+            <label class="lbl" style="grid-column:1 / -1;display:flex;flex-direction:column;gap:6px">Meni<select class="pin" name="meni" value="{{ f.meni }}" onChange="{{ on.meni }}"><option value="Ručak">Ručak</option><option value="Večera">Večera</option><option value="Peka">Peka</option><option value="Još ne znam">Još ne znam</option></select></label>
+            <button type="submit" class="lbl hv" disabled="{{ loading }}" style="grid-column:1 / -1;justify-self:start;min-height:58px;padding:0 32px;border:0;cursor:pointer;background:var(--bordo);color:var(--papir)" style-hover="background:var(--bordo2)">{{ btn }}</button>
+          </form>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+</main>
+<dc-import name="LavFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { f:{ime:'',tel:'',datum:'',gosti:'',meni:'Večera'}, err:{}, loading:false, sent:false };
+  renderVals() {
+    const { f, err, loading, sent } = this.state;
+    const on = {}; Object.keys(f).forEach(k => on[k] = ev => { const v = ev.target.value; this.setState(s => { const e = Object.assign({}, s.err); delete e[k]; return { f: Object.assign({}, s.f, {[k]: v}), err: e }; }); });
+    const inv = {}; Object.keys(err).forEach(k => inv[k] = 'true');
+    const submit = ev => {
+      ev.preventDefault(); const e = {};
+      if (f.ime.trim().length < 2) e.ime = 'Upišite ime.';
+      if (f.tel.replace(/\D/g,'').length < 8) e.tel = 'Proverite broj.';
+      if (!f.datum) e.datum = 'Izaberite datum.';
+      const g = +f.gosti; if (!g || g < 10 || g > 40) e.gosti = 'Od 10 do 40 gostiju.';
+      if (Object.keys(e).length) { this.setState({ err: e }); return; }
+      this.setState({ loading: true }); setTimeout(() => this.setState({ loading: false, sent: true }), 900);
+    };
+    return {
+      f, inv, on, submit, sent, notSent: !sent, loading: loading || undefined,
+      err: Object.assign({ime:'',tel:'',datum:'',gosti:''}, err),
+      btn: loading ? 'Šaljem upit…' : 'Pošalji upit',
+      ime: f.ime.trim().split(' ')[0], tel: f.tel,
+      facts: [{k:'Gostiju',v:'10—40'},{k:'Sala',v:'62 m²'},{k:'Do ponoći',v:'pet—sub'}],
+      meniji: [
+        {n:'I',za:'10—20 osoba',t:'Ručak',p:'3.200',items:['Hladna predjela za sto','Riblja čorba','Brancin ili pašticada','Rožata'],note:'Radnim danom 12—17h'},
+        {n:'II',za:'10—40 osoba',t:'Večera',p:'4.800',items:['Paški sir, pršut, inćuni','Crni rižoto za sto','Riba dana ili janjetina','Deserti za sto','Čaša prošeka'],note:'Svakog dana od 18h'},
+        {n:'III',za:'12—30 osoba',t:'Peka',p:'5.600',items:['Predjela za sto','Hobotnica i teletina ispod peke','Sezonska salata','Smokve u prošeku'],note:'Naručuje se dva dana ranije'}
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="BelaHeader" active="" hint-size="100%,124px"></dc-import>
+<main class="mm" style="position:relative;overflow:hidden;padding:clamp(48px,10svh,120px) 0 clamp(96px,18svh,200px)">
+  <div aria-hidden="true" class="sf hm" style="position:absolute;right:-4vw;top:-6svh;width:clamp(220px,26vw,420px);aspect-ratio:1"></div>
+  <div class="g12" style="position:relative;row-gap:40px;align-items:center">
+    <div style="grid-column:1 / span 7">
+      <span class="mn" style="color:#1F7A4D">✓ Termin je rezervisan</span>
+      <h1 style="font-weight:800;font-size:clamp(80px,11vw,200px);line-height:0.88;letter-spacing:-0.055em;margin:20px 0 0">Vidimo se{{ zarez }}<br><span style="color:var(--plava)">{{ ime }}</span></h1>
+      <p style="font-size:17px;line-height:1.65;color:var(--ink2);max-width:44ch;margin:24px 0 0">Potvrda je stigla porukom. Podsetnik stiže 24h i 2h pre termina. Ako se oslobodi raniji termin, javljamo ti se prvom.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:32px">
+        <a class="hv" href="{{ ics }}" download="dental-bela.ics" style="display:inline-flex;align-items:center;min-height:56px;padding:0 26px;border-radius:999px;background:var(--ink);color:#fff;font-weight:700" style-hover="background:var(--plava);color:#fff">Dodaj u kalendar</a>
+        <a class="hv mn" href="prva-poseta.html" style="display:inline-flex;align-items:center;min-height:56px;padding:0 22px;border-radius:999px;border:1px solid var(--ink)" style-hover="background:var(--ink);color:#fff">Šta da ponesem →</a>
+      </div>
+    </div>
+    <div style="grid-column:9 / span 4;display:flex;flex-direction:column;gap:14px">
+      <div style="background:var(--ink);color:#fff;border-radius:24px;padding:22px 22px 18px;transform:rotate(-2.5deg);box-shadow:0 40px 80px -40px rgba(15,27,61,0.6)">
+        <span class="mn" style="color:#8FB0EC">Podsetnik · {{ kad }}</span>
+        <p style="font-weight:800;font-size:22px;line-height:1.2;letter-spacing:-0.02em;margin:10px 0 16px">{{ usluga }} u {{ t }}, {{ dr }}</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><span style="display:flex;justify-content:center;align-items:center;min-height:44px;border-radius:12px;background:var(--plava);font-weight:700;font-size:14px">✓ Dolazim</span><span style="display:flex;justify-content:center;align-items:center;min-height:44px;border-radius:12px;background:rgba(255,255,255,0.1);font-size:14px">Pomeri termin</span></div>
+      </div>
+      <p class="mn" style="color:var(--ink2);margin:6px 0 0;text-align:right">Ovako izgleda poruka koju dobijaš dan ranije</p>
+    </div>
+  </div>
+</main>
+<dc-import name="BelaFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    let q; try { q = new URLSearchParams(window.location.search); } catch(e) { q = new URLSearchParams(''); }
+    const ime = (q.get('ime') || '').split(' ')[0], dan = q.get('dan') || '', t = q.get('vreme') || '11:30';
+    const WL = ['nedelja','ponedeljak','utorak','sreda','četvrtak','petak','subota'];
+    let kad = 'sutra'; if (dan) { const d = new Date(dan + 'T12:00'); kad = WL[d.getDay()] + ' ' + d.getDate() + '.' + (d.getMonth()+1) + '.'; }
+    let ics = 'zakazivanje.html';
+    if (dan) { const [h, m] = t.split(':'); const s = dan.replace(/-/g,'') + 'T' + h + m + '00'; const e = dan.replace(/-/g,'') + 'T' + String(+h + 1).padStart(2,'0') + m + '00';
+      ics = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(['BEGIN:VCALENDAR','VERSION:2.0','BEGIN:VEVENT','SUMMARY:Dental Studio Bela, ' + (q.get('usluga') || 'pregled'),'DTSTART:' + s,'DTEND:' + e,'LOCATION:Njegoševa 42\\, Beograd','END:VEVENT','END:VCALENDAR'].join('\r\n')); }
+    return { ime: ime ? ime + '.' : 'uskoro.', zarez: ime ? ',' : '', kad, t, ics, usluga: q.get('usluga') || 'Kontrola', dr: q.get('dr') || 'dr Marić' };
+  }
+}
+</script>
+</body>
+</html>

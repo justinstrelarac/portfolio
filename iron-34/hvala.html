@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="IronHeader" active="" hint-size="100%,112px"></dc-import>
+<main>
+  <section style="background:var(--neon);color:var(--crna);position:relative;overflow:hidden">
+    <div aria-hidden="true" class="d" style="position:absolute;right:-2vw;top:-4svh;font-size:clamp(260px,40vw,720px);line-height:0.78;color:rgba(10,10,10,0.08)">01</div>
+    <div class="g12" style="position:relative;padding-top:clamp(64px,12svh,130px);padding-bottom:clamp(64px,12svh,130px);row-gap:24px;align-items:end">
+      <div style="grid-column:1 / span 8"><span class="mo">✓ Upisan si · {{ paket }}</span><h1 class="d" style="font-size:clamp(100px,15vw,280px);margin:14px 0 0">Dan 01.<br>{{ ime }}</h1></div>
+      <p style="grid-column:9 / span 4;font-size:17px;font-weight:600;line-height:1.55;margin:0">Vidimo se {{ start }}. Ponesi patike za salu i peškir. Trener te čeka na recepciji.</p>
+    </div>
+  </section>
+  <section style="border-bottom:1px solid var(--line)">
+    <div class="stk" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr))">
+      <sc-for list="{{ koraci }}" as="k" hint-placeholder-count="3"><div class="rv" style="padding:clamp(24px,3vw,40px);border-right:1px solid var(--line);min-height:240px;display:flex;flex-direction:column;justify-content:space-between"><span class="d" style="font-size:64px;color:var(--neon)">{{ k.n }}</span><span><span class="d" style="display:block;font-size:34px">{{ k.t }}</span><span style="display:block;font-size:15px;color:var(--siva);margin-top:8px">{{ k.d }}</span></span></div></sc-for>
+    </div>
+  </section>
+  <section><div class="g12" style="padding-top:clamp(56px,10svh,110px);padding-bottom:clamp(56px,10svh,110px);row-gap:12px"><div style="grid-column:1 / span 12;display:flex;gap:12px;flex-wrap:wrap"><a class="d hv" href="{{ ics }}" download="iron34.ics" style="display:inline-flex;align-items:center;min-height:68px;padding:0 28px;background:var(--neon);color:var(--crna);font-size:26px" style-hover="background:var(--bela);color:var(--crna)">Dodaj u kalendar</a><a class="mo hv" href="izazov.html" style="display:inline-flex;align-items:center;min-height:68px;padding:0 22px;border:1px solid var(--bela)" style-hover="border-color:var(--neon);color:var(--neon)">Plan za 14 dana →</a></div></div></section>
+</main>
+<dc-import name="IronFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    let q; try { q = new URLSearchParams(window.location.search); } catch(e) { q = new URLSearchParams(''); }
+    const ime = (q.get('ime') || '').split(' ')[0], st = q.get('start') || '';
+    const WL = ['u nedelju','u ponedeljak','u utorak','u sredu','u četvrtak','u petak','u subotu'];
+    let start = 'uskoro', ics = 'upis.html';
+    if (st) { const d = new Date(st + 'T12:00'); start = WL[d.getDay()] + ', ' + d.getDate() + '.' + (d.getMonth()+1) + '.'; const s = st.replace(/-/g,'');
+      ics = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(['BEGIN:VCALENDAR','VERSION:2.0','BEGIN:VEVENT','SUMMARY:IRON 34, dan 01','DTSTART:' + s + 'T180000','DTEND:' + s + 'T190000','LOCATION:Kralja Petra I 34\\, Kragujevac','END:VEVENT','END:VCALENDAR'].join('\r\n')); }
+    return { ime: ime ? ime + '.' : 'Kreni.', paket: q.get('paket') || '14 dana', start, ics,
+      koraci: [{n:'01',t:'Poruka stiže sada',d:'Potvrda i adresa sale.'},{n:'02',t:'Zadatak u 07:00',d:'Svakog jutra, 14 dana.'},{n:'03',t:'Trener te prati',d:'Ako preskočiš, javlja se sam.'}] };
+  }
+}
+</script>
+</body>
+</html>

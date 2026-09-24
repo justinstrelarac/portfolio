@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="LavHeader" active="" hint-size="100%,88px"></dc-import>
+<main style="padding:clamp(56px,12svh,140px) 0 clamp(96px,18svh,200px)">
+  <div class="g12" style="row-gap:48px;align-items:start">
+    <div style="grid-column:1 / span 7">
+      <span class="lbl" style="color:#2F6B45">✓ Sto je sačuvan</span>
+      <h1 style="font-family:var(--serif);font-weight:400;font-size:clamp(88px,12vw,220px);line-height:0.86;letter-spacing:-0.035em;margin:20px 0 0">Hvala{{ zarez }}<br><span style="font-style:italic;color:var(--bordo)">{{ ime }}</span></h1>
+      <p style="font-size:clamp(17px,1.4vw,20px);line-height:1.65;max-width:40ch;color:var(--muted);margin:28px 0 0">Potvrda je stigla porukom. Dan ranije šaljemo podsetnik, a posle večere samo jedno pitanje: kako je bilo?</p>
+      <div style="display:flex;gap:16px 28px;flex-wrap:wrap;align-items:center;margin-top:36px">
+        <a class="lbl hv" href="{{ ics }}" download="konoba-lav.ics" style="display:inline-flex;align-items:center;min-height:58px;padding:0 30px;background:var(--bordo);color:var(--papir)" style-hover="background:var(--bordo2);color:var(--papir)">Dodaj u kalendar</a>
+        <a class="lbl hv" href="kontakt.html" style="display:inline-flex;align-items:center;min-height:48px;border-bottom:1px solid var(--ink)">Kako do nas →</a>
+      </div>
+    </div>
+    <div style="grid-column:9 / span 4;position:relative">
+      <div style="background:#FBF3E6;padding:32px 28px 26px;transform:rotate(2.5deg);box-shadow:0 30px 60px -30px rgba(43,10,14,0.5)">
+        <div style="text-align:center;font-family:var(--serif);font-size:17px;letter-spacing:0.38em;text-transform:uppercase">Konoba Lav</div>
+        <div class="lbl" style="text-align:center;color:var(--muted);margin-top:6px">Laze Telečkog 14 · Novi Sad</div>
+        <div style="border-top:1px dashed var(--ink);margin:20px 0 6px"></div>
+        <sc-for list="{{ rows }}" as="r" hint-placeholder-count="4">
+          <div style="display:flex;gap:10px;padding:10px 0;font-size:15px"><span class="lbl" style="color:var(--muted)">{{ r.k }}</span><span class="dots"></span><span style="font-family:var(--mono)">{{ r.v }}</span></div>
+        </sc-for>
+        <div style="border-top:1px dashed var(--ink);margin:10px 0 16px"></div>
+        <p style="font-family:var(--serif);font-style:italic;font-size:22px;text-align:center;color:var(--bordo);margin:0">Riba je stigla jutros.</p>
+        <p class="lbl" style="text-align:center;color:var(--muted);margin:10px 0 0">Br. rez. {{ broj }}</p>
+      </div>
+    </div>
+  </div>
+</main>
+<dc-import name="LavFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    let q; try { q = new URLSearchParams(window.location.search); } catch(e) { q = new URLSearchParams(''); }
+    const ime = (q.get('ime') || '').split(' ')[0], datum = q.get('datum') || '', vreme = q.get('vreme') || '', osobe = q.get('osobe') || '';
+    const WL = ['nedelja','ponedeljak','utorak','sreda','četvrtak','petak','subota'];
+    let dl = '—'; if (datum) { const d = new Date(datum + 'T12:00'); dl = WL[d.getDay()] + ' ' + d.getDate() + '.' + (d.getMonth()+1) + '.'; }
+    let ics = 'rezervacija.html';
+    if (datum && vreme) { const [h, m] = vreme.split(':'); const s = datum.replace(/-/g,'') + 'T' + h.padStart(2,'0') + m + '00'; const e = datum.replace(/-/g,'') + 'T' + String(Math.min(23, +h + 2)).padStart(2,'0') + m + '00';
+      ics = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(['BEGIN:VCALENDAR','VERSION:2.0','BEGIN:VEVENT','SUMMARY:Konoba Lav, sto za ' + (osobe || '2'),'DTSTART:' + s,'DTEND:' + e,'LOCATION:Laze Telečkog 14\\, Novi Sad','END:VEVENT','END:VCALENDAR'].join('\r\n')); }
+    const broj = 'KL-' + String((datum + vreme + ime).split('').reduce((a, c) => (a * 31 + c.charCodeAt(0)) % 9000, 7) + 1000);
+    return { ime: ime ? ime + '.' : 'vidimo se.', zarez: ime ? ',' : '', ics, broj,
+      rows: [{k:'Dan',v:dl},{k:'Vreme',v:vreme || '—'},{k:'Osoba',v:osobe || '—'},{k:'Sto',v:'čuva se 15 min'}] };
+  }
+}
+</script>
+</body>
+</html>

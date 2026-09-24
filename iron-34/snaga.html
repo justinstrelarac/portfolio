@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="IronHeader" active="programi" hint-size="100%,112px"></dc-import>
+<dc-import name="IronProgram" p="{{ p }}" hint-size="100%,100svh"></dc-import>
+<dc-import name="IronFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() { return { p: {"n":"01","t":"Snaga","lead":"Šipka, tegovi i progresija svake nedelje. Program za one koji žele da podižu više nego prošlog meseca.","spec":[{"k":"Trajanje","v":"60 MIN","c":"var(--bela)"},{"k":"Intenzitet","v":"■■■■□","c":"var(--neon)"},{"k":"Grupa","v":"MAX 8","c":"var(--bela)"},{"k":"Nedeljno","v":"3×","c":"var(--bela)"}],"trNaslov":"Četiri bloka. Nijedan suvišan.","blokovi":[{"t":"00—10","n":"I","naziv":"Zagrevanje","d":"Mobilnost kukova i ramena, prazna šipka."},{"t":"10—35","n":"II","naziv":"Glavno dizanje","d":"Čučanj, mrtvo dizanje ili potisak. 5×5."},{"t":"35—50","n":"III","naziv":"Pomoćno","d":"Jednoručne vežbe, slabe tačke."},{"t":"50—60","n":"IV","naziv":"Istezanje","d":"Hlađenje i upis u dnevnik treninga."}],"ciljNaslov":"Merljivo jači.","ciljevi":[{"n":"01","t":"Čučanj +20 kg u odnosu na prvi dan."},{"n":"02","t":"Pravilna tehnika u tri glavna dizanja."},{"n":"03","t":"Dnevnik treninga koji možeš da nastaviš sam."}],"trener":"Nikola · powerlifting","termini":[{"d":"PON","v":"07:00 · 18:30","m":"Čučanj"},{"d":"SRE","v":"07:00 · 18:30","m":"Potisak"},{"d":"PET","v":"07:00 · 18:30","m":"Mrtvo dizanje"},{"d":"SUB","v":"10:00","m":"Otvoreni trening"}],"cta":"Šipka čeka. Ti kasniš.","nextH":"hiit.html","nextT":"HIIT"} }; }
+}
+</script>
+</body>
+</html>

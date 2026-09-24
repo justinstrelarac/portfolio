@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="LavHeader" active="prica" hint-size="100%,88px"></dc-import>
+<main>
+  <section style="padding:clamp(56px,12svh,140px) 0 clamp(40px,8svh,80px)">
+    <div class="g12">
+      <div style="grid-column:1 / -1">
+        <span class="lbl" style="color:var(--bordo)">Priča · Stari Grad, Hvar → Novi Sad</span>
+        <h1 style="font-family:var(--serif);font-weight:400;font-size:clamp(88px,13vw,240px);line-height:0.86;letter-spacing:-0.035em;margin:20px 0 0">Tri stvari <span style="font-style:italic;color:var(--bordo)">u prtljagu.</span></h1>
+      </div>
+    </div>
+  </section>
+
+  <section style="height:clamp(380px,80svh,860px)">
+    <dc-import name="LavKadar" style="display:block;width:100%;height:100%" v="more" alt="Luka u Starom Gradu u sumrak, ribarski čamac na moru" cap="" meta="" hint-size="100%,100%"></dc-import>
+  </section>
+  <div class="g12"><p class="lbl" style="grid-column:1 / -1;color:var(--muted);margin:12px 0 0">Sl. 05 — Stari Grad, luka u 20:10</p></div>
+
+  <section style="padding:clamp(96px,18svh,200px) 0">
+    <div class="g12" style="row-gap:40px">
+      <aside class="rv" style="grid-column:1 / span 3;border-top:1px solid var(--ink);padding-top:16px;align-self:start">
+        <span class="lbl" style="color:var(--muted)">Ante Radić</span>
+        <p style="font-family:var(--serif);font-style:italic;font-size:22px;line-height:1.3;margin:10px 0 0">Šef kuhinje, rođen 1971. u Starom Gradu.</p>
+      </aside>
+      <div class="rv" style="grid-column:5 / span 7;font-size:clamp(18px,1.5vw,21px);line-height:1.8">
+        <p class="dropcap" style="margin:0">Ante je kuvao u očevoj konobi dvadeset godina. Leti za turiste, zimi za ribare, koji su plaćali ribom kad nisu imali novca. Tu je naučio da jelo ne sme da ima više sastojaka nego što ih kuvar može da nabroji bez gledanja.</p>
+        <p style="margin:28px 0 0">Kad se 2016. oženio Novosađankom, preselio se na Dunav i poneo tri stvari: gvozdenu peku, očev recept za pašticadu i broj telefona ribara Joška iz Komiže. Joško mu i danas u šest ujutru šalje sliku ulova.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--ink);color:var(--papir);padding:clamp(96px,18svh,200px) 0">
+    <div class="g12">
+      <blockquote class="rv" style="grid-column:2 / span 10;margin:0">
+        <p style="font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(48px,6.4vw,112px);line-height:1;letter-spacing:-0.025em;margin:0">„Ako riba ne stigne, ne stigne ni na meni. Gost to razume. Zamrzivač ne razume ništa.”</p>
+        <footer class="lbl" style="margin-top:32px;color:var(--sunce)">— Ante, jutro u kuhinji</footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <section style="padding:clamp(96px,18svh,200px) 0">
+    <div class="g12" style="row-gap:32px">
+      <h2 class="rv" style="grid-column:1 / span 5;font-family:var(--serif);font-weight:400;font-size:clamp(52px,6vw,104px);line-height:0.9;letter-spacing:-0.03em;margin:0">Od konobe<br><span style="font-style:italic;color:var(--bordo)">do konobe.</span></h2>
+      <ol style="grid-column:7 / -1;list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)">
+        <sc-for list="{{ god }}" as="g" hint-placeholder-count="5">
+          <li class="rv" style="display:grid;grid-template-columns:minmax(0,2fr) minmax(0,7fr);gap:20px;padding:22px 0;border-bottom:1px solid var(--line)">
+            <span style="font-family:var(--mono);font-size:15px;color:var(--bordo)">{{ g.y }}</span>
+            <span><span style="display:block;font-family:var(--serif);font-size:clamp(22px,2vw,30px)">{{ g.t }}</span><span style="display:block;font-size:15px;line-height:1.6;color:var(--muted);margin-top:6px">{{ g.d }}</span></span>
+          </li>
+        </sc-for>
+      </ol>
+    </div>
+  </section>
+
+  <section style="padding:0 0 clamp(96px,18svh,200px)">
+    <div class="g12" style="row-gap:24px">
+      <div class="rv" style="grid-column:1 / span 5;aspect-ratio:4/5"><dc-import name="LavKadar" style="display:block;width:100%;height:100%" v="sto" alt="Sto za dvoje odozgo: tanjir, čaša vina, pribor" cap="Sl. 06 — Sto 7, uz prozor" meta="12 mesta" hint-size="100%,100%"></dc-import></div>
+      <div class="rv" style="grid-column:7 / span 6;align-self:center">
+        <span class="lbl" style="color:var(--bordo)">Prostor</span>
+        <p style="font-family:var(--serif);font-size:clamp(30px,3vw,48px);line-height:1.15;margin:16px 0 0">Dvadeset stolova, kamen iz Brača, drvo od starog čamca i terasa u dvorištu za trideset gostiju.</p>
+        <div style="display:flex;gap:18px 28px;flex-wrap:wrap;margin-top:32px">
+          <a class="lbl hv" href="rezervacija.html" style="display:inline-flex;align-items:center;min-height:56px;padding:0 28px;background:var(--bordo);color:var(--papir)" style-hover="background:var(--bordo2);color:var(--papir)">Rezerviši sto</a>
+          <a class="lbl hv" href="meni.html" style="display:inline-flex;align-items:center;min-height:48px;border-bottom:1px solid var(--ink)">Pogledaj meni →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<dc-import name="LavFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return { god: [
+      {y:'1971', t:'Rođen iznad očeve konobe', d:'Stari Grad, Hvar. Prvo jelo koje je skuvao: riblja čorba, sa devet godina.'},
+      {y:'1994', t:'Preuzima kuhinju', d:'Otac se povlači, Ante uvodi peku i jelovnik koji se menja po ulovu.'},
+      {y:'2016', t:'Selidba na Dunav', d:'Ženidba u Novom Sadu. Peka putuje u gepeku, umotana u ćebe.'},
+      {y:'2019', t:'Konoba Lav otvara vrata', d:'Laze Telečkog 14. Dvanaest stolova, bez jelovnika na zidu.'},
+      {y:'2026', t:'Dvadeset stolova i terasa', d:'Isti ribar, ista peka, ista pravila.'}
+    ]};
+  }
+}
+</script>
+</body>
+</html>

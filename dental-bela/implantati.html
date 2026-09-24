@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="BelaHeader" active="usluge" hint-size="100%,124px"></dc-import>
+<dc-import name="BelaUsluga" u="{{ u }}" hint-size="100%,100svh"></dc-import>
+<dc-import name="BelaFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() { return { u: {
+    n:'01', bg:'IMPLANT', t1:'Zub koji', t2:'ostaje.', lead:'Titanijumski implant umesto izgubljenog zuba. Planiramo ga na 3D snimku, ugrađujemo za sat vremena, a krunicu stavljamo posle tri meseca.',
+    spec:[{k:'Trajanje zahvata',v:'45—60 min'},{k:'Broj poseta',v:'4'},{k:'Do krunice',v:'3 meseca'},{k:'Garancija',v:'10 godina'}],
+    zaKoga:'Kad fali jedan ili više zuba, a most ne dolazi u obzir.',
+    kriterijumi:[{n:'A',t:'Izgubljen zub posle vađenja ili povrede.'},{n:'B',t:'Dovoljno kosti, ili spremnost za nadogradnju.'},{n:'C',t:'Zdrave desni i kontrolisan šećer.'}],
+    tokNaslov:'Četiri posete do novog zuba.',
+    tok:[{n:'Konsultacija i 3D snimak',w:'DAN 0 · 40 MIN',d:'Merimo kost, planiramo položaj implanta na ekranu i dobijaš tačnu cenu.'},{n:'Ugradnja implanta',w:'DAN 7 · 60 MIN',d:'Lokalna anestezija. Većina pacijenata se vraća na posao sutradan.'},{n:'Kontrola',w:'DAN 14 · 15 MIN',d:'Skidamo konce i proveravamo zarastanje.'},{n:'Srastanje',w:'8—12 NEDELJA',d:'Implant srasta sa kosti. Nosiš privremenu krunicu.'},{n:'Krunica',w:'MESEC 3 · 45 MIN',d:'Cirkonijum-keramička krunica, izrađena po digitalnom otisku.'}],
+    kadar:'Implant i krunica prikazani kao sfera i kapsula na plavoj pozadini', kadarCap:'Implant, 4,1 × 10 mm',
+    faq:[{q:'Da li boli?',a:'Zahvat je pod lokalnom anestezijom. Posle toga je nelagodnost slična vađenju zuba, dva do tri dana.'},{q:'Koliko traje implant?',a:'Uz redovnu higijenu i kontrole, decenijama. Dajemo garanciju od deset godina.'},{q:'Mogu li na rate?',a:'Da, do 12 rata bez kamate, preko kartica banaka partnera.'},{q:'Šta ako nemam dovoljno kosti?',a:'Nadogradnja kosti se radi u istoj poseti ili pre ugradnje. Vidi se na 3D snimku.'}],
+    cena:'72.000', cenaNote:'Implant sa ugradnjom. Krunica 38.000 RSD. Tačna cena posle 3D snimka.',
+    nextH:'estetika.html', nextT:'Estetika'
+  } }; }
+}
+</script>
+</body>
+</html>

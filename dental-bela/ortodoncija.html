@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="BelaHeader" active="usluge" hint-size="100%,124px"></dc-import>
+<dc-import name="BelaUsluga" u="{{ u }}" hint-size="100%,100svh"></dc-import>
+<dc-import name="BelaFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() { return { u: {
+    n:'03', bg:'RED', t1:'Prav osmeh,', t2:'nevidljivo.', lead:'Providne folije za odrasle i fiksne proteze za decu i tinejdžere. Plan pomeranja zuba vidiš u 3D animaciji pre prve folije.',
+    spec:[{k:'Trajanje',v:'6—18 meseci'},{k:'Kontrole',v:'svakih 8 nedelja'},{k:'Nošenje folija',v:'22h dnevno'},{k:'Retencija',v:'uključena'}],
+    zaKoga:'Kad zubi stoje krivo, preklapaju se ili zagriz nije pravilan.',
+    kriterijumi:[{n:'A',t:'Odrasli koji ne žele metalnu protezu.'},{n:'B',t:'Deca od 8 godina, kad je vreme za prvu procenu.'},{n:'C',t:'Pacijenti pre implanta ili faseta, kad zube prvo treba poravnati.'}],
+    tokNaslov:'Svaki pomak je izračunat unapred.',
+    tok:[{n:'Skeniranje i snimci',w:'DAN 0 · 40 MIN',d:'Digitalni otisak umesto gumene mase.'},{n:'3D plan',w:'DAN 10',d:'Dobijaš animaciju pomeranja zuba, nedelju po nedelju.'},{n:'Prve folije',w:'DAN 21 · 30 MIN',d:'Set folija za prvih osam nedelja i uputstvo za nošenje.'},{n:'Kontrole',w:'NA 8 NEDELJA · 15 MIN',d:'Proveravamo napredak i dajemo sledeći set.'},{n:'Retencija',w:'KRAJ',d:'Tanka žica sa unutrašnje strane i noćna folija, da zubi ostanu na mestu.'}],
+    kadar:'Niz sfera poređanih u pravilan luk', kadarCap:'Folija, 0,75 mm',
+    faq:[{q:'Da li se folije vide?',a:'Skoro ne. Na fotografiji iz blizine teško ih je primetiti.'},{q:'Mogu li da jedem sa folijama?',a:'Folije se skidaju za jelo i piće osim vode, pa ne postoje zabranjene namirnice.'},{q:'Koliko košta?',a:'Cena zavisi od broja folija. Tačnu cenu dobijaš uz 3D plan, pre početka.'},{q:'Da li je kasno za odrasle?',a:'Ne. Najstariji pacijent kome smo ispravili zube imao je 61 godinu.'}],
+    cena:'96.000', cenaNote:'Providne folije, blagi slučajevi. Fiksna proteza od 120.000 RSD po vilici.',
+    nextH:'implantati.html', nextT:'Implantati'
+  } }; }
+}
+</script>
+</body>
+</html>

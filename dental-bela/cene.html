@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="BelaHeader" active="cene" hint-size="100%,124px"></dc-import>
+<main class="mm" style="padding:clamp(48px,10svh,120px) 0 clamp(96px,18svh,200px)">
+  <div class="g12" style="row-gap:28px;align-items:end">
+    <div style="grid-column:1 / span 8"><span class="mn" style="color:var(--plava)">Cenovnik · važi od 01.09.2026.</span><h1 style="font-weight:800;font-size:clamp(88px,13vw,240px);line-height:0.88;letter-spacing:-0.055em;margin:20px 0 0">Cene,<br><span style="color:var(--plava)">bez sitnih slova.</span></h1></div>
+    <p style="grid-column:9 / span 4;font-size:16px;line-height:1.7;color:var(--ink2);margin:0">Svaka cena uključuje anesteziju i kontrolu posle zahvata. Plaćanje karticom, gotovinom ili do 12 rata bez kamate.</p>
+  </div>
+
+  <div class="g12" style="margin-top:clamp(56px,10svh,110px)">
+    <article class="rv" style="grid-column:2 / span 10;background:#fff;border-radius:28px;border:1px solid var(--line);box-shadow:0 40px 90px -50px rgba(15,27,61,0.45);overflow:hidden">
+      <header class="stk" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;padding:clamp(22px,3vw,36px);border-bottom:1px solid var(--ink)">
+        <div><span class="mn" style="display:block;color:var(--ink2)">Dokument</span><span style="font-weight:800;font-size:20px">Izveštaj o cenama</span></div>
+        <div><span class="mn" style="display:block;color:var(--ink2)">Br.</span><span style="font-family:var(--mono);font-size:16px">DSB-2026-09</span></div>
+        <div><span class="mn" style="display:block;color:var(--ink2)">Izdato</span><span style="font-family:var(--mono);font-size:16px">{{ datum }}</span></div>
+        <div><span class="mn" style="display:block;color:var(--ink2)">Valuta</span><span style="font-family:var(--mono);font-size:16px">RSD · PDV uključen</span></div>
+      </header>
+      <sc-for list="{{ grupe }}" as="g" hint-placeholder-count="4">
+        <section style="padding:clamp(18px,2.4vw,30px) clamp(22px,3vw,36px) 6px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-bottom:10px;border-bottom:2px solid var(--plava)"><h2 style="font-weight:800;font-size:clamp(22px,2vw,30px);letter-spacing:-0.03em;margin:0">{{ g.t }}</h2><span class="mn" style="color:var(--plava)">{{ g.id }}</span></div>
+          <sc-for list="{{ g.r }}" as="r" hint-placeholder-count="4">
+            <div class="stk" style="display:grid;grid-template-columns:90px minmax(0,1fr) 140px 130px;gap:14px;align-items:baseline;padding:13px 0;border-bottom:1px dashed var(--line)">
+              <span style="font-family:var(--mono);font-size:12px;color:var(--ink2)">{{ r.ref }}</span>
+              <span style="font-size:16px">{{ r.t }}</span>
+              <span style="font-family:var(--mono);font-size:12px;color:var(--ink2)">{{ r.w }}</span>
+              <span style="font-family:var(--mono);font-size:16px;text-align:right">{{ r.p }}</span>
+            </div>
+          </sc-for>
+        </section>
+      </sc-for>
+      <footer class="stk" style="display:grid;grid-template-columns:2fr 1fr;gap:24px;align-items:end;padding:clamp(22px,3vw,36px);margin-top:18px;background:var(--led)">
+        <p style="font-size:14px;line-height:1.7;color:var(--ink2);margin:0">Napomena: cene za implante, fasete i ortodonciju su početne. Tačan iznos piše u planu terapije koji dobijaš na prvom pregledu, pre bilo kakvog zahvata.</p>
+        <div style="text-align:right"><span class="mn" style="display:block;color:var(--ink2)">Potpis</span><span style="font-weight:800;font-size:18px">dr Ana Marić</span></div>
+      </footer>
+    </article>
+  </div>
+
+  <div class="g12" style="margin-top:clamp(64px,12svh,130px);row-gap:16px">
+    <div class="rv" style="grid-column:2 / span 5;padding:28px;border-radius:24px;background:var(--ink);color:#fff;display:flex;flex-direction:column;gap:18px"><span class="mn" style="color:#8FB0EC">Na rate</span><span style="font-weight:800;font-size:clamp(34px,3.4vw,56px);line-height:0.95;letter-spacing:-0.04em">Do 12 rata, 0% kamate.</span><span style="font-size:15px;opacity:0.75">Za sve iznose preko 30.000 RSD, karticama banaka partnera.</span></div>
+    <div class="rv" style="grid-column:7 / span 5;padding:28px;border-radius:24px;background:var(--plava);color:#fff;display:flex;flex-direction:column;justify-content:space-between;gap:18px"><span class="mn" style="opacity:0.8">Počni ovde</span><span style="font-weight:800;font-size:clamp(34px,3.4vw,56px);line-height:0.95;letter-spacing:-0.04em">Pregled 2.500 RSD</span><a class="hv" href="zakazivanje.html" style="align-self:flex-start;display:inline-flex;align-items:center;min-height:52px;padding:0 22px;border-radius:999px;background:#fff;color:var(--ink);font-weight:700" style-hover="background:var(--ink);color:#fff">Zakaži pregled →</a></div>
+  </div>
+</main>
+<dc-import name="BelaFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const d = new Date();
+    return { datum: String(d.getDate()).padStart(2,'0') + '.' + String(d.getMonth()+1).padStart(2,'0') + '.' + d.getFullYear(), grupe:[
+      {t:'Dijagnostika',id:'A',r:[{ref:'A-01',t:'Pregled i plan terapije',w:'45 min',p:'2.500'},{ref:'A-02',t:'3D snimak (CBCT)',w:'10 min',p:'6.000'},{ref:'A-03',t:'Ortopan snimak',w:'5 min',p:'2.200'},{ref:'A-04',t:'Kontrola posle 6 meseci',w:'20 min',p:'1.500'}]},
+      {t:'Prevencija i opšta',id:'B',r:[{ref:'B-01',t:'Uklanjanje kamenca i poliranje',w:'40 min',p:'4.800'},{ref:'B-02',t:'Kompozitna plomba, jedna površina',w:'30 min',p:'5.500'},{ref:'B-03',t:'Lečenje kanala, po kanalu',w:'60 min',p:'9.000'},{ref:'B-04',t:'Vađenje zuba',w:'20 min',p:'3.500'}]},
+      {t:'Implantologija',id:'C',r:[{ref:'C-01',t:'Implant sa ugradnjom',w:'60 min',p:'72.000'},{ref:'C-02',t:'Cirkonijum krunica na implantu',w:'45 min',p:'38.000'},{ref:'C-03',t:'Nadogradnja kosti',w:'45 min',p:'od 28.000'}]},
+      {t:'Estetika i ortodoncija',id:'D',r:[{ref:'D-01',t:'Izbeljivanje u ordinaciji',w:'90 min',p:'18.000'},{ref:'D-02',t:'Keramička faseta, po zubu',w:'3 posete',p:'42.000'},{ref:'D-03',t:'Providne folije, blagi slučaj',w:'6—9 mes',p:'96.000'},{ref:'D-04',t:'Fiksna proteza, po vilici',w:'12—18 mes',p:'120.000'}]}
+    ] };
+  }
+}
+</script>
+</body>
+</html>

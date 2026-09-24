@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="BelaHeader" active="prva" hint-size="100%,124px"></dc-import>
+<main>
+  <section class="mm" style="padding:clamp(48px,10svh,120px) 0 clamp(48px,8svh,96px)">
+    <div class="g12" style="row-gap:28px;align-items:end">
+      <div style="grid-column:1 / span 8"><span class="mn" style="color:var(--plava)">Protokol prve posete · 45 min · 2.500 RSD</span><h1 style="font-weight:800;font-size:clamp(88px,13vw,240px);line-height:0.88;letter-spacing:-0.055em;margin:20px 0 0">Prvi put?<br><span style="color:var(--plava)">Evo tačno šta sledi.</span></h1></div>
+    </div>
+  </section>
+
+  <section style="padding:clamp(80px,14svh,160px) 0">
+    <div class="g12">
+      <div class="rv" style="grid-column:1 / -1;position:relative;background:#fff;border-radius:28px;border:1px solid var(--line);padding:clamp(22px,3vw,44px)">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:24px"><span style="font-weight:800;font-size:20px">Sl. A — Vremenska osa posete</span><span class="mn" style="color:var(--plava)">T = minuti od dolaska</span></div>
+        <div aria-hidden="true" class="hm" style="display:flex;justify-content:space-between;border-bottom:1px solid var(--ink);padding-bottom:6px;font-family:var(--mono);font-size:11px;color:var(--ink2)">
+          <sc-for list="{{ ticks }}" as="t" hint-placeholder-count="10"><span>{{ t }}</span></sc-for>
+        </div>
+        <div aria-hidden="true" class="hm" style="height:10px;background:repeating-linear-gradient(90deg,var(--ink) 0 1px,transparent 1px calc(100% / 45))"></div>
+        <div class="hm" style="position:relative;height:clamp(180px,24svh,240px);margin-top:18px">
+          <sc-for list="{{ koraci }}" as="k" hint-placeholder-count="5">
+            <div style="position:absolute;left:{{ k.l }};width:{{ k.w }};top:{{ k.top }};height:64px;border-radius:14px;background:{{ k.bg }};color:{{ k.c }};padding:10px 12px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden"><span class="mn">{{ k.t }}</span><span style="font-weight:800;font-size:15px;white-space:nowrap">{{ k.n }}</span></div>
+          </sc-for>
+        </div>
+        <ol style="list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px" class="stk">
+          <sc-for list="{{ koraci }}" as="k" hint-placeholder-count="5">
+            <li style="border-top:2px solid {{ k.bg }};padding-top:14px"><span style="font-family:var(--mono);font-size:22px;color:var(--plava)">{{ k.t }}</span><div style="font-weight:800;font-size:18px;margin-top:8px">{{ k.n }}</div><p style="font-size:14px;line-height:1.55;color:var(--ink2);margin:6px 0 0">{{ k.d }}</p></li>
+          </sc-for>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:0 0 clamp(96px,18svh,200px)">
+    <div class="g12" style="row-gap:16px">
+      <div class="rv" style="grid-column:1 / span 6;padding:clamp(24px,3vw,40px);border-radius:28px;background:var(--ink);color:#fff">
+        <span class="mn" style="color:#8FB0EC">Ponesi sa sobom</span>
+        <ul style="list-style:none;margin:18px 0 0;padding:0">
+          <sc-for list="{{ ponesi }}" as="p" hint-placeholder-count="4"><li style="display:flex;gap:14px;align-items:baseline;padding:14px 0;border-top:1px solid rgba(255,255,255,0.14);font-size:17px"><span style="font-family:var(--mono);color:#8FB0EC">{{ p.n }}</span>{{ p.t }}</li></sc-for>
+        </ul>
+      </div>
+      <div class="rv" style="grid-column:7 / span 6;padding:clamp(24px,3vw,40px);border-radius:28px;background:#fff;border:1px solid var(--line)">
+        <span class="mn" style="color:var(--plava)">Posle posete</span>
+        <ul style="list-style:none;margin:18px 0 0;padding:0">
+          <sc-for list="{{ posle }}" as="p" hint-placeholder-count="4"><li style="display:flex;gap:14px;align-items:baseline;padding:14px 0;border-top:1px solid var(--line);font-size:17px"><span style="font-family:var(--mono);color:var(--plava)">{{ p.n }}</span>{{ p.t }}</li></sc-for>
+        </ul>
+      </div>
+      <div class="rv" style="grid-column:1 / -1;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-top:40px;padding-top:28px;border-top:1px solid var(--ink)">
+        <p style="font-weight:800;font-size:clamp(34px,4vw,64px);line-height:0.95;letter-spacing:-0.045em;margin:0">Strah od zubara? <span style="color:var(--plava)">Reci nam na početku.</span></p>
+        <a class="hv" href="zakazivanje.html" style="display:inline-flex;align-items:center;min-height:58px;padding:0 28px;border-radius:999px;background:var(--plava);color:#fff;font-weight:700" style-hover="background:var(--plava2);color:#fff">Zakaži prvu posetu →</a>
+      </div>
+    </div>
+  </section>
+</main>
+<dc-import name="BelaFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const K = [[0,5,'00:00','Prijava','Bez čekaonice. Dva minuta, bez papira.','#DCE7F7','var(--ink)','0%'],[5,10,'00:05','Razgovor','Šta te boli, šta želiš i čega se plašiš.','var(--ink)','#fff','34%'],[15,10,'00:15','3D snimak','Digitalni snimak, rezultat odmah na ekranu.','var(--plava)','#fff','0%'],[25,15,'00:25','Pregled i foto','Pregled svakog zuba i fotografije.','#DCE7F7','var(--ink)','34%'],[40,5,'00:40','Plan i cena','Plan terapije na papiru, sa tačnom cenom.','var(--ink)','#fff','68%']];
+    const koraci = K.map(k => ({ l: (k[0]/45*100)+'%', w: 'calc(' + (k[1]/45*100) + '% - 6px)', t:k[2], n:k[3], d:k[4], bg:k[5], c:k[6], top:k[7] }));
+    const ticks = []; for (let i = 0; i <= 45; i += 5) ticks.push(String(i).padStart(2,'0'));
+    return { koraci, ticks,
+      ponesi:[{n:'01',t:'Ličnu kartu ili pasoš'},{n:'02',t:'Stare snimke zuba, ako ih imaš'},{n:'03',t:'Spisak lekova koje piješ'},{n:'04',t:'Pitanja koja želiš da postaviš'}],
+      posle:[{n:'01',t:'Plan terapije na papiru i mejlom'},{n:'02',t:'Tačna cena za svaki korak'},{n:'03',t:'Predlog prvog termina'},{n:'04',t:'Nijednu obavezu da nastaviš'}] };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="IronHeader" active="cene" hint-size="100%,112px"></dc-import>
+<main>
+  <section style="border-bottom:1px solid var(--line)">
+    <div class="g12" style="padding-top:clamp(56px,10svh,110px);padding-bottom:clamp(40px,7svh,72px);row-gap:20px;align-items:end">
+      <h1 class="d" style="grid-column:1 / span 8;font-size:clamp(120px,18vw,320px);margin:0">Cene</h1>
+      <p style="grid-column:9 / span 4;font-size:15px;line-height:1.6;color:var(--siva);margin:0">Bez upisnine, bez ugovora na godinu dana. Članarinu produžavaš jednim klikom, a zamrzavaš je do 30 dana.</p>
+    </div>
+  </section>
+  <section aria-label="Tabla sa cenama" style="border-bottom:1px solid var(--line)">
+    <div class="mo hm" style="display:grid;grid-template-columns:80px minmax(0,4fr) minmax(0,2fr) minmax(0,2fr) minmax(0,3fr) 200px;gap:0;padding:0 var(--m);color:var(--siva);border-bottom:1px solid var(--line)">
+      <span style="padding:14px 0">#</span><span style="padding:14px 0">Paket</span><span style="padding:14px 0">Trajanje</span><span style="padding:14px 0">Ulazak</span><span style="padding:14px 0;text-align:right">RSD</span><span></span>
+    </div>
+    <sc-for list="{{ p }}" as="x" hint-placeholder-count="5">
+      <div class="rv stk" style="display:grid;grid-template-columns:80px minmax(0,4fr) minmax(0,2fr) minmax(0,2fr) minmax(0,3fr) 200px;align-items:center;padding:0 var(--m);border-bottom:1px solid var(--line);background:{{ x.bg }};color:{{ x.c }}">
+        <span class="d" style="font-size:32px;padding:18px 0;opacity:0.6">{{ x.n }}</span>
+        <span style="padding:18px 0"><span class="d" style="display:block;font-size:clamp(36px,3.6vw,60px)">{{ x.t }}</span><span style="display:block;font-size:14px;opacity:0.7;margin-top:6px">{{ x.d }}</span></span>
+        <span class="mo" style="padding:18px 0">{{ x.w }}</span>
+        <span class="mo" style="padding:18px 0">{{ x.u }}</span>
+        <span class="d" style="font-size:clamp(64px,7vw,128px);line-height:0.8;text-align:right;padding:18px 0;font-variant-numeric:tabular-nums">{{ x.v }}</span>
+        <a class="d hv" href="upis.html?paket={{ x.id }}" style="display:flex;justify-content:center;align-items:center;min-height:64px;margin-left:20px;border:2px solid {{ x.bc }};font-size:22px" style-hover="background:var(--bela);color:var(--crna);border-color:var(--bela)">Izaberi</a>
+      </div>
+    </sc-for>
+  </section>
+  <section style="border-bottom:1px solid var(--line)">
+    <div class="stk2" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr))">
+      <sc-for list="{{ ukljuceno }}" as="u" hint-placeholder-count="4"><div class="rv" style="padding:clamp(20px,2.4vw,32px);border-right:1px solid var(--line);min-height:200px;display:flex;flex-direction:column;justify-content:space-between;gap:20px"><span class="mo" style="color:var(--neon)">{{ u.n }}</span><span><span class="d" style="display:block;font-size:30px">{{ u.t }}</span><span style="display:block;font-size:14px;color:var(--siva);margin-top:6px">{{ u.d }}</span></span></div></sc-for>
+    </div>
+  </section>
+  <section><div class="g12" style="padding-top:clamp(64px,12svh,130px);padding-bottom:clamp(64px,12svh,130px);row-gap:24px;align-items:end"><p class="rv d" style="grid-column:1 / span 8;font-size:clamp(56px,7vw,128px);margin:0">Studenti i srednjoškolci: <span style="color:var(--neon)">−20%.</span></p><p class="rv mo" style="grid-column:10 / span 3;color:var(--siva);margin:0">Uz važeći indeks ili đačku knjižicu, na mesečnu i tromesečnu.</p></div></section>
+</main>
+<dc-import name="IronFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const row = (n,id,t,d,w,u,v,hot) => ({n,id,t,d,w,u,v,bg: hot ? 'var(--neon)' : 'transparent', c: hot ? 'var(--crna)' : 'var(--bela)', bc: hot ? 'var(--crna)' : 'var(--bela)'});
+    return {
+      p: [row('01','dan','Dnevna karta','Jedan ulazak, cela sala.','1 DAN','1×','600'),row('02','14','14 dana','Izazov sa trenerom i merenjem.','14 DANA','NEOGRANIČENO','1.990',true),row('03','mesec','Mesečna','Sve sprave i grupni treninzi.','30 DANA','NEOGRANIČENO','3.900'),row('04','kvartal','Tromesečna','Uz zamrzavanje do 30 dana.','90 DANA','NEOGRANIČENO','10.500'),row('05','godina','Godišnja','3.000 RSD mesečno.','365 DANA','NEOGRANIČENO','36.000')],
+      ukljuceno: [{n:'01',t:'Grupni treninzi',d:'HIIT i Početnici uz svaku članarinu.'},{n:'02',t:'Svlačionica',d:'Tuševi, ormarići sa šifrom, peškir 100 RSD.'},{n:'03',t:'InBody',d:'Merenje jednom mesečno.'},{n:'04',t:'Aplikacija',d:'Termini, napredak i podsetnici.'}]
+    };
+  }
+}
+</script>
+</body>
+</html>

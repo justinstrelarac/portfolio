@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="LavHeader" active="dogadjaji" hint-size="100%,88px"></dc-import>
+<main>
+  <section style="background:var(--ink);color:var(--papir);overflow:hidden">
+    <div class="g12" style="padding-top:clamp(56px,12svh,140px);row-gap:36px;align-items:end">
+      <div style="grid-column:1 / span 8">
+        <span class="lbl" style="color:var(--sunce)">Događaji · Jesen 2026</span>
+        <h1 style="font-family:var(--serif);font-weight:400;font-size:clamp(88px,13vw,240px);line-height:0.86;letter-spacing:-0.035em;margin:20px 0 0">Večeri<br><span style="font-style:italic;color:var(--sunce)">uz klapu.</span></h1>
+      </div>
+      <p style="grid-column:9 / span 4;font-size:16px;line-height:1.7;opacity:0.8;margin:0">Četvrtkom pevamo, poslednjeg četvrtka u mesecu probamo vino. Mesta je malo, pa se rezerviše unapred.</p>
+    </div>
+    <div style="height:clamp(300px,52svh,560px);margin-top:clamp(48px,8svh,88px)"><dc-import name="LavKadar" style="display:block;width:100%;height:100%" v="klapa" alt="Klapa od pet pevača u polukrugu pod toplom svetlošću" cap="" meta="" hint-size="100%,100%"></dc-import></div>
+  </section>
+
+  <section style="padding:clamp(80px,16svh,180px) 0">
+    <div class="g12">
+      <div style="grid-column:1 / -1;border-top:1px solid var(--ink)">
+        <sc-for list="{{ ev }}" as="e" hint-placeholder-count="5">
+          <article class="rv stk" style="display:grid;grid-template-columns:minmax(0,2fr) minmax(0,6fr) minmax(0,2fr) minmax(0,2fr);gap:24px;align-items:center;padding:clamp(22px,3.4svh,34px) 0;border-bottom:1px solid var(--line)">
+            <div style="display:flex;align-items:baseline;gap:12px"><span style="font-family:var(--serif);font-size:clamp(56px,5.6vw,96px);line-height:0.8;letter-spacing:-0.03em;color:var(--bordo)">{{ e.d }}</span><span class="lbl" style="color:var(--muted)">{{ e.m }}<br>{{ e.dan }}</span></div>
+            <div><span class="lbl" style="color:var(--muted)">{{ e.tip }} · {{ e.h }}</span><h2 style="font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(28px,2.8vw,44px);line-height:1.05;margin:8px 0 0">{{ e.t }}</h2><p style="font-size:15px;line-height:1.6;color:var(--muted);margin:8px 0 0">{{ e.o }}</p></div>
+            <span style="font-family:var(--mono);font-size:15px">{{ e.c }}</span>
+            <a class="lbl hv" href="rezervacija.html" style="display:inline-flex;justify-content:center;align-items:center;min-height:50px;border:1px solid var(--ink)" style-hover="background:var(--ink);color:var(--papir)">{{ e.cta }}</a>
+          </article>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--papir2);padding:clamp(80px,16svh,180px) 0">
+    <div class="g12" style="row-gap:28px">
+      <h2 class="rv" style="grid-column:1 / span 6;font-family:var(--serif);font-weight:400;font-size:clamp(52px,6vw,104px);line-height:0.9;letter-spacing:-0.03em;margin:0">Šta je <span style="font-style:italic;color:var(--bordo)">klapa?</span></h2>
+      <p class="rv" style="grid-column:7 / span 5;font-size:clamp(17px,1.4vw,20px);line-height:1.75;margin:0">Klapa je dalmatinsko višeglasno pevanje, bez instrumenata. Pet ili šest glasova, pesme o moru, ljubavi i odlasku. Klapa Kamen peva kod nas od 2021, u dva dela po četrdeset minuta, između glavnog jela i deserta.</p>
+    </div>
+  </section>
+</main>
+<dc-import name="LavFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return { ev: [
+      {d:'02',m:'Okt',dan:'Čet',tip:'Klapa',h:'20—23h',t:'Klapa Kamen uživo',o:'Pesme sa Hvara i Visa. Uz večeru po jelovniku.',c:'bez ulaza',cta:'Rezerviši sto'},
+      {d:'09',m:'Okt',dan:'Čet',tip:'Klapa',h:'20—23h',t:'Klapa Kamen: pesme ribara',o:'Program „Kad se ribar vrati”.',c:'bez ulaza',cta:'Rezerviši sto'},
+      {d:'16',m:'Okt',dan:'Čet',tip:'Večera',h:'19h',t:'Noć brudeta',o:'Četiri brudeta sa četiri ostrva, uz pošip.',c:'3.900 / osoba',cta:'Rezerviši'},
+      {d:'30',m:'Okt',dan:'Čet',tip:'Degustacija',h:'19h',t:'Pelješac: Dingač i Postup',o:'Pet vina, pet tanjira, vinar za stolom. 18 mesta.',c:'4.900 / osoba',cta:'Rezerviši'},
+      {d:'27',m:'Nov',dan:'Čet',tip:'Degustacija',h:'19h',t:'Korčula: pošip i grk',o:'Bela vina uz školjke i ribu sa žara. 18 mesta.',c:'4.900 / osoba',cta:'Rezerviši'}
+    ]};
+  }
+}
+</script>
+</body>
+</html>

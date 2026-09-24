@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="IronHeader" active="programi" hint-size="100%,112px"></dc-import>
+<main>
+  <section style="border-bottom:1px solid var(--line)">
+    <div class="g12" style="padding-top:clamp(56px,10svh,110px);padding-bottom:clamp(40px,7svh,72px);row-gap:20px;align-items:end">
+      <h1 class="d" style="grid-column:1 / span 9;font-size:clamp(120px,18vw,320px);margin:0">Programi</h1>
+      <p style="grid-column:10 / span 3;font-size:15px;line-height:1.6;color:var(--siva);margin:0">Četiri programa, jedan sistem. Svaki ima trenera, termin i cilj za osam nedelja.</p>
+    </div>
+  </section>
+  <section class="stk" style="display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--line)">
+    <sc-for list="{{ p }}" as="x" hint-placeholder-count="4">
+      <a class="rv hv" href="{{ x.h }}" style="position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;gap:48px;min-height:clamp(380px,56svh,560px);padding:clamp(24px,3vw,44px);border-right:1px solid var(--line);border-bottom:1px solid var(--line)" style-hover="background:var(--ugalj)">
+        <span aria-hidden="true" class="d olt" style="position:absolute;right:-1vw;top:-2svh;font-size:clamp(180px,22vw,380px);line-height:0.8;opacity:0.5">{{ x.n }}</span>
+        <div style="position:relative;display:flex;justify-content:space-between;gap:12px"><span class="mo" style="color:var(--neon)">Program {{ x.n }}</span><span class="mo">{{ x.w }}</span></div>
+        <div style="position:relative">
+          <div class="d" style="font-size:clamp(72px,8vw,144px)">{{ x.t }}</div>
+          <p style="font-size:16px;line-height:1.55;color:var(--siva);margin:12px 0 0;max-width:36ch">{{ x.d }}</p>
+          <div style="display:flex;gap:6px;margin-top:22px" aria-label="Intenzitet {{ x.iv }} od 5"><sc-for list="{{ x.bar }}" as="b" hint-placeholder-count="5"><span style="width:36px;height:10px;background:{{ b }}"></span></sc-for></div>
+        </div>
+      </a>
+    </sc-for>
+  </section>
+  <section style="background:var(--neon);color:var(--crna)">
+    <div class="g12" style="padding-top:clamp(64px,12svh,130px);padding-bottom:clamp(64px,12svh,130px);row-gap:24px">
+      <div class="rv" style="grid-column:1 / span 4"><span class="mo">Uporedi</span><h2 class="d" style="font-size:clamp(56px,6.4vw,112px);margin:14px 0 0">Koji je<br>tvoj?</h2></div>
+      <div class="rv" style="grid-column:6 / -1;overflow-x:auto">
+        <div style="min-width:560px;border-top:2px solid var(--crna)">
+          <div class="mo" style="display:grid;grid-template-columns:2fr repeat(4,1fr);padding:12px 0;border-bottom:2px solid var(--crna)"><span></span><span>Snaga</span><span>HIIT</span><span>Početnici</span><span>Personalni</span></div>
+          <sc-for list="{{ tab }}" as="r" hint-placeholder-count="5"><div style="display:grid;grid-template-columns:2fr repeat(4,1fr);align-items:baseline;padding:14px 0;border-bottom:1px solid rgba(10,10,10,0.3)"><span style="font-weight:700">{{ r.k }}</span><span class="d" style="font-size:24px">{{ r.a }}</span><span class="d" style="font-size:24px">{{ r.b }}</span><span class="d" style="font-size:24px">{{ r.c }}</span><span class="d" style="font-size:24px">{{ r.e }}</span></div></sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section><div class="g12" style="padding-top:clamp(64px,12svh,130px);padding-bottom:clamp(64px,12svh,130px);row-gap:24px;align-items:end"><p class="rv d" style="grid-column:1 / span 8;font-size:clamp(56px,7vw,128px);margin:0">Ne znaš? Kreni od <span style="color:var(--neon)">14 dana.</span></p><div class="rv" style="grid-column:10 / span 3"><a class="d hv" href="izazov.html" style="display:flex;justify-content:center;align-items:center;min-height:72px;background:var(--neon);color:var(--crna);font-size:28px" style-hover="background:var(--bela);color:var(--crna)">14-dnevni izazov →</a></div></div></section>
+</main>
+<dc-import name="IronFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const bar = n => [1,2,3,4,5].map(i => i <= n ? 'var(--neon)' : 'var(--ugalj2)');
+    return {
+      p: [{n:'01',t:'Snaga',w:'60 MIN · 3×',d:'Šipka, tegovi, progresija svake nedelje.',iv:4,h:'snaga.html'},{n:'02',t:'HIIT',w:'40 MIN · 3×',d:'Grupni intervali uz jedan tajmer.',iv:5,h:'hiit.html'},{n:'03',t:'Početnici',w:'50 MIN · 2×',d:'Tehnika pre težine, grupa od šest.',iv:2,h:'pocetnici.html'},{n:'04',t:'Personalni',w:'60 MIN · PO DOGOVORU',d:'Ti i trener, plan i ishrana.',iv:3,h:'personalni.html'}].map(x => Object.assign(x, { bar: bar(x.iv) })),
+      tab: [{k:'Intenzitet',a:'4/5',b:'5/5',c:'2/5',e:'3/5'},{k:'Grupa',a:'8',b:'18',c:'6',e:'1'},{k:'Nedeljno',a:'3×',b:'3×',c:'2×',e:'2—3×'},{k:'Za',a:'Jači',b:'Brži',c:'Prvi put',e:'Cilj'},{k:'Uz članarinu',a:'Da',b:'Da',c:'Da',e:'+ paket'}]
+    };
+  }
+}
+</script>
+</body>
+</html>

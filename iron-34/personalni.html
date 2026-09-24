@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="IronHeader" active="programi" hint-size="100%,112px"></dc-import>
+<dc-import name="IronProgram" p="{{ p }}" hint-size="100%,100svh"></dc-import>
+<dc-import name="IronFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() { return { p: {"n":"04","t":"Personalni","lead":"Ti i trener, jedan na jedan. Plan treninga i ishrane po tvom cilju, termin kad tebi odgovara.","spec":[{"k":"Trajanje","v":"60 MIN","c":"var(--bela)"},{"k":"Intenzitet","v":"■■■□□","c":"var(--neon)"},{"k":"Grupa","v":"1 NA 1","c":"var(--bela)"},{"k":"Paket","v":"8 / 12","c":"var(--bela)"}],"trNaslov":"Tvoj cilj, tvoj termin.","blokovi":[{"t":"NED 1","n":"I","naziv":"Procena","d":"InBody merenje, istorija povreda, cilj."},{"t":"NED 1—4","n":"II","naziv":"Osnova","d":"Plan treninga i jelovnik za prvi mesec."},{"t":"NED 5—8","n":"III","naziv":"Napredak","d":"Merenje i korekcija plana svake druge nedelje."},{"t":"NED 8","n":"IV","naziv":"Samostalno","d":"Plan koji nastavljaš i bez trenera."}],"ciljNaslov":"Rezultat koji možeš da izmeriš.","ciljevi":[{"n":"01","t":"Jasan cilj na papiru prvog dana."},{"n":"02","t":"Merenje svake druge nedelje."},{"n":"03","t":"Plan ishrane koji možeš da držiš."}],"trener":"Ivana · ishrana i personalni","termini":[{"d":"PON—PET","v":"06:00—22:00","m":"Po dogovoru"},{"d":"SUB","v":"08:00—18:00","m":"Po dogovoru"},{"d":"Online","v":"uvek","m":"Poruke sa trenerom"},{"d":"Merenje","v":"na 2 ned.","m":"InBody"}],"cta":"Jedan trener. Nula izgovora.","nextH":"snaga.html","nextT":"Snaga"} }; }
+}
+</script>
+</body>
+</html>

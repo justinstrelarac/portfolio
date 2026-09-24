@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><script src="image-slot.js"></script></helmet>
+<dc-import name="BelaHeader" active="tim" hint-size="100%,124px"></dc-import>
+<main>
+  <section class="mm" style="padding:clamp(48px,10svh,120px) 0 clamp(48px,8svh,96px)">
+    <div class="g12" style="row-gap:28px;align-items:end">
+      <div style="grid-column:1 / span 8"><span class="mn" style="color:var(--plava)">Tim · 4 doktora · 3 asistentkinje</span><h1 style="font-weight:800;font-size:clamp(88px,13vw,240px);line-height:0.88;letter-spacing:-0.055em;margin:20px 0 0">Ljudi iza<br><span style="color:var(--plava)">stolice.</span></h1></div>
+      <p style="grid-column:9 / span 4;font-size:16px;line-height:1.7;color:var(--ink2);margin:0">Svako radi samo svoju specijalnost. Implant ti ugrađuje implantolog, a zube ti ispravlja ortodont.</p>
+    </div>
+  </section>
+
+  <section style="padding:clamp(40px,6svh,80px) 0 clamp(96px,18svh,200px)">
+    <sc-for list="{{ tim }}" as="d" hint-placeholder-count="4">
+      <article class="rv" style="border-top:1px solid var(--ink);padding:clamp(32px,6svh,64px) 0">
+        <div class="g12 tim-row" style="row-gap:24px;align-items:start">
+          <div style="grid-column:1 / span 3;aspect-ratio:3/4;border-radius:24px;overflow:hidden;background:#DCE7F7"><sc-if value="{{ d.foto }}" hint-placeholder-val="{{ false }}"><div role="img" aria-label="{{ d.alt }}" style="width:100%;height:100%;background-image:{{ d.bg }};background-size:cover;background-position:center 20%"></div></sc-if><sc-if value="{{ d.nemaFoto }}" hint-placeholder-val="{{ true }}"><image-slot id="bela-{{ d.id }}" shape="rect" placeholder="Fotografija: {{ d.n }}" style="width:100%;height:100%"></image-slot></sc-if></div>
+          <div style="grid-column:5 / span 4">
+            <span class="mn" style="color:var(--plava)">{{ d.s }}</span>
+            <h2 style="font-weight:800;font-size:clamp(40px,4.4vw,72px);line-height:0.92;letter-spacing:-0.045em;margin:12px 0 0">{{ d.n }}</h2>
+            <p style="font-size:17px;line-height:1.65;color:var(--ink2);margin:18px 0 0">{{ d.bio }}</p>
+          </div>
+          <dl style="grid-column:10 / span 3;margin:0;border-top:1px solid var(--line)">
+            <sc-for list="{{ d.meta }}" as="m" hint-placeholder-count="4"><div style="display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)"><dt class="mn" style="color:var(--ink2)">{{ m.k }}</dt><dd style="margin:0;font-family:var(--mono);font-size:13px;text-align:right">{{ m.v }}</dd></div></sc-for>
+            <a class="hv" href="zakazivanje.html" style="display:flex;justify-content:center;align-items:center;min-height:50px;margin-top:16px;border-radius:999px;border:1px solid var(--ink);font-weight:700;font-size:14px" style-hover="background:var(--ink);color:#fff">Termin kod&nbsp;{{ d.kratko }}&nbsp;→</a>
+          </dl>
+        </div>
+      </article>
+    </sc-for>
+  </section>
+
+  <section style="background:var(--ink);color:#fff;padding:clamp(80px,14svh,160px) 0">
+    <div class="g12" style="row-gap:24px">
+      <p class="rv" style="grid-column:1 / span 7;font-weight:800;font-size:clamp(40px,4.8vw,84px);line-height:0.95;letter-spacing:-0.045em;margin:0">„Najbolji tretman je onaj koji pacijent razume pre nego što sedne u stolicu.”</p>
+      <div class="rv" style="grid-column:9 / span 4;align-self:end"><span class="mn" style="color:#8FB0EC">dr Ana Marić · osnivač, 2014.</span><p style="font-size:15px;line-height:1.7;opacity:0.75;margin:12px 0 0">Zato svaki plan dobijaš na papiru, sa cenom i trajanjem, i nosiš ga kući da razmisliš.</p></div>
+    </div>
+  </section>
+</main>
+<dc-import name="BelaFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() { return { tim:[].concat([
+    {foto:'dr-maric.jpg',id:'DR-01',n:'dr Ana Marić',kratko:'dr Marić',s:'Implantologija · osnivač',g:'#C9DAF7',alt:'Portret dr Ane Marić u ordinaciji',bio:'Ugrađuje implante od 2009. Planira svaki zahvat na 3D snimku i ne počinje dok pacijent ne vidi plan na ekranu.',meta:[{k:'Specijalizacija',v:'Oralna hirurgija'},{k:'U Beli od',v:'2014'},{k:'Jezici',v:'SR · EN · DE'},{k:'Radi',v:'PON · SRE · PET'}]},
+    {foto:'dr-popovic.jpg',id:'DR-02',n:'dr Lena Popović',kratko:'dr Popović',s:'Estetska stomatologija',g:'#D6E3F8',alt:'Portret dr Lene Popović',bio:'Fasete i izbeljivanje. Pre brušenja uvek radi digitalnu probu, da pacijent vidi osmeh u ogledalu.',meta:[{k:'Specijalizacija',v:'Protetika'},{k:'U Beli od',v:'2017'},{k:'Jezici',v:'SR · EN'},{k:'Radi',v:'UTO · ČET · SUB'}]},
+    {foto:'dr-ilic.jpg',id:'DR-03',n:'dr Mina Ilić',kratko:'dr Ilić',s:'Ortodoncija',g:'#BFD2F4',alt:'Portret dr Mine Ilić',bio:'Providne folije za odrasle i fiksne proteze za decu. Svaki plan pokazuje kao 3D animaciju pre prve folije.',meta:[{k:'Specijalizacija',v:'Ortopedija vilica'},{k:'U Beli od',v:'2019'},{k:'Jezici',v:'SR · EN · IT'},{k:'Radi',v:'PON · UTO · ČET'}]},
+    {foto:'dr-jovic.jpg',id:'DR-04',n:'dr Sara Jović',kratko:'dr Jović',s:'Opšta i dečja stomatologija',g:'#D0DDF6',alt:'Portret dr Sare Jović',bio:'Plombe, kanali i deca. Prvi pregled kod nje traje duže jer prvo objašnjava, pa tek onda radi.',meta:[{k:'Specijalizacija',v:'Dečja stomatologija'},{k:'U Beli od',v:'2021'},{k:'Jezici',v:'SR · EN'},{k:'Radi',v:'SVAKI DAN'}]}
+  ]).map(d => Object.assign({ foto:'' }, d, { nemaFoto: !d.foto, bg: d.foto ? "url('" + d.foto + "')" : 'none' })) }; }
+}
+</script>
+</body>
+</html>

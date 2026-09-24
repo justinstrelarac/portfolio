@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+  .rin{width:100%;font:inherit;font-size:18px;color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--ink);border-radius:0;padding:12px 0;min-height:54px;-webkit-appearance:none;appearance:none}
+  .rin:focus{outline:none;border-bottom:2px solid var(--bordo)}
+  .rin[aria-invalid="true"]{border-bottom:2px solid #B3261E}
+  .opt{font:inherit;cursor:pointer;background:transparent;color:var(--ink);border:1px solid var(--line);transition:background-color .2s ease,color .2s ease,border-color .2s ease}
+  .opt:hover:not(:disabled){border-color:var(--ink)}
+  .opt[aria-pressed="true"]{background:var(--bordo);color:var(--papir);border-color:var(--bordo)}
+  .opt:disabled{cursor:not-allowed;opacity:0.4;text-decoration:line-through}
+  @media(prefers-reduced-motion:reduce){.opt{transition:none}}
+</style>
+</helmet>
+<dc-import name="LavHeader" active="" hint-size="100%,88px"></dc-import>
+<main>
+  <section style="padding:clamp(48px,10svh,120px) 0 clamp(28px,5svh,56px)">
+    <div class="g12" style="row-gap:28px;align-items:end">
+      <div style="grid-column:1 / span 8">
+        <span class="lbl" style="color:var(--bordo)">Rezervacija · traje manje od minuta</span>
+        <h1 style="font-family:var(--serif);font-weight:400;font-size:clamp(88px,12vw,220px);line-height:0.86;letter-spacing:-0.035em;margin:20px 0 0">Vaš <span style="font-style:italic;color:var(--bordo)">sto.</span></h1>
+      </div>
+      <p style="grid-column:9 / span 4;font-size:15px;line-height:1.7;color:var(--muted);margin:0">Potvrda stiže porukom odmah. Dan ranije, podsetnik sa opcijom otkazivanja. Za 9 i više osoba: <a href="proslave.html" style="color:var(--ink);border-bottom:1px solid var(--ink)">proslave</a>.</p>
+    </div>
+  </section>
+
+  <section style="border-top:1px solid var(--ink)">
+    <ol aria-label="Koraci rezervacije" style="list-style:none;margin:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:0 var(--m)">
+      <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+        <li style="display:flex;align-items:center;gap:12px;min-height:64px;border-bottom:3px solid {{ s.bar }};color:{{ s.col }}"><span style="font-family:var(--mono);font-size:13px">{{ s.n }}</span><span class="hm" style="font-family:var(--serif);font-size:clamp(18px,1.8vw,24px)">{{ s.t }}</span><span class="lbl hm" style="margin-left:auto">{{ s.val }}</span></li>
+      </sc-for>
+    </ol>
+  </section>
+
+  <section style="padding:clamp(48px,9svh,100px) 0 clamp(96px,18svh,200px)">
+    <div class="g12" style="row-gap:32px">
+      <div style="grid-column:1 / span 4">
+        <span style="font-family:var(--serif);font-style:italic;font-size:clamp(88px,10vw,176px);line-height:0.8;color:var(--sunce)">{{ cur.n }}</span>
+        <h2 style="font-family:var(--serif);font-weight:400;font-size:clamp(36px,3.6vw,60px);line-height:1;letter-spacing:-0.02em;margin:16px 0 0">{{ cur.q }}</h2>
+        <p style="font-size:15px;line-height:1.65;color:var(--muted);margin:14px 0 0;max-width:30ch">{{ cur.h }}</p>
+      </div>
+      <div style="grid-column:6 / -1" aria-live="polite">
+        <sc-if value="{{ is1 }}" hint-placeholder-val="{{ true }}">
+          <div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px">
+            <sc-for list="{{ dani }}" as="d" hint-placeholder-count="14">
+              <button type="button" class="opt" aria-pressed="{{ d.on }}" onClick="{{ d.pick }}" aria-label="{{ d.aria }}" style="display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-height:clamp(72px,9svh,96px);padding:10px"><span class="lbl">{{ d.w }}</span><span style="font-family:var(--serif);font-size:clamp(24px,2.4vw,36px);line-height:1">{{ d.d }}</span></button>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ is2 }}" hint-placeholder-val="{{ false }}">
+          <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px">
+            <sc-for list="{{ osobe }}" as="o" hint-placeholder-count="8">
+              <button type="button" class="opt" aria-pressed="{{ o.on }}" onClick="{{ o.pick }}" aria-label="{{ o.aria }}" style="min-height:clamp(96px,14svh,140px);font-family:var(--serif);font-size:clamp(48px,5vw,84px);line-height:1">{{ o.v }}</button>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ is3 }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:22px">
+            <sc-for list="{{ termini }}" as="g" hint-placeholder-count="2">
+              <div><span class="lbl" style="color:var(--muted)">{{ g.t }}</span>
+                <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px;margin-top:10px">
+                  <sc-for list="{{ g.s }}" as="s" hint-placeholder-count="6">
+                    <button type="button" class="opt" aria-pressed="{{ s.on }}" disabled="{{ s.full }}" onClick="{{ s.pick }}" style="min-height:56px;font-family:var(--mono);font-size:16px">{{ s.v }}</button>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-for>
+            <p class="lbl" style="color:var(--muted);margin:0">Precrtani termini su popunjeni.</p>
+          </div>
+        </sc-if>
+        <sc-if value="{{ is4 }}" hint-placeholder-val="{{ false }}">
+          <form novalidate="" onSubmit="{{ submit }}" aria-label="Potvrda rezervacije" style="display:flex;flex-direction:column;gap:26px">
+            <div style="background:#F8EEDF;padding:22px 24px;display:flex;flex-wrap:wrap;gap:12px 32px">
+              <span><span class="lbl" style="display:block;color:var(--muted)">Dan</span><span style="font-family:var(--serif);font-size:24px">{{ sum.d }}</span></span>
+              <span><span class="lbl" style="display:block;color:var(--muted)">Osoba</span><span style="font-family:var(--serif);font-size:24px">{{ sum.o }}</span></span>
+              <span><span class="lbl" style="display:block;color:var(--muted)">Vreme</span><span style="font-family:var(--serif);font-size:24px">{{ sum.t }}</span></span>
+            </div>
+            <div class="stk" style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+              <label class="lbl" style="display:flex;flex-direction:column;gap:6px">Ime i prezime<input class="rin" name="ime" autocomplete="name" value="{{ f.ime }}" onChange="{{ on.ime }}" aria-invalid="{{ inv.ime }}"><span style="font-family:var(--sans);letter-spacing:0;text-transform:none;font-size:13px;color:#B3261E;min-height:16px">{{ err.ime }}</span></label>
+              <label class="lbl" style="display:flex;flex-direction:column;gap:6px">Telefon<input class="rin" type="tel" name="tel" autocomplete="tel" inputmode="tel" placeholder="06x xxx xxxx" value="{{ f.tel }}" onChange="{{ on.tel }}" aria-invalid="{{ inv.tel }}"><span style="font-family:var(--sans);letter-spacing:0;text-transform:none;font-size:13px;color:#B3261E;min-height:16px">{{ err.tel }}</span></label>
+            </div>
+            <label class="lbl" style="display:flex;flex-direction:column;gap:6px">Napomena (opciono)<input class="rin" name="nap" placeholder="Alergije, peka, sto na terasi…" value="{{ f.nap }}" onChange="{{ on.nap }}"></label>
+            <button type="submit" class="lbl hv" disabled="{{ loading }}" style="align-self:flex-start;min-height:60px;padding:0 36px;border:0;cursor:pointer;background:var(--bordo);color:var(--papir);letter-spacing:0.22em" style-hover="background:var(--bordo2)">{{ btn }}</button>
+          </form>
+        </sc-if>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:32px;border-top:1px solid var(--line);padding-top:18px">
+          <button type="button" class="lbl" onClick="{{ back }}" disabled="{{ noBack }}" style="min-height:48px;background:none;border:0;cursor:pointer;color:var(--ink);font:inherit;font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase">← Nazad</button>
+          <span class="lbl" style="color:#B3261E">{{ msg }}</span>
+          <button type="button" class="lbl hv" onClick="{{ next }}" disabled="{{ noNext }}" style="min-height:52px;padding:0 26px;border:1px solid var(--ink);background:none;cursor:pointer;color:var(--ink);font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase" style-hover="background:var(--ink);color:var(--papir)">{{ nextLbl }}</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<dc-import name="LavFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const W = ['Ned','Pon','Uto','Sre','Čet','Pet','Sub'];
+const WL = ['nedelja','ponedeljak','utorak','sreda','četvrtak','petak','subota'];
+const iso = d => d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+class Component extends DCLogic {
+  state = { step:1, datum:'', osobe:'', vreme:'', f:{ime:'',tel:'',nap:''}, err:{}, loading:false, msg:'' };
+  renderVals() {
+    const s = this.state;
+    const go = st => this.setState({ step: st, msg: '' });
+    const base = new Date(); base.setHours(12,0,0,0);
+    const dani = []; for (let i = 0; i < 14; i++) { const d = new Date(base); d.setDate(base.getDate() + i); const v = iso(d);
+      dani.push({ w: i === 0 ? 'Danas' : W[d.getDay()], d: d.getDate() + '.', aria: WL[d.getDay()] + ' ' + d.getDate() + '.', on: String(s.datum === v), pick: () => this.setState({ datum: v, vreme: '', step: 2, msg: '' }) }); }
+    const osobe = []; for (let i = 1; i <= 8; i++) osobe.push({ v: String(i), aria: i + ' osoba', on: String(s.osobe === String(i)), pick: () => this.setState({ osobe: String(i), step: 3, msg: '' }) });
+    const seed = (s.datum || 'x').split('').reduce((a, c) => a + c.charCodeAt(0), 0);
+    const slot = (v, i) => ({ v, full: ((seed + i * 7) % 5 === 0) || undefined, on: String(s.vreme === v), pick: () => this.setState({ vreme: v, step: 4, msg: '' }) });
+    const termini = [{ t:'Ručak', s:['12:00','12:30','13:00','13:30','14:00','14:30','15:00'].map(slot) }, { t:'Večera', s:['18:00','18:30','19:00','19:30','20:00','20:30','21:00','21:30'].map((v,i) => slot(v, i + 9)) }];
+    const dObj = s.datum ? new Date(s.datum + 'T12:00') : null;
+    const dLbl = dObj ? WL[dObj.getDay()] + ', ' + dObj.getDate() + '.' + (dObj.getMonth()+1) + '.' : '';
+    const Q = { 1:{q:'Koji dan?',h:'Primamo rezervacije do dve nedelje unapred.'}, 2:{q:'Koliko vas dolazi?',h:'Za 9 i više osoba pripremamo grupni meni.'}, 3:{q:'U koliko sati?',h:'Sto čuvamo 15 minuta posle termina.'}, 4:{q:'Na čije ime?',h:'Broj koristimo samo za potvrdu i podsetnik.'} };
+    const steps = [['01','Datum',dLbl],['02','Osobe',s.osobe],['03','Termin',s.vreme],['04','Potvrda','']].map((x, i) => ({ n:x[0], t:x[1], val:x[2], bar: s.step === i+1 ? 'var(--bordo)' : (s.step > i+1 ? 'var(--ink)' : 'var(--line)'), col: s.step >= i+1 ? 'var(--ink)' : 'var(--muted)' }));
+    const can = { 1: !!s.datum, 2: !!s.osobe, 3: !!s.vreme, 4: false };
+    const on = {}; ['ime','tel','nap'].forEach(k => on[k] = ev => { const v = ev.target.value; this.setState(st => { const e = Object.assign({}, st.err); delete e[k]; return { f: Object.assign({}, st.f, {[k]: v}), err: e }; }); });
+    const inv = {}; Object.keys(s.err).forEach(k => inv[k] = 'true');
+    const submit = ev => { ev.preventDefault(); const e = {};
+      if (s.f.ime.trim().length < 2) e.ime = 'Upišite ime.';
+      if (s.f.tel.replace(/\D/g,'').length < 8) e.tel = 'Proverite broj telefona.';
+      if (Object.keys(e).length) { this.setState({ err: e, msg: 'Proverite označena polja' }); return; }
+      this.setState({ loading: true, msg: '' });
+      const q = new URLSearchParams({ ime: s.f.ime.trim(), datum: s.datum, vreme: s.vreme, osobe: s.osobe });
+      setTimeout(() => { window.location.href = 'hvala.html?' + q.toString(); }, 900); };
+    return {
+      steps, cur: Object.assign({ n: '0' + s.step }, Q[s.step]),
+      is1: s.step === 1, is2: s.step === 2, is3: s.step === 3, is4: s.step === 4,
+      dani, osobe, termini, sum: { d: dLbl, o: s.osobe, t: s.vreme },
+      f: s.f, on, inv, err: Object.assign({ime:'',tel:''}, s.err), submit,
+      loading: s.loading || undefined, btn: s.loading ? 'Čuvamo vaš sto…' : 'Potvrdi rezervaciju',
+      msg: s.msg,
+      back: () => go(Math.max(1, s.step - 1)), noBack: s.step === 1 || undefined,
+      next: () => can[s.step] ? go(s.step + 1) : this.setState({ msg: 'Prvo izaberite' }),
+      noNext: s.step === 4 || undefined, nextLbl: s.step === 4 ? 'Poslednji korak' : 'Dalje →'
+    };
+  }
+}
+</script>
+</body>
+</html>

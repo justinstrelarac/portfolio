@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="IronHeader" active="programi" hint-size="100%,112px"></dc-import>
+<dc-import name="IronProgram" p="{{ p }}" hint-size="100%,100svh"></dc-import>
+<dc-import name="IronFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() { return { p: {"n":"02","t":"HIIT","lead":"Grupni intervali uz jedan tajmer i 18 ljudi koji ne staju. Najbrži način da se oznojiš posle posla.","spec":[{"k":"Trajanje","v":"40 MIN","c":"var(--bela)"},{"k":"Intenzitet","v":"■■■■■","c":"var(--neon)"},{"k":"Grupa","v":"MAX 18","c":"var(--bela)"},{"k":"Kalorija","v":"~450","c":"var(--bela)"}],"trNaslov":"40 minuta, bez pauze za telefon.","blokovi":[{"t":"00—08","n":"I","naziv":"Paljenje","d":"Skokovi, konopac, dinamično istezanje."},{"t":"08—28","n":"II","naziv":"Intervali","d":"40 sekundi rada, 20 odmora. Pet stanica."},{"t":"28—36","n":"III","naziv":"Finiš","d":"Veslanje na 500 m, tim protiv tima."},{"t":"36—40","n":"IV","naziv":"Spuštanje","d":"Disanje i istezanje na podu."}],"ciljNaslov":"Kondicija koja se oseća na stepenicama.","ciljevi":[{"n":"01","t":"Brže oporavljanje između serija."},{"n":"02","t":"Veslanje 500 m ispod dva minuta."},{"n":"03","t":"Tri treninga nedeljno bez preskakanja."}],"trener":"Jelena · kondicija","termini":[{"d":"UTO","v":"06:30 · 18:00","m":"Stanice"},{"d":"ČET","v":"06:30 · 18:00","m":"Tim protiv tima"},{"d":"PET","v":"19:00","m":"Petak finiš"},{"d":"NED","v":"10:00","m":"Otvoreni HIIT"}],"cta":"Tajmer kreće u 18:00. Sa tobom ili bez tebe.","nextH":"pocetnici.html","nextT":"Početnici"} }; }
+}
+</script>
+</body>
+</html>

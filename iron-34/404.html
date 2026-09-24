@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="IronHeader" active="" hint-size="100%,112px"></dc-import>
+<main style="position:relative;overflow:hidden;min-height:84svh;display:flex;align-items:center">
+  <div aria-hidden="true" class="tape" style="top:14%;transform:rotate(-5deg);font-size:clamp(28px,3.4vw,52px)">{{ tape }}</div>
+  <div aria-hidden="true" class="d olt" style="position:absolute;right:-2vw;bottom:-6svh;font-size:clamp(260px,44vw,800px);line-height:0.78">404</div>
+  <div class="g12" style="position:relative;width:100%;padding-top:clamp(140px,22svh,220px);padding-bottom:clamp(64px,10svh,110px);row-gap:24px">
+    <div style="grid-column:1 / span 9">
+      <span class="mo" style="color:var(--neon)">Greška 404</span>
+      <h1 class="d" style="font-size:clamp(80px,11vw,200px);margin:14px 0 0">Ova stranica je odustala.<br><span style="color:var(--neon)">Ti nemoj.</span></h1>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:32px">
+        <a class="d hv" href="index.html" style="display:inline-flex;align-items:center;min-height:68px;padding:0 28px;background:var(--neon);color:var(--crna);font-size:28px" style-hover="background:var(--bela);color:var(--crna)">Nazad na trening →</a>
+        <a class="mo hv" href="raspored.html" style="display:inline-flex;align-items:center;min-height:68px;padding:0 22px;border:1px solid var(--bela)" style-hover="border-color:var(--neon);color:var(--neon)">Raspored</a>
+      </div>
+    </div>
+  </div>
+</main>
+<dc-import name="IronFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic { renderVals() { return { tape: Array(12).fill('Greška 404 ◆ Bez izgovora ◆ ').join('') }; } }
+</script>
+</body>
+</html>
