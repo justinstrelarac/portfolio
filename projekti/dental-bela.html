@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="Studija" d="{{ d }}" hint-size="100%,100svh"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const S = '../sajtovi/dental-bela/';
+class Component extends DCLogic {
+  renderVals() {
+    const t = (n,tt,h,m,s,e,r) => ({n,t:tt,href:S+h,misao:m,svrha:s,emocija:e,reakcija:r});
+    return { d: {
+      num:'02', name:'Dental Studio Bela', sector:'Stomatologija · Beograd', role:'Art direkcija, UX, veb dizajn, automatizacija', tags:['Veb dizajn','Automatizacija'],
+      lead:'Ordinacija predstavljena kao klinička skulptura: milimetarska mreža, sfere i mono podaci. Obećanje „Osmeh bez čekanja” je prikazano kao podatak, a ne kao slogan.',
+      site:S+'index.html', analiza:S+'ANALIZA.md', mockup:'../assets/rad-02-dental-bela.png',
+      fontCss:'https://fonts.googleapis.com/css2?family=Manrope:wght@800&family=JetBrains+Mono:wght@400&display=swap',
+      izazov:'Pacijenti zakazuju telefonom u radno vreme, a propušteni termini ostavljaju rupe u rasporedu. Strah od zubara i od nepoznate cene odlaže dolazak mesecima.',
+      ciljevi:[{t:'0 praznih termina',d:'Podsetnici i lista čekanja popunjavaju svako otkazivanje.'},{t:'Cena unapred',d:'Cenovnik kao nalaz, plan terapije na papiru.'},{t:'Manje straha',d:'Prva poseta prikazana minut po minut.'}],
+      publika:[{t:'Zaposleni 30—55',d:'Nemaju vremena da zovu u radno vreme, zakazuju uveče sa telefona.'},{t:'Pacijenti za implant',d:'Upoređuju ordinacije po ceni, garanciji i broju poseta.'},{t:'Roditelji',d:'Traže doktora za decu i termin posle škole.'}],
+      sitemap:[{t:'Usluge',bg:'#fff',c:'var(--ink)'},{t:'Implantati',bg:'#fff',c:'var(--ink)'},{t:'Estetika',bg:'#fff',c:'var(--ink)'},{t:'Ortodoncija',bg:'#fff',c:'var(--ink)'},{t:'Tim',bg:'#fff',c:'var(--ink)'},{t:'Cene',bg:'#fff',c:'var(--ink)'},{t:'Prva poseta',bg:'#fff',c:'var(--ink)'},{t:'Zakazivanje → Hvala',bg:'var(--accent)',c:'var(--bg)'},{t:'Kontakt',bg:'#fff',c:'var(--ink)'},{t:'404',bg:'#fff',c:'var(--ink2)'}],
+      paleta:[{n:'Led',hex:'#EAF1FB',p:'60%',w:6,t:'#0F1B3D'},{n:'Mastilo',hex:'#0F1B3D',p:'30%',w:3,t:'#FFFFFF'},{n:'Plava',hex:'#2563EB',p:'10%',w:1,t:'#FFFFFF'}],
+      paper:'#EAF1FB', inkP:'#0F1B3D',
+      fontovi:[{fam:"'Manrope',sans-serif",w:800,s:'normal',sample:'Osmeh bez čekanja.',opis:'Manrope 800 · naslovi, negativan tracking'},{fam:"'JetBrains Mono',monospace",w:400,s:'normal',sample:'11:30 · 2.500',opis:'JetBrains Mono · termini, cene, oznake'}],
+      motivi:['Milimetarska mreža od 72 px','Sjajne sfere i kapsula kao skulpture','Outline „BELA” iza heroja i u footeru','Mono podaci u svakom uglu','Gigantska „0” praznih termina'],
+      komponente:['Dugmad sa terminima (slobodan / izabran / zauzet)','Bento usluga sa mono cenama','Tehnički list doktora','Cenovnik kao laboratorijski nalaz','Zakazivanje sa rezimeom koji stoji desno'],
+      tour:[
+        t('01','Početna','index.html','Ima termina danas. I ne izgleda strašno.','Smiruje i vodi do termina za 30 sekundi.','Mir: mreža, sfere, mono vreme.','Klik na termin ili „Slobodnih termina danas”.'),
+        t('02','Usluge','usluge.html','Vidim i koliko traje i koliko košta.','Razvrstava na tri specijalnosti.','Preglednost: veliki redovi, tabela trajanja.','Otvara specijalnost.'),
+        t('03','Implantati','implantati.html','Četiri posete, tri meseca, deset godina garancije.','Ubeđuje za najskuplju terapiju.','Sigurnost: tok terapije sa danima.','Zakazuje konsultaciju.'),
+        t('04','Estetika','estetika.html','Prvo vidim, pa odlučim.','Ruši strah od nepovratnog brušenja.','Poverenje: digitalna proba pre početka.','Zakazuje konsultaciju.'),
+        t('05','Ortodoncija','ortodoncija.html','Nije kasno ni za mene.','Odrasli pacijenti za providne folije.','Lakoća: plan u 3D animaciji.','Zakazuje ortodonta.'),
+        t('06','Tim','tim.html','dr Ilić radi utorkom. Idem kod nje.','Poverenje u ljude.','Stručnost: tehnički list doktora.','Termin kod izabranog doktora.'),
+        t('07','Cene','cene.html','Ovo mogu da odštampam i pokažem kod kuće.','Ruši strah od cene.','Transparentnost: nalaz sa potpisom.','Pregled za 2.500 RSD.'),
+        t('08','Prva poseta','prva-poseta.html','Za 45 minuta dobijam plan i cenu.','Smanjuje strah kod novih pacijenata.','Predvidljivost: lenjir od 0 do 45.','Zakazuje prvu posetu.'),
+        t('09','Zakazivanje','zakazivanje.html','Usluga, doktor, dan, ime. Gotovo.','Glavna konverzija.','Kontrola: pogrešan izbor nije moguć.','Potvrđuje termin i ulazi na listu čekanja.'),
+        t('10','Kontakt','kontakt.html','Ima i broj za hitne slučajeve.','Dolazak i hitni slučajevi.','Jasnoća: mapa preko celog ekrana.','Poziv ili mapa.'),
+        t('11','Hvala','hvala.html?ime=Ana&usluga=Kontrola&dr=dr%20Mari%C4%87&vreme=11:30','Znam kako izgleda podsetnik.','Potvrda i manje nedolazaka.','Olakšanje: kartica podsetnika.','Dodaje u kalendar.'),
+        t('12','404','404.html','Duhovito. Idem na početnu.','Ne gubi zalutalog posetioca.','Humor: zubna karta sa 404.','Zakazuje pregled.')],
+      flowNote:'Tok zamišljen u n8n-u. Cilj je da nijedan termin ne ostane prazan i da pacijent ne mora nikog da zove.',
+      flow:[{n:'01',t:'Potvrda',d:'Poruka sa uslugom, doktorom i vremenom.',when:'odmah',bg:'var(--accent)',c:'var(--bg)'},{n:'02',t:'Podsetnik 24h',d:'Dugmad „Dolazim” i „Pomeri termin”.',when:'−24h',bg:'var(--panel)',c:'var(--ink)'},{n:'03',t:'Podsetnik 2h',d:'Adresa, parking, broj za kašnjenje.',when:'−2h',bg:'var(--panel)',c:'var(--ink)'},{n:'04',t:'Otkazivanje',d:'Termin se oslobađa u rasporedu.',when:'na klik',bg:'var(--panel)',c:'var(--ink)'},{n:'05',t:'Lista čekanja',d:'Prvi sa liste dobija ponudu termina.',when:'odmah',bg:'var(--panel)',c:'var(--ink)'},{n:'06',t:'Nova rezervacija',d:'Prihvaćen termin ulazi u raspored i šalje potvrdu.',when:'na klik',bg:'var(--panel)',c:'var(--ink)'},{n:'07',t:'Kontrola',d:'Poziv za kontrolu sa predlogom termina.',when:'+6 meseci',bg:'var(--panel)',c:'var(--ink)'},{n:'08',t:'Recenzija',d:'Jedno pitanje i link za Google recenziju.',when:'+1 dan',bg:'var(--panel)',c:'var(--ink)'}],
+      mobNote:'Na telefonu je meni mreža velikih pločica, termini su dugmad od 56 px, a rezime zakazivanja se spušta ispod koraka.',
+      mobile:[{t:'Početna',href:S+'index.html'},{t:'Cene',href:S+'cene.html'},{t:'Zakazivanje',href:S+'zakazivanje.html'}],
+      rezultat:['Otkazani termini se popunjavaju sa liste čekanja umesto da ostanu prazni.','Manje poziva na recepciji jer pacijent sam zakazuje, pomera i otkazuje.','Više konsultacija za implante jer su cena i trajanje vidljivi pre prvog poziva.'],
+      ctaT:'Treba vam raspored bez praznih termina?',
+      nextName:'IRON 34', nextHref:'iron-34.html'
+    } };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="Studija" d="{{ d }}" hint-size="100%,100svh"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const S = '../sajtovi/monolit/';
+const GP = 'linear-gradient(180deg,#FFF3E8 0%,#FFB07A 45%,#FF2E2E 100%)', GS = 'linear-gradient(180deg,#FFE6F0 0%,#F06AA0 45%,#D6246E 100%)', GN = 'linear-gradient(180deg,#E6F0FF 0%,#7FA8FF 45%,#3B7BFF 100%)', GL = 'linear-gradient(180deg,#FF5A1F 0%,#D6246E 100%)';
+const B = (t, o) => Object.assign({ t, cs:1, ar:'3/4', r:'14px', bg:'#07040A', jc:'space-between', ai:'flex-start', sh:'none', top:'', big:'', bot:'', fs:'clamp(40px,5vw,84px)', tg:GP, alt:t }, o);
+class Component extends DCLogic {
+  renderVals() {
+    const t = (n,tt,h,m,s,e,r) => ({n,t:tt,href:S+h,misao:m,svrha:s,emocija:e,reakcija:r});
+    return { d: {
+      num:'06', name:'MONOLIT', sector:'Festival elektronske muzike · Beograd, Ušće', role:'Brending, art direkcija, veb dizajn', tags:['Veb dizajn','Brending'],
+      lead:'Svetlo u mraku kao arhitektura. Neon je jedini izvor svetla, tipografija je zgrada, a svaka od tri noći ima svoju boju.',
+      site:S+'index.html', analiza:S+'ANALIZA.md', mockup:'../assets/rad-06-monolit.png',
+      fontCss:'https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@900&family=Instrument+Serif:ital@1&family=Fragment+Mono&display=swap',
+      izazov:'Novi festival se bori za pažnju sa desetinama događaja istog vikenda. Bez prepoznatljivog znaka, svaki plakat liči na prethodni, a ulaznice se prodaju tek pred sam događaj.',
+      ciljevi:[{t:'Znak koji se pamti',d:'Monolit i boje noći, dosledno svuda.'},{t:'Rana prodaja',d:'Faze cena i jasan datum poskupljenja.'},{t:'Plan noći',d:'Satnica sa binama i satima.'}],
+      publika:[{t:'Studenti 19—26',d:'Kupuju u fazi 1, dolaze sa društvom.'},{t:'Posetioci iz regiona',d:'Traže prevoz, smeštaj i satnicu unapred.'},{t:'Fanovi izvođača',d:'Kupuju jednu noć zbog jednog imena.'}],
+      sitemap:[{t:'Program / Satnica',bg:'#fff',c:'var(--ink)'},{t:'Izvođači',bg:'#fff',c:'var(--ink)'},{t:'Ana Voss',bg:'#fff',c:'var(--ink)'},{t:'Mira Ilić',bg:'#fff',c:'var(--ink)'},{t:'Ulaznice → Hvala',bg:'var(--accent)',c:'var(--bg)'},{t:'Lokacija',bg:'#fff',c:'var(--ink)'},{t:'Info / FAQ',bg:'#fff',c:'var(--ink)'},{t:'404',bg:'#fff',c:'var(--ink2)'}],
+      paleta:[{n:'Noć',hex:'#07040A',p:'70%',w:7,t:'#F2EDE6'},{n:'Tekst',hex:'#F2EDE6',p:'20%',w:2,t:'#07040A'},{n:'Petak',hex:'#FF7A1A',p:'svetlo',w:1,t:'#07040A'},{n:'Subota',hex:'#D6246E',p:'svetlo',w:1,t:'#FFFFFF'},{n:'Nedelja',hex:'#3B7BFF',p:'svetlo',w:1,t:'#FFFFFF'}],
+      paper:'#07040A', inkP:'#F2EDE6',
+      fontovi:[{fam:"'Big Shoulders Display',sans-serif",w:900,s:'normal',sample:'MONOLIT',opis:'Big Shoulders Display 900 · verzal sa gradijentom'},{fam:"'Instrument Serif',serif",w:400,s:'italic',sample:'na obali reke.',opis:'Instrument Serif Italic · glas reke · Fragment Mono za datume'}],
+      motivi:['Neon tunel od osam okvira','Svetleći monoliti (stubovi zaobljenog vrha)','Gradijent u slovima, nikad ravna boja','Boja po noći: petak, subota, nedelja','Ulaznica sa perforacijom'],
+      komponente:['Line-up poster po noćima','Satnica bine × sati sa tabovima','Karta ulaznice sa fazama','Neon SVG mapa Ušća','Stranica izvođača sa BPM-om'],
+      brendNote:'Sistem je izgrađen iz jednog oblika (monolit) i tri svetla. Sve ostalo su pravila: gradijent samo u slovima, boja samo kao svetlo, crna kao prostor.',
+      brend:[
+        B('Logo · znak + wordmark',{cs:2,ar:'2/1',jc:'center',ai:'center',top:'Znak · wordmark',big:'Monolit',fs:'clamp(56px,7vw,120px)',tg:GL,sh:'0 0 60px rgba(214,36,110,0.35)',alt:'Logo MONOLIT: znak monolita i wordmark sa gradijentom'}),
+        B('Sistem boja · po noćima',{cs:2,ar:'2/1',bg:'linear-gradient(90deg,#FF2E2E 0 33%,#D6246E 33% 66%,#3B7BFF 66%)',top:'PET · SUB · NED',big:'14 15 16',tg:'linear-gradient(180deg,#fff,#fff)',bot:'boja samo kao svetlo',alt:'Tri trake boja za tri noći'}),
+        B('Plakat 01 · petak',{bg:'radial-gradient(ellipse at 50% 70%,#FF7A1A55,#07040A 60%)',top:'Petak 14.08',big:'Ana Voss',tg:GP,bot:'Ušće · 20—06',sh:'0 0 40px rgba(255,122,26,0.3)'}),
+        B('Plakat 02 · subota',{bg:'radial-gradient(ellipse at 50% 70%,#D6246E55,#07040A 60%)',top:'Subota 15.08',big:'Mira Ilić',tg:GS,bot:'Ušće · 20—06',sh:'0 0 40px rgba(214,36,110,0.3)'}),
+        B('Plakat 03 · nedelja',{bg:'radial-gradient(ellipse at 50% 70%,#3B7BFF55,#07040A 60%)',top:'Nedelja 16.08',big:'Tiha Noć',tg:GN,bot:'Ušće · 18—02',sh:'0 0 40px rgba(59,123,255,0.3)'}),
+        B('Narukvica',{ar:'3/4',bg:'#07040A',jc:'center',ai:'center',top:'',big:'',bot:'',alt:'Narukvica festivala'}),
+        B('Ulaznica',{cs:2,ar:'5/2',r:'18px',bg:'linear-gradient(135deg,#FF7A1A33,#07040A)',top:'Ulaznica · 3 dana',big:'14—16.08',tg:'linear-gradient(180deg,#fff,#fff)',bot:'Ušće, Beograd · №0427',sh:'0 0 50px rgba(255,90,40,0.3)'}),
+        B('IG post',{ar:'1/1',bg:'radial-gradient(ellipse at 50% 60%,#FF7A1A44,#07040A 65%)',top:'Line-up otkriven',big:'36',tg:GL,bot:'izvođača · 3 noći'}),
+        B('IG story',{ar:'9/16',bg:'linear-gradient(180deg,#07040A,#2A0A2E 60%,#D6246E)',top:'Faza 1',big:'59€',tg:GP,bot:'do 1. aprila ↗'}),
+        B('Merch · majica',{cs:2,ar:'2/1',bg:'#161016',jc:'center',ai:'center',top:'Majica · crna, 240 g',big:'Mono lit',fs:'clamp(48px,5.6vw,96px)',tg:GL,bot:'znak na leđima'})
+      ].map((b, i) => i === 5 ? Object.assign(b, { bg:'linear-gradient(90deg,#07040A 0 12%,#FF7A1A 12% 88%,#07040A 88%)', top:'Narukvica', big:'M', tg:'linear-gradient(180deg,#07040A,#07040A)', bot:'3 dana · RFID', jc:'space-between', ai:'center' }) : b),
+      flow:[],
+      mobNote:'Na telefonu naslov ostaje gigantski, meni je lista reči u bojama noći, a satnica se pomera ulevo i udesno, jer je vreme važnije od širine ekrana.',
+      mobile:[{t:'Početna',href:S+'index.html'},{t:'Izvođači',href:S+'izvodjaci.html'},{t:'Ulaznice',href:S+'ulaznice.html'}],
+      rezultat:['Više ulaznica prodatih u fazi 1, jer su faza i datum poskupljenja jasni.','Prepoznatljiv znak koji radi na plakatu, narukvici i telefonu.','Manje pitanja na mrežama o satnici, prevozu i ulazu.'],
+      ctaT:'Treba vam identitet koji svetli u mraku?',
+      nextName:'Konoba Lav', nextHref:'konoba-lav.html'
+    } };
+  }
+}
+</script>
+</body>
+</html>

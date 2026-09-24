@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="Studija" d="{{ d }}" hint-size="100%,100svh"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const S = '../sajtovi/kvadrat/';
+class Component extends DCLogic {
+  renderVals() {
+    const t = (n,tt,h,m,s,e,r) => ({n,t:tt,href:S+h,misao:m,svrha:s,emocija:e,reakcija:r});
+    return { d: {
+      num:'04', name:'Kvadrat Nekretnine', sector:'Nekretnine · Beograd', role:'Art direkcija, UX, veb dizajn, izrada', tags:['Veb dizajn','Izrada'],
+      lead:'Agencija predstavljena kao arhitektonska monografija: kotne linije, osnove stanova, kamen i svetlo kroz luk. Tišina kao luksuz.',
+      site:S+'index.html', analiza:S+'ANALIZA.md', mockup:'../assets/rad-04-kvadrat.png',
+      fontCss:'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Azeret+Mono:wght@300&display=swap',
+      izazov:'Oglasi za nekretnine liče jedan na drugi: deset fotografija iz telefona, kvadratura „oko 90” i nijedna osnova. Kupci premium stanova ne veruju agencijama, a prodavci ne vide zašto bi platili proviziju.',
+      ciljevi:[{t:'Više razgledanja',d:'Kupac zakazuje kad već zna raspored i papire.'},{t:'Više prodavaca',d:'Okvirna procena pre prvog kontakta.'},{t:'Poverenje',d:'Tačna kvadratura, osnova i uknjižba na svakoj strani.'}],
+      publika:[{t:'Kupci 35—60',d:'Premium stanovi u centru, porede kvadraturu i svetlo.'},{t:'Povratnici',d:'Kupuju iz inostranstva, treba im sve na papiru.'},{t:'Prodavci',d:'Vlasnici starih stanova koji žele pravu cenu.'}],
+      sitemap:[{t:'Ponuda',bg:'#fff',c:'var(--ink)'},{t:'Nekretnina A-01',bg:'#fff',c:'var(--ink)'},{t:'Nekretnina A-02',bg:'#fff',c:'var(--ink)'},{t:'Prodaja + procena',bg:'#fff',c:'var(--ink)'},{t:'Kvartovi',bg:'#fff',c:'var(--ink)'},{t:'O nama',bg:'#fff',c:'var(--ink)'},{t:'Kontakt → Hvala',bg:'var(--accent)',c:'var(--bg)'},{t:'404',bg:'#fff',c:'var(--ink2)'}],
+      paleta:[{n:'Kamen · pesak',hex:'#E9DDCB',p:'60%',w:6,t:'#2A2622'},{n:'Sumrak',hex:'#3B3A5C',p:'30%',w:3,t:'#F4EEE4'},{n:'Sunce',hex:'#F2B872',p:'10%',w:1,t:'#2A2622'}],
+      paper:'#F4EEE4', inkP:'#2A2622',
+      fontovi:[{fam:"'Cormorant Garamond',serif",w:300,s:'italic',sample:'Prostor koji traje.',opis:'Cormorant Garamond 300 · naslovi, kurziv u boji oznake'},{fam:"'Azeret Mono',monospace",w:300,s:'normal',sample:'128 m² · 7/8 · A-01',opis:'Azeret Mono · kote, oznake, podaci · Karla za tekst'}],
+      motivi:['Luk sa sumrakom i suncem','Kotne linije sa merama','SVG osnove u razmeri 1:100','Oznake A-01… kao na nacrtu','Wordmark u footeru, razmaknut kao na tabli'],
+      komponente:['Strana monografije nekretnine','Tehnički list (tabela)','Filteri sa praznim stanjem','Kalkulator okvirne procene','Indeks kvartova sa cenom kvadrata'],
+      tour:[
+        t('01','Početna','index.html','Znaju tačnu kvadraturu. To nije uobičajeno.','Agencija kao arhitektonski biro.','Smirenost: tanak serif, kote.','Otvara izdvojenu nekretninu.'),
+        t('02','Ponuda','ponuda.html','Jedan stan, ali tačno ono što tražim.','Pregled i filteri.','Kontrola: filteri, prazno stanje.','Otvara nekretninu.'),
+        t('03','Nekretnina · Dorćol','nekretnina-dorcol.html','Zalazak preko Dunava. Hoću to uživo.','Ubeđuje na razgledanje.','Predstava o životu u stanu: kadar, tehnički list.','Zakazuje razgledanje.'),
+        t('04','Nekretnina · Vračar','nekretnina-vracar.html','Pet minuta do Kalenića.','Druga strana monografije.','Toplina: grede, svetlo s dve strane.','Zakazuje razgledanje.'),
+        t('05','Prodajte sa nama','prodaja.html','Moj stan vredi 230—260. Hoću tačnu cifru.','Dovodi prodavce.','Radoznalost: raspon uživo.','Ostavlja broj za procenu.'),
+        t('06','Kvartovi','kvartovi.html','Vračar se prodaje za 28 dana.','Stručnost po kvartovima.','Autoritet: koordinate i podaci.','Otvara ponudu.'),
+        t('07','O nama','o-nama.html','Arhitekte, ne prodavci.','Ljudi iza agencije.','Poverenje: principi kao obaveze.','Kontakt.'),
+        t('08','Kontakt','kontakt.html','Nekretnina je već izabrana.','Zakazano razgledanje.','Lakoća: forma sa oznakom nekretnine.','Šalje upit.'),
+        t('09','Hvala','hvala.html?ime=Ana&n=A-01','Znam šta sledi i kada.','Potvrda upita.','Mir: kota od „Danas” do „Ključevi”.','Čeka poziv.'),
+        t('10','404','404.html','Prazna parcela, duhovito.','Ne gubi posetioca.','Humor u jeziku nacrta.','Ponuda.')],
+      flow:[],
+      mobNote:'Na telefonu serif ostaje veliki, kote i oznake ostaju vidljive, a meni se otvara kao sadržaj monografije.',
+      mobile:[{t:'Početna',href:S+'index.html'},{t:'Nekretnina',href:S+'nekretnina-dorcol.html'},{t:'Procena',href:S+'prodaja.html'}],
+      rezultat:['Kupci dolaze na razgledanje sa već proverenim rasporedom i papirima, pa je manje uzaludnih obilazaka.','Kalkulator procene dovodi prodavce koji inače ne bi zvali agenciju.','Agencija se izdvaja od oglasnika i opravdava proviziju.'],
+      ctaT:'Treba vam sajt koji prodaje tišinom?',
+      nextName:'Mlin & Co', nextHref:'mlin-co.html'
+    } };
+  }
+}
+</script>
+</body>
+</html>

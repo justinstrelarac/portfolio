@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="Studija" d="{{ d }}" hint-size="100%,100svh"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const S = '../sajtovi/iron-34/';
+class Component extends DCLogic {
+  renderVals() {
+    const t = (n,tt,h,m,s,e,r) => ({n,t:tt,href:S+h,misao:m,svrha:s,emocija:e,reakcija:r});
+    return { d: {
+      num:'03', name:'IRON 34', sector:'Teretana · Kragujevac', role:'Art direkcija, UX, veb dizajn, izrada', tags:['Veb dizajn','Izrada'],
+      lead:'Disciplinovani brutalizam: sajt je glasan kao teretana, ali složen po švajcarskom gridu. Neon se koristi hirurški, samo jednom punom sekcijom po stranici.',
+      site:S+'index.html', analiza:S+'ANALIZA.md', mockup:'../assets/rad-03-iron-34.png',
+      fontCss:'https://fonts.googleapis.com/css2?family=Anton&family=DM+Mono&display=swap',
+      izazov:'Većina novih članova odustane u prve dve nedelje. Sajtovi teretana obećavaju transformaciju, ali ne pokazuju prvi korak. Cene su skrivene, a raspored je slika na Instagramu.',
+      ciljevi:[{t:'Upis za 14 dana',d:'Mali, jasan ulaz umesto godišnje obaveze.'},{t:'Manje odustajanja',d:'Plan na zidu i poruke kad član preskoči.'},{t:'Sve javno',d:'Cene, raspored i treneri bez poziva.'}],
+      publika:[{t:'Studenti 18—26',d:'Traže cenu i popust, treniraju uveče.'},{t:'Zaposleni 27—40',d:'Dolaze u 6:30 ili posle 18h, treba im raspored.'},{t:'Povratnici',d:'Već su odustajali, treba im neko ko prati.'}],
+      sitemap:[{t:'Programi',bg:'#fff',c:'var(--ink)'},{t:'Snaga',bg:'#fff',c:'var(--ink)'},{t:'HIIT',bg:'#fff',c:'var(--ink)'},{t:'Početnici',bg:'#fff',c:'var(--ink)'},{t:'Personalni',bg:'#fff',c:'var(--ink)'},{t:'14 dana',bg:'#fff',c:'var(--ink)'},{t:'Treneri',bg:'#fff',c:'var(--ink)'},{t:'Cene',bg:'#fff',c:'var(--ink)'},{t:'Raspored',bg:'#fff',c:'var(--ink)'},{t:'Upis → Hvala',bg:'var(--accent)',c:'var(--bg)'},{t:'Kontakt',bg:'#fff',c:'var(--ink)'},{t:'404',bg:'#fff',c:'var(--ink2)'}],
+      paleta:[{n:'Crna',hex:'#0A0A0A',p:'60%',w:6,t:'#F4F4F0'},{n:'Ugalj + bela',hex:'#161616',p:'30%',w:3,t:'#F4F4F0'},{n:'Neon',hex:'#E4FF1A',p:'10%',w:1,t:'#0A0A0A'}],
+      paper:'#0A0A0A', inkP:'#F4F4F0',
+      fontovi:[{fam:"'Anton',sans-serif",w:400,s:'normal',sample:'NE ODUSTAJ',opis:'Anton · ultra-kondenzovani verzal, izlazi iz ivica'},{fam:"'DM Mono',monospace",w:400,s:'normal',sample:'DAN 07 / 14 · 06—23',opis:'DM Mono · dani, sati, intenzitet · Archivo za tekst'}],
+      motivi:['Iskošene neon trake sa ◆','Ogroman outline „34”','Teg: neon prsten sa šipkom','Značka „14 dana do navike”','Ćelije sa ivicom od 1 px, nigde zaobljenja'],
+      komponente:['Plan na zidu: 14 ćelija','Traka intenziteta ■■■□□','Sportska kartica trenera','Tabla rezultata za cene','Matrica rasporeda sa filterom'],
+      tour:[
+        t('01','Početna','index.html','Ovo nije fitnes za slikanje. Ovde se radi.','Energija i put do upisa.','Adrenalin pod kontrolom: verzal, neon trake.','„Učlani se” ili značka 14 dana.'),
+        t('02','Programi','programi.html','HIIT je 5/5. Kreću mi Početnici.','Izbor programa.','Preglednost: trake intenziteta.','Otvara program.'),
+        t('03','Snaga','snaga.html','Znam šta radim od 10. do 35. minuta.','Detalj programa.','Sigurnost: trening u minutama.','Prijava na termin.'),
+        t('04','HIIT','hiit.html','Tajmer kreće u 18h.','Grupni intervali.','Ritam: 40 radi, 20 odmor.','Prijava na termin.'),
+        t('05','Početnici','pocetnici.html','Niko me ne gleda. Svi uče.','Prvi put u teretani.','Olakšanje: grupa od šest.','Prijava na termin.'),
+        t('06','Personalni','personalni.html','Jedan trener, nula izgovora.','Rad jedan na jedan.','Posvećenost: merenje na dve nedelje.','Upis.'),
+        t('07','14 dana','izazov.html','Ako preskočim, javiće se trener.','Ulazni proizvod.','Posvećenost: ceo plan vidljiv.','„Kreni danas”.'),
+        t('08','Treneri','treneri.html','Nikola diže 240. Zna o čemu priča.','Poverenje u ljude.','Autoritet: sportska kartica.','Trening sa trenerom.'),
+        t('09','Cene','cene.html','Bez upisnine. Probaću 14 dana.','Jasna cena.','Iskrenost: tabla rezultata.','Izaberi paket.'),
+        t('10','Raspored','raspored.html','HIIT utorkom u 18h. Stižem.','Planiranje nedelje.','Red: matrica dani × sati.','Upis.'),
+        t('11','Upis','upis.html','Tri polja. Plaćam na licu mesta.','Glavna konverzija.','Odlučnost: ogromno dugme.','„Upiši me”.'),
+        t('12','Kontakt','kontakt.html','Besplatan parking u dvorištu.','Dolazak.','Jasnoća: tri kanala, tamna mapa.','Poziv ili probni trening.'),
+        t('13','Hvala','hvala.html?ime=Marko&paket=14%20dana&start=2026-10-01','Dan 01. Ne mogu sad da odustanem.','Početak izazova.','Zamah: potvrda kao prvi dan.','Kalendar.'),
+        t('14','404','404.html','Stranica je odustala. Ja neću.','Ne gubi posetioca.','Humor u tonu brenda.','Nazad na trening.')],
+      flowNote:'Automatizacija drži člana u prvih 14 dana, kad većina odustane. Zamišljena je u n8n-u.',
+      flow:[{n:'01',t:'Dobrodošlica',d:'Poruka sa planom za 14 dana i imenom trenera.',when:'dan 01',bg:'var(--accent)',c:'var(--bg)'},{n:'02',t:'Zadatak dana',d:'Svako jutro jedan zadatak iz plana.',when:'07:00',bg:'var(--panel)',c:'var(--ink)'},{n:'03',t:'Propušten trening',d:'Poruka od trenera sa sačuvanim terminom.',when:'posle 2 dana',bg:'var(--panel)',c:'var(--ink)'},{n:'04',t:'Ponuda članarine',d:'Rezultat merenja i prvi mesec −30%.',when:'dan 14',bg:'var(--panel)',c:'var(--ink)'},{n:'05',t:'Ističe članarina',d:'Produženje jednim klikom.',when:'−5 dana',bg:'var(--panel)',c:'var(--ink)'}],
+      mobNote:'Na telefonu trake i verzal ostaju ogromni, 14 ćelija staje u dve kolone, a meni je lista ogromnih reči preko celog ekrana.',
+      mobile:[{t:'Početna',href:S+'index.html'},{t:'14 dana',href:S+'izazov.html'},{t:'Upis',href:S+'upis.html'}],
+      rezultat:['Više upisa preko 14-dnevnog izazova nego preko mesečne članarine.','Manje odustajanja u prve dve nedelje, zahvaljujući porukama posle propuštenog treninga.','Manje pitanja na recepciji o cenama i rasporedu.'],
+      ctaT:'Treba vam sajt koji ne odustaje od kupaca?',
+      nextName:'Kvadrat Nekretnine', nextHref:'kvadrat.html'
+    } };
+  }
+}
+</script>
+</body>
+</html>

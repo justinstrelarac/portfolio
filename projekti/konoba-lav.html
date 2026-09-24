@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="Studija" d="{{ d }}" hint-size="100%,100svh"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const S = '../sajtovi/konoba-lav/';
+class Component extends DCLogic {
+  renderVals() {
+    return { d: {
+      num:'01', name:'Konoba Lav', sector:'Restoran · Novi Sad', role:'Art direkcija, UX, veb dizajn, izrada', tags:['Veb dizajn','Izrada'],
+      lead:'Sajt za dalmatinsku konobu, složen kao večernji magazin sa Jadrana. Jedan cilj: da gladan posetilac za minut stigne do rezervisanog stola.',
+      site: S + 'index.html', analiza: S + 'ANALIZA.md', mockup:'../assets/rad-01-konoba-lav.png',
+      fontCss:'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Figtree:wght@500&display=swap',
+      izazov:'Gost je gladan i hoće na ručak ili večeru. Pre rezervacije mora da zna šta ima danas, da li je otvoreno i koliko košta. Restoran koji na to odgovara PDF-om ili telefonom u špicu gubi gosta u korist prvog sledećeg na mapi.',
+      ciljevi:[{t:'Sto bez poziva',d:'Rezervacija u četiri koraka, u bilo koje doba.'},{t:'Svežina kao dokaz',d:'„Ulov dana” sa komadima i satom dolaska.'},{t:'Punije četvrtkom',d:'Klapa i degustacije kao razlog za dolazak.'}],
+      publika:[{t:'Parovi 28—45',d:'Traže večeru za dvoje, rezervišu sa telefona istog dana.'},{t:'Organizatori',d:'Rođendani i poslovni ručkovi, 10 do 40 ljudi, treba im cena po osobi.'},{t:'Ljubitelji mora',d:'Letuju u Dalmaciji i traže isti ukus zimi.'}],
+      sitemap:[{t:'Meni',bg:'#fff',c:'var(--ink)'},{t:'Vina',bg:'#fff',c:'var(--ink)'},{t:'Priča',bg:'#fff',c:'var(--ink)'},{t:'Događaji',bg:'#fff',c:'var(--ink)'},{t:'Proslave',bg:'#fff',c:'var(--ink)'},{t:'Rezervacija → Hvala',bg:'var(--accent)',c:'var(--bg)'},{t:'Kontakt',bg:'#fff',c:'var(--ink)'},{t:'404',bg:'#fff',c:'var(--ink2)'}],
+      paleta:[{n:'Papir',hex:'#F3E6D3',p:'60%',w:6,t:'#2B0A0E'},{n:'Bordo',hex:'#6B1A22',p:'30%',w:3,t:'#F3E6D3'},{n:'Zalazak',hex:'#E07A4F',p:'10%',w:1,t:'#2B0A0E'}],
+      paper:'#F3E6D3', inkP:'#2B0A0E',
+      fontovi:[{fam:"'Playfair Display',serif",w:400,s:'italic',sample:'More na tanjiru.',opis:'Playfair Display · naslovi, kurziv za naglasak'},{fam:"'Figtree',sans-serif",w:500,s:'normal',sample:'Brudet 1.890',opis:'Figtree · tekst · IBM Plex Mono za cene i labele'}],
+      motivi:['Luk sa suncem i prugama mora','Ogromna bleda reč „more” iza heroja','Papirna kartica menija, blago iskošena','Tačkice do cene, rimski brojevi poglavlja','Drop cap inicijal i footer kao poster'],
+      komponente:['Red jelovnika: naziv · tačkice · mono cena · alergeni','Novinska naslovna „Ulov dana”','Stepper rezervacije u 4 koraka','Račun na stranici „Hvala”','Meni preko celog ekrana na telefonu'],
+      tour:[
+        {n:'01',t:'Početna',href:S+'index.html',misao:'Ovo miriše na more. I otvoreno je baš sad.',svrha:'Za deset sekundi: šta ima, da li je otvoreno, kako do stola.',emocija:'Večernja toplina: papir, bordo kurziv, zalazak u luku.',reakcija:'Rezerviše ili se spušta do „Ulova dana”.'},
+        {n:'02',t:'Meni',href:S+'meni.html',misao:'Sve piše, i cene. Nema iznenađenja na računu.',svrha:'Jelovnik koji se čita kao štampani, a vodi ka stolu.',emocija:'Sigurnost: tačkice do cene, rimski brojevi u boji zalaska.',reakcija:'Skače na poglavlje, rezerviše sa dna.'},
+        {n:'03',t:'Vina',href:S+'vina.html',misao:'Znaju odakle je svako vino.',svrha:'Podiže račun i gradi utisak ozbiljne kuće.',emocija:'Intima: tamna naslovna, koordinate kod regiona.',reakcija:'Bira vino ili se prijavljuje na degustaciju.'},
+        {n:'04',t:'Priča',href:S+'prica.html',misao:'Ovo nije lanac. Ovo je nečija konoba.',svrha:'Poverenje za prvu posetu.',emocija:'Nostalgija: drop cap, citat na tamnom, vremenska linija.',reakcija:'Meni ili rezervacija.'},
+        {n:'05',t:'Događaji',href:S+'dogadjaji.html',misao:'Četvrtak, klapa, bez ulaza. Idemo.',svrha:'Puni salu radnim danom.',emocija:'Iščekivanje: datumi veliki kao na plakatu.',reakcija:'Rezerviše sto za konkretan datum.'},
+        {n:'06',t:'Proslave',href:S+'proslave.html',misao:'Znam koliko košta pre nego što pitam.',svrha:'Veće rezervacije kroz jasne menije.',emocija:'Sigurnost organizatora: sve nabrojano, cena po osobi.',reakcija:'Šalje upit, Marija zove istog dana.'},
+        {n:'07',t:'Rezervacija',href:S+'rezervacija.html',misao:'Četiri klika i ime. Ne moram nikog da zovem.',svrha:'Glavna konverzija.',emocija:'Kontrola: jedno pitanje po koraku, popunjeni termini precrtani.',reakcija:'Datum → osobe → termin → potvrda.'},
+        {n:'08',t:'Kontakt',href:S+'kontakt.html',misao:'Otvoreno do 23h, parking na pet minuta.',svrha:'Dovodi gosta do vrata.',emocija:'Jasnoća: adresa kao naslov, današnji dan označen.',reakcija:'Poziv, mapa ili rezervacija.'},
+        {n:'09',t:'Hvala',href:S+'hvala.html?ime=Marko&datum=2026-10-02&vreme=20:30&osobe=2',misao:'Sređeno. Samo da ne zaboravim.',svrha:'Potvrda i manje praznih stolova.',emocija:'Olakšanje: lični račun, blago iskošen.',reakcija:'Dodaje termin u kalendar.'},
+        {n:'10',t:'404',href:S+'404.html',misao:'Zgodno, i dalje mogu da rezervišem.',svrha:'Ne gubi zalutalog posetioca.',emocija:'Blag humor: „Ovaj sto je prazan.”',reakcija:'Rezervacija ili meni.'}],
+      flowNote:'Posle rezervacije gost više ne dobija nijedan ručno poslat SMS. Tok je zamišljen u n8n-u.',
+      flow:[{n:'01',t:'Potvrda rezervacije',d:'Poruka sa danom, vremenom i brojem rezervacije.',when:'odmah',bg:'var(--accent)',c:'var(--bg)'},{n:'02',t:'Podsetnik',d:'Na dan rezervacije, sa linkom za otkazivanje.',when:'12h, isti dan',bg:'var(--panel)',c:'var(--ink)'},{n:'03',t:'Otkazivanje',d:'Sto se vraća u slobodne termine na sajtu.',when:'na klik',bg:'var(--panel)',c:'var(--ink)'},{n:'04',t:'Molba za recenziju',d:'Jedno pitanje i link za Google recenziju.',when:'sutradan 12h',bg:'var(--panel)',c:'var(--ink)'}],
+      mobNote:'Na telefonu ogromni naslovi ostaju ogromni, navigacija se otvara kao meni preko celog ekrana, a rezervacija staje u jedan ekran po koraku.',
+      mobile:[{t:'Početna',href:S+'index.html'},{t:'Meni',href:S+'meni.html'},{t:'Rezervacija',href:S+'rezervacija.html'}],
+      rezultat:['Deo rezervacija prelazi sa telefona na sajt, pa osoblje u špicu ređe prekida posao.','Podsetnik na dan dolaska smanjuje broj stolova koji ostanu prazni.','Četvrtkom, uz klapu i degustacije, sala je punija nego inače radnim danom.'],
+      ctaT:'Treba vam sajt koji puni stolove?',
+      nextName:'Dental Studio Bela', nextHref:'dental-bela.html'
+    } };
+  }
+}
+</script>
+</body>
+</html>

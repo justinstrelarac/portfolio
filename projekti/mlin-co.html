@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="Studija" d="{{ d }}" hint-size="100%,100svh"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const S = '../sajtovi/mlin-co/';
+class Component extends DCLogic {
+  renderVals() {
+    const t = (n,tt,h,m,s,e,r) => ({n,t:tt,href:S+h,misao:m,svrha:s,emocija:e,reakcija:r});
+    return { d: {
+      num:'05', name:'Mlin & Co', sector:'Prirodna kozmetika · online', role:'Art direkcija, UX, veb dizajn, izrada, automatizacija', tags:['Veb dizajn','Izrada','Automatizacija'],
+      lead:'Taktilni pastel: kremasto, mirisno i zanatski. Svaki proizvod boji svoju stranicu, a korpa zna koliko fali do besplatne dostave.',
+      site:S+'index.html', analiza:S+'ANALIZA.md', mockup:'../assets/rad-05-mlin-co.png',
+      fontCss:'https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,800,100;1,9..144,600,100&family=Spline+Sans+Mono&display=swap',
+      izazov:'Porudžbine su stizale kroz DM poruke i ručno se prepisivale u tabelu. Kupci su napuštali korpu zbog dostave, a posle prve kupovine se nisu vraćali, jer niko nije podsetio da je sapun potrošen.',
+      ciljevi:[{t:'Porudžbina bez poruka',d:'Korpa i plaćanje u tri koraka.'},{t:'Manje napuštenih korpi',d:'Podsetnik posle sat vremena, kod posle 24h.'},{t:'Ponovna kupovina',d:'„Vreme je za novi sapun?” posle 45 dana.'}],
+      publika:[{t:'Žene 25—45',d:'Čitaju sastav, kupuju sa telefona uveče.'},{t:'Kupci poklona',d:'Traže set i kartu uz poklon.'},{t:'Osetljiva koža',d:'Traže proizvod bez sintetičkog mirisa.'}],
+      sitemap:[{t:'Prodavnica',bg:'#fff',c:'var(--ink)'},{t:'Ruža & glina',bg:'#fff',c:'var(--ink)'},{t:'Žalfija',bg:'#fff',c:'var(--ink)'},{t:'Korpa → Plaćanje → Hvala',bg:'var(--accent)',c:'var(--bg)'},{t:'Pokloni',bg:'#fff',c:'var(--ink)'},{t:'Naša priča',bg:'#fff',c:'var(--ink)'},{t:'Dostava / FAQ',bg:'#fff',c:'var(--ink)'},{t:'404',bg:'#fff',c:'var(--ink2)'}],
+      paleta:[{n:'Krem',hex:'#FBF6EF',p:'60%',w:6,t:'#3A2A22'},{n:'Mastilo',hex:'#3A2A22',p:'30%',w:3,t:'#FBF6EF'},{n:'Terakota',hex:'#D9663F',p:'10%',w:1,t:'#FFFFFF'},{n:'Ruža',hex:'#F6C9D0',p:'proizvod',w:1,t:'#3A2A22'},{n:'Žalfija',hex:'#CFE3CF',p:'proizvod',w:1,t:'#3A2A22'},{n:'Med',hex:'#F8E08E',p:'proizvod',w:1,t:'#3A2A22'},{n:'Breskva',hex:'#F3A77C',p:'proizvod',w:1,t:'#3A2A22'}],
+      paper:'#FBF6EF', inkP:'#3A2A22',
+      fontovi:[{fam:"'Fraunces',serif",w:800,s:'normal',sample:'Čisto. Tvoje.',opis:'Fraunces SOFT 100 · naslovi, kurziv u terakoti'},{fam:"'Spline Sans Mono',monospace",w:400,s:'normal',sample:'100 g · 42%',opis:'Spline Sans Mono · gramaža i procenti · DM Sans za tekst'}],
+      motivi:['Sapun sa utisnutim „MLIN”','Bleda ogromna reč „mlin&co”','Okrugle značke, blago zarotirane','Svaki proizvod ima svoju boju','Ručna sveska sa isprekidanim linijama'],
+      komponente:['Brojač korpe u headeru (čuva se u pregledaču)','Etiketa proizvoda sa količinom','Recept sa procentima i trakama','Checkout u 3 koraka sa rezimeom','Prazno stanje korpe'],
+      tour:[
+        t('01','Početna','index.html','Ovo izgleda kao da miriše.','Budi želju i vodi u prodavnicu.','Mekoća: zaobljen serif, pastel, sapun.','Klik na proizvod.'),
+        t('02','Prodavnica','prodavnica.html','Imam suvu kožu. Ruža & glina.','Izbor i brzo dodavanje.','Igra: svaka ćelija druge boje.','Dodaje iz mreže.'),
+        t('03','Ruža & glina','ruza-glina.html','Sve piše, i koliko čega ima.','Ubeđuje za jedan proizvod.','Poverenje: recept sa procentima.','Dodaje, pa žalfiju.'),
+        t('04','Žalfija','zalfija.html','Za masnu kožu, ovo je moje.','Drugi proizvod, druga boja.','Svežina: zelena stranica.','Dodaje u korpu.'),
+        t('05','Korpa','korpa.html','Još 610 do besplatne dostave.','Glavna konverzija.','Lakoća: tri koraka, rezime.','Poručuje pouzećem.'),
+        t('06','Pokloni','pokloni.html','Za mamu, sa kartom. Super.','Veći račun.','Toplina: karta kao predmet.','Dodaje set.'),
+        t('07','Naša priča','prica.html','Neko ovo pravi rukama.','Poverenje u radionicu.','Iskrenost: 6 nedelja, 60 komada.','Prodavnica.'),
+        t('08','Dostava','dostava.html','Poručim do 13h, stiže sutra.','Ruši sumnje pre plaćanja.','Sigurnost: tri velike cifre.','Korpa.'),
+        t('09','Hvala','hvala.html?br=2051&ime=Jelena&grad=Kragujevac','Znam kad kreće i kad stiže.','Potvrda i najava poruka.','Radost: „Miriše već.”','Prodavnica.'),
+        t('10','404','404.html','Sapun se istopio. Slatko.','Ne gubi posetioca.','Humor u svetu brenda.','Svi sapuni.')],
+      flowNote:'Tok zamišljen u n8n-u. Vraća napuštene korpe i podseća na ponovnu kupovinu tačno kad se sapun potroši.',
+      flow:[{n:'01',t:'Napuštena korpa',d:'Korpa sa proizvodima, bez porudžbine.',when:'okidač',bg:'var(--accent)',c:'var(--bg)'},{n:'02',t:'Podsetnik',d:'„Nešto je ostalo u korpi…”, sa slikom proizvoda.',when:'+1h',bg:'var(--panel)',c:'var(--ink)'},{n:'03',t:'Kod VRATIO10',d:'10% popusta ako porudžbina još nije stigla.',when:'+24h',bg:'var(--panel)',c:'var(--ink)'},{n:'04',t:'Paket je krenuo!',d:'Broj za praćenje i procena dolaska.',when:'slanje',bg:'var(--panel)',c:'var(--ink)'},{n:'05',t:'Recenzija',d:'Jedno pitanje i ocena u jednom kliku.',when:'+5 dana',bg:'var(--panel)',c:'var(--ink)'},{n:'06',t:'Vreme je za novi sapun?',d:'Isti proizvod, jednim klikom u korpu.',when:'+45 dana',bg:'var(--panel)',c:'var(--ink)'}],
+      mobNote:'Na telefonu se meni otvara kao velike pastelne pločice, korpa je uvek u headeru sa brojem, a proizvodi su u dve kolone svojih boja.',
+      mobile:[{t:'Početna',href:S+'index.html'},{t:'Proizvod',href:S+'ruza-glina.html'},{t:'Korpa',href:S+'korpa.html'}],
+      rezultat:['Porudžbine stižu kroz sajt umesto kroz poruke, bez ručnog prepisivanja.','Deo napuštenih korpi se vraća posle podsetnika i koda VRATIO10.','Ponovna kupovina posle 45 dana postaje navika, a ne slučajnost.'],
+      ctaT:'Treba vam prodavnica koja se pamti po mirisu?',
+      nextName:'MONOLIT', nextHref:'monolit.html'
+    } };
+  }
+}
+</script>
+</body>
+</html>
