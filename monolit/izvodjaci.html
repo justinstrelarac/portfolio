@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="MonoHeader" active="izvodjaci" hint-size="100%,116px"></dc-import>
+<main>
+  <section style="position:relative;overflow:hidden;text-align:center;padding:clamp(56px,10svh,120px) 0 clamp(80px,14svh,160px)">
+    <dc-import name="MonoTunel" noc="sve" style="position:absolute;inset:0" hint-size="100%,100%"></dc-import>
+    <div style="position:relative;padding:0 var(--m)">
+      <span class="mo" style="color:var(--siva)">Izvođači · 36 · poster</span>
+      <sc-for list="{{ noci }}" as="n" hint-placeholder-count="3">
+        <div style="margin-top:clamp(36px,6svh,72px)">
+          <div class="mo" style="color:{{ n.c }};text-shadow:0 0 16px {{ n.c }}">— {{ n.dan }} {{ n.dat }} —</div>
+          <sc-for list="{{ n.red }}" as="r" hint-placeholder-count="3">
+            <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:0.1em 0.5em;margin-top:clamp(6px,1svh,12px)">
+              <sc-for list="{{ r.ime }}" as="i" hint-placeholder-count="3"><a href="{{ i.h }}" class="d {{ r.g }} hv" style="font-size:{{ r.fs }};line-height:0.92">{{ i.t }}</a></sc-for>
+            </div>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+  <section style="border-top:1px solid var(--line)">
+    <div class="stk" style="display:grid;grid-template-columns:1fr 1fr">
+      <sc-for list="{{ izdvojeni }}" as="x" hint-placeholder-count="2">
+        <a href="{{ x.h }}" class="rv hv" style="position:relative;overflow:hidden;min-height:clamp(420px,64svh,640px);display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(24px,3vw,44px);border-right:1px solid var(--line)" style-hover="background:var(--noc2)">
+          <dc-import name="MonoTunel" noc="{{ x.noc }}" style="position:absolute;inset:0" hint-size="100%,100%"></dc-import>
+          <div style="position:relative"><span class="mo" style="color:{{ x.c }}">{{ x.dan }} · {{ x.v }} · bina Monolit</span><div class="d {{ x.g }}" style="font-size:clamp(80px,9vw,168px);margin-top:12px">{{ x.t }}</div><p style="font-family:var(--serif);font-style:italic;font-size:clamp(22px,2vw,30px);margin:10px 0 0">{{ x.d }}</p></div>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+</main>
+<dc-import name="MonoFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const L = (t, h) => ({ t, h: h ? h + '.dc.html' : 'program.html' });
+    return {
+      noci: [
+        {dan:'Petak',dat:'14.08',c:'#FF7A1A',red:[{g:'gP',fs:'clamp(72px,10vw,176px)',ime:[L('Ana Voss','ana-voss')]},{g:'gP',fs:'clamp(40px,5vw,88px)',ime:[L('Kolektiv Sever'),L('Lumen 44')]},{g:'',fs:'clamp(24px,2.6vw,44px)',ime:[L('Nada B'),L('Tamni talas'),L('Krug'),L('Luka Rem'),L('Oblak B2B Zvon')]}]},
+        {dan:'Subota',dat:'15.08',c:'#D6246E',red:[{g:'gS',fs:'clamp(72px,10vw,176px)',ime:[L('Mira Ilić','mira-ilic')]},{g:'gS',fs:'clamp(40px,5vw,88px)',ime:[L('Dunav Sound System'),L('Vera Kiš')]},{g:'',fs:'clamp(24px,2.6vw,44px)',ime:[L('Ultra Nisko'),L('Sova'),L('Metar'),L('Jana Liv'),L('Ritam 11'),L('Kosa')]}]},
+        {dan:'Nedelja',dat:'16.08',c:'#3B7BFF',red:[{g:'gN',fs:'clamp(72px,10vw,176px)',ime:[L('Tiha Noć')]},{g:'gN',fs:'clamp(40px,5vw,88px)',ime:[L('Horizont'),L('Plavi čas')]},{g:'',fs:'clamp(24px,2.6vw,44px)',ime:[L('Mirna Luka'),L('Most'),L('Senka live')]}]}
+      ],
+      izdvojeni: [{t:'Ana Voss',h:'ana-voss.html',noc:'pet',c:'#FF7A1A',g:'gP',dan:'Petak',v:'23:30',d:'Berlinski techno, prvi put u Beogradu.'},{t:'Mira Ilić',h:'mira-ilic.html',noc:'sub',c:'#D6246E',g:'gS',dan:'Subota',v:'23:30',d:'Beogradski house, set od dva i po sata.'}]
+    };
+  }
+}
+</script>
+</body>
+</html>

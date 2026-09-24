@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..900,100;1,9..144,400..900,100&amp;family=DM+Sans:wght@400;500;700&amp;family=Spline+Sans+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+  :root{--krem:#FBF6EF;--krem2:#F3EADF;--ink:#3A2A22;--muted:#7A6558;--tera:#D9663F;--tera2:#BE5230;--ruza:#F6C9D0;--zalfija:#CFE3CF;--med:#F8E08E;--breskva:#F3A77C;--line:rgba(58,42,34,0.14);--serif:'Fraunces',serif;--sans:'DM Sans',sans-serif;--mono:'Spline Sans Mono',monospace;--m:clamp(18px,5vw,88px)}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--krem);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;text-wrap:pretty}
+  a{color:inherit;text-decoration:none}
+  a:hover{color:var(--tera)}
+  ::selection{background:var(--tera);color:#fff}
+  a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--tera);outline-offset:3px}
+  .g12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;padding:0 var(--m)}
+  .sf{font-family:var(--serif);font-variation-settings:"SOFT" 100,"WONK" 0;font-optical-sizing:auto}
+  .mm{font-family:var(--mono);font-size:12px;letter-spacing:0.04em}
+  .hv{transition:background-color .25s ease,color .25s ease,border-color .25s ease}
+  html.mj .rv{opacity:0;transition:opacity .9s ease}
+  html.mj .rv.in{opacity:1}
+  .m-t{position:absolute;opacity:0;pointer-events:none}
+  .m-menu{display:none}
+  .m-t:checked ~ .m-menu{display:flex}
+  @media(max-width:1000px){.m-links{display:none !important}.m-burger{display:flex !important}}
+  @media(max-width:760px){.g12 > *{grid-column:1 / -1 !important}.hm{display:none !important}.stk{grid-template-columns:1fr !important}.stk2{grid-template-columns:repeat(2,minmax(0,1fr)) !important}}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}html.mj .rv{opacity:1;transition:none}.hv{transition:none}}
+
+  html{-webkit-text-size-adjust:100%}
+  html,body{overflow-x:clip}
+  h1,h2,h3{overflow-wrap:break-word}
+  @media(max-width:760px){h1,h2{hyphens:auto;-webkit-hyphens:auto}}
+  @media(min-width:1600px){.g12{max-width:1760px;margin-left:auto;margin-right:auto}}
+  input,select,textarea{font-size:max(16px,1em)}
+  @media(max-width:760px){header > div{min-height:60px !important}}
+  html:has(.m-t:checked){overflow:hidden}
+  @media(hover:none){.hv:hover{filter:none}}
+
+  @media(max-width:760px){form button[type="submit"]{width:100%;justify-content:center}}
+  @supports(padding:env(safe-area-inset-bottom)){footer{padding-bottom:env(safe-area-inset-bottom)}}
+</style>
+<script>
+(function(){
+  if(window.__mlinj)return; window.__mlinj=true;
+  var d=document.documentElement; d.lang='sr';d.classList.add('mj');
+  var io='IntersectionObserver' in window?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -6% 0px'}):null;
+  function scan(){document.querySelectorAll('.rv:not([data-r])').forEach(function(el){el.setAttribute('data-r','1');io?io.observe(el):el.classList.add('in');});}
+  new MutationObserver(scan).observe(d,{childList:true,subtree:true}); scan();
+  setTimeout(function(){document.querySelectorAll('.rv').forEach(function(el){if(el.getBoundingClientRect().top<innerHeight)el.classList.add('in');});},900);
+  window.mlinKorpa={get:function(){try{return JSON.parse(localStorage.getItem('mlin-korpa')||'[]');}catch(e){return [];}},set:function(k){try{localStorage.setItem('mlin-korpa',JSON.stringify(k));}catch(e){} window.dispatchEvent(new Event('mlin-korpa'));},add:function(id,q){var k=this.get();var x=k.find(function(i){return i.id===id;});if(x)x.q+=q||1;else k.push({id:id,q:q||1});this.set(k);}};
+})();
+</script>
+</helmet>
+<div aria-hidden="true" style="height:40px"></div>
+<div role="note" style="position:fixed;top:0;left:0;right:0;z-index:70;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:40px;padding:0 var(--m);background:#14203A;color:#E9EEF8;font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase">
+  <a href="../../index.html#radovi" style="display:inline-flex;align-items:center;min-height:40px;color:#E9EEF8" style-hover="color:#9DB6FF">← Nazad na portfolio</a>
+  <span class="hm" style="opacity:0.7">Koncept · Justin Strelarac</span>
+</div>
+<div style="background:var(--ink);color:var(--krem);text-align:center;padding:9px var(--m);font-size:13px">Besplatna dostava iznad 3.000 din · <span class="sf" style="font-style:italic">šaljemo po celoj Srbiji</span></div>
+<header style="position:relative;z-index:50;background:var(--krem)">
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:84px;padding:0 var(--m)">
+    <a href="index.html" aria-label="Mlin &amp; Co, početna" class="sf" style="font-weight:800;font-size:clamp(24px,2vw,30px);letter-spacing:-0.03em">mlin&amp;co</a>
+    <nav class="m-links" aria-label="Glavna navigacija" style="display:flex;align-items:center;gap:clamp(18px,2.6vw,40px);font-size:16px;font-weight:500">
+      <a class="hv" href="prodavnica.html" aria-current="{{ c.prodavnica }}" style="color:{{ col.prodavnica }}">Sapuni</a>
+      <a class="hv" href="pokloni.html" aria-current="{{ c.pokloni }}" style="color:{{ col.pokloni }}">Pokloni</a>
+      <a class="hv" href="prica.html" aria-current="{{ c.prica }}" style="color:{{ col.prica }}">Naša priča</a>
+      <a class="hv" href="dostava.html" aria-current="{{ c.dostava }}" style="color:{{ col.dostava }}">Dostava</a>
+      <a class="hv" href="korpa.html" style="display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 20px;border-radius:999px;background:var(--ink);color:var(--krem)" style-hover="background:var(--tera);color:#fff">Korpa ({{ broj }})</a>
+    </nav>
+    <div class="m-burger" style="display:none;align-items:center;gap:8px">
+      <a href="korpa.html" style="display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:999px;background:var(--ink);color:var(--krem);font-weight:500">Korpa ({{ broj }})</a>
+      <label for="m-t" style="display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--ink);cursor:pointer;font-weight:500">Meni</label>
+    </div>
+    <input type="checkbox" id="m-t" class="m-t" aria-label="Otvori meni">
+    <div class="m-menu" role="dialog" aria-label="Meni" style="position:fixed;inset:0;z-index:80;background:var(--ruza);flex-direction:column;padding:24px var(--m) 28px;overflow:auto">
+      <div style="display:flex;justify-content:space-between;align-items:center;min-height:48px"><span class="sf" style="font-weight:800;font-size:26px">mlin&amp;co</span><label for="m-t" style="display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:999px;background:var(--ink);color:var(--krem);cursor:pointer">Zatvori</label></div>
+      <nav aria-label="Meni za telefon" style="margin-top:auto;display:flex;flex-direction:column;gap:10px">
+        <sc-for list="{{ links }}" as="l" hint-placeholder-count="5">
+          <a href="{{ l.h }}" style="display:flex;justify-content:space-between;align-items:center;padding:18px 22px;border-radius:28px;background:{{ l.bg }}"><span class="sf" style="font-weight:700;font-size:clamp(32px,9vw,48px);letter-spacing:-0.02em">{{ l.t }}</span><span>→</span></a>
+        </sc-for>
+      </nav>
+    </div>
+  </div>
+</header>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:170},&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;&quot;,&quot;prodavnica&quot;,&quot;pokloni&quot;,&quot;prica&quot;,&quot;dostava&quot;],&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { broj: 0 };
+  componentDidMount() { this.upd = () => { const k = (window.mlinKorpa && window.mlinKorpa.get()) || []; this.setState({ broj: k.reduce((a, i) => a + i.q, 0) }); }; this.upd(); window.addEventListener('mlin-korpa', this.upd); window.addEventListener('storage', this.upd); setTimeout(this.upd, 400); }
+  componentWillUnmount() { window.removeEventListener('mlin-korpa', this.upd); window.removeEventListener('storage', this.upd); }
+  renderVals() {
+    const a = this.props.active || '';
+    const k = ['prodavnica','pokloni','prica','dostava'];
+    const c = {}, col = {};
+    k.forEach(x => { c[x] = x === a ? 'page' : undefined; col[x] = x === a ? 'var(--tera)' : 'var(--ink)'; });
+    return { c, col, broj: this.state.broj, links: [{t:'Sapuni',h:'prodavnica.html',bg:'#FBF6EF'},{t:'Pokloni',h:'pokloni.html',bg:'#F8E08E'},{t:'Naša priča',h:'prica.html',bg:'#CFE3CF'},{t:'Dostava',h:'dostava.html',bg:'#F3A77C'}] };
+  }
+}
+</script>
+</body>
+</html>

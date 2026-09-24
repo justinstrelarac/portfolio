@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="KvHeader" active="ponuda" hint-size="100%,136px"></dc-import>
+<dc-import name="KvNekretnina" n="{{ n }}" hint-size="100%,100svh"></dc-import>
+<dc-import name="KvFooter" hint-size="100%,700px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() { return { n: {
+    id:'A-01', kvart:'Dorćol', adresa:'Cara Dušana', t1:'Stan sa lukom', t2:'nad Dunavom.', cena:'€ 385.000', m2cena:'€ 3.008 / m²', v:'door',
+    alt:'Lučni prozor dnevne sobe, zalazak sunca nad Dunavom', kadar:'Dnevna soba, 19:40',
+    lead:'Zgrada iz 1936, sedmi sprat, lučni prozor od poda do plafona okrenut zapadu.',
+    opis:'Stan je obnovljen 2022: nove instalacije, hrastov parket, originalna štukatura sačuvana. Dnevna soba od 34 m² ima zalazak sunca preko Dunava od aprila do septembra. Zgrada ima lift i čistu uknjižbu.',
+    tab:[{k:'Površina',v:'128 m²'},{k:'Sprat',v:'7 / 8'},{k:'Sobe',v:'3,5'},{k:'Kupatila',v:'2'},{k:'Godina gradnje',v:'1936'},{k:'Obnova',v:'2022'},{k:'Grejanje',v:'CG'},{k:'Orijentacija',v:'zapad · jug'},{k:'Visina plafona',v:'3,40 m'},{k:'Uknjižen',v:'da, 1/1'}],
+    plan:'a', planAlt:'Osnova stana: dnevna soba, kuhinja, dve spavaće sobe i kupatilo', m2:'128 m²',
+    sobe:[{t:'Dnevna soba',m:'34,2 m²'},{t:'Kuhinja i trpezarija',m:'14,1 m²'},{t:'Spavaća soba',m:'18,6 m²'},{t:'Spavaća soba 2',m:'13,4 m²'},{t:'Kupatila',m:'2 × 6,0 m²'},{t:'Terasa',m:'9,8 m²'}],
+    okolinaNaslov:'Sve što treba je na deset minuta.', okolina:[{v:'4′',k:'Dunavski kej'},{v:'6′',k:'Bajlonijeva pijaca'},{v:'8′',k:'Škola „Braća Baruh”'},{v:'10′',k:'Knez Mihailova'}],
+    nextH:'nekretnina-vracar.html', nextT:'Mansarda, Vračar'
+  } }; }
+}
+</script>
+</body>
+</html>

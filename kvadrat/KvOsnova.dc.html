@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<figure style="margin:0;background:#FBF8F2;border:1px solid var(--line);padding:clamp(16px,2vw,28px);display:flex;flex-direction:column;gap:12px">
+  <svg viewBox="0 0 400 300" role="img" aria-label="{{ alt }}" style="width:100%;height:auto;display:block">
+    <g fill="none" stroke="#2A2622" stroke-width="3" stroke-linejoin="miter">
+      <sc-for list="{{ zidovi }}" as="w" hint-placeholder-count="4"><path d="{{ w }}"></path></sc-for>
+    </g>
+    <g fill="none" stroke="#2A2622" stroke-width="1">
+      <sc-for list="{{ vrata }}" as="v" hint-placeholder-count="3"><path d="{{ v }}"></path></sc-for>
+    </g>
+    <g font-family="Azeret Mono, monospace" font-size="9" fill="#6F655B" letter-spacing="1">
+      <sc-for list="{{ sobe }}" as="s" hint-placeholder-count="4"><text x="{{ s.x }}" y="{{ s.y }}">{{ s.t }}</text></sc-for>
+    </g>
+    <g stroke="#B5543A" stroke-width="0.8"><line x1="20" y1="290" x2="380" y2="290"></line><line x1="20" y1="285" x2="20" y2="295"></line><line x1="380" y1="285" x2="380" y2="295"></line></g>
+    <text x="200" y="286" text-anchor="middle" font-family="Azeret Mono, monospace" font-size="9" fill="#B5543A">{{ sirina }}</text>
+  </svg>
+  <figcaption class="km" style="display:flex;justify-content:space-between;color:var(--muted)"><span>{{ cap }}</span><span>{{ m2 }}</span></figcaption>
+</figure>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:420,&quot;height&quot;:360},&quot;v&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;a&quot;,&quot;b&quot;],&quot;default&quot;:&quot;a&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;alt&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;cap&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Osnova · 1:100&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;m2&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+const PLANS = {
+  a:{zidovi:['M20 20 H380 V270 H20 Z','M200 20 V150','M20 150 H250','M250 150 V270','M300 20 V110 H380'],vrata:['M200 110 A40 40 0 0 1 240 150','M110 150 A34 34 0 0 0 144 184','M300 80 A30 30 0 0 1 330 110'],sobe:[{x:40,y:45,t:'DNEVNA 34 m²'},{x:215,y:45,t:'SPAVAĆA'},{x:310,y:45,t:'KUP.'},{x:40,y:175,t:'KUHINJA 14 m²'},{x:265,y:175,t:'SPAVAĆA 2'}],sirina:'12,40 m'},
+  b:{zidovi:['M20 20 H380 V270 H20 Z','M150 20 V270','M150 130 H380','M270 130 V270'],vrata:['M150 70 A36 36 0 0 1 186 106','M200 130 A30 30 0 0 0 230 160','M270 200 A30 30 0 0 1 300 230'],sobe:[{x:36,y:45,t:'DNEVNA 28 m²'},{x:165,y:45,t:'SPAVAĆA 16 m²'},{x:165,y:155,t:'KUHINJA'},{x:285,y:155,t:'KUP.'}],sirina:'9,00 m'}
+};
+class Component extends DCLogic {
+  renderVals() { const p = PLANS[this.props.v || 'a'] || PLANS.a; return Object.assign({}, p, { alt: this.props.alt || 'Osnova stana', cap: this.props.cap || 'Osnova · 1:100', m2: this.props.m2 || '' }); }
+}
+</script>
+</body>
+</html>

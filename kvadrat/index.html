@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="KvHeader" active="" hint-size="100%,136px"></dc-import>
+<main>
+  <section style="position:relative;padding:clamp(48px,9svh,110px) 0 clamp(80px,16svh,180px);background:linear-gradient(180deg,var(--pesak) 0%,var(--kamen) 100%);overflow:hidden">
+    <div class="g12" style="row-gap:40px;align-items:end">
+      <div style="grid-column:1 / span 6;padding-bottom:4svh">
+        <span class="km" style="color:var(--oznaka)">A-00 · Nekretnine · Beograd · od 2016.</span>
+        <h1 style="font-family:var(--serif);font-weight:300;font-size:clamp(88px,11vw,210px);line-height:0.88;letter-spacing:-0.025em;margin:22px 0 0">Prostor<br>koji <span style="font-style:italic;color:var(--oznaka)">traje.</span></h1>
+        <p style="font-size:17px;line-height:1.7;color:var(--muted);max-width:40ch;margin:28px 0 0">Stanovi i kuće sa karakterom, u kvartovima u kojima se živi dugo. Svaka nekretnina dolazi sa osnovom, pravom kvadraturom i istorijom zgrade.</p>
+        <div style="margin-top:clamp(36px,6svh,64px);border-top:1px solid var(--line);padding-top:18px;display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:clamp(28px,4vw,64px)">
+          <sc-for list="{{ stat }}" as="s" hint-placeholder-count="3"><div><div class="km" style="color:var(--muted)">{{ s.k }}</div><div style="font-family:var(--serif);font-size:clamp(34px,3.2vw,52px);margin-top:6px">{{ s.v }}</div></div></sc-for>
+        </div>
+      </div>
+      <div style="grid-column:8 / span 5;position:relative">
+        <div class="hm" style="margin-bottom:18px"><div class="kota"></div><div class="km" style="text-align:center;margin-top:8px;color:var(--muted)">4,20 m</div></div>
+        <div style="position:relative;aspect-ratio:4/5">
+          <dc-import name="KvLuk" v="door" alt="Kameni luk sa pogledom na sumrak i sunce, u dnu bela fasada sa lučnim vratima" style="display:block;width:100%;height:100%" hint-size="100%,100%"></dc-import>
+          <div class="hm" style="position:absolute;left:-12%;top:0;bottom:0;width:1px;background:var(--ink);opacity:0.5"></div>
+          <div class="km hm" style="position:absolute;left:-18%;top:50%;transform:rotate(-90deg);transform-origin:left top;color:var(--muted)">5,40 m</div>
+        </div>
+        <a href="nekretnina-dorcol.html" class="hv hm" style="position:absolute;right:-4%;bottom:-10%;width:min(280px,60%);background:#FBF8F2;padding:18px 20px;box-shadow:0 30px 60px -30px rgba(42,38,34,0.45);transform:rotate(-3deg)" style-hover="background:#fff">
+          <div style="display:flex;justify-content:space-between;align-items:baseline"><span class="km" style="color:var(--muted)">Izdvojeno</span><span class="km" style="background:var(--oznaka);color:#fff;padding:3px 8px">A-01</span></div>
+          <p style="font-family:var(--serif);font-size:26px;margin:10px 0 12px">Dorćol, 128 m²</p>
+          <sc-for list="{{ izd }}" as="x" hint-placeholder-count="3"><div style="display:flex;justify-content:space-between;padding:7px 0;border-top:1px solid var(--line);font-size:13px"><span>{{ x.k }}</span><span style="font-family:var(--mono);font-weight:300">{{ x.v }}</span></div></sc-for>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:clamp(96px,20svh,220px) 0">
+    <div class="g12" style="row-gap:24px"><div class="rv" style="grid-column:1 / span 5"><span class="km" style="color:var(--oznaka)">Tabla I — Izdvojene nekretnine</span><h2 style="font-family:var(--serif);font-weight:300;font-size:clamp(52px,6vw,104px);line-height:0.95;letter-spacing:-0.02em;margin:18px 0 0">Dve adrese <span style="font-style:italic">ove jeseni.</span></h2></div></div>
+    <sc-for list="{{ nek }}" as="n" hint-placeholder-count="2">
+      <article class="rv g12" style="margin-top:clamp(56px,10svh,110px);row-gap:28px;align-items:center;grid-auto-flow:dense">
+        <a href="{{ n.h }}" style="grid-column:{{ n.imgCol }};display:block;aspect-ratio:4/5;max-height:80svh" aria-label="{{ n.t }}"><dc-import name="KvLuk" v="{{ n.v }}" alt="{{ n.alt }}" style="display:block;width:100%;height:100%" hint-size="100%,100%"></dc-import></a>
+        <div style="grid-column:{{ n.txtCol }}">
+          <span class="km" style="color:var(--oznaka)">{{ n.id }} · {{ n.kvart }}</span>
+          <h3 style="font-family:var(--serif);font-weight:300;font-size:clamp(44px,4.6vw,80px);line-height:0.95;margin:14px 0 0">{{ n.t }}</h3>
+          <p style="font-size:16px;line-height:1.7;color:var(--muted);margin:18px 0 0;max-width:40ch">{{ n.d }}</p>
+          <dl style="margin:26px 0 0;display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--ink)">
+            <sc-for list="{{ n.tab }}" as="x" hint-placeholder-count="4"><div style="padding:12px 0;border-bottom:1px solid var(--line)"><dt class="km" style="color:var(--muted)">{{ x.k }}</dt><dd style="margin:4px 0 0;font-family:var(--serif);font-size:24px">{{ x.v }}</dd></div></sc-for>
+          </dl>
+          <a class="km hv" href="{{ n.h }}" style="display:inline-flex;align-items:center;min-height:48px;margin-top:22px;border-bottom:1px solid var(--ink)">Otvori stranu monografije →</a>
+        </div>
+      </article>
+    </sc-for>
+  </section>
+
+  <section style="background:var(--kamen);padding:clamp(96px,18svh,200px) 0">
+    <div class="g12" style="row-gap:24px">
+      <div class="rv" style="grid-column:1 / span 4"><span class="km" style="color:var(--oznaka)">Tabla II — Kvartovi</span><p style="font-family:var(--serif);font-weight:300;font-size:clamp(36px,3.6vw,60px);line-height:1;margin:16px 0 0">Cena kvadrata, <span style="font-style:italic">kvart po kvart.</span></p><a class="km hv" href="kvartovi.html" style="display:inline-flex;align-items:center;min-height:48px;margin-top:20px;border-bottom:1px solid var(--ink)">Svi kvartovi →</a></div>
+      <div style="grid-column:6 / -1;border-top:1px solid var(--ink)">
+        <sc-for list="{{ kv }}" as="k" hint-placeholder-count="5">
+          <a class="rv hv" href="kvartovi.html" style="display:grid;grid-template-columns:48px minmax(0,3fr) minmax(0,4fr) minmax(0,2fr);gap:18px;align-items:center;padding:18px 0;border-bottom:1px solid var(--line)" style-hover="color:var(--oznaka)">
+            <span class="km" style="color:var(--muted)">{{ k.n }}</span>
+            <span style="font-family:var(--serif);font-size:clamp(26px,2.4vw,38px)">{{ k.t }}</span>
+            <span class="hm" style="height:1px;background:var(--line);position:relative"><span style="position:absolute;left:0;top:-1px;height:3px;width:{{ k.w }};background:var(--sumrak)"></span></span>
+            <span style="font-family:var(--mono);font-weight:300;font-size:14px;text-align:right">€ {{ k.p }} / m²</span>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:clamp(120px,24svh,260px) 0">
+    <div class="g12"><blockquote class="rv" style="grid-column:3 / span 8;margin:0;text-align:center"><p style="font-family:var(--serif);font-weight:300;font-style:italic;font-size:clamp(44px,5.4vw,96px);line-height:1.02;letter-spacing:-0.015em;margin:0">„Ne prodajemo kvadrate. Prodajemo svetlo koje ulazi u sedam ujutru.”</p><footer class="km" style="margin-top:28px;color:var(--muted)">Milena Stojković · osnivač</footer></blockquote></div>
+  </section>
+
+  <section style="background:var(--sumrak);color:var(--pesak);padding:clamp(96px,18svh,200px) 0">
+    <div class="g12" style="row-gap:32px;align-items:end">
+      <div class="rv" style="grid-column:1 / span 6"><span class="km" style="color:var(--sunce)">Tabla III — Prodajte sa nama</span><h2 style="font-family:var(--serif);font-weight:300;font-size:clamp(56px,7vw,128px);line-height:0.92;letter-spacing:-0.02em;margin:18px 0 0">Koliko vredi <span style="font-style:italic;color:var(--sunce)">vaš stan?</span></h2></div>
+      <div class="rv" style="grid-column:8 / span 5">
+        <ol style="list-style:none;margin:0;padding:0;border-top:1px solid rgba(244,238,228,0.3)"><sc-for list="{{ proces }}" as="p" hint-placeholder-count="4"><li style="display:grid;grid-template-columns:56px 1fr auto;gap:14px;align-items:baseline;padding:14px 0;border-bottom:1px solid rgba(244,238,228,0.3)"><span class="km" style="color:var(--sunce)">{{ p.n }}</span><span style="font-family:var(--serif);font-size:24px">{{ p.t }}</span><span class="km" style="opacity:0.7">{{ p.w }}</span></li></sc-for></ol>
+        <a class="km hv" href="prodaja.html" style="display:inline-flex;align-items:center;min-height:54px;margin-top:24px;padding:0 24px;background:var(--sunce);color:var(--ink)" style-hover="background:var(--pesak);color:var(--ink)">Besplatna procena →</a>
+      </div>
+    </div>
+  </section>
+</main>
+<dc-import name="KvFooter" hint-size="100%,700px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() { return {
+    stat:[{k:'Površina',v:'128 m²'},{k:'Sprat',v:'7 / 8'},{k:'Lokacija',v:'Dorćol'}],
+    izd:[{k:'Cena',v:'€ 385.000'},{k:'Sobe',v:'3,5'},{k:'Useljivo',v:'odmah'}],
+    nek:[{id:'A-01',kvart:'Dorćol',t:'Stan sa lukom nad Dunavom',d:'Sedmi sprat zgrade iz 1936, obnovljene 2022. Tri spavaće sobe, dnevna soba od 34 m² i terasa okrenuta zapadu.',v:'door',alt:'Lučni prozor sa zalaskom sunca nad Dunavom',h:'nekretnina-dorcol.html',imgCol:'1 / span 5',txtCol:'7 / span 5',tab:[{k:'Površina',v:'128 m²'},{k:'Sprat',v:'7 / 8'},{k:'Sobe',v:'3,5'},{k:'Cena',v:'€ 385.000'}]},
+      {id:'A-02',kvart:'Vračar',t:'Mansarda iznad Kalenića',d:'Dvostrano orijentisan stan u potkrovlju, sa drvenim gredama i pogledom na Hram. Pet minuta od pijace.',v:'hill',alt:'Sumrak iznad krovova Vračara, sunce nisko nad brdom',h:'nekretnina-vracar.html',imgCol:'8 / span 5',txtCol:'2 / span 5',tab:[{k:'Površina',v:'86 m²'},{k:'Sprat',v:'5 / 5'},{k:'Sobe',v:'2,5'},{k:'Cena',v:'€ 248.000'}]}],
+    kv:[{n:'01',t:'Dorćol',p:'3.050',w:'82%'},{n:'02',t:'Vračar',p:'3.600',w:'96%'},{n:'03',t:'Senjak',p:'3.400',w:'90%'},{n:'04',t:'Stari grad',p:'3.300',w:'88%'},{n:'05',t:'Zvezdara',p:'2.150',w:'58%'}],
+    proces:[{n:'01',t:'Obilazak i merenje',w:'dan 1'},{n:'02',t:'Procena i osnova',w:'dan 3'},{n:'03',t:'Fotografisanje i monografija',w:'dan 10'},{n:'04',t:'Prvi kupci na razgledanju',w:'dan 14'}]
+  }; }
+}
+</script>
+</body>
+</html>

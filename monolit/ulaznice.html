@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+  .oin{width:100%;font:inherit;font-size:17px;color:var(--tekst);background:var(--noc2);border:1px solid var(--line);border-radius:14px;padding:14px 16px;min-height:56px}
+  .oin:focus{outline:none;border-color:var(--pet2);box-shadow:0 0 0 3px rgba(255,122,26,0.25)}
+  .oin[aria-invalid="true"]{border-color:#FF5A5A}
+  .kt{font:inherit;text-align:left;cursor:pointer;color:var(--tekst);background:transparent;transition:box-shadow .25s ease,border-color .25s ease}
+  .kt[aria-pressed="true"]{box-shadow:0 0 60px var(--kc)}
+  @media(prefers-reduced-motion:reduce){.kt{transition:none}}
+</style>
+</helmet>
+<dc-import name="MonoHeader" active="" hint-size="100%,116px"></dc-import>
+<main>
+  <section class="g12" style="padding-top:clamp(48px,9svh,100px);padding-bottom:clamp(32px,5svh,56px);row-gap:16px;align-items:end">
+    <h1 class="d gP" style="grid-column:1 / span 8;font-size:clamp(110px,16vw,300px);margin:0">Ulaznice</h1>
+    <div style="grid-column:9 / span 4"><span class="mo" style="color:var(--siva)">Faza {{ faza }} od 3 · cene rastu 1. aprila i 1. jula</span>
+      <div aria-hidden="true" style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:12px"><sc-for list="{{ faze }}" as="f" hint-placeholder-count="3"><span style="height:6px;border-radius:6px;background:{{ f }}"></span></sc-for></div>
+    </div>
+  </section>
+  <section style="padding:0 var(--m) clamp(56px,10svh,110px);display:flex;flex-direction:column;gap:16px">
+    <sc-for list="{{ karte }}" as="k" hint-placeholder-count="4">
+      <button type="button" class="kt rv" aria-pressed="{{ k.on }}" onClick="{{ k.pick }}" style="--kc:{{ k.glow }};display:grid;grid-template-columns:minmax(0,1fr) clamp(120px,14vw,200px);border-radius:24px;border:1px solid {{ k.bc }};background:{{ k.bg }};overflow:hidden;padding:0">
+        <span style="padding:clamp(20px,2.6vw,36px);display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:20px;align-items:end" class="stk">
+          <span><span class="mo" style="display:block;color:{{ k.c }}">{{ k.tip }}</span><span class="d" style="display:block;font-size:clamp(56px,6.4vw,112px);margin-top:10px">{{ k.t }}</span><span class="mo" style="display:block;margin-top:12px;color:var(--siva)">Ušće, Beograd · №{{ k.br }}</span></span>
+          <span style="font-size:15px;line-height:1.6;color:var(--siva)">{{ k.d }}</span>
+        </span>
+        <span style="border-left:2px dashed rgba(242,237,230,0.3);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;padding:12px;position:relative">
+          <span aria-hidden="true" style="position:absolute;left:-12px;top:-12px;width:22px;height:22px;border-radius:50%;background:var(--noc)"></span><span aria-hidden="true" style="position:absolute;left:-12px;bottom:-12px;width:22px;height:22px;border-radius:50%;background:var(--noc)"></span>
+          <span class="d" style="font-size:clamp(40px,4vw,68px);color:{{ k.c }}">{{ k.p }}</span><span class="mo" style="font-size:10px;color:var(--siva)">{{ k.stara }}</span>
+        </span>
+      </button>
+    </sc-for>
+  </section>
+  <section style="border-top:1px solid var(--line)">
+    <form novalidate="" onSubmit="{{ submit }}" aria-label="Kupovina ulaznice" class="g12" style="padding-top:clamp(48px,9svh,100px);padding-bottom:clamp(64px,12svh,130px);row-gap:20px;align-items:end">
+      <div style="grid-column:1 / span 4"><span class="mo" style="color:var(--siva)">Izabrano</span><div class="d" style="font-size:clamp(40px,4vw,68px);margin-top:10px">{{ izabrano }}</div></div>
+      <label class="mo" style="grid-column:5 / span 2;display:flex;flex-direction:column;gap:8px">Komada<select class="oin" value="{{ f.kom }}" onChange="{{ on.kom }}"><option>1</option><option>2</option><option>3</option><option>4</option></select></label>
+      <label class="mo" style="grid-column:7 / span 3;display:flex;flex-direction:column;gap:8px">Email za ulaznicu<input class="oin" type="email" autocomplete="email" value="{{ f.email }}" onChange="{{ on.email }}" aria-invalid="{{ inv.email }}"><span style="font-family:var(--sans);text-transform:none;letter-spacing:0;font-size:13px;color:#FF8A8A;min-height:16px">{{ err.email }}</span></label>
+      <button type="submit" class="mo hv" disabled="{{ loading }}" style="grid-column:10 / span 3;min-height:64px;margin-bottom:24px;border-radius:999px;border:0;cursor:pointer;background:var(--pet2);color:var(--noc);font-size:14px;box-shadow:0 0 40px rgba(255,122,26,0.45)" style-hover="background:var(--tekst)">{{ btn }}</button>
+    </form>
+  </section>
+</main>
+<dc-import name="MonoFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const K = [
+  {id:'3d',tip:'Ulaznica · 3 dana',t:'14—16.08',d:'Sve tri noći, sve bine. Narukvica stiže poštom u julu.',p:'59€',stara:'faza 1 · posle 79€',c:'#FF7A1A',br:'0427',glow:'rgba(255,122,26,0.55)'},
+  {id:'pet',tip:'Jedna noć · petak',t:'Petak 14.08',d:'Ana Voss, Kolektiv Sever, Lumen 44 i još pet.',p:'29€',stara:'faza 1 · posle 39€',c:'#FF2E2E',br:'0428',glow:'rgba(255,46,46,0.55)'},
+  {id:'sub',tip:'Jedna noć · subota',t:'Subota 15.08',d:'Mira Ilić, Dunav Sound System, Vera Kiš i još šest.',p:'29€',stara:'faza 1 · posle 39€',c:'#D6246E',br:'0429',glow:'rgba(214,36,110,0.55)'},
+  {id:'ned',tip:'Jedna noć · nedelja',t:'Nedelja 16.08',d:'Tiha Noć i ambient do izlaska sunca.',p:'19€',stara:'faza 1 · posle 25€',c:'#3B7BFF',br:'0430',glow:'rgba(59,123,255,0.55)'}
+];
+class Component extends DCLogic {
+  state = { k:'3d', f:{kom:'1',email:''}, err:{}, loading:false };
+  renderVals() {
+    const s = this.state, sel = K.find(x => x.id === s.k);
+    const on = {}; Object.keys(s.f).forEach(x => on[x] = ev => { const v = ev.target.value; this.setState(q => { const e = Object.assign({}, q.err); delete e[x]; return { f: Object.assign({}, q.f, {[x]: v}), err: e }; }); });
+    const inv = {}; Object.keys(s.err).forEach(x => inv[x] = 'true');
+    const total = parseInt(sel.p) * (+s.f.kom);
+    const submit = ev => { ev.preventDefault(); if (!/^\S+@\S+\.\S+$/.test(s.f.email)) { this.setState({ err: { email: 'Proveri email adresu.' } }); return; }
+      this.setState({ loading: true }); const q = new URLSearchParams({ k: sel.t, n: s.f.kom, br: sel.br }); setTimeout(() => { window.location.href = 'hvala.html?' + q.toString(); }, 1000); };
+    return {
+      faza: 1, faze: ['var(--pet2)','var(--line)','var(--line)'],
+      karte: K.map(k => Object.assign({}, k, { on: String(s.k === k.id), pick: () => this.setState({ k: k.id }), bc: s.k === k.id ? k.c : 'var(--line)', bg: s.k === k.id ? 'linear-gradient(135deg,' + k.c + '22,rgba(7,4,10,0))' : 'transparent' })),
+      izabrano: sel.t + ' · ' + total + '€', f: s.f, on, inv, err: Object.assign({ email:'' }, s.err), submit,
+      loading: s.loading || undefined, btn: s.loading ? 'Štampamo kartu…' : 'Kupi · ' + total + '€ ↗'
+    };
+  }
+}
+</script>
+</body>
+</html>

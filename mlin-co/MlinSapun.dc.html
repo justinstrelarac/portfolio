@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<div role="img" aria-label="{{ alt }}" style="width:100%;aspect-ratio:8/5;border-radius:34% / 46%;background:radial-gradient(ellipse at 36% 28%,rgba(255,255,255,0.75) 0%,rgba(255,255,255,0) 46%),{{ boja }};box-shadow:inset 0 -10px 22px rgba(58,42,34,0.12),0 26px 40px -22px rgba(58,42,34,0.45);transform:rotate({{ rot }});display:flex;align-items:center;justify-content:center">
+  <span style="font-family:'Fraunces',serif;font-weight:800;font-size:{{ fs }};letter-spacing:0.14em;color:rgba(58,42,34,0.22);text-shadow:0 1px 0 rgba(255,255,255,0.7)">MLIN</span>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:320,&quot;height&quot;:220},&quot;boja&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#F6C9D0&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;rot&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:0,&quot;tsType&quot;:&quot;number&quot;},&quot;alt&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() { return { boja: this.props.boja || '#F6C9D0', rot: (this.props.rot || 0) + 'deg', alt: this.props.alt || 'Sapun sa utisnutim natpisom MLIN', fs: this.props.fs || 'clamp(14px,1.6vw,26px)' }; }
+}
+</script>
+</body>
+</html>

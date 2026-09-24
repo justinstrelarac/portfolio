@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<div aria-hidden="true" style="position:absolute;inset:0;overflow:hidden;pointer-events:none;background:radial-gradient(ellipse at 50% 55%,{{ core }} 0%,rgba(7,4,10,0) 60%)">
+  <sc-for list="{{ rings }}" as="r" hint-placeholder-count="8">
+    <div style="position:absolute;left:{{ r.i }};right:{{ r.i }};top:{{ r.i }};bottom:{{ r.i }};border-radius:{{ r.rad }};border:1.5px solid {{ r.c }};box-shadow:0 0 18px {{ r.c }},inset 0 0 18px {{ r.c }};opacity:{{ r.o }}"></div>
+  </sc-for>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:800,&quot;height&quot;:500},&quot;noc&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;sve&quot;,&quot;pet&quot;,&quot;sub&quot;,&quot;ned&quot;],&quot;default&quot;:&quot;sve&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+const P = { pet:['#FF7A1A','#FF2E2E','#D6246E'], sub:['#D6246E','#B21A9C','#FF2E7E'], ned:['#3B7BFF','#6A4BFF','#2FB6FF'], sve:['#FF7A1A','#D6246E','#8A2BE2'] };
+class Component extends DCLogic {
+  renderVals() {
+    const p = P[this.props.noc || 'sve'] || P.sve;
+    const rings = []; for (let i = 0; i < 8; i++) rings.push({ i: (2 + i * 5.2) + '%', c: p[i % 3], o: String(0.18 + i * 0.09), rad: (48 - i * 4) + 'px' });
+    return { rings, core: p[0] + '33' };
+  }
+}
+</script>
+</body>
+</html>

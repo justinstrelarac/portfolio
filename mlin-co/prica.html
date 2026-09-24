@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="MlinHeader" active="prica" hint-size="100%,160px"></dc-import>
+<main>
+  <section style="padding:clamp(48px,9svh,110px) 0 clamp(40px,7svh,72px)">
+    <div class="g12"><div style="grid-column:1 / span 10"><span class="mm" style="color:var(--tera)">Naša priča · Ribarsko ostrvo, Novi Sad</span><h1 class="sf" style="font-weight:800;font-size:clamp(88px,12vw,220px);line-height:0.86;letter-spacing:-0.05em;margin:14px 0 0">Počelo je <span style="font-style:italic;font-weight:600;color:var(--tera)">u kuhinji.</span></h1></div></div>
+  </section>
+  <section style="padding:0 var(--m) clamp(64px,12svh,130px)">
+    <div class="stk" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px">
+      <div role="img" aria-label="Ana u radionici, ruke u sapunskoj masi" class="rv" style="aspect-ratio:3/4;border-radius:40px;background:var(--ruza);display:flex;align-items:flex-end;padding:22px"><span class="mm">Sl. 1 — Ana, radionica</span></div>
+      <div role="img" aria-label="Drveni kalupi sa izlivenim sapunom" class="rv" style="aspect-ratio:3/4;border-radius:40px;background:var(--zalfija);display:flex;flex-direction:column;justify-content:space-between;padding:22px;margin-top:12svh"><div style="padding:14% 10% 0"><dc-import name="MlinSapun" boja="#EEF6EE" rot="-6" hint-size="100%,100px"></dc-import></div><span class="mm">Sl. 2 — Kalupi, dan 1</span></div>
+      <div role="img" aria-label="Police sa sapunima koji se suše" class="rv" style="aspect-ratio:3/4;border-radius:40px;background:var(--med);display:flex;flex-direction:column;justify-content:space-between;padding:22px"><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10% 4% 0"><dc-import name="MlinSapun" boja="#FBEBB5" fs="10px" hint-size="100%,50px"></dc-import><dc-import name="MlinSapun" boja="#F9DDE1" fs="10px" hint-size="100%,50px"></dc-import><dc-import name="MlinSapun" boja="#E2EFE2" fs="10px" hint-size="100%,50px"></dc-import><dc-import name="MlinSapun" boja="#F7C4A5" fs="10px" hint-size="100%,50px"></dc-import></div><span class="mm">Sl. 3 — Sušara, nedelja 6</span></div>
+    </div>
+  </section>
+  <section style="padding:0 0 clamp(96px,18svh,200px)">
+    <div class="g12" style="row-gap:24px">
+      <p class="rv sf" style="grid-column:1 / span 5;font-weight:700;font-size:clamp(32px,3.2vw,52px);line-height:1.05;letter-spacing:-0.03em;margin:0">Ana je 2019. tražila sapun za ćerkinu kožu, bez ijednog sastojka koji ne ume da izgovori.</p>
+      <div class="rv" style="grid-column:7 / span 5;font-size:18px;line-height:1.75">
+        <p style="margin:0">Nije ga našla, pa ga je napravila. Prvih dvadeset komada podelila je komšinicama, a sledećih dvesta prodala preko Instagrama. Danas radionica na Ribarskom ostrvu napravi hiljadu sapuna mesečno, i dalje ručno i u serijama od šezdeset komada.</p>
+        <p style="margin:22px 0 0">Svaki komad se suši šest nedelja na drvenim policama. Tako sapun postane tvrđi, blaži i traje duže. Mi ne žurimo, pa ni ti ne moraš da kupuješ novi svakog meseca.</p>
+      </div>
+    </div>
+  </section>
+  <section style="background:var(--breskva);padding:clamp(80px,14svh,160px) 0">
+    <div class="stk g12" style="row-gap:24px">
+      <sc-for list="{{ brojevi }}" as="b" hint-placeholder-count="4"><div class="rv" style="grid-column:span 3"><div class="sf" style="font-weight:900;font-size:clamp(72px,8vw,144px);line-height:0.85;letter-spacing:-0.05em">{{ b.v }}</div><div style="font-size:16px;margin-top:10px">{{ b.k }}</div></div></sc-for>
+    </div>
+  </section>
+</main>
+<dc-import name="MlinFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic { renderVals() { return { brojevi: [{v:'6',k:'nedelja sušenja'},{v:'60',k:'komada po seriji'},{v:'7',k:'sastojaka najviše'},{v:'0',k:'plastike u paketu'}] }; } }
+</script>
+</body>
+</html>

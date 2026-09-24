@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="MonoHeader" active="" hint-size="100%,116px"></dc-import>
+<main>
+  <section style="position:relative;min-height:clamp(640px,92svh,1000px);overflow:hidden">
+    <dc-import name="MonoTunel" noc="sve" style="position:absolute;inset:0" hint-size="100%,100%"></dc-import>
+    <div class="g12" style="position:relative;padding-top:clamp(40px,8svh,90px);padding-bottom:clamp(40px,8svh,90px);row-gap:28px;align-items:end">
+      <div style="grid-column:1 / span 7">
+        <h1 class="d" style="font-size:clamp(140px,22vw,400px);margin:0"><span class="gP">Mono</span><br><span class="gL">lit</span></h1>
+        <p style="font-family:var(--serif);font-style:italic;font-size:clamp(28px,3.2vw,56px);line-height:1.05;margin:14px 0 0">Tri noći zvuka na obali <span style="color:var(--pet2)">reke.</span></p>
+      </div>
+      <div class="hm" style="grid-column:8 / span 5;position:relative;height:clamp(420px,64svh,640px)" role="img" aria-label="Dva svetleća monolita, plavi i narandžasti, na obali">
+        <div style="position:absolute;left:10%;bottom:0;width:28%;height:62%;border-radius:999px 999px 10px 10px;background:linear-gradient(180deg,#8FD8F2 0%,#6A4BFF 55%,#2A0F5A 100%);box-shadow:0 0 60px rgba(106,75,255,0.55)"></div>
+        <div style="position:absolute;left:44%;bottom:0;width:40%;height:92%;border-radius:999px 999px 10px 10px;background:linear-gradient(180deg,#F2C089 0%,#FF7A1A 38%,#FF2E2E 62%,#D6246E 86%,#5A0E3A 100%);box-shadow:0 0 90px rgba(255,90,40,0.55)"></div>
+        <a href="ulaznice.html" class="mo hv" style="position:absolute;right:4%;bottom:10%;width:clamp(120px,11vw,160px);aspect-ratio:1;border-radius:50%;background:var(--pet2);color:var(--noc);display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.5;box-shadow:0 0 40px rgba(255,122,26,0.7)" style-hover="background:var(--tekst);color:var(--noc)">Kupi<br>ulaznicu ↗</a>
+      </div>
+      <dl class="stk" style="grid-column:1 / span 7;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin:0;border-top:1px solid var(--line);padding-top:18px">
+        <sc-for list="{{ meta }}" as="x" hint-placeholder-count="3"><div><dt class="mo" style="color:var(--siva)">{{ x.k }}</dt><dd class="mo" style="margin:8px 0 0;font-size:clamp(15px,1.4vw,19px);color:var(--tekst)">{{ x.v }}</dd></div></sc-for>
+      </dl>
+    </div>
+  </section>
+
+  <section style="padding:clamp(96px,18svh,200px) 0;text-align:center;border-top:1px solid var(--line)">
+    <span class="mo rv" style="color:var(--siva)">Line-up · 36 izvođača · 3 bine</span>
+    <div style="margin-top:clamp(28px,5svh,56px);display:flex;flex-direction:column;gap:clamp(32px,6svh,72px)">
+      <sc-for list="{{ noci }}" as="n" hint-placeholder-count="3">
+        <div class="rv" style="padding:0 var(--m)">
+          <div class="mo" style="color:{{ n.c }};text-shadow:0 0 16px {{ n.c }}">{{ n.dan }} · {{ n.dat }}</div>
+          <div class="d {{ n.g }}" style="font-size:clamp(64px,10vw,184px);margin-top:10px">{{ n.head }}</div>
+          <div class="d" style="font-size:clamp(28px,3.4vw,60px);margin-top:10px;color:var(--tekst);opacity:0.9">{{ n.sec }}</div>
+          <div class="mo" style="margin-top:14px;color:var(--siva);line-height:1.9">{{ n.rest }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <a href="izvodjaci.html" class="mo hv rv" style="display:inline-flex;align-items:center;min-height:52px;margin-top:clamp(40px,7svh,80px);padding:0 24px;border-radius:999px;border:1px solid var(--line)" style-hover="border-color:var(--pet2);color:var(--pet2)">Svi izvođači →</a>
+  </section>
+
+  <section style="position:relative;overflow:hidden;border-top:1px solid var(--line)">
+    <div class="g12" style="padding-top:clamp(80px,14svh,160px);padding-bottom:clamp(80px,14svh,160px);row-gap:32px;align-items:center">
+      <div class="rv" style="grid-column:1 / span 5"><span class="mo" style="color:var(--siva)">Ulaznice · faza 1 od 3</span><h2 class="d gP" style="font-size:clamp(80px,10vw,184px);margin:14px 0 0">Karta</h2><p style="font-family:var(--serif);font-style:italic;font-size:clamp(24px,2.4vw,36px);line-height:1.2;margin:14px 0 0">Tri noći za cenu dve, do 1. aprila.</p></div>
+      <a href="ulaznice.html" class="rv hv" style="grid-column:7 / span 6;display:grid;grid-template-columns:minmax(0,1fr) 120px;border-radius:22px;background:linear-gradient(135deg,rgba(255,122,26,0.18),rgba(214,36,110,0.18));border:1px solid rgba(255,122,26,0.5);box-shadow:0 0 60px rgba(255,90,40,0.25);overflow:hidden" style-hover="box-shadow:0 0 90px rgba(255,90,40,0.5)">
+        <div style="padding:clamp(22px,2.6vw,36px)"><span class="mo" style="color:var(--siva)">Ulaznica · 3 dana</span><div class="d" style="font-size:clamp(64px,7vw,120px);margin-top:12px">14—16.08</div><div class="mo" style="margin-top:14px;color:var(--siva)">Ušće, Beograd · №0427</div></div>
+        <div style="border-left:2px dashed rgba(242,237,230,0.35);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;padding:12px"><span class="d" style="font-size:40px;color:var(--pet2)">59€</span><span class="mo" style="color:var(--siva);font-size:10px">faza 1</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section style="border-top:1px solid var(--line)">
+    <div class="stk" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr))">
+      <sc-for list="{{ info }}" as="i" hint-placeholder-count="3">
+        <a href="{{ i.h }}" class="rv hv" style="display:flex;flex-direction:column;justify-content:space-between;gap:40px;min-height:clamp(260px,34svh,360px);padding:clamp(22px,3vw,40px);border-right:1px solid var(--line)" style-hover="background:var(--noc2)">
+          <span class="mo" style="color:{{ i.c }}">{{ i.k }}</span>
+          <span><span class="d" style="display:block;font-size:clamp(44px,4.4vw,76px)">{{ i.t }}</span><span style="display:block;font-size:15px;color:var(--siva);margin-top:10px">{{ i.d }}</span></span>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+</main>
+<dc-import name="MonoFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() { return {
+    meta:[{k:'Datum',v:'14—16.08.2027'},{k:'Mesto',v:'Ušće, Beograd'},{k:'Izvođača',v:'36'}],
+    noci:[{dan:'Petak',dat:'14.08',c:'#FF7A1A',g:'gP',head:'Ana Voss',sec:'Kolektiv Sever · Lumen 44',rest:'Nada B · Tamni talas · Krug · Luka Rem · Oblak B2B Zvon'},
+      {dan:'Subota',dat:'15.08',c:'#D6246E',g:'gS',head:'Mira Ilić',sec:'Dunav Sound System · Vera Kiš',rest:'Ultra Nisko · Sova · Metar · Jana Liv · Ritam 11 · Kosa'},
+      {dan:'Nedelja',dat:'16.08',c:'#3B7BFF',g:'gN',head:'Tiha Noć',sec:'Ambient set do izlaska sunca',rest:'Horizont · Plavi čas · Mirna Luka · Most · Senka live'}],
+    info:[{k:'01 · Program',t:'Satnica',d:'Tri bine, sat po sat.',h:'program.html',c:'#FF7A1A'},{k:'02 · Lokacija',t:'Ušće',d:'Kako stići i gde ući.',h:'lokacija.html',c:'#3B7BFF'},{k:'03 · Info',t:'Pitanja',d:'Voda, godine, garderoba.',h:'info.html',c:'#D6246E'}]
+  }; }
+}
+</script>
+</body>
+</html>

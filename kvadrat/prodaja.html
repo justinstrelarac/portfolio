@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+  .kin{width:100%;font:inherit;font-size:18px;color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--ink);border-radius:0;padding:12px 0;min-height:54px;-webkit-appearance:none;appearance:none}
+  .kin:focus{outline:none;border-bottom:2px solid var(--oznaka)}
+  .kin[aria-invalid="true"]{border-bottom:2px solid #A33A22}
+</style>
+</helmet>
+<dc-import name="KvHeader" active="prodaja" hint-size="100%,136px"></dc-import>
+<main>
+  <section style="padding:clamp(56px,11svh,130px) 0 clamp(64px,12svh,130px)">
+    <div class="g12" style="row-gap:28px;align-items:end">
+      <div style="grid-column:1 / span 8"><span class="km" style="color:var(--oznaka)">A-03 · Prodajte sa nama</span><h1 style="font-family:var(--serif);font-weight:300;font-size:clamp(88px,11vw,200px);line-height:0.88;letter-spacing:-0.025em;margin:20px 0 0">Vaš prostor,<br><span style="font-style:italic;color:var(--oznaka)">kao monografija.</span></h1></div>
+      <p style="grid-column:9 / span 4;font-size:16px;line-height:1.7;color:var(--muted);margin:0">Ne objavljujemo oglas sa deset fotografija iz telefona. Merimo, crtamo osnovu i pišemo stranicu koju kupac pročita do kraja.</p>
+    </div>
+  </section>
+  <section style="border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)">
+    <div class="stk" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr))">
+      <sc-for list="{{ koraci }}" as="k" hint-placeholder-count="4">
+        <div class="rv" style="padding:clamp(24px,3vw,40px);border-right:1px solid var(--line);min-height:clamp(260px,34svh,340px);display:flex;flex-direction:column;justify-content:space-between;gap:28px">
+          <div style="display:flex;justify-content:space-between"><span class="km" style="color:var(--oznaka)">{{ k.n }}</span><span class="km" style="color:var(--muted)">{{ k.w }}</span></div>
+          <div><div style="font-family:var(--serif);font-size:clamp(28px,2.6vw,40px);line-height:1.05">{{ k.t }}</div><p style="font-size:15px;line-height:1.6;color:var(--muted);margin:10px 0 0">{{ k.d }}</p></div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+  <section id="procena" style="padding:clamp(96px,18svh,200px) 0">
+    <div class="g12" style="row-gap:40px">
+      <div class="rv" style="grid-column:1 / span 4">
+        <span class="km" style="color:var(--oznaka)">Okvirna procena</span>
+        <p style="font-family:var(--serif);font-weight:300;font-size:clamp(40px,4vw,68px);line-height:0.98;margin:16px 0 0">Tri podatka, <span style="font-style:italic">jedan raspon.</span></p>
+        <p style="font-size:15px;line-height:1.7;color:var(--muted);margin:18px 0 0">Raspon je okviran i računa se iz prosečne cene kvadrata u kvartu. Tačnu procenu dobijate posle obilaska, besplatno.</p>
+      </div>
+      <div style="grid-column:6 / -1">
+        <div class="stk" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px">
+          <label class="km" style="display:flex;flex-direction:column;gap:8px">Kvart<select class="kin" value="{{ f.kvart }}" onChange="{{ on.kvart }}"><sc-for list="{{ kvartovi }}" as="k" hint-placeholder-count="5"><option value="{{ k.id }}">{{ k.t }}</option></sc-for></select></label>
+          <label class="km" style="display:flex;flex-direction:column;gap:8px">Površina m²<input class="kin" type="number" min="15" max="600" inputmode="numeric" value="{{ f.m2 }}" onChange="{{ on.m2 }}"></label>
+          <label class="km" style="display:flex;flex-direction:column;gap:8px">Stanje<select class="kin" value="{{ f.st }}" onChange="{{ on.st }}"><option value="1.08">Renovirano</option><option value="1">Dobro</option><option value="0.88">Za renoviranje</option></select></label>
+        </div>
+        <div style="margin-top:clamp(36px,6svh,64px);border:1px solid var(--ink);padding:clamp(24px,3vw,40px);background:#FBF8F2" aria-live="polite">
+          <div class="km" style="color:var(--muted)">Okvirni raspon</div>
+          <div style="font-family:var(--serif);font-weight:300;font-size:clamp(48px,6vw,104px);line-height:1;margin-top:10px">{{ raspon }}</div>
+          <div class="kota" style="margin-top:22px"></div>
+          <div class="km" style="display:flex;justify-content:space-between;margin-top:10px;color:var(--muted)"><span>{{ min }}</span><span>€ {{ po }} / m²</span><span>{{ max }}</span></div>
+        </div>
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+          <p role="status" style="font-family:var(--serif);font-style:italic;font-size:clamp(26px,2.4vw,36px);margin:32px 0 0;color:var(--oznaka)">Hvala, {{ ime }}. Milena vas zove sutra do podne da dogovorite obilazak.</p>
+        </sc-if>
+        <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+          <form novalidate="" onSubmit="{{ submit }}" aria-label="Zahtev za tačnu procenu" class="stk" style="display:grid;grid-template-columns:1fr 1fr auto;gap:24px;align-items:end;margin-top:36px">
+            <label class="km" style="display:flex;flex-direction:column;gap:8px">Ime<input class="kin" name="ime" autocomplete="name" value="{{ f.ime }}" onChange="{{ on.ime }}" aria-invalid="{{ inv.ime }}"><span style="font-family:var(--sans);text-transform:none;letter-spacing:0;font-size:13px;color:#A33A22;min-height:16px">{{ err.ime }}</span></label>
+            <label class="km" style="display:flex;flex-direction:column;gap:8px">Telefon<input class="kin" type="tel" name="tel" autocomplete="tel" value="{{ f.tel }}" onChange="{{ on.tel }}" aria-invalid="{{ inv.tel }}"><span style="font-family:var(--sans);text-transform:none;letter-spacing:0;font-size:13px;color:#A33A22;min-height:16px">{{ err.tel }}</span></label>
+            <button type="submit" class="km hv" disabled="{{ loading }}" style="min-height:56px;padding:0 26px;border:0;cursor:pointer;background:var(--sumrak);color:var(--pesak);margin-bottom:24px" style-hover="background:var(--ink)">{{ btn }}</button>
+          </form>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+  <section style="background:var(--kamen);padding:clamp(96px,18svh,200px) 0">
+    <div class="g12" style="row-gap:24px;align-items:center">
+      <div class="rv" style="grid-column:1 / span 6"><dc-import name="KvOsnova" v="b" alt="Primer osnove koju crtamo za svaku nekretninu" cap="Primer · osnova koju dobija svaki prodavac" m2="86 m²" hint-size="100%,420px"></dc-import></div>
+      <div class="rv" style="grid-column:8 / span 5"><span class="km" style="color:var(--oznaka)">Šta dobijate</span>
+        <ul style="list-style:none;margin:16px 0 0;padding:0;border-top:1px solid var(--ink)"><sc-for list="{{ dobijate }}" as="d" hint-placeholder-count="5"><li style="display:flex;gap:14px;align-items:baseline;padding:13px 0;border-bottom:1px solid var(--line);font-family:var(--serif);font-size:22px"><span class="km" style="color:var(--oznaka)">{{ d.n }}</span>{{ d.t }}</li></sc-for></ul>
+        <p class="km" style="color:var(--muted);margin:18px 0 0">Provizija 2% · plaća se tek po prodaji</p>
+      </div>
+    </div>
+  </section>
+</main>
+<dc-import name="KvFooter" hint-size="100%,700px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const KV = [{id:'dorcol',t:'Dorćol',p:3050},{id:'vracar',t:'Vračar',p:3600},{id:'senjak',t:'Senjak',p:3400},{id:'stari',t:'Stari grad',p:3300},{id:'zvezdara',t:'Zvezdara',p:2150}];
+const fmt = n => '€ ' + Math.round(n / 1000).toLocaleString('sr-RS') + '.000';
+class Component extends DCLogic {
+  state = { f:{kvart:'dorcol',m2:'80',st:'1',ime:'',tel:''}, err:{}, loading:false, sent:false };
+  renderVals() {
+    const s = this.state, k = KV.find(x => x.id === s.f.kvart) || KV[0], m2 = Math.max(0, +s.f.m2 || 0), st = +s.f.st || 1;
+    const base = k.p * m2 * st, lo = base * 0.93, hi = base * 1.07;
+    const on = {}; Object.keys(s.f).forEach(x => on[x] = ev => { const v = ev.target.value; this.setState(q => { const e = Object.assign({}, q.err); delete e[x]; return { f: Object.assign({}, q.f, {[x]: v}), err: e }; }); });
+    const inv = {}; Object.keys(s.err).forEach(x => inv[x] = 'true');
+    const submit = ev => { ev.preventDefault(); const e = {}; if (s.f.ime.trim().length < 2) e.ime = 'Upišite ime.'; if (s.f.tel.replace(/\D/g,'').length < 8) e.tel = 'Proverite broj.';
+      if (Object.keys(e).length) { this.setState({ err: e }); return; } this.setState({ loading: true }); setTimeout(() => this.setState({ loading: false, sent: true }), 900); };
+    return {
+      f: s.f, on, inv, err: Object.assign({ime:'',tel:''}, s.err), submit, sent: s.sent, notSent: !s.sent, ime: s.f.ime.trim().split(' ')[0],
+      loading: s.loading || undefined, btn: s.loading ? 'Šaljem…' : 'Tačna procena',
+      kvartovi: KV, raspon: m2 >= 15 ? fmt(lo) + ' — ' + fmt(hi).replace('€ ','') : 'Upišite površinu', min: m2 >= 15 ? fmt(lo) : '—', max: m2 >= 15 ? fmt(hi) : '—', po: Math.round(k.p * st).toLocaleString('sr-RS'),
+      koraci: [{n:'01',w:'dan 1',t:'Obilazak',d:'Dolazimo, merimo i slušamo priču stana.'},{n:'02',w:'dan 3',t:'Procena i osnova',d:'Tačna cena i osnova u razmeri 1:100.'},{n:'03',w:'dan 10',t:'Monografija',d:'Fotografije u pravo doba dana i tekst.'},{n:'04',w:'dan 14',t:'Razgledanja',d:'Samo kupci koji su prošli prvi razgovor.'}],
+      dobijate: [{n:'01',t:'Merenje i osnovu 1:100'},{n:'02',t:'Fotografisanje u zlatni sat'},{n:'03',t:'Stranicu monografije'},{n:'04',t:'Proveru papira i uknjižbe'},{n:'05',t:'Pratnju do overe ugovora'}]
+    };
+  }
+}
+</script>
+</body>
+</html>

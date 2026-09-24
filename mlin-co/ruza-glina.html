@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="MlinHeader" active="prodavnica" hint-size="100%,160px"></dc-import>
+<dc-import name="MlinProizvod" p="{{ p }}" hint-size="100%,100svh"></dc-import>
+<dc-import name="MlinFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() { return { p: {
+    id:'ruza', c:690, g:'100 g', serija:'26/09', bg:'#F6C9D0', bg2:'#F9DDE1', sap:'#FCEAEC', bar:'#E68A98',
+    t1:'Ruža', t2:'& glina.', alt:'Ružičasti sapun Ruža i glina na ružičastoj podlozi', kadar:'Ruža & glina, 100 g',
+    lead:'Ružina voda sa Balkana i ružičasta francuska glina. Čisti nežno, a koža posle ne zateže.',
+    tagovi:['Suva koža','Lice i telo','Veganski'],
+    sastav:[{t:'Maslinovo ulje',d:'hladno ceđeno',p:'42%',w:'84%'},{t:'Kokosovo ulje',d:'za penu',p:'22%',w:'44%'},{t:'Ružina voda',d:'Kazanlak',p:'18%',w:'36%'},{t:'Shea puter',d:'nerafinisan',p:'12%',w:'24%'},{t:'Ružičasta glina',d:'boja i čišćenje',p:'4%',w:'8%'},{t:'Eterično ulje ruže',d:'bez sintetičkog mirisa',p:'2%',w:'4%'}],
+    kako:[{n:'1',t:'Pokvasi',d:'Mlaka voda, nikad vrela.'},{n:'2',t:'Napeni',d:'Između dlanova, pa na kožu.'},{n:'3',t:'Osuši sapun',d:'Na drvenoj podlozi traje šest nedelja.'}],
+    cta:'Ruža ide uz žalfiju.', nextH:'zalfija.html', nextT:'žalfiju'
+  } }; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="KvHeader" active="kvartovi" hint-size="100%,136px"></dc-import>
+<main>
+  <section style="padding:clamp(56px,11svh,130px) 0 clamp(56px,10svh,110px)">
+    <div class="g12" style="row-gap:24px;align-items:end"><div style="grid-column:1 / span 8"><span class="km" style="color:var(--oznaka)">A-02 · Kvartovi · cene za septembar 2026.</span><h1 style="font-family:var(--serif);font-weight:300;font-size:clamp(88px,12vw,220px);line-height:0.88;letter-spacing:-0.025em;margin:20px 0 0">Gde se <span style="font-style:italic;color:var(--oznaka)">živi dugo.</span></h1></div><p style="grid-column:9 / span 4;font-size:16px;line-height:1.7;color:var(--muted);margin:0">Pet kvartova u kojima radimo. Cena kvadrata je prosek naših prodaja u poslednjih dvanaest meseci.</p></div>
+  </section>
+  <sc-for list="{{ kv }}" as="k" hint-placeholder-count="5">
+    <section class="rv" style="border-top:1px solid var(--ink)">
+      <div class="g12" style="padding-top:clamp(36px,6svh,64px);padding-bottom:clamp(36px,6svh,64px);row-gap:24px;align-items:start">
+        <span class="km" style="grid-column:1 / span 1;color:var(--oznaka)">{{ k.n }}</span>
+        <div style="grid-column:2 / span 4"><h2 style="font-family:var(--serif);font-weight:300;font-size:clamp(56px,6.4vw,112px);line-height:0.9;margin:0">{{ k.t }}</h2><p class="km" style="color:var(--muted);margin:14px 0 0">{{ k.geo }}</p></div>
+        <p style="grid-column:6 / span 4;font-family:var(--serif);font-size:clamp(22px,1.9vw,28px);line-height:1.35;margin:0">{{ k.d }}</p>
+        <dl style="grid-column:10 / span 3;margin:0;border-top:1px solid var(--line)">
+          <sc-for list="{{ k.tab }}" as="x" hint-placeholder-count="3"><div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line)"><dt class="km" style="color:var(--muted)">{{ x.k }}</dt><dd style="margin:0;font-family:var(--mono);font-weight:300;font-size:13px">{{ x.v }}</dd></div></sc-for>
+          <a class="km hv" href="ponuda.html" style="display:inline-flex;align-items:center;min-height:44px;margin-top:10px;border-bottom:1px solid var(--ink)">{{ k.cta }}</a>
+        </dl>
+      </div>
+    </section>
+  </sc-for>
+  <section style="background:var(--sumrak);color:var(--pesak);padding:clamp(80px,14svh,160px) 0"><div class="g12" style="row-gap:20px;align-items:end"><p class="rv" style="grid-column:1 / span 8;font-family:var(--serif);font-weight:300;font-size:clamp(48px,5.6vw,96px);line-height:0.95;margin:0">Ne znate koji kvart? <span style="font-style:italic;color:var(--sunce)">Prošetajmo.</span></p><div class="rv" style="grid-column:10 / span 3"><a class="km hv" href="kontakt.html" style="display:flex;justify-content:center;align-items:center;min-height:56px;background:var(--sunce);color:var(--ink)" style-hover="background:var(--pesak);color:var(--ink)">Šetnja sa agentom</a></div></div></section>
+</main>
+<dc-import name="KvFooter" hint-size="100%,700px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() { const K = (n,t,geo,d,p,dy,z,cta) => ({n,t,geo,d,cta,tab:[{k:'€ / m²',v:p},{k:'Dana do prodaje',v:dy},{k:'U ponudi',v:z}]});
+    return { kv: [
+      K('01','Dorćol','44.8235° N · 20.4640° E','Stare zgrade, kafane i kej. Najtraženiji kod kupaca koji se vraćaju iz inostranstva.','3.050','41','2 stana','Stanovi na Dorćolu →'),
+      K('02','Vračar','44.7983° N · 20.4770° E','Pijaca, parkovi i škole na pet minuta. Najviša cena kvadrata i najkraće čekanje na kupca.','3.600','28','2 stana','Stanovi na Vračaru →'),
+      K('03','Senjak','44.7900° N · 20.4410° E','Vile, vrtovi i tišina. Kuće se retko prodaju, a kad se prodaju, prodaju se tiho.','3.400','66','1 kuća','Kuća na Senjaku →'),
+      K('04','Stari grad','44.8176° N · 20.4569° E','Univerzitet, pozorišta i garsonjere koje se izdaju pre nego što se okreči.','3.300','35','1 stan','Garsonjera →'),
+      K('05','Zvezdara','44.8010° N · 20.5050° E','Više zelenila za manje novca. Prvi izbor mladih porodica.','2.150','48','uskoro','Obavestite me →')
+    ] }; }
+}
+</script>
+</body>
+</html>

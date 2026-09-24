@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<main style="background:{{ p.bg }}">
+  <section class="g12" style="padding-top:clamp(32px,6svh,72px);padding-bottom:clamp(56px,10svh,110px);row-gap:32px;align-items:start">
+    <div style="grid-column:1 / span 7;position:relative;aspect-ratio:1;border-radius:48px;background:{{ p.bg2 }};display:flex;align-items:center;justify-content:center;padding:16%">
+      <dc-import name="MlinSapun" boja="{{ p.sap }}" rot="-6" fs="clamp(20px,3vw,44px)" alt="{{ p.alt }}" style="display:block;width:100%" hint-size="100%,220px"></dc-import>
+      <span class="mm" style="position:absolute;left:24px;bottom:22px">Sl. — {{ p.kadar }}</span>
+      <span aria-hidden="true" class="sf hm" style="position:absolute;right:6%;top:6%;width:112px;height:112px;border-radius:50%;background:var(--tera);color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:800;font-size:17px;line-height:1.05;transform:rotate(10deg)">ručno<br>rađeno</span>
+    </div>
+    <div style="grid-column:8 / span 5;background:var(--krem);border-radius:32px;padding:clamp(22px,2.6vw,36px);border:1.5px solid var(--ink)">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:1.5px solid var(--ink);padding-bottom:14px"><span class="mm">mlin&amp;co · serija {{ p.serija }}</span><span class="mm">{{ p.g }}</span></div>
+      <h1 class="sf" style="font-weight:800;font-size:clamp(56px,6.4vw,112px);line-height:0.88;letter-spacing:-0.045em;margin:18px 0 0">{{ p.t1 }} <span style="font-style:italic;font-weight:600;color:var(--tera)">{{ p.t2 }}</span></h1>
+      <p style="font-size:17px;line-height:1.6;margin:16px 0 0">{{ p.lead }}</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px"><sc-for list="{{ p.tagovi }}" as="t" hint-placeholder-count="3"><span class="mm" style="padding:6px 12px;border-radius:999px;background:{{ p.bg }}">{{ t }}</span></sc-for></div>
+      <div style="display:flex;align-items:center;gap:12px;margin-top:26px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;border:1.5px solid var(--ink);border-radius:999px" role="group" aria-label="Količina"><button type="button" onClick="{{ minus }}" aria-label="Manje" style="width:48px;height:52px;border:0;background:none;cursor:pointer;font-size:20px;color:var(--ink)">−</button><span class="mm" style="min-width:24px;text-align:center;font-size:16px" aria-live="polite">{{ q }}</span><button type="button" onClick="{{ plus }}" aria-label="Više" style="width:48px;height:52px;border:0;background:none;cursor:pointer;font-size:20px;color:var(--ink)">+</button></div>
+        <button type="button" onClick="{{ add }}" class="hv" style="flex:1;min-width:200px;min-height:56px;border-radius:999px;border:0;cursor:pointer;background:var(--ink);color:var(--krem);font:inherit;font-weight:700;font-size:17px" style-hover="background:var(--tera)">{{ btn }}</button>
+      </div>
+      <p class="mm" style="margin:14px 0 0;color:var(--muted)">Stiže za 1—2 dana · besplatno iznad 3.000 din</p>
+    </div>
+  </section>
+
+  <section style="background:var(--krem);border-radius:48px 48px 0 0;padding:clamp(64px,12svh,130px) 0">
+    <div class="g12" style="row-gap:32px">
+      <div class="rv" style="grid-column:1 / span 4"><span class="mm" style="color:var(--tera)">Recept</span><h2 class="sf" style="font-weight:800;font-size:clamp(44px,4.6vw,80px);line-height:0.92;letter-spacing:-0.04em;margin:14px 0 0">Šta je <span style="font-style:italic;font-weight:600">unutra.</span></h2><p style="font-size:15px;line-height:1.6;color:var(--muted);margin:16px 0 0">Sve što piše na etiketi. Nema „parfema” ni „ostalih sastojaka”.</p></div>
+      <div style="grid-column:6 / -1">
+        <sc-for list="{{ p.sastav }}" as="s" hint-placeholder-count="5">
+          <div class="rv" style="display:grid;grid-template-columns:minmax(0,4fr) minmax(0,5fr) 64px;gap:16px;align-items:center;padding:16px 0;border-bottom:1px dashed rgba(58,42,34,0.3)">
+            <span><span class="sf" style="display:block;font-weight:700;font-size:21px">{{ s.t }}</span><span style="display:block;font-size:14px;color:var(--muted);margin-top:2px">{{ s.d }}</span></span>
+            <span style="height:12px;border-radius:999px;background:var(--krem2);overflow:hidden"><span style="display:block;height:100%;width:{{ s.w }};border-radius:999px;background:{{ p.bar }}"></span></span>
+            <span class="mm" style="text-align:right;font-size:14px">{{ s.p }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--krem);padding:0 0 clamp(64px,12svh,130px)">
+    <div class="stk" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;padding:0 var(--m)">
+      <sc-for list="{{ p.kako }}" as="k" hint-placeholder-count="3"><div class="rv" style="padding:24px;border-radius:32px;background:{{ p.bg }};min-height:220px;display:flex;flex-direction:column;justify-content:space-between"><span class="sf" style="font-weight:900;font-size:56px;line-height:0.8;color:var(--tera)">{{ k.n }}</span><span><span class="sf" style="display:block;font-weight:700;font-size:24px">{{ k.t }}</span><span style="display:block;font-size:15px;line-height:1.5;margin-top:6px">{{ k.d }}</span></span></div></sc-for>
+    </div>
+  </section>
+
+  <section style="background:var(--ink);color:var(--krem);padding:clamp(64px,12svh,130px) 0">
+    <div class="g12" style="row-gap:20px;align-items:end"><p class="rv sf" style="grid-column:1 / span 8;font-weight:700;font-size:clamp(44px,5vw,88px);line-height:0.95;letter-spacing:-0.035em;margin:0">{{ p.cta }}</p><div class="rv" style="grid-column:10 / span 3;display:flex;flex-direction:column;gap:10px"><a class="hv" href="korpa.html" style="display:flex;justify-content:center;align-items:center;min-height:56px;border-radius:999px;background:var(--tera);color:#fff;font-weight:700" style-hover="background:var(--krem);color:var(--ink)">Idi u korpu →</a><a class="hv" href="{{ p.nextH }}" style="display:flex;justify-content:center;align-items:center;min-height:52px;border-radius:999px;border:1.5px solid var(--krem);color:var(--krem);font-weight:500" style-hover="background:var(--krem);color:var(--ink)">Probaj i {{ p.nextT }} →</a></div></div>
+  </section>
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900},&quot;p&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;object&quot;}}">
+class Component extends DCLogic {
+  state = { q:1, added:false };
+  renderVals() {
+    const p = Object.assign({ tagovi:[], sastav:[], kako:[] }, this.props.p || {});
+    const s = this.state;
+    return { p, q: s.q, minus: () => this.setState({ q: Math.max(1, s.q - 1) }), plus: () => this.setState({ q: Math.min(9, s.q + 1) }),
+      btn: s.added ? 'U korpi ✓' : 'Dodaj u korpu · ' + (p.c * s.q).toLocaleString('sr-RS') + ' din',
+      add: () => { window.mlinKorpa && window.mlinKorpa.add(p.id, s.q); this.setState({ added: true }); setTimeout(() => this.setState({ added: false }), 1800); } };
+  }
+}
+</script>
+</body>
+</html>

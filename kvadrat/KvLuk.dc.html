@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<div role="img" aria-label="{{ alt }}" style="position:relative;width:100%;height:100%;border-radius:999px 999px 0 0;overflow:hidden;background:linear-gradient(180deg,#34344F 0%,#5A4A62 34%,#9A6E66 62%,#C58A63 82%,#8C5E4E 100%);box-shadow:0 0 0 clamp(8px,1.2vw,18px) #D9CBB3">
+  <div style="position:absolute;left:50%;top:{{ sunY }};width:38%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle at 44% 40%,#FFF1D6 0%,#F2B872 58%,#DD9A5C 100%)"></div>
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(244,238,228,0.35) 1px,transparent 1.2px);background-size:9% 9%;mask-image:linear-gradient(180deg,#000 0%,transparent 55%);-webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 55%)"></div>
+  <sc-if value="{{ door }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;left:14%;right:14%;bottom:0;height:46%;background:#EDE3D3"><div style="position:absolute;left:0;right:0;top:0;height:14%;background:#D9CBB3"></div><div style="position:absolute;left:34%;right:34%;bottom:0;height:62%;border-radius:999px 999px 0 0;background:#5C4B43"></div></div>
+  </sc-if>
+  <sc-if value="{{ hill }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;left:-10%;right:-10%;bottom:0;height:34%;border-radius:50% 50% 0 0 / 30% 30% 0 0;background:#7A5448"></div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:420,&quot;height&quot;:520},&quot;v&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;hill&quot;,&quot;door&quot;],&quot;default&quot;:&quot;hill&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;alt&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() { const v = this.props.v || 'hill'; return { alt: this.props.alt || 'Luk sa zalaskom sunca', door: v === 'door', hill: v === 'hill', sunY: v === 'door' ? '38%' : '52%' }; }
+}
+</script>
+</body>
+</html>

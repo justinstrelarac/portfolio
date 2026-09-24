@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="KvHeader" active="ponuda" hint-size="100%,136px"></dc-import>
+<dc-import name="KvNekretnina" n="{{ n }}" hint-size="100%,100svh"></dc-import>
+<dc-import name="KvFooter" hint-size="100%,700px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() { return { n: {
+    id:'A-02', kvart:'Vračar', adresa:'Njegoševa', t1:'Mansarda', t2:'iznad Kalenića.', cena:'€ 248.000', m2cena:'€ 2.884 / m²', v:'hill',
+    alt:'Sumrak nad krovovima Vračara, sunce nisko iznad brda', kadar:'Pogled iz spavaće sobe, 18:10',
+    lead:'Potkrovlje zgrade iz 1958, sa drvenim gredama i pogledom na kupolu Hrama.',
+    opis:'Dvostrano orijentisan stan: ujutru sunce u kuhinji, uveče u dnevnoj sobi. Grede su očišćene i ostavljene vidljive, a krov je izolovan 2021. Kalenić pijaca je na pet minuta hoda, a u zgradi živi samo pet porodica.',
+    tab:[{k:'Površina',v:'86 m²'},{k:'Sprat',v:'5 / 5'},{k:'Sobe',v:'2,5'},{k:'Kupatila',v:'1'},{k:'Godina gradnje',v:'1958'},{k:'Krov obnovljen',v:'2021'},{k:'Grejanje',v:'TA + klima'},{k:'Orijentacija',v:'istok · zapad'},{k:'Visina u slemenu',v:'3,80 m'},{k:'Uknjižen',v:'da, 1/1'}],
+    plan:'b', planAlt:'Osnova mansarde: dnevna soba, spavaća soba, kuhinja i kupatilo', m2:'86 m²',
+    sobe:[{t:'Dnevna soba',m:'28,4 m²'},{t:'Spavaća soba',m:'16,2 m²'},{t:'Radna soba',m:'9,1 m²'},{t:'Kuhinja',m:'11,8 m²'},{t:'Kupatilo',m:'6,4 m²'}],
+    okolinaNaslov:'Kvart u kome se zna ime pekara.', okolina:[{v:'5′',k:'Kalenić pijaca'},{v:'7′',k:'Hram Svetog Save'},{v:'3′',k:'Park Čubura'},{v:'9′',k:'Slavija'}],
+    nextH:'nekretnina-dorcol.html', nextT:'Stan sa lukom, Dorćol'
+  } }; }
+}
+</script>
+</body>
+</html>

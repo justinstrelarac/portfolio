@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="MlinHeader" active="prodavnica" hint-size="100%,160px"></dc-import>
+<dc-import name="MlinProizvod" p="{{ p }}" hint-size="100%,100svh"></dc-import>
+<dc-import name="MlinFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() { return { p: {
+    id:'zalfija', c:650, g:'100 g', serija:'26/08', bg:'#CFE3CF', bg2:'#E2EFE2', sap:'#EEF6EE', bar:'#7FAE7F',
+    t1:'Žal', t2:'fija.', alt:'Zeleni sapun Žalfija na zelenoj podlozi', kadar:'Žalfija, 100 g',
+    lead:'Žalfija ubrana na Fruškoj gori i aktivni ugalj. Za masnu kožu koja se sjaji do podneva.',
+    tagovi:['Masna koža','Lice i telo','Veganski'],
+    sastav:[{t:'Maslinovo ulje',d:'hladno ceđeno',p:'40%',w:'80%'},{t:'Kokosovo ulje',d:'za penu',p:'24%',w:'48%'},{t:'Čaj od žalfije',d:'Fruška gora',p:'20%',w:'40%'},{t:'Konopljino ulje',d:'domaće',p:'10%',w:'20%'},{t:'Aktivni ugalj',d:'čišćenje pora',p:'4%',w:'8%'},{t:'Eterično ulje žalfije',d:'bez sintetičkog mirisa',p:'2%',w:'4%'}],
+    kako:[{n:'1',t:'Uveče',d:'Posle dana, kad se pore otvore.'},{n:'2',t:'Jedan minut',d:'Pusti penu da odradi posao.'},{n:'3',t:'Hladna voda',d:'Za kraj, da se pore zatvore.'}],
+    cta:'Žalfija ide uz ružu.', nextH:'ruza-glina.html', nextT:'ružu'
+  } }; }
+}
+</script>
+</body>
+</html>

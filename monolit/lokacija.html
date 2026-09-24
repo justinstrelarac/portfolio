@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="MonoHeader" active="lokacija" hint-size="100%,116px"></dc-import>
+<main>
+  <section class="g12" style="padding-top:clamp(48px,9svh,100px);padding-bottom:clamp(32px,5svh,56px);row-gap:16px;align-items:end">
+    <h1 class="d gN" style="grid-column:1 / span 8;font-size:clamp(120px,18vw,320px);margin:0">Ušće</h1>
+    <p class="mo" style="grid-column:9 / span 4;color:var(--siva);margin:0;line-height:1.9">44.8206° N · 20.4413° E<br>Park Ušće, Novi Beograd<br>ulaz sa Bulevara Nikole Tesle</p>
+  </section>
+  <section style="padding:0 var(--m) clamp(64px,12svh,130px)">
+    <figure class="rv" style="margin:0;position:relative;aspect-ratio:16/8;border-radius:28px;overflow:hidden;background:var(--noc2);border:1px solid var(--line)" role="img" aria-label="Neon mapa festivala na Ušću: reka, tri bine, ulazi i stanice prevoza">
+      <svg viewBox="0 0 1600 800" style="position:absolute;inset:0;width:100%;height:100%" preserveAspectRatio="xMidYMid slice">
+        <defs><filter id="gl"><feGaussianBlur stdDeviation="6" result="b"></feGaussianBlur><feMerge><feMergeNode in="b"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge></filter></defs>
+        <path d="M-20 560 C 300 520 520 640 820 600 S 1300 480 1640 520 L1640 820 L-20 820 Z" fill="rgba(59,123,255,0.10)" stroke="#3B7BFF" stroke-width="3" filter="url(#gl)"></path>
+        <path d="M980 -20 C 1000 200 1060 380 1180 500" fill="none" stroke="#3B7BFF" stroke-width="3" opacity="0.7" filter="url(#gl)"></path>
+        <g font-family="Fragment Mono, monospace" font-size="20" letter-spacing="3" fill="#A39AA6"><text x="60" y="700">DUNAV</text><text x="1210" y="360">SAVA</text></g>
+        <rect x="620" y="200" width="300" height="160" rx="18" fill="rgba(255,122,26,0.12)" stroke="#FF7A1A" stroke-width="3" filter="url(#gl)"></rect>
+        <rect x="260" y="360" width="200" height="120" rx="18" fill="rgba(214,36,110,0.12)" stroke="#D6246E" stroke-width="3" filter="url(#gl)"></rect>
+        <rect x="1040" y="160" width="160" height="110" rx="18" fill="rgba(139,43,226,0.14)" stroke="#8A2BE2" stroke-width="3" filter="url(#gl)"></rect>
+        <g font-family="Big Shoulders Display, sans-serif" font-weight="900" font-size="44" fill="#F2EDE6"><text x="660" y="295">MONOLIT</text><text x="300" y="435">OBALA</text><text x="1068" y="228">TUNEL</text></g>
+        <g fill="#F2EDE6"><circle cx="560" cy="120" r="12"></circle><circle cx="1400" cy="160" r="12"></circle></g>
+        <g font-family="Fragment Mono, monospace" font-size="18" fill="#F2EDE6"><text x="580" y="126">ULAZ A · Bulevar</text><text x="1260" y="130">ULAZ B · Brankov most</text></g>
+        <path d="M560 120 L 700 200" stroke="#F2EDE6" stroke-width="2" stroke-dasharray="6 8" fill="none"></path>
+        <path d="M1400 160 L 1200 210" stroke="#F2EDE6" stroke-width="2" stroke-dasharray="6 8" fill="none"></path>
+      </svg>
+      <figcaption class="mo" style="position:absolute;left:18px;bottom:16px;color:var(--siva)">Sl. — Mapa festivala · nije u razmeri</figcaption>
+    </figure>
+  </section>
+  <section style="border-top:1px solid var(--line)">
+    <div class="stk" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr))">
+      <sc-for list="{{ prevoz }}" as="p" hint-placeholder-count="4"><div class="rv" style="padding:clamp(22px,2.6vw,36px);border-right:1px solid var(--line);min-height:260px;display:flex;flex-direction:column;justify-content:space-between"><span class="mo" style="color:{{ p.c }}">{{ p.k }}</span><span><span class="d" style="display:block;font-size:clamp(40px,4vw,68px)">{{ p.t }}</span><span style="display:block;font-size:15px;line-height:1.55;color:var(--siva);margin-top:10px">{{ p.d }}</span></span></div></sc-for>
+    </div>
+  </section>
+</main>
+<dc-import name="MonoFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic { renderVals() { return { prevoz: [
+  {k:'Peške',t:'12 min',d:'Sa Brankovog mosta, od Zelenog venca.',c:'#FF7A1A'},{k:'Autobus',t:'15 · 84',d:'Stanica Ušće. Noćne linije do 06h.',c:'#D6246E'},{k:'Festivalski šatl',t:'Na 15′',d:'Od Trga republike, besplatno sa narukvicom.',c:'#3B7BFF'},{k:'Taksi zona',t:'Ulaz B',d:'Jedina dozvoljena zona za taksi i prevoz.',c:'#8A2BE2'}] }; } }
+</script>
+</body>
+</html>

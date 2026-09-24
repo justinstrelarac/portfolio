@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="MlinHeader" active="pokloni" hint-size="100%,160px"></dc-import>
+<main>
+  <section style="background:var(--med);padding:clamp(48px,9svh,110px) 0 clamp(56px,10svh,110px);position:relative;overflow:hidden">
+    <div class="g12" style="row-gap:24px;align-items:end">
+      <div style="grid-column:1 / span 7"><span class="mm">Pokloni · zapakovano u papir i kanap</span><h1 class="sf" style="font-weight:800;font-size:clamp(88px,12vw,220px);line-height:0.86;letter-spacing:-0.05em;margin:14px 0 0">Za nekog <span style="font-style:italic;font-weight:600;color:var(--tera)">dragog.</span></h1></div>
+      <p style="grid-column:9 / span 4;font-size:17px;line-height:1.6;margin:0">Svaki poklon stiže sa ručno pisanom kartom. Napiši nam šta da piše, a mi ćemo lepim rukopisom.</p>
+    </div>
+  </section>
+  <section style="padding:clamp(56px,10svh,110px) var(--m)">
+    <div class="stk" style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-rows:minmax(220px,auto);gap:16px">
+      <sc-for list="{{ setovi }}" as="s" hint-placeholder-count="4">
+        <article class="rv" style="grid-column:span {{ s.cs }};grid-row:span {{ s.rs }};display:flex;flex-direction:column;justify-content:space-between;gap:24px;padding:clamp(22px,2.4vw,34px);border-radius:36px;background:{{ s.bg }}">
+          <div style="display:flex;justify-content:space-between;gap:12px"><span class="mm">{{ s.n }}</span><span class="mm">{{ s.sadrzaj }}</span></div>
+          <div style="display:flex;gap:10px;align-items:center;justify-content:center;padding:4% 6%"><sc-for list="{{ s.sap }}" as="c" hint-placeholder-count="3"><div style="flex:1;max-width:180px"><dc-import name="MlinSapun" boja="{{ c.b }}" rot="{{ c.r }}" fs="13px" style="display:block;width:100%" hint-size="100%,60px"></dc-import></div></sc-for></div>
+          <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap">
+            <div><h2 class="sf" style="font-weight:800;font-size:clamp(30px,3vw,52px);line-height:0.95;letter-spacing:-0.03em;margin:0">{{ s.t }}</h2><p style="font-size:15px;line-height:1.5;margin:8px 0 0;max-width:34ch">{{ s.d }}</p></div>
+            <button type="button" onClick="{{ s.add }}" class="hv" style="min-height:50px;padding:0 20px;border-radius:999px;border:0;cursor:pointer;background:var(--ink);color:var(--krem);font:inherit;font-weight:700" style-hover="background:var(--tera)">{{ s.btn }}</button>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+  </section>
+  <section style="padding:0 0 clamp(96px,18svh,200px)">
+    <div class="g12" style="row-gap:24px;align-items:center">
+      <div class="rv" style="grid-column:1 / span 5;background:#fff;border-radius:6px;padding:32px 30px;box-shadow:0 30px 60px -30px rgba(58,42,34,0.4);transform:rotate(-2deg)">
+        <span class="mm" style="color:var(--muted)">Karta uz poklon · primer</span>
+        <p class="sf" style="font-style:italic;font-weight:400;font-size:clamp(26px,2.4vw,36px);line-height:1.3;margin:18px 0 0">Mama, za kupke posle dugog dana. Volim te. — Jelena</p>
+      </div>
+      <div class="rv" style="grid-column:7 / span 6"><span class="mm" style="color:var(--tera)">Kako radi</span>
+        <ol style="list-style:none;margin:16px 0 0;padding:0"><sc-for list="{{ koraci }}" as="k" hint-placeholder-count="3"><li style="display:grid;grid-template-columns:56px 1fr;gap:14px;align-items:baseline;padding:14px 0;border-top:1px dashed rgba(58,42,34,0.3)"><span class="sf" style="font-weight:900;font-size:36px;color:var(--tera)">{{ k.n }}</span><span style="font-size:17px;line-height:1.5">{{ k.t }}</span></li></sc-for></ol>
+      </div>
+    </div>
+  </section>
+</main>
+<dc-import name="MlinFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { a:'' };
+  renderVals() {
+    const S = [
+      {id:'set3',n:'01',t:'Tri za dušu',d:'Ruža, žalfija i med. Najprodavaniji poklon.',sadrzaj:'3 × 100 g · 1.790 din',cs:4,rs:2,bg:'#F8E08E',sap:[{b:'#F9DDE1',r:-10},{b:'#E2EFE2',r:4},{b:'#FBEBB5',r:12}]},
+      {id:'mama',n:'02',t:'Za mamu',d:'Dva sapuna od ruže i ulje za telo.',sadrzaj:'set · 2.290 din',cs:2,rs:1,bg:'#F6C9D0',sap:[{b:'#FCEAEC',r:-8},{b:'#F9DDE1',r:8}]},
+      {id:'kutija',n:'03',t:'Kutija iz radionice',d:'Četiri sapuna, balzam i ulje.',sadrzaj:'set · 3.490 din',cs:2,rs:1,bg:'#CFE3CF',sap:[{b:'#EEF6EE',r:-6},{b:'#FBEBB5',r:6}]},
+      {id:'balzam',n:'04',t:'Mali znak pažnje',d:'Balzam za usne u kutijici.',sadrzaj:'10 ml · 390 din',cs:6,rs:1,bg:'#F3A77C',sap:[{b:'#F7C4A5',r:-4},{b:'#F9DDE1',r:4},{b:'#FBEBB5',r:-8},{b:'#E2EFE2',r:10}]}
+    ];
+    return { setovi: S.map(s => Object.assign({}, s, { btn: this.state.a === s.id ? 'Dodato ✓' : 'U korpu +', add: () => { window.mlinKorpa && window.mlinKorpa.add(s.id, 1); this.setState({ a: s.id }); setTimeout(() => this.setState({ a: '' }), 1600); } })),
+      koraci: [{n:'1',t:'Izabereš poklon i u korpi označiš „Zapakuj kao poklon”.'},{n:'2',t:'U napomeni napišeš poruku za kartu.'},{n:'3',t:'Paket stiže bez računa unutra, direktno na adresu osobe.'}] };
+  }
+}
+</script>
+</body>
+</html>

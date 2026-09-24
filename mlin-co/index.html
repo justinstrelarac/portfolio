@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="MlinHeader" active="" hint-size="100%,160px"></dc-import>
+<main>
+  <section style="position:relative;overflow:hidden;background:var(--zalfija);padding:clamp(40px,8svh,96px) 0 clamp(64px,12svh,130px)">
+    <div aria-hidden="true" class="sf" style="position:absolute;left:-2vw;top:-6svh;font-weight:900;font-size:clamp(180px,30vw,540px);line-height:0.8;letter-spacing:-0.06em;color:rgba(255,255,255,0.45);white-space:nowrap;pointer-events:none">mlin&amp;co</div>
+    <div aria-hidden="true" class="hm" style="position:absolute;left:36vw;top:5svh;width:clamp(110px,11vw,190px)"><dc-import name="MlinSapun" boja="#F6C9D0" rot="-18" hint-size="100%,120px"></dc-import></div>
+    <div class="g12" style="position:relative;row-gap:40px;align-items:center">
+      <div style="grid-column:1 / span 6;padding-top:6svh">
+        <h1 class="sf" style="font-weight:800;font-size:clamp(88px,11vw,200px);line-height:0.88;letter-spacing:-0.045em;margin:0">Čisto.<br>Prirodno.<br><span style="font-style:italic;font-weight:600;color:var(--tera)">Tvoje.</span></h1>
+        <p style="font-size:clamp(17px,1.5vw,20px);line-height:1.6;max-width:38ch;margin:26px 0 0">Ručno rađeni sapuni od maslinovog ulja i lavande. Šaljemo po celoj Srbiji.</p>
+        <a class="hv" href="prodavnica.html" style="display:inline-flex;align-items:center;min-height:58px;margin-top:30px;padding:0 30px;border-radius:999px;background:var(--tera);color:#fff;font-weight:700;font-size:17px" style-hover="background:var(--tera2);color:#fff">Pogledaj sapune →</a>
+        <div style="display:flex;gap:10px 22px;flex-wrap:wrap;margin-top:34px;font-size:14px;font-weight:500"><sc-for list="{{ znacke }}" as="z" hint-placeholder-count="4"><span style="display:inline-flex;align-items:center;gap:8px"><span aria-hidden="true" style="width:8px;height:8px;border-radius:50%;background:var(--tera)"></span>{{ z }}</span></sc-for></div>
+      </div>
+      <div class="stk2" style="grid-column:8 / span 5;display:grid;grid-template-columns:1fr 1fr;gap:16px;position:relative">
+        <sc-for list="{{ top }}" as="p" hint-placeholder-count="2">
+          <a class="hv" href="{{ p.h }}" style="display:flex;flex-direction:column;gap:14px;padding:14px;border-radius:28px;background:var(--krem)" style-hover="background:#fff">
+            <div style="aspect-ratio:4/5;border-radius:20px;background:{{ p.bg }};display:flex;align-items:center;justify-content:center;padding:18%"><dc-import name="MlinSapun" boja="{{ p.sap }}" alt="{{ p.alt }}" style="display:block;width:100%" hint-size="100%,80px"></dc-import></div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:0 4px 4px"><span><span class="sf" style="display:block;font-weight:700;font-size:20px">{{ p.t }}</span><span class="mm" style="color:var(--muted)">{{ p.g }}</span></span><span class="mm">{{ p.c }}</span></span></div>
+          </a>
+        </sc-for>
+        <span aria-hidden="true" class="sf hm" style="position:absolute;right:-3%;top:-10%;width:112px;height:112px;border-radius:50%;background:var(--tera);color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:800;font-size:18px;line-height:1;transform:rotate(-12deg)">100%<br>prirodno</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:clamp(96px,18svh,200px) 0 clamp(56px,10svh,110px)">
+    <div class="g12" style="row-gap:20px;align-items:end"><div class="rv" style="grid-column:1 / span 7"><span class="mm" style="color:var(--tera)">Četiri sapuna, četiri boje</span><h2 class="sf" style="font-weight:800;font-size:clamp(52px,6vw,108px);line-height:0.9;letter-spacing:-0.04em;margin:14px 0 0">Svaki miriše <span style="font-style:italic;font-weight:600;color:var(--tera)">na nešto.</span></h2></div></div>
+  </section>
+  <section class="stk2" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr))">
+    <sc-for list="{{ svi }}" as="p" hint-placeholder-count="4">
+      <a class="rv hv" href="{{ p.h }}" style="display:flex;flex-direction:column;justify-content:space-between;gap:40px;min-height:clamp(420px,62svh,620px);padding:clamp(20px,2.4vw,36px);background:{{ p.bg }}" style-hover="filter:saturate(1.1)">
+        <div style="display:flex;justify-content:space-between"><span class="mm">{{ p.n }}</span><span class="mm">{{ p.c }}</span></div>
+        <div style="padding:0 8%"><dc-import name="MlinSapun" boja="{{ p.sap }}" rot="{{ p.rot }}" alt="{{ p.alt }}" style="display:block;width:100%" hint-size="100%,120px"></dc-import></div>
+        <div><div class="sf" style="font-weight:800;font-size:clamp(30px,2.8vw,46px);line-height:0.95;letter-spacing:-0.03em">{{ p.t }}</div><div style="font-size:15px;line-height:1.5;margin-top:8px">{{ p.miris }}</div></div>
+      </a>
+    </sc-for>
+  </section>
+
+  <section style="padding:clamp(96px,18svh,200px) 0">
+    <div class="g12" style="row-gap:32px;align-items:center">
+      <div class="rv" style="grid-column:1 / span 6;background:var(--krem2);border-radius:36px;padding:clamp(24px,3vw,44px);transform:rotate(-1.5deg)">
+        <div class="mm" style="display:flex;justify-content:space-between;color:var(--muted)"><span>Sveska · str. 14</span><span>serija 26/09</span></div>
+        <p class="sf" style="font-style:italic;font-weight:500;font-size:clamp(30px,3vw,48px);line-height:1.1;margin:18px 0 22px">Kako nastaje sapun</p>
+        <ol style="list-style:none;margin:0;padding:0">
+          <sc-for list="{{ sveska }}" as="s" hint-placeholder-count="5"><li style="display:grid;grid-template-columns:52px 1fr auto;gap:12px;align-items:baseline;padding:12px 0;border-top:1px dashed rgba(58,42,34,0.3)"><span class="sf" style="font-weight:800;font-size:26px;color:var(--tera)">{{ s.n }}</span><span style="font-size:16px;line-height:1.5">{{ s.t }}</span><span class="mm" style="color:var(--muted)">{{ s.w }}</span></li></sc-for>
+        </ol>
+      </div>
+      <div class="rv" style="grid-column:8 / span 5"><span class="mm" style="color:var(--tera)">Naša priča</span><p class="sf" style="font-weight:700;font-size:clamp(34px,3.4vw,56px);line-height:1.02;letter-spacing:-0.03em;margin:14px 0 0">Sapun se suši <span style="font-style:italic;color:var(--tera)">šest nedelja.</span> Mi ne žurimo.</p><a class="hv" href="prica.html" style="display:inline-flex;align-items:center;min-height:52px;margin-top:24px;padding:0 22px;border-radius:999px;border:1.5px solid var(--ink);font-weight:700" style-hover="background:var(--ink);color:var(--krem)">Upoznaj Anu →</a></div>
+    </div>
+  </section>
+
+  <section style="background:var(--med);padding:clamp(80px,14svh,160px) 0">
+    <div class="g12" style="row-gap:16px">
+      <div class="rv" style="grid-column:1 / span 4"><span class="mm">Pokloni</span><h2 class="sf" style="font-weight:800;font-size:clamp(52px,5.6vw,96px);line-height:0.9;letter-spacing:-0.04em;margin:14px 0 0">Zapakovano <span style="font-style:italic;font-weight:600">za nekog.</span></h2><a class="hv" href="pokloni.html" style="display:inline-flex;align-items:center;min-height:52px;margin-top:24px;padding:0 22px;border-radius:999px;background:var(--ink);color:var(--krem);font-weight:700" style-hover="background:var(--tera);color:#fff">Svi pokloni →</a></div>
+      <sc-for list="{{ pokloni }}" as="g" hint-placeholder-count="2"><a class="rv hv" href="pokloni.html" style="grid-column:span 4;display:flex;flex-direction:column;justify-content:space-between;gap:28px;min-height:320px;padding:24px;border-radius:32px;background:var(--krem)" style-hover="background:#fff"><div style="display:flex;gap:8px;padding:10% 6% 0"><sc-for list="{{ g.s }}" as="c" hint-placeholder-count="3"><div style="flex:1"><dc-import name="MlinSapun" boja="{{ c }}" fs="12px" style="display:block;width:100%" hint-size="100%,50px"></dc-import></div></sc-for></div><div style="display:flex;justify-content:space-between;align-items:baseline"><span class="sf" style="font-weight:700;font-size:26px">{{ g.t }}</span><span class="mm">{{ g.c }}</span></div></a></sc-for>
+    </div>
+  </section>
+</main>
+<dc-import name="MlinFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() { return {
+    znacke:['100% prirodno','Veganski','Bez plastike','Dostava 1—2 dana'],
+    top:[{t:'Ruža & glina',g:'100 g',c:'690 din',h:'ruza-glina.html',bg:'#F6C9D0',sap:'#F9DDE1',alt:'Ružičasti sapun Ruža i glina'},{t:'Žalfija',g:'100 g',c:'650 din',h:'zalfija.html',bg:'#CFE3CF',sap:'#E2EFE2',alt:'Zeleni sapun Žalfija'}],
+    svi:[{n:'01',t:'Ruža & glina',c:'690 din',miris:'Ružina voda i ružičasta glina. Za suvu kožu.',bg:'#F6C9D0',sap:'#F9DDE1',rot:-8,h:'ruza-glina.html',alt:'Sapun Ruža i glina'},{n:'02',t:'Žalfija',c:'650 din',miris:'Žalfija sa Fruške gore. Za masnu kožu.',bg:'#CFE3CF',sap:'#E2EFE2',rot:6,h:'zalfija.html',alt:'Sapun Žalfija'},{n:'03',t:'Med & zob',c:'620 din',miris:'Bagremov med i ovsene pahuljice. Za osetljivu kožu.',bg:'#F8E08E',sap:'#FBEBB5',rot:-4,h:'prodavnica.html',alt:'Sapun Med i zob'},{n:'04',t:'Breskva',c:'670 din',miris:'Breskva i kajsijino ulje. Za svaki dan.',bg:'#F3A77C',sap:'#F7C4A5',rot:9,h:'prodavnica.html',alt:'Sapun Breskva'}],
+    sveska:[{n:'1',t:'Maslinovo ulje i kokos greju se na 45 °C.',w:'20 min'},{n:'2',t:'Dodaju se lužina i biljni ekstrakt.',w:'10 min'},{n:'3',t:'Masa se izliva u drvene kalupe.',w:'—'},{n:'4',t:'Seče se na komade od 100 g.',w:'dan 2'},{n:'5',t:'Suši se na drvenim policama.',w:'6 nedelja'}],
+    pokloni:[{t:'Tri za dušu',c:'1.790 din',s:['#F9DDE1','#E2EFE2','#FBEBB5']},{t:'Za mamu',c:'2.290 din',s:['#F9DDE1','#F7C4A5','#F9DDE1']}]
+  }; }
+}
+</script>
+</body>
+</html>

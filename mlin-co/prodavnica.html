@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="MlinHeader" active="prodavnica" hint-size="100%,160px"></dc-import>
+<main>
+  <section style="padding:clamp(48px,9svh,110px) 0 clamp(40px,7svh,72px)">
+    <div class="g12" style="row-gap:24px;align-items:end">
+      <div style="grid-column:1 / span 8"><span class="mm" style="color:var(--tera)">Prodavnica · {{ count }} proizvoda</span><h1 class="sf" style="font-weight:800;font-size:clamp(88px,12vw,220px);line-height:0.86;letter-spacing:-0.05em;margin:14px 0 0">Sapuni <span style="font-style:italic;font-weight:600;color:var(--tera)">&amp; nega.</span></h1></div>
+      <p style="grid-column:9 / span 4;font-size:16px;line-height:1.6;color:var(--muted);margin:0">Svaki proizvod ima svoju boju. Po njoj ga prepoznaješ i na polici u kupatilu.</p>
+    </div>
+  </section>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;padding:0 var(--m) 28px" role="group" aria-label="Filter po tipu kože">
+    <sc-for list="{{ filt }}" as="f" hint-placeholder-count="5"><button type="button" aria-pressed="{{ f.on }}" onClick="{{ f.pick }}" class="hv" style="min-height:46px;padding:0 18px;border-radius:999px;cursor:pointer;font:inherit;font-weight:500;background:{{ f.bg }};color:{{ f.c }};border:1.5px solid var(--ink)">{{ f.t }}</button></sc-for>
+  </div>
+  <section class="stk2" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1.5px solid var(--ink)">
+    <sc-for list="{{ lista }}" as="p" hint-placeholder-count="6">
+      <article class="rv" style="display:flex;flex-direction:column;background:{{ p.bg }};border-right:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink)">
+        <a href="{{ p.h }}" aria-label="{{ p.t }}" style="display:flex;align-items:center;justify-content:center;aspect-ratio:1;padding:18%"><dc-import name="MlinSapun" boja="{{ p.sap }}" rot="{{ p.rot }}" alt="{{ p.alt }}" style="display:block;width:100%" hint-size="100%,120px"></dc-import></a>
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px;padding:clamp(12px,2vw,18px) clamp(12px,2vw,22px) clamp(14px,2vw,22px)">
+          <a href="{{ p.h }}"><span class="sf" style="display:block;font-weight:800;font-size:clamp(24px,2.2vw,34px);letter-spacing:-0.02em">{{ p.t }}</span><span class="mm" style="display:block;margin-top:4px">{{ p.g }} · {{ p.koza }}</span></a>
+          <button type="button" onClick="{{ p.add }}" class="hv" aria-label="Dodaj {{ p.t }} u korpu" style="flex:0 0 auto;min-height:46px;padding:0 16px;border-radius:999px;border:0;cursor:pointer;background:var(--ink);color:var(--krem);font:inherit;font-weight:700" style-hover="background:var(--tera)">{{ p.btn }}</button>
+        </div>
+      </article>
+    </sc-for>
+  </section>
+  <section style="padding:clamp(80px,14svh,160px) 0"><div class="g12" style="row-gap:16px;align-items:end"><p class="rv sf" style="grid-column:1 / span 8;font-weight:700;font-size:clamp(44px,5vw,88px);line-height:0.95;letter-spacing:-0.035em;margin:0">Ne znaš koji? <span style="font-style:italic;color:var(--tera)">Uzmi sva tri.</span></p><div class="rv" style="grid-column:10 / span 3"><a class="hv" href="pokloni.html" style="display:flex;justify-content:center;align-items:center;min-height:58px;border-radius:999px;background:var(--tera);color:#fff;font-weight:700" style-hover="background:var(--tera2);color:#fff">Set „Tri za dušu” →</a></div></div></section>
+</main>
+<dc-import name="MlinFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const P = [
+  {id:'ruza',t:'Ruža & glina',g:'100 g',c:690,koza:'suva',bg:'#F6C9D0',sap:'#F9DDE1',rot:-8,h:'ruza-glina.html'},
+  {id:'zalfija',t:'Žalfija',g:'100 g',c:650,koza:'masna',bg:'#CFE3CF',sap:'#E2EFE2',rot:6,h:'zalfija.html'},
+  {id:'med',t:'Med & zob',g:'100 g',c:620,koza:'osetljiva',bg:'#F8E08E',sap:'#FBEBB5',rot:-4,h:'prodavnica.html'},
+  {id:'breskva',t:'Breskva',g:'100 g',c:670,koza:'svaka',bg:'#F3A77C',sap:'#F7C4A5',rot:9,h:'prodavnica.html'},
+  {id:'balzam',t:'Balzam za usne',g:'10 ml',c:390,koza:'svaka',bg:'#F3EADF',sap:'#F9DDE1',rot:0,h:'prodavnica.html'},
+  {id:'ulje',t:'Ulje za telo',g:'100 ml',c:1290,koza:'suva',bg:'#FBF6EF',sap:'#FBEBB5',rot:-12,h:'prodavnica.html'}
+];
+class Component extends DCLogic {
+  state = { f:'sve', added:'' };
+  renderVals() {
+    const s = this.state;
+    const F = [['sve','Sve'],['suva','Suva koža'],['masna','Masna koža'],['osetljiva','Osetljiva'],['svaka','Za svaki dan']];
+    return {
+      count: P.length,
+      filt: F.map(([id,t]) => ({ t, on: String(s.f === id), pick: () => this.setState({ f: id }), bg: s.f === id ? 'var(--ink)' : 'transparent', c: s.f === id ? 'var(--krem)' : 'var(--ink)' })),
+      lista: P.filter(p => s.f === 'sve' || p.koza === s.f).map(p => Object.assign({}, p, { alt: 'Sapun ' + p.t, btn: s.added === p.id ? 'Dodato ✓' : p.c + ' din · +', add: () => { window.mlinKorpa && window.mlinKorpa.add(p.id, 1); this.setState({ added: p.id }); setTimeout(() => this.setState({ added: '' }), 1600); } }))
+    };
+  }
+}
+</script>
+</body>
+</html>

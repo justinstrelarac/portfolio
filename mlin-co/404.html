@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="MlinHeader" active="" hint-size="100%,160px"></dc-import>
+<main style="background:var(--ruza);min-height:80svh;padding:clamp(48px,9svh,110px) 0 clamp(96px,18svh,200px);position:relative;overflow:hidden">
+  <div class="g12" style="row-gap:40px;align-items:center">
+    <div style="grid-column:1 / span 6">
+      <span class="mm">Greška 404</span>
+      <h1 class="sf" style="font-weight:800;font-size:clamp(72px,9vw,168px);line-height:0.88;letter-spacing:-0.05em;margin:14px 0 0">Ovaj sapun <span style="font-style:italic;font-weight:600;color:var(--tera)">se istopio.</span></h1>
+      <p style="font-size:18px;line-height:1.6;max-width:38ch;margin:22px 0 0">Stranicu koju tražiš nismo našli. Ostali sapuni su još čvrsti.</p>
+      <a class="hv" href="prodavnica.html" style="display:inline-flex;align-items:center;min-height:58px;margin-top:28px;padding:0 28px;border-radius:999px;background:var(--ink);color:var(--krem);font-weight:700" style-hover="background:var(--tera);color:#fff">Svi sapuni →</a>
+    </div>
+    <div style="grid-column:8 / span 5;position:relative;aspect-ratio:1" role="img" aria-label="Sapun koji se istopio u baricu">
+      <div style="position:absolute;left:8%;right:8%;bottom:18%;height:26%;border-radius:50%;background:radial-gradient(ellipse at 40% 40%,#FFF 0%,#F9DDE1 40%,#EFB9C2 100%);filter:blur(0.3px)"></div>
+      <div style="position:absolute;left:28%;right:28%;bottom:30%;height:24%;border-radius:40% 40% 46% 46% / 60% 60% 40% 40%;background:radial-gradient(ellipse at 36% 30%,#FFF 0%,#FCEAEC 50%,#F3C3CB 100%);box-shadow:0 18px 30px -18px rgba(58,42,34,0.45);display:flex;align-items:center;justify-content:center"><span class="sf" style="font-weight:800;letter-spacing:0.14em;color:rgba(58,42,34,0.2);font-size:clamp(14px,1.6vw,24px);transform:skewX(-8deg) scaleY(0.8)">ML N</span></div>
+      <span class="mm" style="position:absolute;left:0;bottom:0">Sl. 404 — posle 45 minuta u vodi</span>
+    </div>
+  </div>
+</main>
+<dc-import name="MlinFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+  details.oq summary{list-style:none;cursor:pointer}
+  details.oq summary::-webkit-details-marker{display:none}
+  details.oq[open] .pl{transform:rotate(45deg);color:var(--pet2)}
+  details.oq .pl{transition:transform .25s ease}
+  @media(prefers-reduced-motion:reduce){details.oq .pl{transition:none}}
+</style>
+</helmet>
+<dc-import name="MonoHeader" active="info" hint-size="100%,116px"></dc-import>
+<main>
+  <section class="g12" style="padding-top:clamp(48px,9svh,100px);padding-bottom:clamp(40px,7svh,72px);row-gap:16px;align-items:end">
+    <h1 class="d gS" style="grid-column:1 / span 8;font-size:clamp(120px,18vw,320px);margin:0">Info</h1>
+    <p style="grid-column:9 / span 4;font-family:var(--serif);font-style:italic;font-size:clamp(24px,2.2vw,34px);line-height:1.2;margin:0">Sve što treba da znaš pre nego što siđeš na reku.</p>
+  </section>
+  <section style="border-top:1px solid var(--line)">
+    <div class="stk" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr))">
+      <sc-for list="{{ brzo }}" as="b" hint-placeholder-count="4"><div style="padding:clamp(20px,2.4vw,32px);border-right:1px solid var(--line)"><div class="mo" style="color:{{ b.c }}">{{ b.k }}</div><div class="d" style="font-size:clamp(44px,4.4vw,76px);margin-top:12px">{{ b.v }}</div></div></sc-for>
+    </div>
+  </section>
+  <section style="border-top:1px solid var(--line)">
+    <div class="g12" style="padding-top:clamp(56px,10svh,110px);padding-bottom:clamp(80px,14svh,160px);row-gap:24px">
+      <sc-for list="{{ grupe }}" as="g" hint-placeholder-count="3">
+        <div class="rv stk" style="grid-column:1 / -1;display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:24px;padding-bottom:32px">
+          <h2 class="d" style="font-size:clamp(40px,4vw,72px);margin:0;color:{{ g.c }}">{{ g.t }}</h2>
+          <div style="border-top:1px solid var(--line)">
+            <sc-for list="{{ g.q }}" as="q" hint-placeholder-count="3">
+              <details class="oq" style="border-bottom:1px solid var(--line)"><summary style="display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:68px;font-size:clamp(17px,1.5vw,21px);font-weight:500">{{ q.q }}<span class="pl mo" aria-hidden="true" style="font-size:22px">+</span></summary><p style="margin:0 0 20px;font-size:16px;line-height:1.65;color:var(--siva);max-width:60ch">{{ q.a }}</p></details>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+</main>
+<dc-import name="MonoFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic { renderVals() { return {
+  brzo:[{k:'Godine',v:'18+',c:'#FF7A1A'},{k:'Kapija',v:'od 19h',c:'#D6246E'},{k:'Voda',v:'besplatna',c:'#3B7BFF'},{k:'Plaćanje',v:'bez keša',c:'#8A2BE2'}],
+  grupe:[
+    {t:'Ulaz',c:'#FF7A1A',q:[{q:'Šta mogu da unesem?',a:'Praznu flašu do 0,75 l, kremu za sunčanje, lekove uz recept i punjač. Bez stakla, limenki i dronova.'},{q:'Kako funkcioniše narukvica?',a:'Narukvica za tri dana stiže poštom u julu. Aktiviraš je na sajtu i važi za ulaz i plaćanje.'},{q:'Mogu li da izađem i vratim se?',a:'Da, do ponoći, kroz ulaz A.'}]},
+    {t:'Na festivalu',c:'#D6246E',q:[{q:'Ima li garderobe?',a:'Da, kod ulaza A, 400 din po danu.'},{q:'Gde se puni voda?',a:'Na šest česmi uz bine, besplatno celu noć.'},{q:'Da li je festival pristupačan?',a:'Postoji platforma za osobe u kolicima kod bina Monolit i Obala, i posebna ulazna traka.'}]},
+    {t:'Ulaznice',c:'#3B7BFF',q:[{q:'Mogu li da prenesem ulaznicu?',a:'Da, jednom, preko naloga do 1. avgusta.'},{q:'Šta ako otkažu izvođača?',a:'Program se ne refundira pojedinačno, ali objavljujemo zamenu najmanje sedam dana ranije.'},{q:'Da li postoji povraćaj novca?',a:'Samo ako festival bude otkazan. Tada vraćamo pun iznos u roku od 30 dana.'}]}
+  ]
+}; } }
+</script>
+</body>
+</html>

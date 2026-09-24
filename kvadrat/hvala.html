@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="KvHeader" active="" hint-size="100%,136px"></dc-import>
+<main style="padding:clamp(56px,11svh,130px) 0 clamp(96px,18svh,200px)">
+  <div class="g12" style="row-gap:40px;align-items:end">
+    <div style="grid-column:1 / span 7"><span class="km" style="color:var(--oznaka)">Upit primljen · {{ n }}</span><h1 style="font-family:var(--serif);font-weight:300;font-size:clamp(80px,10vw,190px);line-height:0.88;letter-spacing:-0.025em;margin:20px 0 0">Hvala{{ zarez }}<br><span style="font-style:italic;color:var(--oznaka)">{{ ime }}</span></h1><p style="font-size:17px;line-height:1.7;color:var(--muted);max-width:44ch;margin:24px 0 0">Javljamo se danas sa dva termina za razgledanje. Do tada vam šaljemo osnovu i tehnički list na email.</p></div>
+    <ol style="grid-column:9 / span 4;list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)"><sc-for list="{{ k }}" as="x" hint-placeholder-count="3"><li style="display:grid;grid-template-columns:60px 1fr auto;gap:12px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--line)"><span class="km" style="color:var(--oznaka)">{{ x.n }}</span><span style="font-family:var(--serif);font-size:22px">{{ x.t }}</span><span class="km" style="color:var(--muted)">{{ x.w }}</span></li></sc-for></ol>
+  </div>
+  <div class="g12" style="margin-top:clamp(56px,10svh,110px)"><div style="grid-column:1 / -1"><div class="kota"></div><div class="km" style="display:flex;justify-content:space-between;margin-top:10px;color:var(--muted)"><span>Danas</span><span>Razgledanje</span><span>Ključevi</span></div></div></div>
+</main>
+<dc-import name="KvFooter" hint-size="100%,700px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() { let q; try { q = new URLSearchParams(window.location.search); } catch(e) { q = new URLSearchParams(''); }
+    const ime = (q.get('ime') || '').split(' ')[0];
+    return { ime: ime ? ime + '.' : 'na poverenju.', zarez: ime ? ',' : '', n: q.get('n') || 'A-01', k: [{n:'01',t:'Poziv sa terminima',w:'danas'},{n:'02',t:'Osnova i tehnički list',w:'email'},{n:'03',t:'Razgledanje, 40 min',w:'po dogovoru'}] }; }
+}
+</script>
+</body>
+</html>

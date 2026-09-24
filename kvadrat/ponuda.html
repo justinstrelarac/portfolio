@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="KvHeader" active="ponuda" hint-size="100%,136px"></dc-import>
+<main>
+  <section style="padding:clamp(56px,11svh,130px) 0 clamp(40px,7svh,72px)">
+    <div class="g12" style="row-gap:24px;align-items:end">
+      <div style="grid-column:1 / span 8"><span class="km" style="color:var(--oznaka)">A-01 · Ponuda · {{ count }} nekretnina</span><h1 style="font-family:var(--serif);font-weight:300;font-size:clamp(88px,12vw,220px);line-height:0.88;letter-spacing:-0.025em;margin:20px 0 0">Po<span style="font-style:italic;color:var(--oznaka)">nuda.</span></h1></div>
+      <p style="grid-column:9 / span 4;font-size:16px;line-height:1.7;color:var(--muted);margin:0">Mali izbor, pažljivo biran. Svaku nekretninu smo obišli, izmerili i nacrtali pre nego što je stigla ovde.</p>
+    </div>
+  </section>
+  <div class="kv-fbtn" style="position:sticky;top:40px;z-index:31;padding:10px var(--m);background:var(--pesak);border-top:1px solid var(--ink);border-bottom:1px solid var(--line)"><button type="button" onClick="{{ toggle }}" aria-expanded="{{ openStr }}" class="km" style="display:flex;justify-content:space-between;align-items:center;width:100%;min-height:48px;padding:0 16px;border:1px solid var(--ink);background:transparent;cursor:pointer;font-family:var(--mono);color:var(--ink)"><span>Filteri · {{ count2 }} rezultata</span><span>{{ arrow }}</span></button></div>
+  <section class="kv-sheet" data-open="{{ open }}" style="position:sticky;top:40px;z-index:30;background:var(--pesak);border-top:1px solid var(--ink);border-bottom:1px solid var(--line)">
+    <div style="display:flex;gap:clamp(12px,2vw,28px);align-items:center;flex-wrap:wrap;padding:12px var(--m)" role="group" aria-label="Filteri">
+      <span class="km" style="color:var(--muted)">Kvart</span>
+      <sc-for list="{{ kvartovi }}" as="k" hint-placeholder-count="5"><button type="button" onClick="{{ k.pick }}" aria-pressed="{{ k.on }}" class="km hv" style="min-height:44px;padding:0 14px;cursor:pointer;background:{{ k.bg }};color:{{ k.c }};border:1px solid var(--ink)">{{ k.t }}</button></sc-for>
+      <span class="km" style="color:var(--muted);margin-left:auto">Sobe</span>
+      <sc-for list="{{ sobe }}" as="s" hint-placeholder-count="4"><button type="button" onClick="{{ s.pick }}" aria-pressed="{{ s.on }}" class="km hv" style="min-height:44px;min-width:48px;padding:0 12px;cursor:pointer;background:{{ s.bg }};color:{{ s.c }};border:1px solid var(--ink)">{{ s.t }}</button></sc-for>
+    </div>
+  </section>
+  <section style="padding:clamp(48px,8svh,90px) 0 clamp(96px,18svh,200px)">
+    <sc-if value="{{ empty }}" hint-placeholder-val="{{ false }}">
+      <div class="g12"><div style="grid-column:2 / span 10;text-align:center;padding:12svh 0;border:1px dashed var(--line)"><p style="font-family:var(--serif);font-size:clamp(34px,3.4vw,56px);margin:0">Ova kombinacija je <span style="font-style:italic">još prazna.</span></p><p style="color:var(--muted);margin:12px 0 22px">Ostavite broj, javljamo se kad se pojavi.</p><a class="km hv" href="kontakt.html" style="display:inline-flex;align-items:center;min-height:48px;padding:0 20px;border:1px solid var(--ink)" style-hover="background:var(--ink);color:var(--pesak)">Obavestite me</a></div></div>
+    </sc-if>
+    <div class="g12" style="row-gap:clamp(48px,8svh,88px)">
+      <sc-for list="{{ lista }}" as="n" hint-placeholder-count="4">
+        <a class="rv hv" href="{{ n.h }}" style="grid-column:span 6;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:20px;align-items:end" style-hover="color:var(--oznaka)">
+          <div style="aspect-ratio:3/4"><dc-import name="KvLuk" v="{{ n.v }}" alt="{{ n.alt }}" style="display:block;width:100%;height:100%" hint-size="100%,100%"></dc-import></div>
+          <div>
+            <span class="km" style="color:var(--oznaka)">{{ n.id }} · {{ n.kvart }}</span>
+            <h2 style="font-family:var(--serif);font-weight:400;font-size:clamp(28px,2.6vw,42px);line-height:1;margin:10px 0 16px">{{ n.t }}</h2>
+            <sc-for list="{{ n.tab }}" as="x" hint-placeholder-count="4"><div style="display:flex;justify-content:space-between;padding:8px 0;border-top:1px solid var(--line);font-size:14px"><span class="km" style="color:var(--muted)">{{ x.k }}</span><span style="font-family:var(--mono);font-weight:300">{{ x.v }}</span></div></sc-for>
+            <span class="km" style="display:inline-block;margin-top:14px;color:{{ n.sc }}">{{ n.status }}</span>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+</main>
+<dc-import name="KvFooter" hint-size="100%,700px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const N = [
+  {id:'A-01',kvart:'Dorćol',k:'dorcol',s:3,t:'Stan sa lukom nad Dunavom',v:'door',h:'nekretnina-dorcol.html',m2:128,cena:'€ 385.000',sprat:'7 / 8',status:'Useljivo odmah'},
+  {id:'A-02',kvart:'Vračar',k:'vracar',s:2,t:'Mansarda iznad Kalenića',v:'hill',h:'nekretnina-vracar.html',m2:86,cena:'€ 248.000',sprat:'5 / 5',status:'Useljivo odmah'},
+  {id:'A-03',kvart:'Senjak',k:'senjak',s:4,t:'Kuća sa vrtom na Senjaku',v:'hill',h:'kontakt.html',m2:240,cena:'€ 890.000',sprat:'P+1',status:'Razgledanje po dogovoru'},
+  {id:'A-04',kvart:'Dorćol',k:'dorcol',s:2,t:'Stan u Dositejevoj',v:'door',h:'kontakt.html',m2:72,cena:'€ 219.000',sprat:'3 / 5',status:'Rezervisano'},
+  {id:'A-05',kvart:'Vračar',k:'vracar',s:3,t:'Porodični stan kod Crvenog krsta',v:'door',h:'kontakt.html',m2:104,cena:'€ 362.000',sprat:'2 / 6',status:'Useljivo za 60 dana'},
+  {id:'A-06',kvart:'Stari grad',k:'stari',s:1,t:'Garsonjera sa lukom kod Studentskog',v:'hill',h:'kontakt.html',m2:38,cena:'€ 129.000',sprat:'4 / 4',status:'Useljivo odmah'}
+];
+class Component extends DCLogic {
+  state = { kv:'sve', sb:0, open:false };
+  renderVals() {
+    const s = this.state;
+    const KV = [['sve','Sve'],['dorcol','Dorćol'],['vracar','Vračar'],['senjak','Senjak'],['stari','Stari grad']];
+    const on = (a) => a ? { bg:'var(--ink)', c:'var(--pesak)' } : { bg:'transparent', c:'var(--ink)' };
+    const lista = N.filter(n => (s.kv === 'sve' || n.k === s.kv) && (!s.sb || (s.sb === 4 ? n.s >= 4 : n.s === s.sb))).map(n => Object.assign({}, n, {
+      alt: 'Luk sa sumrakom, ilustracija za ' + n.t, sc: n.status === 'Rezervisano' ? 'var(--muted)' : 'var(--oznaka)',
+      tab: [{k:'Površina',v:n.m2 + ' m²'},{k:'Sprat',v:n.sprat},{k:'Sobe',v:String(n.s)},{k:'Cena',v:n.cena}] }));
+    return {
+      count: N.length, lista, empty: lista.length === 0, count2: lista.length, open: s.open ? '1' : '0', openStr: String(s.open), arrow: s.open ? 'Zatvori ✕' : '↑', toggle: () => this.setState({ open: !s.open }),
+      kvartovi: KV.map(([id,t]) => Object.assign({ t, on: String(s.kv === id), pick: () => this.setState({ kv: id }) }, on(s.kv === id))),
+      sobe: [[0,'Sve'],[1,'1'],[2,'2'],[3,'3'],[4,'4+']].map(([id,t]) => Object.assign({ t, on: String(s.sb === id), pick: () => this.setState({ sb: id }) }, on(s.sb === id)))
+    };
+  }
+}
+</script>
+</body>
+</html>

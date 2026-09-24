@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<dc-import name="KvHeader" active="" hint-size="100%,136px"></dc-import>
+<main style="padding:clamp(56px,11svh,130px) 0 clamp(96px,18svh,200px)">
+  <div class="g12" style="row-gap:40px;align-items:center">
+    <div style="grid-column:1 / span 6">
+      <span class="km" style="color:var(--oznaka)">Greška 404 · parcela nepoznata</span>
+      <h1 style="font-family:var(--serif);font-weight:300;font-size:clamp(72px,9vw,168px);line-height:0.9;letter-spacing:-0.02em;margin:20px 0 0">Ova adresa<br>ne postoji. <span style="font-style:italic;color:var(--oznaka)">Još.</span></h1>
+      <p style="font-size:17px;line-height:1.7;color:var(--muted);max-width:40ch;margin:24px 0 0">Stranicu koju tražite nismo izgradili. Ove, u ponudi, jesmo.</p>
+      <div style="display:flex;gap:16px 28px;flex-wrap:wrap;align-items:center;margin-top:32px"><a class="km hv" href="ponuda.html" style="display:inline-flex;align-items:center;min-height:54px;padding:0 24px;background:var(--sumrak);color:var(--pesak)" style-hover="background:var(--ink);color:var(--pesak)">Pogledajte ponudu</a><a class="km hv" href="index.html" style="display:inline-flex;align-items:center;min-height:48px;border-bottom:1px solid var(--ink)">Početna →</a></div>
+    </div>
+    <figure style="grid-column:8 / span 5;margin:0;background:#FBF8F2;border:1px dashed var(--ink);padding:clamp(20px,2.4vw,32px)" role="img" aria-label="Prazna parcela obeležena kotama, bez zgrade">
+      <div style="position:relative;aspect-ratio:4/3;border:1px dashed var(--oznaka);display:flex;align-items:center;justify-content:center"><span style="font-family:var(--serif);font-style:italic;font-size:clamp(64px,7vw,120px);color:var(--oznaka)">404</span><span class="km" style="position:absolute;left:10px;top:10px;color:var(--muted)">Parcela A-404</span></div>
+      <div class="kota" style="margin-top:18px"></div><figcaption class="km" style="display:flex;justify-content:space-between;margin-top:10px;color:var(--muted)"><span>0,00 m²</span><span>Planirano</span></figcaption>
+    </figure>
+  </div>
+</main>
+<dc-import name="KvFooter" hint-size="100%,700px"></dc-import>
+</x-dc>
+</body>
+</html>

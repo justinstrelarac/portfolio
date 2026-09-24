@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+  .min{width:100%;font:inherit;font-size:17px;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:18px;padding:14px 16px;min-height:56px}
+  .min:focus{outline:none;border-color:var(--tera);box-shadow:0 0 0 4px rgba(217,102,63,0.15)}
+  .min[aria-invalid="true"]{border-color:#B3261E;box-shadow:0 0 0 4px rgba(179,38,30,0.1)}
+  .dop{font:inherit;text-align:left;cursor:pointer;background:#fff;color:var(--ink);border:1.5px solid var(--line);border-radius:22px;transition:border-color .2s ease,background-color .2s ease}
+  .dop[aria-pressed="true"]{border-color:var(--ink);background:var(--krem2)}
+  @media(prefers-reduced-motion:reduce){.dop{transition:none}}
+</style>
+</helmet>
+<dc-import name="MlinHeader" active="" hint-size="100%,160px"></dc-import>
+<main style="padding:clamp(40px,8svh,96px) 0 clamp(96px,18svh,200px)">
+  <div class="g12" style="row-gap:28px;align-items:start">
+    <div style="grid-column:1 / span 7">
+      <div style="display:flex;gap:8px;flex-wrap:wrap" aria-label="Koraci">
+        <sc-for list="{{ steps }}" as="s" hint-placeholder-count="3"><span style="display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 16px;border-radius:999px;background:{{ s.bg }};color:{{ s.c }};font-weight:500;font-size:14px"><span class="mm">{{ s.n }}</span>{{ s.t }}</span></sc-for>
+      </div>
+      <h1 class="sf" style="font-weight:800;font-size:clamp(64px,8vw,144px);line-height:0.88;letter-spacing:-0.05em;margin:24px 0 28px">{{ naslov }}</h1>
+
+      <sc-if value="{{ prazna }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:clamp(28px,4vw,56px);border-radius:36px;background:var(--krem2);display:grid;grid-template-columns:minmax(0,1fr) 180px;gap:24px;align-items:center" class="stk">
+          <div><p class="sf" style="font-weight:700;font-size:clamp(28px,2.6vw,40px);line-height:1.05;margin:0">Korpa je prazna, <span style="font-style:italic;color:var(--tera)">ali ne zadugo.</span></p><a class="hv" href="prodavnica.html" style="display:inline-flex;align-items:center;min-height:52px;margin-top:20px;padding:0 22px;border-radius:999px;background:var(--ink);color:var(--krem);font-weight:700" style-hover="background:var(--tera);color:#fff">Pogledaj sapune →</a></div>
+          <dc-import name="MlinSapun" boja="#F9DDE1" rot="-10" alt="Sapun koji čeka da bude izabran" hint-size="100%,110px"></dc-import>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ is1 }}" hint-placeholder-val="{{ false }}">
+        <ul style="list-style:none;margin:0;padding:0;border-top:1.5px solid var(--ink)">
+          <sc-for list="{{ stavke }}" as="i" hint-placeholder-count="2">
+            <li style="display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:18px;align-items:center;padding:16px 0;border-bottom:1px dashed rgba(58,42,34,0.3)">
+              <div style="aspect-ratio:1;border-radius:22px;background:{{ i.bg }};display:flex;align-items:center;justify-content:center;padding:14%"><dc-import name="MlinSapun" boja="{{ i.sap }}" fs="10px" style="display:block;width:100%" hint-size="100%,40px"></dc-import></div>
+              <div><div class="sf" style="font-weight:700;font-size:22px">{{ i.t }}</div><div class="mm" style="color:var(--muted);margin-top:4px">{{ i.g }} · {{ i.cena }} din</div>
+                <div style="display:inline-flex;align-items:center;border:1.5px solid var(--ink);border-radius:999px;margin-top:10px"><button type="button" onClick="{{ i.minus }}" aria-label="Manje" style="width:40px;height:40px;border:0;background:none;cursor:pointer;font-size:18px;color:var(--ink)">−</button><span class="mm" style="min-width:20px;text-align:center">{{ i.q }}</span><button type="button" onClick="{{ i.plus }}" aria-label="Više" style="width:40px;height:40px;border:0;background:none;cursor:pointer;font-size:18px;color:var(--ink)">+</button></div></div>
+              <div style="text-align:right"><div class="mm" style="font-size:15px">{{ i.ukupno }} din</div><button type="button" onClick="{{ i.remove }}" style="margin-top:10px;min-height:40px;padding:0 4px;border:0;background:none;cursor:pointer;color:var(--muted);font:inherit;font-size:14px;text-decoration:underline">Ukloni</button></div>
+            </li>
+          </sc-for>
+        </ul>
+      </sc-if>
+
+      <sc-if value="{{ is2 }}" hint-placeholder-val="{{ false }}">
+        <div class="stk" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <label style="display:flex;flex-direction:column;gap:8px;font-weight:500">Ime i prezime<input class="min" name="ime" autocomplete="name" value="{{ f.ime }}" onChange="{{ on.ime }}" aria-invalid="{{ inv.ime }}"><span style="font-size:13px;color:#B3261E;min-height:16px">{{ err.ime }}</span></label>
+          <label style="display:flex;flex-direction:column;gap:8px;font-weight:500">Telefon<input class="min" type="tel" name="tel" autocomplete="tel" value="{{ f.tel }}" onChange="{{ on.tel }}" aria-invalid="{{ inv.tel }}"><span style="font-size:13px;color:#B3261E;min-height:16px">{{ err.tel }}</span></label>
+          <label style="grid-column:1 / -1;display:flex;flex-direction:column;gap:8px;font-weight:500">Email (za praćenje paketa)<input class="min" type="email" name="email" autocomplete="email" value="{{ f.email }}" onChange="{{ on.email }}" aria-invalid="{{ inv.email }}"><span style="font-size:13px;color:#B3261E;min-height:16px">{{ err.email }}</span></label>
+          <label style="display:flex;flex-direction:column;gap:8px;font-weight:500">Ulica i broj<input class="min" name="adresa" autocomplete="street-address" value="{{ f.adresa }}" onChange="{{ on.adresa }}" aria-invalid="{{ inv.adresa }}"><span style="font-size:13px;color:#B3261E;min-height:16px">{{ err.adresa }}</span></label>
+          <label style="display:flex;flex-direction:column;gap:8px;font-weight:500">Grad i poštanski broj<input class="min" name="grad" autocomplete="address-level2" value="{{ f.grad }}" onChange="{{ on.grad }}" aria-invalid="{{ inv.grad }}"><span style="font-size:13px;color:#B3261E;min-height:16px">{{ err.grad }}</span></label>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ is3 }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:12px" role="radiogroup" aria-label="Način plaćanja">
+          <sc-for list="{{ placanje }}" as="o" hint-placeholder-count="3"><button type="button" role="radio" class="dop" aria-pressed="{{ o.on }}" aria-checked="{{ o.on }}" onClick="{{ o.pick }}" style="display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:80px;padding:16px 22px"><span><span class="sf" style="display:block;font-weight:700;font-size:21px">{{ o.t }}</span><span style="display:block;font-size:14px;color:var(--muted);margin-top:4px">{{ o.d }}</span></span><span aria-hidden="true" style="width:22px;height:22px;border-radius:50%;border:2px solid var(--ink);background:{{ o.dot }}"></span></button></sc-for>
+          <label style="display:flex;gap:12px;align-items:flex-start;margin-top:8px;font-size:15px;line-height:1.5;cursor:pointer"><input type="checkbox" checked="{{ f.poklon }}" onChange="{{ on.poklon }}" style="width:22px;height:22px;accent-color:#D9663F"> Zapakuj kao poklon, sa ručno pisanom kartom (+150 din)</label>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ notEmpty }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:28px;flex-wrap:wrap">
+          <button type="button" onClick="{{ back }}" disabled="{{ noBack }}" style="min-height:52px;padding:0 20px;border-radius:999px;border:1.5px solid var(--ink);background:none;cursor:pointer;font:inherit;font-weight:500;color:var(--ink)">← Nazad</button>
+          <span role="status" style="color:#B3261E;font-size:14px">{{ msg }}</span>
+          <button type="button" onClick="{{ next }}" disabled="{{ loading }}" class="hv" style="min-height:60px;padding:0 30px;border-radius:999px;border:0;cursor:pointer;background:var(--tera);color:#fff;font:inherit;font-weight:700;font-size:17px" style-hover="background:var(--tera2)">{{ nextLbl }}</button>
+        </div>
+      </sc-if>
+    </div>
+
+    <aside style="grid-column:9 / span 4;position:sticky;top:60px;background:var(--zalfija);border-radius:36px;padding:26px">
+      <span class="mm">Tvoja porudžbina</span>
+      <sc-for list="{{ sum }}" as="s" hint-placeholder-count="4"><div style="display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px dashed rgba(58,42,34,0.3);font-size:15px"><span>{{ s.k }}</span><span class="mm" style="font-size:14px">{{ s.v }}</span></div></sc-for>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:14px"><span class="sf" style="font-weight:800;font-size:24px">Ukupno</span><span class="sf" style="font-weight:800;font-size:32px">{{ total }} din</span></div>
+      <p style="font-size:13px;line-height:1.5;margin:12px 0 0">{{ dostavaNote }}</p>
+    </aside>
+  </div>
+</main>
+<dc-import name="MlinFooter" hint-size="100%,640px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const P = {ruza:{t:'Ruža & glina',g:'100 g',c:690,bg:'#F6C9D0',sap:'#F9DDE1'},zalfija:{t:'Žalfija',g:'100 g',c:650,bg:'#CFE3CF',sap:'#E2EFE2'},med:{t:'Med & zob',g:'100 g',c:620,bg:'#F8E08E',sap:'#FBEBB5'},breskva:{t:'Breskva',g:'100 g',c:670,bg:'#F3A77C',sap:'#F7C4A5'},balzam:{t:'Balzam za usne',g:'10 ml',c:390,bg:'#F3EADF',sap:'#F9DDE1'},ulje:{t:'Ulje za telo',g:'100 ml',c:1290,bg:'#FBF6EF',sap:'#FBEBB5'},set3:{t:'Tri za dušu',g:'3 × 100 g',c:1790,bg:'#F8E08E',sap:'#FBEBB5'},mama:{t:'Za mamu',g:'set',c:2290,bg:'#F6C9D0',sap:'#F9DDE1'},kutija:{t:'Kutija iz radionice',g:'set',c:3490,bg:'#CFE3CF',sap:'#E2EFE2'}};
+const fmt = n => n.toLocaleString('sr-RS');
+class Component extends DCLogic {
+  state = { k:[], step:1, pay:'pouzece', f:{ime:'',tel:'',email:'',adresa:'',grad:'',poklon:false}, err:{}, loading:false, msg:'' };
+  componentDidMount() { this.sync = () => this.setState({ k: ((window.mlinKorpa && window.mlinKorpa.get()) || []).filter(i => P[i.id]) }); this.sync(); window.addEventListener('mlin-korpa', this.sync); setTimeout(this.sync, 300); }
+  componentWillUnmount() { window.removeEventListener('mlin-korpa', this.sync); }
+  save(k) { window.mlinKorpa && window.mlinKorpa.set(k); this.setState({ k }); }
+  renderVals() {
+    const s = this.state;
+    const sub = s.k.reduce((a, i) => a + P[i.id].c * i.q, 0), dost = sub >= 3000 || !sub ? 0 : 390, pk = s.f.poklon ? 150 : 0;
+    const on = {}; ['ime','tel','email','adresa','grad'].forEach(x => on[x] = ev => { const v = ev.target.value; this.setState(q => { const e = Object.assign({}, q.err); delete e[x]; return { f: Object.assign({}, q.f, {[x]: v}), err: e, msg:'' }; }); });
+    on.poklon = ev => { const v = ev.target.checked; this.setState(q => ({ f: Object.assign({}, q.f, { poklon: v }) })); };
+    const inv = {}; Object.keys(s.err).forEach(x => inv[x] = 'true');
+    const next = () => {
+      if (s.step === 1) { this.setState({ step: 2, msg:'' }); return; }
+      if (s.step === 2) { const e = {}, f = s.f;
+        if (f.ime.trim().length < 2) e.ime = 'Upiši ime.'; if (f.tel.replace(/\D/g,'').length < 9) e.tel = 'Proveri broj.';
+        if (!/^\S+@\S+\.\S+$/.test(f.email)) e.email = 'Proveri email.'; if (f.adresa.trim().length < 4) e.adresa = 'Upiši adresu.'; if (f.grad.trim().length < 3) e.grad = 'Upiši grad.';
+        if (Object.keys(e).length) { this.setState({ err: e, msg: 'Proveri označena polja' }); return; } this.setState({ step: 3, msg:'' }); return; }
+      this.setState({ loading: true });
+      const br = String(2000 + Math.floor(Math.random() * 900));
+      const q = new URLSearchParams({ ime: s.f.ime.trim().split(' ')[0], br, grad: s.f.grad.trim() });
+      setTimeout(() => { this.save([]); window.location.href = 'hvala.html?' + q.toString(); }, 1000);
+    };
+    const T = {1:'Korpa.',2:'Gde šaljemo?',3:'Kako plaćaš?'};
+    const empty = s.k.length === 0;
+    return {
+      steps: [['01','Korpa'],['02','Dostava'],['03','Plaćanje']].map((x, i) => ({ n:x[0], t:x[1], bg: s.step === i+1 ? 'var(--ink)' : (s.step > i+1 ? 'var(--zalfija)' : 'var(--krem2)'), c: s.step === i+1 ? 'var(--krem)' : 'var(--ink)' })),
+      naslov: empty ? 'Korpa.' : T[s.step], prazna: empty, notEmpty: !empty, is1: !empty && s.step === 1, is2: !empty && s.step === 2, is3: !empty && s.step === 3,
+      stavke: s.k.map((i, idx) => { const p = P[i.id]; return Object.assign({}, p, { q: i.q, cena: fmt(p.c), ukupno: fmt(p.c * i.q),
+        minus: () => { const k = s.k.map(x => Object.assign({}, x)); k[idx].q = Math.max(1, k[idx].q - 1); this.save(k); },
+        plus: () => { const k = s.k.map(x => Object.assign({}, x)); k[idx].q = Math.min(9, k[idx].q + 1); this.save(k); },
+        remove: () => this.save(s.k.filter((x, j) => j !== idx)) }); }),
+      f: s.f, on, inv, err: Object.assign({ime:'',tel:'',email:'',adresa:'',grad:''}, s.err),
+      placanje: [['pouzece','Pouzećem','Plaćaš kuriru, gotovinom ili karticom.'],['kartica','Karticom online','Visa, Mastercard, Dina.'],['uplatnica','Uplatnicom','Šaljemo čim uplata stigne.']].map(([id,t,d]) => ({ t, d, on: String(s.pay === id), dot: s.pay === id ? 'var(--tera)' : 'transparent', pick: () => this.setState({ pay: id }) })),
+      sum: [{k:'Proizvodi',v: fmt(sub) + ' din'},{k:'Dostava',v: dost ? fmt(dost) + ' din' : 'besplatno'},{k:'Poklon pakovanje',v: pk ? '150 din' : '—'}],
+      total: fmt(sub + dost + pk), dostavaNote: sub && sub < 3000 ? 'Još ' + fmt(3000 - sub) + ' din do besplatne dostave.' : 'Stiže za 1—2 radna dana, BEX kurirom.',
+      msg: s.msg, loading: s.loading || undefined, back: () => this.setState({ step: Math.max(1, s.step - 1), msg:'' }), noBack: s.step === 1 || undefined,
+      next, nextLbl: s.loading ? 'Pakujemo…' : (s.step === 3 ? 'Poruči · ' + fmt(sub + dost + pk) + ' din' : 'Dalje →')
+    };
+  }
+}
+</script>
+</body>
+</html>
